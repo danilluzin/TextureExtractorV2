@@ -26,7 +26,7 @@ BUILDING:
    You can #define STBIW_MALLOC(), STBIW_REALLOC(), and STBIW_FREE() to replace
    malloc,realloc,free.
    You can define STBIW_MEMMOVE() to replace memmove()
-
+ 
 USAGE:
 
    There are four functions, one for each image file format:
