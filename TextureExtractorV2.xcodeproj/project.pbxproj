@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		F40DE3CB1FAF4DDE00EC32B4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE3CA1FAF4DDE00EC32B4 /* main.cpp */; };
+		F40DE3E71FAF588000EC32B4 /* Edge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE3D31FAF587D00EC32B4 /* Edge.cpp */; };
+		F40DE3E81FAF588000EC32B4 /* Rasterizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE3D41FAF587D00EC32B4 /* Rasterizer.cpp */; };
+		F40DE3E91FAF588000EC32B4 /* Transformation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE3D51FAF587D00EC32B4 /* Transformation.cpp */; };
+		F40DE3EA1FAF588000EC32B4 /* TextureEdge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE3D81FAF587E00EC32B4 /* TextureEdge.cpp */; };
+		F40DE3EB1FAF588000EC32B4 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE3DD1FAF587E00EC32B4 /* Mesh.cpp */; };
+		F40DE3EC1FAF588000EC32B4 /* TextureExtractor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE3DF1FAF587F00EC32B4 /* TextureExtractor.cpp */; };
+		F40DE3ED1FAF588000EC32B4 /* TextureGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE3E01FAF587F00EC32B4 /* TextureGradient.cpp */; };
+		F40DE3EE1FAF588000EC32B4 /* Gradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE3E11FAF587F00EC32B4 /* Gradient.cpp */; };
+		F40DE3EF1FAF588000EC32B4 /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE3E51FAF588000EC32B4 /* Bitmap.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +34,27 @@
 /* Begin PBXFileReference section */
 		F40DE3C71FAF4DDE00EC32B4 /* TextureExtractorV2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TextureExtractorV2; sourceTree = BUILT_PRODUCTS_DIR; };
 		F40DE3CA1FAF4DDE00EC32B4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		F40DE3D21FAF587D00EC32B4 /* Edge.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Edge.hpp; sourceTree = "<group>"; };
+		F40DE3D31FAF587D00EC32B4 /* Edge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Edge.cpp; sourceTree = "<group>"; };
+		F40DE3D41FAF587D00EC32B4 /* Rasterizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rasterizer.cpp; sourceTree = "<group>"; };
+		F40DE3D51FAF587D00EC32B4 /* Transformation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transformation.cpp; sourceTree = "<group>"; };
+		F40DE3D61FAF587D00EC32B4 /* Rasterizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Rasterizer.hpp; sourceTree = "<group>"; };
+		F40DE3D71FAF587E00EC32B4 /* TextureGradient.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextureGradient.hpp; sourceTree = "<group>"; };
+		F40DE3D81FAF587E00EC32B4 /* TextureEdge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureEdge.cpp; sourceTree = "<group>"; };
+		F40DE3D91FAF587E00EC32B4 /* TextureExtractor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextureExtractor.hpp; sourceTree = "<group>"; };
+		F40DE3DB1FAF587E00EC32B4 /* Mesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
+		F40DE3DC1FAF587E00EC32B4 /* RenderContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderContext.h; sourceTree = "<group>"; };
+		F40DE3DD1FAF587E00EC32B4 /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
+		F40DE3DF1FAF587F00EC32B4 /* TextureExtractor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureExtractor.cpp; sourceTree = "<group>"; };
+		F40DE3E01FAF587F00EC32B4 /* TextureGradient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureGradient.cpp; sourceTree = "<group>"; };
+		F40DE3E11FAF587F00EC32B4 /* Gradient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gradient.cpp; sourceTree = "<group>"; };
+		F40DE3E21FAF587F00EC32B4 /* Gradient.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Gradient.hpp; sourceTree = "<group>"; };
+		F40DE3E31FAF587F00EC32B4 /* Transformation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Transformation.hpp; sourceTree = "<group>"; };
+		F40DE3E41FAF588000EC32B4 /* Bitmap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Bitmap.hpp; sourceTree = "<group>"; };
+		F40DE3E51FAF588000EC32B4 /* Bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
+		F40DE3E61FAF588000EC32B4 /* TextureEdge.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextureEdge.hpp; sourceTree = "<group>"; };
+		F40DE3FB1FAF58A100EC32B4 /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = "<group>"; };
+		F40DE3FC1FAF58D000EC32B4 /* stb */ = {isa = PBXFileReference; lastKnownFileType = folder; path = stb; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +88,27 @@
 			isa = PBXGroup;
 			children = (
 				F40DE3CA1FAF4DDE00EC32B4 /* main.cpp */,
+				F40DE3E51FAF588000EC32B4 /* Bitmap.cpp */,
+				F40DE3E41FAF588000EC32B4 /* Bitmap.hpp */,
+				F40DE3D31FAF587D00EC32B4 /* Edge.cpp */,
+				F40DE3D21FAF587D00EC32B4 /* Edge.hpp */,
+				F40DE3E11FAF587F00EC32B4 /* Gradient.cpp */,
+				F40DE3E21FAF587F00EC32B4 /* Gradient.hpp */,
+				F40DE3DD1FAF587E00EC32B4 /* Mesh.cpp */,
+				F40DE3DB1FAF587E00EC32B4 /* Mesh.hpp */,
+				F40DE3D41FAF587D00EC32B4 /* Rasterizer.cpp */,
+				F40DE3D61FAF587D00EC32B4 /* Rasterizer.hpp */,
+				F40DE3DC1FAF587E00EC32B4 /* RenderContext.h */,
+				F40DE3D81FAF587E00EC32B4 /* TextureEdge.cpp */,
+				F40DE3E61FAF588000EC32B4 /* TextureEdge.hpp */,
+				F40DE3DF1FAF587F00EC32B4 /* TextureExtractor.cpp */,
+				F40DE3D91FAF587E00EC32B4 /* TextureExtractor.hpp */,
+				F40DE3E01FAF587F00EC32B4 /* TextureGradient.cpp */,
+				F40DE3D71FAF587E00EC32B4 /* TextureGradient.hpp */,
+				F40DE3D51FAF587D00EC32B4 /* Transformation.cpp */,
+				F40DE3E31FAF587F00EC32B4 /* Transformation.hpp */,
+				F40DE3FC1FAF58D000EC32B4 /* stb */,
+				F40DE3FB1FAF58A100EC32B4 /* resources */,
 			);
 			path = TextureExtractorV2;
 			sourceTree = "<group>";
@@ -72,6 +123,7 @@
 				F40DE3C31FAF4DDE00EC32B4 /* Sources */,
 				F40DE3C41FAF4DDE00EC32B4 /* Frameworks */,
 				F40DE3C51FAF4DDE00EC32B4 /* CopyFiles */,
+				F40DE3D11FAF527B00EC32B4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -114,11 +166,36 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F40DE3D11FAF527B00EC32B4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.hpp\" -or -name \"*.cpp\" -or -name \"*.c\" -type f\\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F40DE3C31FAF4DDE00EC32B4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F40DE3EB1FAF588000EC32B4 /* Mesh.cpp in Sources */,
+				F40DE3E81FAF588000EC32B4 /* Rasterizer.cpp in Sources */,
+				F40DE3E71FAF588000EC32B4 /* Edge.cpp in Sources */,
+				F40DE3ED1FAF588000EC32B4 /* TextureGradient.cpp in Sources */,
+				F40DE3EE1FAF588000EC32B4 /* Gradient.cpp in Sources */,
+				F40DE3EA1FAF588000EC32B4 /* TextureEdge.cpp in Sources */,
+				F40DE3EF1FAF588000EC32B4 /* Bitmap.cpp in Sources */,
+				F40DE3EC1FAF588000EC32B4 /* TextureExtractor.cpp in Sources */,
+				F40DE3E91FAF588000EC32B4 /* Transformation.cpp in Sources */,
 				F40DE3CB1FAF4DDE00EC32B4 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
