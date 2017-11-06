@@ -35,6 +35,8 @@ public:
     
     void setMesh (const Mesh & m){mesh = m;}
     
+    bool generateTexture(const std::string & newTexturePath, int width, int height);
+    
 //    TextureExtractor (int width, int height){
 //        scoreTable.resize(width * height);
 //        std::fill(scoreTable.begin(), scoreTable.end(), std::numeric_limits<float>::min());

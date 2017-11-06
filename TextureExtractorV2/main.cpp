@@ -7,7 +7,6 @@
 //
 
 #include <iostream>
-#include <glm/glm.hpp>
 #include "Timer.hpp"
 #include "Mesh.hpp"
 #include "TextureExtractor.hpp"
@@ -16,15 +15,20 @@
 bool prepareMesh(Mesh & mesh,const std::string & objFilePath);
 bool prepareViews( TextureExtractor & extractor, const std::string & cameraInfoPath, const std::string &  cameraListFilePath);
 bool performViewSelection(TextureExtractor & extractor);
+bool generateTexture(const std::string & newTexturePath, TextureExtractor & extractor, int width, int height);
+
 
 int main(int argc, const char * argv[]) {
     TextureExtractor extractor;
     Timer mainTimer;
     mainTimer.start();
     
-    std::string objFilePath = "./resources/monkey2.obj";
+    std::string objFilePath = "./resources/cube.obj";
     std::string cameraListFilePath = "./resources/camera_list.txt";
     std::string cameraInfoPath = "./resources/camera_info.txt";
+    std::string newTexturePath = "./resources/texture.txt";
+    int textureWidth = 1000, textureHeight = 1000;
+
 
     Mesh mesh;
     bool meshIsOk = prepareMesh(mesh, objFilePath);
@@ -48,9 +52,31 @@ int main(int argc, const char * argv[]) {
         return -1;
     }
     
-    printBold(mainTimer.stopGetResults( "Tottal run time " ));
+    bool textureOk;
+    textureOk = generateTexture(newTexturePath, extractor, textureWidth, textureHeight);
+    if( !textureOk ){
+        printBold(mainTimer.stopGetResults("Exited with error"));
+        return -1;
+    }
     
+    printBold(mainTimer.stopGetResults( "Tottal run time " ));
 }
+
+
+bool generateTexture(const std::string & newTexturePath, TextureExtractor & extractor,int width, int height){
+    Timer timer;
+    timer.start();
+    print("Performing Texture Generation\n");
+    bool textureOk;
+    textureOk = extractor.generateTexture(newTexturePath, width, height);
+    if( !textureOk ){
+        printBold(timer.stopGetResults( "Texture generation failed.: " ));
+        return false;
+    }
+    print(timer.stopGetResults( "\tLables generated.: " ));
+    return true;
+}
+
 
 bool performViewSelection(TextureExtractor & extractor){
     Timer timer;

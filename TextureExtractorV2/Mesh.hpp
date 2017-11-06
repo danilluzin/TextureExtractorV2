@@ -12,6 +12,7 @@
 #include <vector>
 #include <glm/glm.hpp>
 #include <map>
+#include <set>
 #include <iostream>
 #include <fstream>
 
@@ -74,10 +75,27 @@ struct Normal{
     uint id;
 };
 
+class AdjacencyGraph{
+    class Node{
+    public:
+        Node(uint faceId, const std::set<uint> & neighbours){
+            this->faceId = faceId;
+            this->neighbours = neighbours;
+        }
+        Node(){}
+    private:
+        uint faceId;
+        std::set<uint> neighbours;
+    };
+public:
+    void addNode(uint faceId,const std::set<uint> & neighbours){
+        nodes[faceId] = Node(faceId, neighbours);
+    }
+    std::map<uint,Node> nodes;
+};
 
 class Mesh {
 public:
-//    Mesh(){};
     bool initialize(const std::string & filename);
 
     std::map<uint, Vertex>    verticies;
@@ -87,11 +105,19 @@ public:
     std::map<uint, Normal> normals;
     
     std::map<uint,Triangle> triangles;
+    
+    std::map<uint,std::set<uint>> facesVertexBelongsTo;
 private:
+    
+    AdjacencyGraph adjacencyGraph;
+    
+    std::vector<uint> getEdgeAdjacentFaces(uint vert1, uint vert2);
+        
+    void buildAdjacencyGraph();
     
     bool loadFromFile(const std::string & filename);
     
-    Mesh & addTriangle(Triangle triangle);
+    uint addTriangle(Triangle triangle);
     
     Mesh & addVertex(Vertex vertex);
     

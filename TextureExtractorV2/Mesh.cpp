@@ -15,9 +15,55 @@ bool Mesh::initialize(const std::string & filename){
     if(!fileLoaded){
         return false;
     }
-    //TODO: adjacency map
+    buildAdjacencyGraph();
     return true;
 }
+
+
+void Mesh::buildAdjacencyGraph(){
+    for(auto t : triangles){
+        Triangle face = t.second;
+        uint vert [3];
+        vert[0] = face.verticies[0];
+        vert[1] = face.verticies[1];
+        vert[2] = face.verticies[2];
+        
+        std::vector<uint> edge1AdjacentFaces = getEdgeAdjacentFaces(vert[0],vert[1]);
+        std::vector<uint> edge2AdjacentFaces = getEdgeAdjacentFaces(vert[1],vert[2]);
+        std::vector<uint> edge3AdjacentFaces = getEdgeAdjacentFaces(vert[2],vert[0]);
+        
+        std::set<uint> adjacents;
+        adjacents.insert(edge1AdjacentFaces.begin(),edge1AdjacentFaces.end());
+        adjacents.insert(edge2AdjacentFaces.begin(),edge2AdjacentFaces.end());
+        adjacents.insert(edge3AdjacentFaces.begin(),edge3AdjacentFaces.end());
+        
+        std::set<uint> neighbours;
+        for(auto f : adjacents){
+            if(f != face.id){
+                neighbours.insert(f);
+            }
+            adjacencyGraph.addNode(face.id, neighbours);
+        }
+        assert(neighbours.size() == 3);
+    }
+}
+
+
+std::vector<uint> Mesh::getEdgeAdjacentFaces(uint vert1, uint vert2){
+    
+    std::set<uint> vert1Faces = facesVertexBelongsTo[vert1];
+    std::set<uint> vert2Faces = facesVertexBelongsTo[vert2];
+    uint maxSize = (uint)std::max(vert2Faces.size(),vert1Faces.size());
+    
+    std::vector<uint> intersection(maxSize);
+    std::vector<uint>::iterator it;
+    
+    it = std::set_intersection (vert1Faces.begin(), vert1Faces.end(), vert2Faces.begin(), vert2Faces.end(), intersection.begin());
+    intersection.resize(it-intersection.begin());
+    
+    return intersection;
+}
+
 
 Vertex operator * (const glm::mat4 & matrix , const Vertex & vertex){
     Vertex res(matrix*vertex.coord);
@@ -67,10 +113,10 @@ Mesh & Mesh::addNormal(Normal normal){
     return *this;
 }
 
-Mesh & Mesh::addTriangle(Triangle triangle){
+uint Mesh::addTriangle(Triangle triangle){
     triangle.id = (uint)triangles.size() + 18;
     triangles[triangle.id] = triangle;
-    return *this;
+    return triangle.id;
 }
 
 
@@ -183,7 +229,11 @@ void Mesh::parseTriangle (std::vector<std::string> one,
     triangle.normalVecs[ vert[1] ] = parseInt(two[2]);
     triangle.normalVecs[ vert[2] ] = parseInt(three[2]);
 
-    addTriangle(triangle);
+    uint triangleId = addTriangle(triangle);
+    
+    facesVertexBelongsTo[vert[0]].insert(triangleId);
+    facesVertexBelongsTo[vert[1]].insert(triangleId);
+    facesVertexBelongsTo[vert[2]].insert(triangleId);
 }
 
 

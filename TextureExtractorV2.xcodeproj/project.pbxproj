@@ -18,6 +18,8 @@
 		F40DE3EE1FAF588000EC32B4 /* Gradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE3E11FAF587F00EC32B4 /* Gradient.cpp */; };
 		F40DE3EF1FAF588000EC32B4 /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE3E51FAF588000EC32B4 /* Bitmap.cpp */; };
 		F40DE4021FAF70CB00EC32B4 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE4001FAF70CB00EC32B4 /* Timer.cpp */; };
+		F40DE4061FB0D98400EC32B4 /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE4041FB0D98400EC32B4 /* View.cpp */; };
+		F40DE4091FB0DB6000EC32B4 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE4071FB0DB6000EC32B4 /* Camera.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +61,10 @@
 		F40DE4001FAF70CB00EC32B4 /* Timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		F40DE4011FAF70CB00EC32B4 /* Timer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
 		F40DE4031FB06EA000EC32B4 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		F40DE4041FB0D98400EC32B4 /* View.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = View.cpp; sourceTree = "<group>"; };
+		F40DE4051FB0D98400EC32B4 /* View.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = View.hpp; sourceTree = "<group>"; };
+		F40DE4071FB0DB6000EC32B4 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		F40DE4081FB0DB6000EC32B4 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +101,14 @@
 				F40DE4001FAF70CB00EC32B4 /* Timer.cpp */,
 				F40DE4011FAF70CB00EC32B4 /* Timer.hpp */,
 				F40DE4031FB06EA000EC32B4 /* Utils.h */,
+				F40DE3DD1FAF587E00EC32B4 /* Mesh.cpp */,
+				F40DE3DB1FAF587E00EC32B4 /* Mesh.hpp */,
+				F40DE3DF1FAF587F00EC32B4 /* TextureExtractor.cpp */,
+				F40DE3D91FAF587E00EC32B4 /* TextureExtractor.hpp */,
+				F40DE4041FB0D98400EC32B4 /* View.cpp */,
+				F40DE4051FB0D98400EC32B4 /* View.hpp */,
+				F40DE4071FB0DB6000EC32B4 /* Camera.cpp */,
+				F40DE4081FB0DB6000EC32B4 /* Camera.hpp */,
 				F40DE3FE1FAF6E0600EC32B4 /* old source code */,
 				F40DE3FC1FAF58D000EC32B4 /* stb */,
 				F40DE3FB1FAF58A100EC32B4 /* resources */,
@@ -111,15 +125,11 @@
 				F40DE3D21FAF587D00EC32B4 /* Edge.hpp */,
 				F40DE3E11FAF587F00EC32B4 /* Gradient.cpp */,
 				F40DE3E21FAF587F00EC32B4 /* Gradient.hpp */,
-				F40DE3DD1FAF587E00EC32B4 /* Mesh.cpp */,
-				F40DE3DB1FAF587E00EC32B4 /* Mesh.hpp */,
 				F40DE3D41FAF587D00EC32B4 /* Rasterizer.cpp */,
 				F40DE3D61FAF587D00EC32B4 /* Rasterizer.hpp */,
 				F40DE3DC1FAF587E00EC32B4 /* RenderContext.h */,
 				F40DE3D81FAF587E00EC32B4 /* TextureEdge.cpp */,
 				F40DE3E61FAF588000EC32B4 /* TextureEdge.hpp */,
-				F40DE3DF1FAF587F00EC32B4 /* TextureExtractor.cpp */,
-				F40DE3D91FAF587E00EC32B4 /* TextureExtractor.hpp */,
 				F40DE3E01FAF587F00EC32B4 /* TextureGradient.cpp */,
 				F40DE3D71FAF587E00EC32B4 /* TextureGradient.hpp */,
 				F40DE3D51FAF587D00EC32B4 /* Transformation.cpp */,
@@ -203,6 +213,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F40DE4091FB0DB6000EC32B4 /* Camera.cpp in Sources */,
+				F40DE4061FB0D98400EC32B4 /* View.cpp in Sources */,
 				F40DE3EB1FAF588000EC32B4 /* Mesh.cpp in Sources */,
 				F40DE3E81FAF588000EC32B4 /* Rasterizer.cpp in Sources */,
 				F40DE3E71FAF588000EC32B4 /* Edge.cpp in Sources */,

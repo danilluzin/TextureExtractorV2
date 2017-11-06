@@ -22,6 +22,11 @@ bool TextureExtractor::selectViews(){
     return true;
 }
 
+bool TextureExtractor::generateTexture(const std::string & newTexturePath, int width, int height){
+ 
+    return true;
+}
+
 
 //void TextureExtractor::extractTexture(Bitmap * source, std::vector<std::pair<uint,float>> * scoreTable){
 //    this->source = source;
