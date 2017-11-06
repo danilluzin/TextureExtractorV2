@@ -16,15 +16,12 @@
 #include <fstream>
 
 struct Vertex{
-    Vertex (glm::vec4 coord = glm::vec4(0,0,0,0),
-            glm::vec4 color = glm::vec4(1,1,1,1)){
-        
+    Vertex (glm::vec4 coord = glm::vec4(0,0,0,0)){
         this->coord = coord;
-        this->color = color;
     }
     
     Vertex operator*(const glm::mat4 & matrix){
-        return Vertex(matrix*coord,color);
+        return Vertex(matrix*coord);
     }
     
     Vertex lerp(const Vertex & other, float ammount);
@@ -38,9 +35,9 @@ struct Vertex{
     
     glm::vec4 coord;
     glm::vec2 texCoord;
-    glm::vec4 color;
     uint id;
 };
+
 
 struct Triangle {
     Triangle(const uint verticies[3]){
@@ -53,6 +50,7 @@ struct Triangle {
     std::map<uint,uint> texCoords;
     std::map<uint,uint> normalVecs;
     uint id;
+    uint lableId;
 };
 
 struct TexCoord{
@@ -63,7 +61,9 @@ struct TexCoord{
     TexCoord(){}
     glm::vec2 coord;
     uint id;
+    
 };
+
 
 struct Normal{
     Normal(glm::vec4 coord){
@@ -74,12 +74,12 @@ struct Normal{
     uint id;
 };
 
+
 class Mesh {
 public:
-    
-    Mesh(){};
-    Mesh(const std::string & filename);
-    
+//    Mesh(){};
+    bool initialize(const std::string & filename);
+
     std::map<uint, Vertex>    verticies;
     
     std::map<uint, TexCoord> texCoords;
@@ -87,6 +87,9 @@ public:
     std::map<uint, Normal> normals;
     
     std::map<uint,Triangle> triangles;
+private:
+    
+    bool loadFromFile(const std::string & filename);
     
     Mesh & addTriangle(Triangle triangle);
     
@@ -95,7 +98,7 @@ public:
     Mesh & addTexCoord(TexCoord texCoord);
     
     Mesh & addNormal(Normal normal);
-private:
+
     void parseVertex(std::vector<std::string>);
     
     void parseTexCoord(std::vector<std::string>);

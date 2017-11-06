@@ -16,11 +16,6 @@ Gradient::Gradient(Vertex minYVert, Vertex midYVert, Vertex maxYVert){
     
     float oneOverdy = -oneOverdx;
     
-    //Color
-    color[0] = minYVert.color;
-    color[1] = midYVert.color;
-    color[2] = maxYVert.color;
-    
     glm::vec4 dColorX =(color[1]-color[2])*(minYVert.y()-maxYVert.y()) -
     (color[0]-color[2])*(midYVert.y()-maxYVert.y());
     

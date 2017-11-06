@@ -7,15 +7,20 @@
 //
 
 #include "Mesh.hpp"
+#include "Utils.h"
 
-std::vector<std::string> splitString(const std::string &s, char delim);
 
-float parseFloat(std::string txt);
-
-float parseInt(std::string txt);
+bool Mesh::initialize(const std::string & filename){
+    bool fileLoaded = loadFromFile(filename);
+    if(!fileLoaded){
+        return false;
+    }
+    //TODO: adjacency map
+    return true;
+}
 
 Vertex operator * (const glm::mat4 & matrix , const Vertex & vertex){
-    Vertex res(matrix*vertex.coord,vertex.color);
+    Vertex res(matrix*vertex.coord);
     res.id = vertex.id;
     res.texCoord = vertex.texCoord;
     return res;
@@ -53,7 +58,7 @@ Mesh & Mesh::addTexCoord(TexCoord texCoord){
     texCoord.id = (uint)texCoords.size() + 1;
     texCoords[texCoord.id] = texCoord;
     return *this;
-	
+
 }
 
 Mesh & Mesh::addNormal(Normal normal){
@@ -76,16 +81,17 @@ Vertex Vertex::lerp(const Vertex & other, float ammount){
     return res;
 }
 
-Mesh::Mesh(const std::string & filename){
-    
+
+bool Mesh::loadFromFile(const std::string &filename){
     std::ifstream file;
     file.open(filename.c_str());
     
     std::string line;
     if(!file.is_open()){
         std::cerr << "Unable to load mesh: " << filename << std::endl;
+        return false;
     }
- 
+    
     while(file.good()){
         getline(file, line);
         
@@ -128,6 +134,9 @@ Mesh::Mesh(const std::string & filename){
             default: break;
         };
     }
+    
+    file.close();
+    return true;
 }
 
 
@@ -154,26 +163,26 @@ void Mesh::parseNormal(std::vector<std::string> tokens){
 void Mesh::parseTriangle (std::vector<std::string> one,
                           std::vector<std::string> two,
                           std::vector<std::string> three){
-    
+
     uint vert [3];
     vert[0] = parseInt(one[0]);
     vert[1] = parseInt(two[0]);
     vert[2] = parseInt(three[0]);
-    
+
     Triangle triangle;
-    
+
     triangle.verticies[0] = vert[0];
     triangle.verticies[1] = vert[1];
     triangle.verticies[2] = vert[2];
-    
+
     triangle.texCoords[ vert[0] ] = parseInt(one[1]);
     triangle.texCoords[ vert[1] ] = parseInt(two[1]);
     triangle.texCoords[ vert[2] ] = parseInt(three[1]);
-    
+
     triangle.normalVecs[ vert[0] ] = parseInt(one[2]);
     triangle.normalVecs[ vert[1] ] = parseInt(two[2]);
     triangle.normalVecs[ vert[2] ] = parseInt(three[2]);
-    
+
     addTriangle(triangle);
 }
 
@@ -188,35 +197,5 @@ void Mesh::parsePlane(std::vector<std::string> tokens){
     parseTriangle(one, three, four);
 }
 
-float parseFloat(std::string txt){
-    return std::stof (txt);
-}
-
-float parseInt(std::string txt){
-    return std::stoi (txt);
-}
 
 
-std::vector<std::string> splitString(const std::string &s, char delim)
-{
-    std::vector<std::string> elems;
-    
-    const char* cstr = s.c_str();
-    uint strLength = (uint)s.length();
-    uint start = 0;
-    uint end = 0;
-    
-    while(end <= strLength){
-        while(end <= strLength){
-            if(cstr[end] == delim)
-                break;
-            end++;
-        }
-        
-        elems.push_back(s.substr(start, end - start));
-        start = end + 1;
-        end = start;
-    }
-    
-    return elems;
-}

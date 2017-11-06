@@ -10,8 +10,8 @@
 #include <algorithm>
 TextureGradient::TextureGradient(Vertex minYVert, Vertex midYVert, Vertex maxYVert){
     
-    float dx =(midYVert.x()-maxYVert.x())*(minYVert.y()-maxYVert.y()) -
-              (midYVert.y()-maxYVert.y())*(minYVert.x()-maxYVert.x());
+//    float dx =(midYVert.x()-maxYVert.x())*(minYVert.y()-maxYVert.y()) -
+//              (midYVert.y()-maxYVert.y())*(minYVert.x()-maxYVert.x());
 //    float dy = -dx;
     
     float oneOverdx = 1.0f/((midYVert.texCoord.x-maxYVert.texCoord.x)*(minYVert.texCoord.y-maxYVert.texCoord.y) -

@@ -84,7 +84,7 @@ Vertex Transformation::doPerspectiveDevide(const Vertex & coord) const {
  Vertex res(glm::vec4(coord.x() / coord.w(),
                             coord.y() / coord.w(),
                             coord.z() / coord.w(),
-                            coord.w()) , coord.color);
+                            coord.w()));
     res.id = coord.id;
     res.texCoord = coord.texCoord;
     return res;
