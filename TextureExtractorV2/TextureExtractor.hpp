@@ -14,7 +14,11 @@
 #include "Bitmap.hpp"
 #include "Mesh.hpp"
 #include "TextureEdge.hpp"
+#include "View.hpp"
 #include "Transformation.hpp"
+#include "Display.hpp"
+
+
 
 class TextureExtractor {
     
@@ -23,6 +27,8 @@ class TextureExtractor {
 //    Transformation transformation;
 //
     Mesh mesh;
+    
+    std::map<uint,View> views;
 //
 //    std::vector<std::pair<uint,float>> * sourceScoreTable;
 //

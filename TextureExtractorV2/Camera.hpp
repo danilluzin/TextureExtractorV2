@@ -16,7 +16,7 @@
 
 class Camera{
 public:
-    Camera(const glm::vec3 pos = glm::vec3(0,0,0),
+    Camera(bool eh, const glm::vec3 pos = glm::vec3(0,0,0),
            float fov = 70.0f,
            float aspect = 1,
            glm::vec3 forward = glm::vec3(0,0,0),
@@ -24,6 +24,8 @@ public:
            float zNear = 0.01f,
            float zFar = 1000.0f
            );
+    
+    Camera(){};
     
     glm::mat4 getViewProjection() const;
     
@@ -36,6 +38,13 @@ public:
     float fov,zNear,zFar;
     
     glm::mat4 perspective;
+    
+    float focalLength;
+    
+    glm::mat4 rotationMatrix;
+    
+    glm::vec3 translation;
+    
     
 };
 #endif /* Camera_hpp */

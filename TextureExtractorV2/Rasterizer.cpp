@@ -8,7 +8,7 @@
 #include "Rasterizer.hpp"
 #include <iostream>
 #include <algorithm>
-
+#include "Utils.h"
 bool useColor = false;
 
 Rasterizer::Rasterizer(int width, int height){
@@ -52,21 +52,23 @@ void Rasterizer::drawTriangle(const Triangle & triangle){
     glm::mat4 cameraModelTransform = transformation.getViewProjection()*
                                      transformation.getModelMatrix();
     
-//    printMatrix(cameraModelTransform);
+//    glm::mat4 cameraModelTransform = transformation.getViewProjection();
+    
+    //    printMatrix(cameraModelTransform);
     
     vOne =   cameraModelTransform * vOne;
     vTwo =   cameraModelTransform * vTwo;
     vThree = cameraModelTransform * vThree;
     
-    if(isInsideViewFrustrum(vOne) && isInsideViewFrustrum(vTwo) && isInsideViewFrustrum(vThree)){
-        rasterizeTriangle(vOne, vTwo, vThree, triangle);
-        return;
-    }
-    
-    if(!isInsideViewFrustrum(vOne) && !isInsideViewFrustrum(vTwo) && !isInsideViewFrustrum(vThree)){
-        return;
-    }
-    
+//    if(isInsideViewFrustrum(vOne) && isInsideViewFrustrum(vTwo) && isInsideViewFrustrum(vThree)){
+//        rasterizeTriangle(vOne, vTwo, vThree, triangle);
+//        return;
+//    }
+//
+//    if(!isInsideViewFrustrum(vOne) && !isInsideViewFrustrum(vTwo) && !isInsideViewFrustrum(vThree)){
+//        return;
+//    }
+//
     std::vector<Vertex> verticies;
     verticies.push_back(vOne);
     verticies.push_back(vTwo);
@@ -130,16 +132,16 @@ void Rasterizer::rasterizeTriangle(Vertex minYVert, Vertex midYVert, Vertex maxY
     midYVert = transformation.doPerspectiveDevide(screenSpaceTransform * midYVert);
     maxYVert = transformation.doPerspectiveDevide(screenSpaceTransform * maxYVert);
     
-    if (triangleArea(minYVert, maxYVert, midYVert) <= 0){
-        return; //BackFace culling
-    }
-    
-    
-    if( (minYVert.z()<-minYVert.w() || minYVert.z()>minYVert.w()) &&
-       (midYVert.z()<-midYVert.w() || midYVert.z()>midYVert.w()) &&
-       (maxYVert.z()<-maxYVert.w() || maxYVert.z()>maxYVert.w())    ){
-        return;
-    }
+//    if (triangleArea(minYVert, maxYVert, midYVert) <= 0){
+//        return; //BackFace culling
+//    }
+//    
+//    
+//    if( (minYVert.z()<-minYVert.w() || minYVert.z()>minYVert.w()) &&
+//       (midYVert.z()<-midYVert.w() || midYVert.z()>midYVert.w()) &&
+//       (maxYVert.z()<-maxYVert.w() || maxYVert.z()>maxYVert.w())    ){
+//        return;
+//    }
     
     if(minYVert.y()>midYVert.y())
         std::swap(minYVert, midYVert);

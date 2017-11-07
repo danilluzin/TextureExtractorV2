@@ -44,7 +44,6 @@ void Mesh::buildAdjacencyGraph(){
             }
             adjacencyGraph.addNode(face.id, neighbours);
         }
-        assert(neighbours.size() == 3);
     }
 }
 

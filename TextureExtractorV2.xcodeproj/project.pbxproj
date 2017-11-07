@@ -20,6 +20,10 @@
 		F40DE4021FAF70CB00EC32B4 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE4001FAF70CB00EC32B4 /* Timer.cpp */; };
 		F40DE4061FB0D98400EC32B4 /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE4041FB0D98400EC32B4 /* View.cpp */; };
 		F40DE4091FB0DB6000EC32B4 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE4071FB0DB6000EC32B4 /* Camera.cpp */; };
+		F48D2E291FB229E200145D8D /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48D2E281FB229E200145D8D /* OpenGL.framework */; };
+		F48D2E2B1FB22A2600145D8D /* libGLEW.2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F48D2E2A1FB22A2600145D8D /* libGLEW.2.0.0.dylib */; };
+		F48D2E2D1FB22A3800145D8D /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F48D2E2C1FB22A3700145D8D /* libSDL2-2.0.0.dylib */; };
+		F48D2E301FB22A5F00145D8D /* Display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F48D2E2E1FB22A5E00145D8D /* Display.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,6 +69,11 @@
 		F40DE4051FB0D98400EC32B4 /* View.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = View.hpp; sourceTree = "<group>"; };
 		F40DE4071FB0DB6000EC32B4 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		F40DE4081FB0DB6000EC32B4 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
+		F48D2E281FB229E200145D8D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		F48D2E2A1FB22A2600145D8D /* libGLEW.2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.0.0.dylib; path = ../../../../../../usr/local/Cellar/glew/2.0.0/lib/libGLEW.2.0.0.dylib; sourceTree = "<group>"; };
+		F48D2E2C1FB22A3700145D8D /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../../usr/local/Cellar/sdl2/2.0.6/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
+		F48D2E2E1FB22A5E00145D8D /* Display.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Display.cpp; sourceTree = "<group>"; };
+		F48D2E2F1FB22A5F00145D8D /* Display.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Display.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +81,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F48D2E2D1FB22A3800145D8D /* libSDL2-2.0.0.dylib in Frameworks */,
+				F48D2E2B1FB22A2600145D8D /* libGLEW.2.0.0.dylib in Frameworks */,
+				F48D2E291FB229E200145D8D /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +95,7 @@
 			children = (
 				F40DE3C91FAF4DDE00EC32B4 /* TextureExtractorV2 */,
 				F40DE3C81FAF4DDE00EC32B4 /* Products */,
+				F48D2E271FB229E100145D8D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +132,8 @@
 		F40DE3FE1FAF6E0600EC32B4 /* old source code */ = {
 			isa = PBXGroup;
 			children = (
+				F48D2E2E1FB22A5E00145D8D /* Display.cpp */,
+				F48D2E2F1FB22A5F00145D8D /* Display.hpp */,
 				F40DE3E51FAF588000EC32B4 /* Bitmap.cpp */,
 				F40DE3E41FAF588000EC32B4 /* Bitmap.hpp */,
 				F40DE3D31FAF587D00EC32B4 /* Edge.cpp */,
@@ -136,6 +151,16 @@
 				F40DE3E31FAF587F00EC32B4 /* Transformation.hpp */,
 			);
 			name = "old source code";
+			sourceTree = "<group>";
+		};
+		F48D2E271FB229E100145D8D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F48D2E2C1FB22A3700145D8D /* libSDL2-2.0.0.dylib */,
+				F48D2E2A1FB22A2600145D8D /* libGLEW.2.0.0.dylib */,
+				F48D2E281FB229E200145D8D /* OpenGL.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +246,7 @@
 				F40DE3ED1FAF588000EC32B4 /* TextureGradient.cpp in Sources */,
 				F40DE3EE1FAF588000EC32B4 /* Gradient.cpp in Sources */,
 				F40DE4021FAF70CB00EC32B4 /* Timer.cpp in Sources */,
+				F48D2E301FB22A5F00145D8D /* Display.cpp in Sources */,
 				F40DE3EA1FAF588000EC32B4 /* TextureEdge.cpp in Sources */,
 				F40DE3EF1FAF588000EC32B4 /* Bitmap.cpp in Sources */,
 				F40DE3EC1FAF588000EC32B4 /* TextureExtractor.cpp in Sources */,
@@ -341,6 +367,11 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/glew/2.0.0/lib,
+					/usr/local/Cellar/sdl2/2.0.6/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -351,6 +382,11 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/glew/2.0.0/lib,
+					/usr/local/Cellar/sdl2/2.0.6/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

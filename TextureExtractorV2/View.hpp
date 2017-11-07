@@ -14,8 +14,12 @@
 #include "Camera.hpp"
 
 class View{
+public:
+    View(){};
     uint id;
     Bitmap sourceImage;
+    std::string fileName;
     Camera camera;
 };
+
 #endif /* View_hpp */

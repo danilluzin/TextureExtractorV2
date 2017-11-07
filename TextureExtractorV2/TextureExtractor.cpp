@@ -8,11 +8,49 @@
 
 #include "TextureExtractor.hpp"
 #include <glm/ext.hpp>
+#include "Rasterizer.hpp"
 
+void windowRender( Mesh mesh );
 
 bool TextureExtractor::prepareViews(const std::string & cameraInfoPath, const std::string &  cameraListFilePath){
-    //TODO:
-    
+    //TODO: set martix to 0
+//    Bitmap * bitmap = new Bitmap(4032,3024);
+//    bitmap->clear(glm::vec4(0.4,0.4,0.4,1));
+//    View v;
+//    v.camera = Camera(true);
+//    v.camera.fov = 70;
+//    v.camera.rotationMatrix[0][0] =  -0.272774424923  ;
+//    v.camera.rotationMatrix[1][0] =  -0.33027662254  ;
+//    v.camera.rotationMatrix[2][0] =  -0.90361192824  ;
+//
+//    v.camera.rotationMatrix[0][1] =  0.884159272993  ;
+//    v.camera.rotationMatrix[1][1] =  -0.456338040783  ;
+//    v.camera.rotationMatrix[2][1] =  -0.1001074003  ;
+//
+//    v.camera.rotationMatrix[0][2] =  -0.379288518971  ;
+//    v.camera.rotationMatrix[1][2] =  -0.826241714125  ;
+//    v.camera.rotationMatrix[2][2] =  0.416493523273  ;
+//
+//    //   -0.272774424923 -0.33027662254 -0.90361192824
+//    //    -0.884159272993 0.456338040783 0.1001074003
+//    //    0.379288518971 0.826241714125 -0.416493523273
+//    v.camera.translation = glm::vec3(-0.461685315155,-0.533333463975,-1.43486184825);
+//
+//    Bitmap texture("./resources/cs.png");
+//    Rasterizer rasterizer(4032,3024);
+//    rasterizer.bindMesh(mesh);
+//    rasterizer.setTexture(texture);
+//
+//    Transformation transform;
+//    transform.setCamera(v.camera);
+//    transform.setAspectRatio(4032, 3024);
+//
+//    rasterizer.setTransformation(transform);
+//    rasterizer.clearBuffer();
+//    rasterizer.setRenderContext(bitmap);
+//    rasterizer.drawMesh();
+//    bitmap->toPPM("./resources/render_test.ppm");
+    windowRender(mesh);
     return true;
 }
 
@@ -23,9 +61,73 @@ bool TextureExtractor::selectViews(){
 }
 
 bool TextureExtractor::generateTexture(const std::string & newTexturePath, int width, int height){
- 
+    //TODO:
     return true;
 }
+
+
+void windowRender( Mesh mesh ){
+    Bitmap texture("./resources/cs.png");
+    int width = 432, height = 324;
+    
+    View v;
+    v.camera = Camera(true);
+    v.camera.fov = 70;
+    v.camera.rotationMatrix[0][0] =  -0.272774424923  ;
+    v.camera.rotationMatrix[1][0] =  -0.33027662254  ;
+    v.camera.rotationMatrix[2][0] =  -0.90361192824  ;
+    
+    v.camera.rotationMatrix[0][1] =  0.884159272993  ;
+    v.camera.rotationMatrix[1][1] =  -0.456338040783  ;
+    v.camera.rotationMatrix[2][1] =  -0.1001074003  ;
+    
+    v.camera.rotationMatrix[0][2] =  -0.379288518971  ;
+    v.camera.rotationMatrix[1][2] =  -0.826241714125  ;
+    v.camera.rotationMatrix[2][2] =  0.416493523273  ;
+    
+     v.camera.translation = glm::vec3(-0.461685315155,-0.533333463975,-1.43486184825);
+    
+    Display *  display = new Display(width, height, "TEST123");
+    
+    Transformation transform;
+    transform.setCamera(v.camera);
+    transform.setAspectRatio(width, height);
+    
+    Rasterizer rasterizer(width, height);
+    rasterizer.setRenderContext(display);
+    rasterizer.bindMesh(mesh);
+    rasterizer.setTexture(texture);
+    
+    auto previousTime = std::chrono::high_resolution_clock::now();
+    float counter = 0.0f;
+    
+    while (!(display->isColsed())){
+        auto currentTime = std::chrono::high_resolution_clock::now();
+        auto delta = (float)std::chrono::duration_cast<std::chrono::nanoseconds>(currentTime-previousTime).count()/1000000000;
+        previousTime = currentTime;
+        rasterizer.clearBuffer();
+        
+        //        transform.pos.x = sin(counter*0.5)*4;
+        //        transform.rot.x = counter/2;
+        //        transform.rot.z = counter/2;
+        //        transform.rot.y = counter/2;
+//        transform.rot.y = sin(counter*0.5);
+//         transform.rot.x = sin(counter*0.5);
+//         transform.rot.z = sin(counter*0.5);
+        //        transform.rot.y = 1;
+        //        transform.rot.x = 1;
+        //        transform.pos.x = 2;
+        
+        rasterizer.setTransformation(transform);
+        display->clear(glm::vec4(0.4f, 0.4f, 0.4f, 1.0f));
+        rasterizer.drawMesh();
+        display->update();
+        counter += delta*0.5;
+    }
+    delete display;
+    std::cout<<"Display closed!\n";
+}
+
 
 
 //void TextureExtractor::extractTexture(Bitmap * source, std::vector<std::pair<uint,float>> * scoreTable){

@@ -11,6 +11,8 @@
 
 #include <iostream>
 #include <glm/glm.hpp>
+#include <vector>
+
 
 inline std::ostream& bold_on(std::ostream& os)
 {

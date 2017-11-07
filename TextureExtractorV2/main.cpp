@@ -23,7 +23,7 @@ int main(int argc, const char * argv[]) {
     Timer mainTimer;
     mainTimer.start();
     
-    std::string objFilePath = "./resources/cube.obj";
+    std::string objFilePath = "./resources/big_3_blender.obj";
     std::string cameraListFilePath = "./resources/camera_list.txt";
     std::string cameraInfoPath = "./resources/camera_info.txt";
     std::string newTexturePath = "./resources/texture.txt";
