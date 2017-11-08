@@ -15,7 +15,7 @@ Display::Display( int width, int height, const std::string & title) :RenderConte
     renderer = SDL_CreateRenderer(window, -1, 0);
     isClosed = false;
 }
-
+ 
 Display::~Display(){
     SDL_Quit();
     SDL_DestroyWindow(window);
