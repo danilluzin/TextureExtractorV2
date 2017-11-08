@@ -9,7 +9,7 @@
 #include <SDL2/SDL_opengl.h>
 #include "Bitmap.hpp"
 #include "RenderContext.h"
-
+ 
 class Display : public RenderContext {
     
     SDL_Renderer * renderer;

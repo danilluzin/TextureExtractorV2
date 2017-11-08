@@ -8,7 +8,7 @@
 
 #include "Display.hpp"
 
-
+ 
 Display::Display( int width, int height, const std::string & title) :RenderContext(width,height){
     SDL_Init(SDL_INIT_EVERYTHING);
     window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
