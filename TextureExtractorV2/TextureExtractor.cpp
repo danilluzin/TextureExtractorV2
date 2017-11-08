@@ -9,50 +9,79 @@
 #include "TextureExtractor.hpp"
 #include <glm/ext.hpp>
 #include "Rasterizer.hpp"
+#include "Utils.h"
+#include <fstream>
 
 void windowRender( Mesh mesh );
 
+/*
 bool TextureExtractor::prepareViews(const std::string & cameraInfoPath, const std::string &  cameraListFilePath){
-    //TODO: set martix to 0
-//    Bitmap * bitmap = new Bitmap(4032,3024);
-//    bitmap->clear(glm::vec4(0.4,0.4,0.4,1));
-//    View v;
-//    v.camera = Camera(true);
-//    v.camera.fov = 70;
-//    v.camera.rotationMatrix[0][0] =  -0.272774424923  ;
-//    v.camera.rotationMatrix[1][0] =  -0.33027662254  ;
-//    v.camera.rotationMatrix[2][0] =  -0.90361192824  ;
-//
-//    v.camera.rotationMatrix[0][1] =  0.884159272993  ;
-//    v.camera.rotationMatrix[1][1] =  -0.456338040783  ;
-//    v.camera.rotationMatrix[2][1] =  -0.1001074003  ;
-//
-//    v.camera.rotationMatrix[0][2] =  -0.379288518971  ;
-//    v.camera.rotationMatrix[1][2] =  -0.826241714125  ;
-//    v.camera.rotationMatrix[2][2] =  0.416493523273  ;
-//
-//    //   -0.272774424923 -0.33027662254 -0.90361192824
-//    //    -0.884159272993 0.456338040783 0.1001074003
-//    //    0.379288518971 0.826241714125 -0.416493523273
-//    v.camera.translation = glm::vec3(-0.461685315155,-0.533333463975,-1.43486184825);
-//
-//    Bitmap texture("./resources/cs.png");
-//    Rasterizer rasterizer(4032,3024);
-//    rasterizer.bindMesh(mesh);
-//    rasterizer.setTexture(texture);
-//
-//    Transformation transform;
-//    transform.setCamera(v.camera);
-//    transform.setAspectRatio(4032, 3024);
-//
-//    rasterizer.setTransformation(transform);
-//    rasterizer.clearBuffer();
-//    rasterizer.setRenderContext(bitmap);
-//    rasterizer.drawMesh();
-//    bitmap->toPPM("./resources/render_test.ppm");
-    windowRender(mesh);
+//    TODO: set martix to 0
+    Bitmap * bitmap = new Bitmap(4032,3024);
+    bitmap->clear(glm::vec4(0.4,0.4,0.4,1));
+    View v;
+    v.camera = Camera(true);
+    v.camera.fov = 0.88922719077834;
+    v.camera.rotationMatrix[0][0] =  -0.272774424923  ;
+    v.camera.rotationMatrix[1][0] =  -0.33027662254  ;
+    v.camera.rotationMatrix[2][0] =  -0.90361192824  ;
+
+    v.camera.rotationMatrix[0][1] =  0.884159272993  ;
+    v.camera.rotationMatrix[1][1] =  -0.456338040783  ;
+    v.camera.rotationMatrix[2][1] =  -0.1001074003  ;
+
+    v.camera.rotationMatrix[0][2] =  -0.379288518971  ;
+    v.camera.rotationMatrix[1][2] =  -0.826241714125  ;
+    v.camera.rotationMatrix[2][2] =  0.416493523273  ;
+
+    //   -0.272774424923 -0.33027662254 -0.90361192824
+    //    -0.884159272993 0.456338040783 0.1001074003
+    //    0.379288518971 0.826241714125 -0.416493523273
+    v.camera.translation = glm::vec3(-0.461685315155,-0.533333463975,-1.43486184825);
+
+    Bitmap texture("./resources/cs.png");
+    Rasterizer rasterizer(4032,3024);
+    rasterizer.bindMesh(mesh);
+    rasterizer.setTexture(texture);
+
+    Transformation transform;
+    transform.setCamera(v.camera);
+    transform.setAspectRatio(4032, 3024);
+
+    rasterizer.setTransformation(transform);
+    rasterizer.clearBuffer();
+    rasterizer.setRenderContext(bitmap);
+    rasterizer.drawMesh();
+    bitmap->toPPM("./resources/render_test.ppm");
+//    windowRender(mesh);
     return true;
 }
+*/
+
+
+bool TextureExtractor::prepareViews(const std::string & cameraInfoPath, const std::string &  cameraListFilePath){
+
+    std::vector<std::string> photoPaths;
+
+    std::cout<<"Reading the list of source Photos\n";
+    bool listOk;
+    listOk = extractPhotoList(photoPaths,cameraListFilePath);
+    if(!listOk){
+        std::cout<<"ERROR occured when getting photo list\n";
+        return false;
+    }
+
+    std::cout<<"Reading Camera info (position, rotation, fov)\n";
+    bool cameraInfoOK;
+    cameraInfoOK = extractCameraInfoCreateViews(photoPaths, cameraInfoPath);
+    if(!cameraInfoOK){
+        std::cout<<"ERROR occured when getting camera info\n";
+        return false;
+    }
+
+    return true;
+}
+
 
 bool TextureExtractor::selectViews(){
     //TODO:
@@ -60,9 +89,109 @@ bool TextureExtractor::selectViews(){
     return true;
 }
 
+
 bool TextureExtractor::generateTexture(const std::string & newTexturePath, int width, int height){
     //TODO:
     return true;
+}
+
+
+bool TextureExtractor::extractPhotoList(std::vector<std::string> & photoPaths,const std::string & cameraListFilePath){
+    
+    std::ifstream file;
+    file.open(cameraListFilePath.c_str());
+    
+    std::string line;
+    if(!file.is_open()){
+        std::cerr << "Unable to open camera list file: " << cameraListFilePath << std::endl;
+        return false;
+    }
+    
+    while(file.good()){
+        getline(file, line);
+        if(line.size()>0){
+            View view;
+            view.fileName = line;
+            addView(view);
+        }
+    }
+    
+    if(views.size()<=0){
+        std::cout<< "File was empty or error occured\n";
+        return false;
+    }
+    return true;
+}
+
+
+bool TextureExtractor::extractCameraInfoCreateViews(const std::vector<std::string> &photoPaths,const std::string & cameraInfoPath){
+    //TODO:
+    std::ifstream file;
+    file.open(cameraInfoPath.c_str());
+    
+    std::string line;
+    if(!file.is_open()){
+        std::cerr << "Unable to open camera info file: " << cameraInfoPath << std::endl;
+        return false;
+    }
+    
+    std::cout<<"Reading Bundler format\n";
+    getline(file, line);
+    if(line.at(0)!='#'){
+        std::cout<<"Bundler format violated. First comment line missing (\"# ....\")\n";
+        return false;
+    }
+    
+    getline(file, line);
+    std::vector<std::string> tokens;
+    tokens = splitString(line, ' ');
+    if(tokens.size()!=2){
+        std::cout<<"Bundler format violated.\"camera_count point_count\" line missing\n";
+        return false;
+    }
+    
+    uint cameraCount = parseInt(tokens[0]);
+    if(cameraCount<=0){
+        std::cout<<"Number of cameras is invalid: "<<cameraCount<<"\n";
+        return false;
+    }
+    
+    if(cameraCount!=views.size()){
+        std::cout<<"Number of cameras doesent match the photo list: "<<
+                   "    list_size = "<<views.size()<<"\n"<<
+                   "    camera_info_size = "<<cameraCount<<"\n";
+        return false;
+    }
+    
+    uint readCounter = 0;
+    while(file.good()){
+        bool parsingOK;
+        parsingOK = parseCameraInfo(file,readCounter);
+        
+        readCounter ++;
+    }
+    
+    if(readCounter != views.size()){
+        std::cout << "ERROR not all camera info extracted\n"<<
+                     "    got: "<<readCounter<<" expected: " << views.size()<<"\n";
+        return false;
+    }
+    return true;
+}
+
+bool TextureExtractor::parseCameraInfo(std::ifstream & file,uint readCounter){
+    
+    return true;
+}
+
+
+uint TextureExtractor::addView(const View & view){
+    uint id;
+    View newView = view;
+    id = (uint)views.size();
+    newView.id = id;
+    views[id] = newView;
+    return id;
 }
 
 
@@ -72,7 +201,7 @@ void windowRender( Mesh mesh ){
     
     View v;
     v.camera = Camera(true);
-    v.camera.fov = 70;
+    v.camera.fov = 1.17f;
     v.camera.rotationMatrix[0][0] =  -0.272774424923  ;
     v.camera.rotationMatrix[1][0] =  -0.33027662254  ;
     v.camera.rotationMatrix[2][0] =  -0.90361192824  ;
@@ -111,7 +240,7 @@ void windowRender( Mesh mesh ){
         //        transform.rot.x = counter/2;
         //        transform.rot.z = counter/2;
         //        transform.rot.y = counter/2;
-//        transform.rot.y = sin(counter*0.5);
+        transform.rot.y = sin(counter*0.5);
 //         transform.rot.x = sin(counter*0.5);
 //         transform.rot.z = sin(counter*0.5);
         //        transform.rot.y = 1;

@@ -22,17 +22,22 @@
 
 class TextureExtractor {
     
-//    Bitmap * source;
-//
-//    Transformation transformation;
-//
+    //    Bitmap * source;
+    //
+    //    Transformation transformation;
+    //
+    //
+    //    std::vector<std::pair<uint,float>> * sourceScoreTable;
+    //
+    //    std::vector<float>  scoreTable;
+    
     Mesh mesh;
     
+    std::string photoFolderPath;
+    
     std::map<uint,View> views;
-//
-//    std::vector<std::pair<uint,float>> * sourceScoreTable;
-//
-//    std::vector<float>  scoreTable;
+
+    
 public:
 
     bool prepareViews(const std::string & cameraInfoPath, const std::string &  cameraListFilePath);
@@ -41,7 +46,19 @@ public:
     
     void setMesh (const Mesh & m){mesh = m;}
     
+    void setPhotoFolderPath(const std::string &photoFolderPath){this->photoFolderPath = photoFolderPath;}
+    
     bool generateTexture(const std::string & newTexturePath, int width, int height);
+    
+private:
+    
+    uint addView(const View & view);
+    
+    bool extractPhotoList(std::vector<std::string> & photoPaths,const std::string & cameraListFilePath);
+    
+    bool extractCameraInfoCreateViews(const std::vector<std::string> &photoPaths,const std::string & cameraInfoPath);
+    
+    bool parseCameraInfo(std::ifstream & file,uint readCounter);
     
 //    TextureExtractor (int width, int height){
 //        scoreTable.resize(width * height);
