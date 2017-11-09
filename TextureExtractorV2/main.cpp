@@ -11,7 +11,7 @@
 #include "Mesh.hpp"
 #include "TextureExtractor.hpp"
 #include "Utils.h"
-
+#include <numeric>
 bool prepareMesh(Mesh & mesh,const std::string & objFilePath);
 
 bool prepareViews( TextureExtractor & extractor, const std::string & cameraInfoPath, const std::string &  cameraListFilePath);
@@ -52,14 +52,14 @@ int main(int argc, const char * argv[]) {
     
     {
     //TODO:remove
-        Bitmap bitmap(960,540);
-        Bitmap bitmapDepth(960,540);
+        Bitmap bitmap(4032,3024);
+        Bitmap bitmapDepth(4032,3024);
         Bitmap texture("resources/pig/pig_tex.png");
-        uint numberOfViews = extractor.numberOfViews();
 //        std::vector<uint> photoSet={};
-        std::vector<uint> photoSet={9,26,51};
+//        std::vector<uint> photoSet={9,26,51};
+        std::vector<uint> photoSet(extractor.numberOfViews());
 //        std::vector<uint> photoSet={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
-
+        std::iota(photoSet.begin(),photoSet.end(),0);
         for(int t=0;t<photoSet.size();t++){
             extractor.renderViewAndDepth(bitmap,bitmapDepth,texture, photoSet[t]);
             std::cout<<"Rasterizing photo #"<<t<<"\n";

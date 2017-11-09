@@ -49,6 +49,13 @@ glm::mat4 Camera::getViewProjection() const {
     
 //    printMatrix(cameraView);
 //    printMatrix(perspective * cameraView);
+//    std::cout<<"Perspective\n";
+//    printMatrix(perspective);
+//    std::cout<<"cameraView\n";
+//    printMatrix(cameraView);
+//    std::cout<<"result\n";
+//    printMatrix(perspective * cameraView);
+    
     return perspective * cameraView ;
     
     

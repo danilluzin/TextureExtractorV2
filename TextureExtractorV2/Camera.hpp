@@ -35,7 +35,9 @@ public:
     
     glm::vec3 up;
     
-    float fov,zNear,zFar;
+    float fov;
+    float zNear = 0.01f;
+    float zFar = 1000.0f;
     
     glm::mat4 perspective;
     

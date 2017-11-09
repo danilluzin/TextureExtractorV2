@@ -50,7 +50,7 @@ public:
     
     bool generateTexture(const std::string & newTexturePath, int width, int height);
     
-    uint numberOfViews(){return views.size();}
+    uint numberOfViews(){return (uint)views.size();}
     //DEBUG
     
     void checkCameraInfo();

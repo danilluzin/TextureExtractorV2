@@ -54,7 +54,7 @@ void Rasterizer::drawTriangle(const Triangle & triangle){
     
 //    glm::mat4 cameraModelTransform = transformation.getViewProjection();
     
-    //    printMatrix(cameraModelTransform);
+//    printMatrix(transformation.getModelMatrix());
     
     vOne =   cameraModelTransform * vOne;
     vTwo =   cameraModelTransform * vTwo;
@@ -233,7 +233,7 @@ void Rasterizer::drawScanLine(Edge left, Edge right, int y, Gradient & gradient,
                 minDepth = depth;
             if(depth > maxDepth)
                 maxDepth = depth;
-            
+
             depthBuffer[index] = depth;
             scoreTable[index] = std::pair<uint,float>(id,1.0f/depth);
             float z = 1.0f / oneOverZ; //OMG!!!!
@@ -276,11 +276,13 @@ void Rasterizer::clearBuffer(){
     maxDepth = std::numeric_limits<float>::min();
 }
 
+
 bool Rasterizer::isInsideViewFrustrum (Vertex v){
     return (abs(v.x()) <= abs(v.w())) &&
            (abs(v.y()) <= abs(v.w())) &&
            (abs(v.z()) <= abs(v.w()));
 }
+
 
 void Rasterizer::_getDepthBitmap(Bitmap & bitmap){
     bitmap = Bitmap(width,height);
