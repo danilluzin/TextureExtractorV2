@@ -56,7 +56,9 @@ public:
     }
     
     void clearBuffer();
-
+    
+    //DEBUG
+     void _getDepthBitmap(Bitmap & bitmap);
     
 private:
     
@@ -73,6 +75,8 @@ private:
     
     float triangleArea(Vertex v1, Vertex v2, Vertex v3);
 
+    float minDepth = std::numeric_limits<float>::max();
+    float maxDepth = std::numeric_limits<float>::min();
     
     std::map <int,glm::vec4>colors = {
         {0,glm::vec4(0.0f,0.0f,0.0f,1)},

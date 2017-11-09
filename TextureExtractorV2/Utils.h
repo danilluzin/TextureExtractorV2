@@ -70,6 +70,16 @@ inline std::vector<std::string> splitString(const std::string &s, char delim){
     return elems;
 }
 
+inline std::vector<float> splitFloatLine(const std::string & line){
+    std::vector<std::string> stringTokens;
+    std::vector<float> floatTokens;
+    stringTokens = splitString(line,' ');
+    for(auto s : stringTokens ){
+        floatTokens.push_back(parseFloat(s));
+    }
+    return floatTokens;
+}
+
 
 inline void printMatrix(const glm::mat4 & m){
     for(int y=0;y<4;y++){

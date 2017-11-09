@@ -228,6 +228,11 @@ void Rasterizer::drawScanLine(Edge left, Edge right, int y, Gradient & gradient,
         
         int index = x + y*width;
         if(depth < depthBuffer[index]){
+        
+            if(depth < minDepth)
+                minDepth = depth;
+            if(depth > maxDepth)
+                maxDepth = depth;
             
             depthBuffer[index] = depth;
             scoreTable[index] = std::pair<uint,float>(id,1.0f/depth);
@@ -238,7 +243,7 @@ void Rasterizer::drawScanLine(Edge left, Edge right, int y, Gradient & gradient,
             context -> putPixel(x, y, texture.at(srcX, srcY));
 
         }
-        
+    
         texCoord.x += texCoordXXStep;
         texCoord.y += texCoordYXStep;
         oneOverZ   += oneOverZXStep;
@@ -267,13 +272,31 @@ float Rasterizer::triangleArea(Vertex v1, Vertex v2, Vertex v3){
 void Rasterizer::clearBuffer(){
     std::fill(depthBuffer.begin(), depthBuffer.end(), std::numeric_limits<float>::max());
     std::fill(scoreTable.begin(), scoreTable.end(),std::pair<uint,float>(0,1));
-
+    minDepth = std::numeric_limits<float>::max();
+    maxDepth = std::numeric_limits<float>::min();
 }
 
 bool Rasterizer::isInsideViewFrustrum (Vertex v){
     return (abs(v.x()) <= abs(v.w())) &&
            (abs(v.y()) <= abs(v.w())) &&
            (abs(v.z()) <= abs(v.w()));
+}
+
+void Rasterizer::_getDepthBitmap(Bitmap & bitmap){
+    bitmap = Bitmap(width,height);
+    std::cout<<"Getting grayscale\n";
+    float grayFactor = 1/(maxDepth - minDepth);
+    for(int x = 0; x<width; x++){
+        for(int y = 0; y<height; y++){
+            int index = x + y*width;
+            if(depthBuffer[index] == std::numeric_limits<float>::max()){
+                bitmap.putPixel(x, y, glm::vec4(0.2,0.1,0.5,1));
+            }else{
+                float c = (depthBuffer[index]-minDepth)*grayFactor;
+                bitmap.putPixel(x, y, glm::vec4(c,c,c,1));
+            }
+        }
+    }
 }
 
 

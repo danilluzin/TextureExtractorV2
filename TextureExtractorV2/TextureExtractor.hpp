@@ -50,6 +50,21 @@ public:
     
     bool generateTexture(const std::string & newTexturePath, int width, int height);
     
+    uint numberOfViews(){return views.size();}
+    //DEBUG
+    
+    void checkCameraInfo();
+
+    void checkCameraInfo(uint viewId);
+
+    bool _old_test_render();
+    
+    void renderView(Bitmap & bitmap,const Bitmap & texture,uint viewId);
+    
+    void renderViewAndDepth(Bitmap & bitmap,Bitmap & bitmapDepth,const Bitmap & texture,uint viewId);
+    
+    void windowRender( uint view ) ;
+
 private:
     
     uint addView(const View & view);
@@ -59,6 +74,10 @@ private:
     bool extractCameraInfoCreateViews(const std::vector<std::string> &photoPaths,const std::string & cameraInfoPath);
     
     bool parseCameraInfo(std::ifstream & file,uint readCounter);
+    
+    bool get3Floats(std::vector<float> & tokens, std::ifstream & file);
+    
+
     
 //    TextureExtractor (int width, int height){
 //        scoreTable.resize(width * height);
@@ -102,7 +121,6 @@ private:
 //    float triangleAreaTexture(Vertex v1, Vertex v2, Vertex v3);
     
 };
-
 
 
 

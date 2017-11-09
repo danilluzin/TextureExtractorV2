@@ -122,6 +122,10 @@
 				F40DE4051FB0D98400EC32B4 /* View.hpp */,
 				F40DE4071FB0DB6000EC32B4 /* Camera.cpp */,
 				F40DE4081FB0DB6000EC32B4 /* Camera.hpp */,
+				F40DE3D41FAF587D00EC32B4 /* Rasterizer.cpp */,
+				F40DE3D61FAF587D00EC32B4 /* Rasterizer.hpp */,
+				F40DE3D51FAF587D00EC32B4 /* Transformation.cpp */,
+				F40DE3E31FAF587F00EC32B4 /* Transformation.hpp */,
 				F40DE3FE1FAF6E0600EC32B4 /* old source code */,
 				F40DE3FC1FAF58D000EC32B4 /* stb */,
 				F40DE3FB1FAF58A100EC32B4 /* resources */,
@@ -140,15 +144,11 @@
 				F40DE3D21FAF587D00EC32B4 /* Edge.hpp */,
 				F40DE3E11FAF587F00EC32B4 /* Gradient.cpp */,
 				F40DE3E21FAF587F00EC32B4 /* Gradient.hpp */,
-				F40DE3D41FAF587D00EC32B4 /* Rasterizer.cpp */,
-				F40DE3D61FAF587D00EC32B4 /* Rasterizer.hpp */,
 				F40DE3DC1FAF587E00EC32B4 /* RenderContext.h */,
 				F40DE3D81FAF587E00EC32B4 /* TextureEdge.cpp */,
 				F40DE3E61FAF588000EC32B4 /* TextureEdge.hpp */,
 				F40DE3E01FAF587F00EC32B4 /* TextureGradient.cpp */,
 				F40DE3D71FAF587E00EC32B4 /* TextureGradient.hpp */,
-				F40DE3D51FAF587D00EC32B4 /* Transformation.cpp */,
-				F40DE3E31FAF587F00EC32B4 /* Transformation.hpp */,
 			);
 			name = "old source code";
 			sourceTree = "<group>";

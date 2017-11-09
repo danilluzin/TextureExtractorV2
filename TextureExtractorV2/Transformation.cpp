@@ -7,7 +7,7 @@
 //
 
 #include "Transformation.hpp"
-
+#include "Utils.h"
 Transformation::Transformation(const glm::vec3 & pos,
                                const glm::vec3 & rot,
                                const glm::vec3 & scale){
@@ -55,6 +55,16 @@ glm::mat4 Transformation::getScreenTransform() const{
 }
 
 glm::mat4 Transformation::getViewProjection() const{
+    // ERROR:PLUG
+    glm::mat4 plug = {
+        -0.638921, -0.283528, -0.832067, -0.83205 ,
+        0.287514, -2.0477,   0 ,0,
+        0.958381, 0.425292, -0.554711, -0.5547,
+        2.61958 , 5.51304, 4.14034, 4.16025};
+//    std::cout<<"PLUG:\n";
+//    printMatrix(plug);
+    return plug;
+    
     return camera.getViewProjection();
 }
 

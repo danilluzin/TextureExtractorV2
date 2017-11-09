@@ -20,7 +20,6 @@ bool performViewSelection(TextureExtractor & extractor);
 
 bool generateTexture(const std::string & newTexturePath, TextureExtractor & extractor, int width, int height);
 
-
 int main(int argc, const char * argv[]) {
     TextureExtractor extractor;
     Timer mainTimer;
@@ -50,6 +49,26 @@ int main(int argc, const char * argv[]) {
         printBold(mainTimer.stopGetResults("\nExited with error"));
         return -1;
     }
+    
+    {
+    //TODO:remove
+        Bitmap bitmap(960,540);
+        Bitmap bitmapDepth(960,540);
+        Bitmap texture("resources/pig/pig_tex.png");
+        uint numberOfViews = extractor.numberOfViews();
+//        std::vector<uint> photoSet={};
+        std::vector<uint> photoSet={9,26,51};
+//        std::vector<uint> photoSet={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
+
+        for(int t=0;t<photoSet.size();t++){
+            extractor.renderViewAndDepth(bitmap,bitmapDepth,texture, photoSet[t]);
+            std::cout<<"Rasterizing photo #"<<t<<"\n";
+            bitmap.toPPM("resources/pig/extract/pig_" + std::to_string(photoSet[t]) + ".ppm");
+            bitmapDepth.toPPM("resources/pig/extract/pig_depth_" + std::to_string(photoSet[t]) + ".ppm");
+        }
+//        extractor.windowRender(51);
+    }
+    
     
     bool viewSelectionOK;
     viewSelectionOK = performViewSelection(extractor);
@@ -127,5 +146,10 @@ bool prepareViews( TextureExtractor & extractor, const std::string & cameraInfoP
     std::cout << timer.stopGetResults( "\tViews inicialized.: " );
     return true;
 }
+
+//DEBUG
+
+
+
 
 
