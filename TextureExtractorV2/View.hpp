@@ -18,12 +18,14 @@ class View{
 public:
     View(){};
     uint id;
-    Bitmap * sourceImage;
+    Bitmap * sourceImage = nullptr;
     std::string fileName;
     Camera camera;
     uint photoWidth;
     uint photoHeight;
     std::unordered_set<uint> visibleFaces;
+    void loadImage();
+    void releaseImage();
 };
 
 #endif /* View_hpp */

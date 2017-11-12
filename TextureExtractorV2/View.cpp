@@ -7,3 +7,11 @@
 //
 
 #include "View.hpp"
+void View::loadImage(){
+    sourceImage = new Bitmap(fileName);
+}
+
+void View::releaseImage(){
+    delete sourceImage;
+    sourceImage = nullptr;
+}

@@ -12,9 +12,15 @@
 #include "Utils.h"
 #include <fstream>
 #include "stb/stb_image.h"
-
+#include "ExtractionWorker.hpp"
 
 void windowRender( Mesh mesh );
+
+TextureExtractor::~TextureExtractor(){
+    for(auto & v : views){
+        v.second.releaseImage();
+    }
+}
 
 bool TextureExtractor::prepareViews(const std::string & cameraInfoPath, const std::string &  cameraListFilePath){
 
@@ -41,7 +47,7 @@ bool TextureExtractor::prepareViews(const std::string & cameraInfoPath, const st
 
 
 bool TextureExtractor::selectViews(){
-    //FIXME: accual label selection
+    //FIXME: actual label selection
     
     for(auto & f : mesh.triangles){
         Triangle & face = f.second;
@@ -59,7 +65,23 @@ bool TextureExtractor::selectViews(){
 
 
 bool TextureExtractor::generateTexture(const std::string & newTexturePath, int width, int height){
-    //TODO:
+    texture = Bitmap(width, height);
+    texture.clear(glm::vec4(0.4, 0.4, 0.4, 1));
+    
+    Bitmap defaultTexture = Bitmap(10,10);
+    glm::vec4 defaultColor (0.37, 0.61, 0.62, 1);
+    
+    ExtractionWorker worker(mesh);
+    for(auto & f : mesh.triangles){
+        Triangle & face = f.second;
+        if(face.viewId != 0){
+            worker.extract(face, texture, views[face.viewId]);
+        }else{
+            worker.fillTextureTriangle(face,defaultColor,texture);
+        }
+    }
+    texture.toPPM(newTexturePath);
+    
     return true;
 }
 
