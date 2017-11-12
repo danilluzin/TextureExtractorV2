@@ -8,6 +8,7 @@
 
 #include "ExtractionWorker.hpp"
 #include <glm/ext.hpp>
+#include "Utils.h"
 
 void ExtractionWorker::extract(Triangle face,Bitmap & tex, View & view){
     this->texture = &tex;
@@ -35,6 +36,10 @@ void ExtractionWorker::fillTextureTriangle(Triangle face,glm::vec4 color, Bitmap
     Vertex midYVert = mesh.verticies.at(face.verticies[1]);
     Vertex maxYVert = mesh.verticies.at(face.verticies[2]);
     
+    minYVert.texCoord = mesh.texCoords.at(face.texCoords.at(minYVert.id)).coord;
+    midYVert.texCoord = mesh.texCoords.at(face.texCoords.at(midYVert.id)).coord;
+    maxYVert.texCoord = mesh.texCoords.at(face.texCoords.at(maxYVert.id)).coord;
+    
     if(minYVert.texCoord.y>midYVert.texCoord.y)
         std::swap(minYVert, midYVert);
     if(midYVert.texCoord.y>maxYVert.texCoord.y)
@@ -54,7 +59,7 @@ void ExtractionWorker::fillTextureTriangle(Triangle face,glm::vec4 color, Bitmap
     float area = triangleAreaTexture(minYVert, maxYVert, midYVert);
     
     bool handedness = (area >= 0);
-    
+        
     fillTriangle(minYVert, midYVert, maxYVert, handedness, color);
     texture = nullptr;
 }
@@ -69,8 +74,8 @@ void ExtractionWorker::processTriangle(const Triangle & triangle){
     vTwo.texCoord = mesh.texCoords.at(triangle.texCoords.at(vTwo.id)).coord;
     vThree.texCoord = mesh.texCoords.at(triangle.texCoords.at(vThree.id)).coord;
 
-    glm::mat4 cameraModelTransform = view->camera.getViewProjection();
-
+    glm::mat4 cameraModelTransform = transformation.getViewProjection();
+    
     vOne =   cameraModelTransform * vOne;
     vTwo =   cameraModelTransform * vTwo;
     vThree = cameraModelTransform * vThree;
@@ -309,8 +314,8 @@ void ExtractionWorker::clipPoligonComponent (std::vector<Vertex> & verticies, st
 
 bool ExtractionWorker::isInsideViewFrustrum (Vertex v){
     return (abs(v.x()) <= abs(v.w())) &&
-    (abs(v.y()) <= abs(v.w())) &&
-    (abs(v.z()) <= abs(v.w()));
+            (abs(v.y()) <= abs(v.w())) &&
+            (abs(v.z()) <= abs(v.w()));
 }
 
 

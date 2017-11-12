@@ -20,6 +20,10 @@ bool performViewSelection(TextureExtractor & extractor);
 
 bool generateTexture(const std::string & newTexturePath, TextureExtractor & extractor, int width, int height);
 
+void _renderViewsWithTexture(TextureExtractor & extractor);
+
+bool justRender = true;
+
 int main(int argc, const char * argv[]) {
     TextureExtractor extractor;
     Timer mainTimer;
@@ -28,7 +32,7 @@ int main(int argc, const char * argv[]) {
     std::string objFilePath = "resources/pig/pig_3_blender.obj";
     std::string cameraListFilePath = "resources/pig/list.txt";
     std::string cameraInfoPath = "resources/pig/bundle.rd.out";
-    std::string newTexturePath = "resources/pig/derived/texture.txt";
+    std::string newTexturePath = "resources/pig/derived/texture.ppm";
     std::string photoFolderPath = "resources/pig";
     
 //    std::string objFilePath = "resources/slany/slany_blender_1.obj";
@@ -57,24 +61,26 @@ int main(int argc, const char * argv[]) {
     }
     
     {
-    //TODO:remove
+        //TODO:remove
+        if(justRender){
+            _renderViewsWithTexture(extractor);
+            return 1;
+        }
+        {
         Bitmap bitmap;
-        Bitmap bitmapDepth;
-        Bitmap texture("resources/pig/pig_tex.png");
-        std::vector<uint> photoSet={51,52};
-//        std::vector<uint> photoSet={1,26,51};
+        Bitmap texture("resources/pig/derived/texture.ppm");
+                std::vector<uint> photoSet={51};
+//                std::vector<uint> photoSet={1,26,51};
 //        std::vector<uint> photoSet(extractor.numberOfViews());
-//        std::vector<uint> photoSet={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
-//        std::iota(photoSet.begin(),photoSet.end(),0);
+        //                std::vector<uint> photoSet={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
+//        std::iota(photoSet.begin(),photoSet.end(),1);
         for(int t=0;t<photoSet.size();t++){
             std::cout<<"Rasterizing photo #"<<t<<"\n";
-            extractor.renderViewAndDepth(bitmap,bitmapDepth,texture, photoSet[t]);
-            bitmap.toPPM("resources/slany/extract/slany_" + std::to_string(photoSet[t]) + ".ppm");
-            bitmapDepth.toPPM("resources/slany/extract/slany_depth_" + std::to_string(photoSet[t]) + ".ppm");
+            extractor.renderView(bitmap,texture, photoSet[t]);
+            bitmap.toPPM("resources/pig/extract/pig_" + std::to_string(photoSet[t]) + ".ppm");
         }
-//        extractor.windowRender(51);
+        }
     }
-    
     
     bool viewSelectionOK;
     viewSelectionOK = performViewSelection(extractor);
@@ -91,6 +97,23 @@ int main(int argc, const char * argv[]) {
     }
     
     printBold(mainTimer.stopGetResults( "\nTottal run time " ));
+}
+
+void _renderViewsWithTexture(TextureExtractor & extractor){
+    {
+        Bitmap bitmap;
+        Bitmap texture("resources/pig/derived/texture.ppm");
+        //        std::vector<uint> photoSet={};
+        //        std::vector<uint> photoSet={1,26,51};
+        std::vector<uint> photoSet(extractor.numberOfViews());
+        //                std::vector<uint> photoSet={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
+        std::iota(photoSet.begin(),photoSet.end(),1);
+        for(int t=0;t<photoSet.size();t++){
+            std::cout<<"Rasterizing photo #"<<t<<"\n";
+            extractor.renderView(bitmap,texture, photoSet[t]);
+            bitmap.toPPM("resources/pig/extract/res/pig_" + std::to_string(photoSet[t]) + ".ppm");
+        }
+    }
 }
 
 

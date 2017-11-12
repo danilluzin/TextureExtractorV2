@@ -54,7 +54,7 @@ void Rasterizer::drawTriangle(const Triangle & triangle){
     
 //    glm::mat4 cameraModelTransform = transformation.getViewProjection();
     
-//    printMatrix(transformation.getModelMatrix());
+//    printMatrix(cameraModelTransform);
     
     vOne =   cameraModelTransform * vOne;
     vTwo =   cameraModelTransform * vTwo;

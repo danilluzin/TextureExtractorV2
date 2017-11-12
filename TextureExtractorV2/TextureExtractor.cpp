@@ -66,7 +66,7 @@ bool TextureExtractor::selectViews(){
 
 bool TextureExtractor::generateTexture(const std::string & newTexturePath, int width, int height){
     texture = Bitmap(width, height);
-    texture.clear(glm::vec4(0.4, 0.4, 0.4, 1));
+    texture.clear(glm::vec4(0.8, 0.8, 0.8, 1));
     
     Bitmap defaultTexture = Bitmap(10,10);
     glm::vec4 defaultColor (0.37, 0.61, 0.62, 1);
