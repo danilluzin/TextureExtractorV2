@@ -25,11 +25,17 @@ int main(int argc, const char * argv[]) {
     Timer mainTimer;
     mainTimer.start();
     
-    std::string objFilePath = "resources/pig/pig_3_blender.obj";
-    std::string cameraListFilePath = "resources/pig/list.txt";
-    std::string cameraInfoPath = "resources/pig/bundle.rd.out";
+//    std::string objFilePath = "resources/pig/pig_2_blender.obj";
+//    std::string cameraListFilePath = "resources/pig/list.txt";
+//    std::string cameraInfoPath = "resources/pig/bundle.rd.out";
+//    std::string newTexturePath = "resources/pig/derived/texture.txt";
+//    std::string photoFolderPath = "resources/pig";
+    
+    std::string objFilePath = "resources/slany/slany_blender_1.obj";
+    std::string cameraListFilePath = "resources/slany/list2.txt";
+    std::string cameraInfoPath = "resources/slany/bundle.rd.out";
     std::string newTexturePath = "resources/pig/derived/texture.txt";
-    std::string photoFolderPath = "resources/pig";
+    std::string photoFolderPath = "resources/slany";
     
     int textureWidth = 1000, textureHeight = 1000;
 
@@ -52,19 +58,19 @@ int main(int argc, const char * argv[]) {
     
     {
     //TODO:remove
-        Bitmap bitmap(4032,3024);
-        Bitmap bitmapDepth(4032,3024);
+        Bitmap bitmap;
+        Bitmap bitmapDepth;
         Bitmap texture("resources/pig/pig_tex.png");
-//        std::vector<uint> photoSet={};
+        std::vector<uint> photoSet={54};
 //        std::vector<uint> photoSet={9,26,51};
-        std::vector<uint> photoSet(extractor.numberOfViews());
+//        std::vector<uint> photoSet(extractor.numberOfViews());
 //        std::vector<uint> photoSet={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
-        std::iota(photoSet.begin(),photoSet.end(),0);
+//        std::iota(photoSet.begin(),photoSet.end(),0);
         for(int t=0;t<photoSet.size();t++){
-            extractor.renderViewAndDepth(bitmap,bitmapDepth,texture, photoSet[t]);
             std::cout<<"Rasterizing photo #"<<t<<"\n";
-            bitmap.toPPM("resources/pig/extract/pig_" + std::to_string(photoSet[t]) + ".ppm");
-            bitmapDepth.toPPM("resources/pig/extract/pig_depth_" + std::to_string(photoSet[t]) + ".ppm");
+            extractor.renderViewAndDepth(bitmap,bitmapDepth,texture, photoSet[t]);
+            bitmap.toPPM("resources/slany/extract/slany_" + std::to_string(photoSet[t]) + ".ppm");
+            bitmapDepth.toPPM("resources/slany/extract/slany_depth_" + std::to_string(photoSet[t]) + ".ppm");
         }
 //        extractor.windowRender(51);
     }

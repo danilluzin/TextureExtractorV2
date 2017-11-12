@@ -38,11 +38,15 @@ inline void printBold(const std::string & text){
 
 
 inline float parseFloat(std::string txt){
+    if(txt.size()<=0)
+        return -1;
     return std::stof (txt);
 }
 
 
 inline float parseInt(std::string txt){
+    if(txt.size()<=0)
+        return -1;
     return std::stoi (txt);
 }
 

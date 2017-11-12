@@ -11,6 +11,8 @@
 #include "Rasterizer.hpp"
 #include "Utils.h"
 #include <fstream>
+#include "stb/stb_image.h"
+
 
 void windowRender( Mesh mesh );
 
@@ -66,7 +68,17 @@ bool TextureExtractor::extractPhotoList(std::vector<std::string> & photoPaths,co
         getline(file, line);
         if(line.size()>0){
             View view;
-            view.fileName = line;
+            view.fileName = photoFolderPath +'/' +line;
+            //original photo dimensions
+            int width, height, comp;
+            bool imageOk;
+            imageOk = stbi_info(view.fileName.c_str(), &width, &height, &comp);
+            if(!imageOk){
+                std::cout<<"ERROR Wasnt able to read the file:" << view.fileName <<"\n";
+                return false;
+            }
+            view.photoWidth = width;
+            view.photoHeight = height;
             addView(view);
         }
     }
@@ -110,8 +122,8 @@ bool TextureExtractor::extractCameraInfoCreateViews(const std::vector<std::strin
         return false;
     }
     
-    if(cameraCount!=views.size()){
-        std::cout<<"Number of cameras doesent match the photo list: "<<
+    if(cameraCount<views.size()){
+        std::cout<<"Number of cameras is less than photo list: "<<
                    "    list_size = "<<views.size()<<"\n"<<
                    "    camera_info_size = "<<cameraCount<<"\n";
         return false;
@@ -147,6 +159,8 @@ bool TextureExtractor::parseCameraInfo(std::ifstream & file,uint readCounter){
     if(!got3Float)
         return false;
     view.camera.focalLength = tokens[0];
+    
+    view.camera.fov = glm::atan(((float)std::max(view.photoHeight,view.photoWidth)), view.camera.focalLength);
     
     //rotation matrix;
         //line 1
@@ -215,6 +229,7 @@ uint TextureExtractor::addView(const View & view){
     return id;
 }
 
+//----------------------------------------------------------------------------//
 //DEBUG
 void TextureExtractor::checkCameraInfo(){
     std::cout<<"Printing camera info\n";
@@ -258,8 +273,12 @@ void TextureExtractor::renderView(Bitmap & bitmap,const Bitmap & texture,uint vi
     bitmap.clear(glm::vec4(0.4,0.4,0.4,1));
     View  v = views[viewId];
     //FIXME:accual fov;
-    v.camera.fov = 0.88922719077834;
-
+//    v.camera.fov = 0.88922719077834;
+//    v.camera.fov = 0.55;
+    
+    bitmap = Bitmap(v.photoWidth, v.photoHeight);
+    
+    bitmap.clear(glm::vec4(0.4,0.4,0.4,1));
     Rasterizer rasterizer(bitmap.width,bitmap.height);
     rasterizer.bindMesh(mesh);
     rasterizer.setTexture(texture);
@@ -280,11 +299,15 @@ void TextureExtractor::renderViewAndDepth(Bitmap & bitmap,Bitmap & bitmapDepth,c
         std::cout<<"No such viewId:"<<viewId<<"\n";
         return;
     }
-    bitmap.clear(glm::vec4(0.4,0.4,0.4,1));
     View  v = views[viewId];
-    //FIXME:accual fov;
-    v.camera.fov = 0.88922719077834;
+    bitmap = Bitmap(v.photoWidth, v.photoHeight);
+    bitmapDepth = Bitmap(v.photoWidth, v.photoHeight);
     
+    //FIXME:accual fov;
+    //    v.camera.fov = 0.88922719077834;
+//    v.camera.fov = 0.55;
+    
+    bitmap.clear(glm::vec4(0.4,0.4,0.4,1));
     Rasterizer rasterizer(bitmap.width,bitmap.height);
     rasterizer.bindMesh(mesh);
     rasterizer.setTexture(texture);
@@ -307,6 +330,7 @@ void TextureExtractor::windowRender( uint viewId ){
         return;
     }
     View view = views[viewId];
+    
     Bitmap texture("./resources/cs.png");
     int width = 960, height = 540;
     view.camera.fov = 0.88922719077834;

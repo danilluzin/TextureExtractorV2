@@ -20,6 +20,8 @@ public:
     Bitmap sourceImage;
     std::string fileName;
     Camera camera;
+    uint photoWidth;
+    uint photoHeight;
 };
 
 #endif /* View_hpp */
