@@ -12,16 +12,18 @@
 #include "Transformation.hpp"
 #include "Bitmap.hpp"
 #include "Camera.hpp"
+#include <unordered_set>
 
 class View{
 public:
     View(){};
     uint id;
-    Bitmap sourceImage;
+    Bitmap * sourceImage;
     std::string fileName;
     Camera camera;
     uint photoWidth;
     uint photoHeight;
+    std::unordered_set<uint> visibleFaces;
 };
 
 #endif /* View_hpp */

@@ -51,7 +51,7 @@ struct Triangle {
     std::map<uint,uint> texCoords;
     std::map<uint,uint> normalVecs;
     uint id;
-    uint lableId;
+    uint viewId = 0;
 };
 
 struct TexCoord{

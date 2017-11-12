@@ -24,6 +24,7 @@
 		F48D2E2B1FB22A2600145D8D /* libGLEW.2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F48D2E2A1FB22A2600145D8D /* libGLEW.2.0.0.dylib */; };
 		F48D2E2D1FB22A3800145D8D /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F48D2E2C1FB22A3700145D8D /* libSDL2-2.0.0.dylib */; };
 		F48D2E301FB22A5F00145D8D /* Display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F48D2E2E1FB22A5E00145D8D /* Display.cpp */; };
+		F49D60D51FB89EEB00D62BBA /* ExtractionWorker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F49D60D31FB89EEB00D62BBA /* ExtractionWorker.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,6 +75,8 @@
 		F48D2E2C1FB22A3700145D8D /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../../usr/local/Cellar/sdl2/2.0.6/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		F48D2E2E1FB22A5E00145D8D /* Display.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Display.cpp; sourceTree = "<group>"; };
 		F48D2E2F1FB22A5F00145D8D /* Display.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Display.hpp; sourceTree = "<group>"; };
+		F49D60D31FB89EEB00D62BBA /* ExtractionWorker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ExtractionWorker.cpp; sourceTree = "<group>"; };
+		F49D60D41FB89EEB00D62BBA /* ExtractionWorker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ExtractionWorker.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,21 +114,23 @@
 			isa = PBXGroup;
 			children = (
 				F40DE3CA1FAF4DDE00EC32B4 /* main.cpp */,
-				F40DE4001FAF70CB00EC32B4 /* Timer.cpp */,
-				F40DE4011FAF70CB00EC32B4 /* Timer.hpp */,
-				F40DE4031FB06EA000EC32B4 /* Utils.h */,
-				F40DE3DD1FAF587E00EC32B4 /* Mesh.cpp */,
-				F40DE3DB1FAF587E00EC32B4 /* Mesh.hpp */,
-				F40DE3DF1FAF587F00EC32B4 /* TextureExtractor.cpp */,
 				F40DE3D91FAF587E00EC32B4 /* TextureExtractor.hpp */,
-				F40DE4041FB0D98400EC32B4 /* View.cpp */,
+				F40DE3DF1FAF587F00EC32B4 /* TextureExtractor.cpp */,
+				F40DE4011FAF70CB00EC32B4 /* Timer.hpp */,
+				F40DE4001FAF70CB00EC32B4 /* Timer.cpp */,
+				F40DE4031FB06EA000EC32B4 /* Utils.h */,
+				F40DE3DB1FAF587E00EC32B4 /* Mesh.hpp */,
+				F40DE3DD1FAF587E00EC32B4 /* Mesh.cpp */,
+				F49D60D41FB89EEB00D62BBA /* ExtractionWorker.hpp */,
+				F49D60D31FB89EEB00D62BBA /* ExtractionWorker.cpp */,
 				F40DE4051FB0D98400EC32B4 /* View.hpp */,
-				F40DE4071FB0DB6000EC32B4 /* Camera.cpp */,
+				F40DE4041FB0D98400EC32B4 /* View.cpp */,
 				F40DE4081FB0DB6000EC32B4 /* Camera.hpp */,
-				F40DE3D41FAF587D00EC32B4 /* Rasterizer.cpp */,
+				F40DE4071FB0DB6000EC32B4 /* Camera.cpp */,
 				F40DE3D61FAF587D00EC32B4 /* Rasterizer.hpp */,
-				F40DE3D51FAF587D00EC32B4 /* Transformation.cpp */,
+				F40DE3D41FAF587D00EC32B4 /* Rasterizer.cpp */,
 				F40DE3E31FAF587F00EC32B4 /* Transformation.hpp */,
+				F40DE3D51FAF587D00EC32B4 /* Transformation.cpp */,
 				F40DE3FE1FAF6E0600EC32B4 /* old source code */,
 				F40DE3FC1FAF58D000EC32B4 /* stb */,
 				F40DE3FB1FAF58A100EC32B4 /* resources */,
@@ -136,19 +141,19 @@
 		F40DE3FE1FAF6E0600EC32B4 /* old source code */ = {
 			isa = PBXGroup;
 			children = (
-				F48D2E2E1FB22A5E00145D8D /* Display.cpp */,
-				F48D2E2F1FB22A5F00145D8D /* Display.hpp */,
-				F40DE3E51FAF588000EC32B4 /* Bitmap.cpp */,
-				F40DE3E41FAF588000EC32B4 /* Bitmap.hpp */,
-				F40DE3D31FAF587D00EC32B4 /* Edge.cpp */,
-				F40DE3D21FAF587D00EC32B4 /* Edge.hpp */,
-				F40DE3E11FAF587F00EC32B4 /* Gradient.cpp */,
-				F40DE3E21FAF587F00EC32B4 /* Gradient.hpp */,
 				F40DE3DC1FAF587E00EC32B4 /* RenderContext.h */,
-				F40DE3D81FAF587E00EC32B4 /* TextureEdge.cpp */,
+				F48D2E2F1FB22A5F00145D8D /* Display.hpp */,
+				F48D2E2E1FB22A5E00145D8D /* Display.cpp */,
+				F40DE3E41FAF588000EC32B4 /* Bitmap.hpp */,
+				F40DE3E51FAF588000EC32B4 /* Bitmap.cpp */,
+				F40DE3D21FAF587D00EC32B4 /* Edge.hpp */,
+				F40DE3D31FAF587D00EC32B4 /* Edge.cpp */,
+				F40DE3E21FAF587F00EC32B4 /* Gradient.hpp */,
+				F40DE3E11FAF587F00EC32B4 /* Gradient.cpp */,
 				F40DE3E61FAF588000EC32B4 /* TextureEdge.hpp */,
-				F40DE3E01FAF587F00EC32B4 /* TextureGradient.cpp */,
+				F40DE3D81FAF587E00EC32B4 /* TextureEdge.cpp */,
 				F40DE3D71FAF587E00EC32B4 /* TextureGradient.hpp */,
+				F40DE3E01FAF587F00EC32B4 /* TextureGradient.cpp */,
 			);
 			name = "old source code";
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F49D60D51FB89EEB00D62BBA /* ExtractionWorker.cpp in Sources */,
 				F40DE4091FB0DB6000EC32B4 /* Camera.cpp in Sources */,
 				F40DE4061FB0D98400EC32B4 /* View.cpp in Sources */,
 				F40DE3EB1FAF588000EC32B4 /* Mesh.cpp in Sources */,

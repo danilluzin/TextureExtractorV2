@@ -16,7 +16,7 @@ Rasterizer::Rasterizer(int width, int height){
     this->height = height;
     depthBuffer.resize(width*height);
     scoreTable.resize(width*height);
-
+    idBuffer.resize(width*height);
 }
 
 void Rasterizer::setRenderContext (RenderContext * rc) {
@@ -229,6 +229,11 @@ void Rasterizer::drawScanLine(Edge left, Edge right, int y, Gradient & gradient,
         int index = x + y*width;
         if(depth < depthBuffer[index]){
         
+            if(idBuffer[index]!=0)
+                visibleFaces.erase(idBuffer[index]);
+            visibleFaces.insert(id);
+            idBuffer[index] = id;
+            
             if(depth < minDepth)
                 minDepth = depth;
             if(depth > maxDepth)
@@ -242,6 +247,8 @@ void Rasterizer::drawScanLine(Edge left, Edge right, int y, Gradient & gradient,
             
             context -> putPixel(x, y, texture.at(srcX, srcY));
 
+        }else{
+            visibleFaces.erase(idBuffer[index]);
         }
     
         texCoord.x += texCoordXXStep;
@@ -271,9 +278,11 @@ float Rasterizer::triangleArea(Vertex v1, Vertex v2, Vertex v3){
 
 void Rasterizer::clearBuffer(){
     std::fill(depthBuffer.begin(), depthBuffer.end(), std::numeric_limits<float>::max());
+    std::fill(idBuffer.begin(), idBuffer.end(), 0);
     std::fill(scoreTable.begin(), scoreTable.end(),std::pair<uint,float>(0,1));
     minDepth = std::numeric_limits<float>::max();
     maxDepth = std::numeric_limits<float>::min();
+    visibleFaces.clear();
 }
 
 

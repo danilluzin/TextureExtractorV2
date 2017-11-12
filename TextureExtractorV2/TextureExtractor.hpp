@@ -22,14 +22,7 @@
 
 class TextureExtractor {
     
-    //    Bitmap * source;
-    //
-    //    Transformation transformation;
-    //
-    //
-    //    std::vector<std::pair<uint,float>> * sourceScoreTable;
-    //
-    //    std::vector<float>  scoreTable;
+    Bitmap * source;
     
     Mesh mesh;
     
@@ -37,7 +30,6 @@ class TextureExtractor {
     
     std::map<uint,View> views;
 
-    
 public:
 
     bool prepareViews(const std::string & cameraInfoPath, const std::string &  cameraListFilePath);
@@ -77,8 +69,6 @@ private:
     bool parseCameraInfo(std::ifstream & file,uint readCounter);
     
     bool get3Floats(std::vector<float> & tokens, std::ifstream & file);
-    
-
     
 //    TextureExtractor (int width, int height){
 //        scoreTable.resize(width * height);

@@ -16,7 +16,7 @@
 #include "Edge.hpp"
 #include "Transformation.hpp"
 #include "RenderContext.h"
-
+#include <unordered_set>
 class Rasterizer{
     
     Bitmap texture;
@@ -30,7 +30,10 @@ class Rasterizer{
     Mesh mesh;
     
     std::vector<float> depthBuffer;
+    std::vector<uint> idBuffer;
 
+    std::unordered_set<uint> visibleFaces;
+    
 public:
     std::vector<std::pair<uint,float>> scoreTable;
 
@@ -40,7 +43,7 @@ public:
 
     
     void bindMesh (const Mesh & m){mesh = m;}
-    
+
     Rasterizer(int width, int height);
     
     void rasterizeTriangle(Vertex  minYVert, Vertex midYVert, Vertex maxYVert,const Triangle & triangle);
@@ -56,6 +59,8 @@ public:
     }
     
     void clearBuffer();
+    
+    std::unordered_set<uint> getVisibleFaces() const { return visibleFaces;}
     
     //DEBUG
      void _getDepthBitmap(Bitmap & bitmap);
