@@ -12,11 +12,16 @@
 #include "TextureExtractor.hpp"
 #include "Utils.h"
 #include <numeric>
+
+
+
 bool prepareMesh(Mesh & mesh,const std::string & objFilePath);
 
 bool prepareViews( TextureExtractor & extractor, const std::string & cameraInfoPath, const std::string &  cameraListFilePath);
 
 bool performViewSelection(TextureExtractor & extractor);
+
+bool calculateDataCosts(TextureExtractor & extractor);
 
 bool generateTexture(const std::string & newTexturePath, TextureExtractor & extractor, int width, int height);
 
@@ -25,11 +30,12 @@ void _renderViewsWithTexture(TextureExtractor & extractor);
 bool justRender = true;
 
 int main(int argc, const char * argv[]) {
+    
     TextureExtractor extractor;
     Timer mainTimer;
     mainTimer.start();
     
-    std::string objFilePath = "resources/pig/pig_3_blender.obj";
+    std::string objFilePath = "./resources/pig/pig_3_blender.obj";
     std::string cameraListFilePath = "resources/pig/list.txt";
     std::string cameraInfoPath = "resources/pig/bundle.rd.out";
     std::string newTexturePath = "resources/pig/derived/texture.ppm";
@@ -69,18 +75,26 @@ int main(int argc, const char * argv[]) {
         {
         Bitmap bitmap;
         Bitmap texture("resources/pig/derived/texture.ppm");
-                std::vector<uint> photoSet={51};
+//                std::vector<uint> photoSet={51};
 //                std::vector<uint> photoSet={1,26,51};
-//        std::vector<uint> photoSet(extractor.numberOfViews());
+        std::vector<uint> photoSet(extractor.numberOfViews());
         //                std::vector<uint> photoSet={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
-//        std::iota(photoSet.begin(),photoSet.end(),1);
+        std::iota(photoSet.begin(),photoSet.end(),1);
         for(int t=0;t<photoSet.size();t++){
-            std::cout<<"Rasterizing photo #"<<t<<"\n";
+            std::cout<<"Rasterizing photos %"<<(float)t/photoSet.size()<<"\n";
             extractor.renderView(bitmap,texture, photoSet[t]);
             bitmap.toPPM("resources/pig/extract/pig_" + std::to_string(photoSet[t]) + ".ppm");
         }
         }
     }
+    
+    bool dataCostsOK;
+    dataCostsOK = calculateDataCosts( extractor );
+    if( !dataCostsOK ){
+        printBold(mainTimer.stopGetResults("\nExited with error"));
+        return -1;
+    }
+    
     
     bool viewSelectionOK;
     viewSelectionOK = performViewSelection(extractor);
@@ -105,14 +119,15 @@ void _renderViewsWithTexture(TextureExtractor & extractor){
         Bitmap texture("resources/pig/derived/texture.ppm");
         //        std::vector<uint> photoSet={};
         //        std::vector<uint> photoSet={1,26,51};
-        std::vector<uint> photoSet(extractor.numberOfViews());
-        //                std::vector<uint> photoSet={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
-        std::iota(photoSet.begin(),photoSet.end(),1);
+//        std::vector<uint> photoSet(extractor.numberOfViews());
+        std::vector<uint> photoSet={1,2,3,44,5,46,7,8,9,30,31,12,13,22,51,16,50};
+//        std::iota(photoSet.begin(),photoSet.end(),1);
         for(int t=0;t<photoSet.size();t++){
-            std::cout<<"Rasterizing photo #"<<t<<"\n";
+            std::cout<<"\rRasterizing photos %"<<(100*((float)t/photoSet.size()))<<"     "<<std::flush;
             extractor.renderView(bitmap,texture, photoSet[t]);
             bitmap.toPPM("resources/pig/extract/res/pig_" + std::to_string(photoSet[t]) + ".ppm");
         }
+        std::cout<<"\rRasterizing photos %100      \n";
     }
 }
 
@@ -175,6 +190,23 @@ bool prepareViews( TextureExtractor & extractor, const std::string & cameraInfoP
     std::cout << timer.stopGetResults( "\tViews inicialized.: " );
     return true;
 }
+
+
+bool calculateDataCosts(TextureExtractor & extractor){
+    Timer timer;
+    timer.start();
+    std::cout <<"\nCalculating Data Costs:\n";
+    bool dataCostsOK;
+    dataCostsOK = extractor.calculateDataCosts();
+    if( !dataCostsOK ){
+        std::cout << timer.stopGetResults( "\tData Costs Calculation failed.: " );
+        return false;
+    }
+    std::cout << timer.stopGetResults( "\tData Costs Calculated.: " );
+    return true;
+}
+
+
 
 //DEBUG
 

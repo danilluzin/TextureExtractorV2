@@ -265,9 +265,6 @@ void ExtractionWorker::drawScanLine(TextureEdge left, TextureEdge right, int y, 
 void ExtractionWorker::drawScanLineColor(TextureEdge left, TextureEdge right, int y, TextureGradient & gradient, glm::vec4 color){
     int xMin = (int)ceil(left.currentX);
     int xMax = (int)ceil(right.currentX);
-    float xPrestep = xMin - left.currentX;
-    float xDist = right.currentX - left.currentX;
-    
     for(int x = xMin; x<xMax ; x++){
         texture->putPixel(x, y, color);
     }

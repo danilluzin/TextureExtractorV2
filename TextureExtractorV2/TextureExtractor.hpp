@@ -36,6 +36,8 @@ public:
     
     bool prepareViews(const std::string & cameraInfoPath, const std::string &  cameraListFilePath);
     
+    bool calculateDataCosts();
+    
     bool selectViews();
     
     void setMesh (const Mesh & m){mesh = m;}

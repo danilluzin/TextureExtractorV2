@@ -46,9 +46,14 @@ bool TextureExtractor::prepareViews(const std::string & cameraInfoPath, const st
 }
 
 
+bool TextureExtractor::calculateDataCosts(){
+    
+    return true;
+}
+
+
 bool TextureExtractor::selectViews(){
     //FIXME: actual label selection
-    
     for(auto & f : mesh.triangles){
         Triangle & face = f.second;
         for(auto & v : views){
@@ -66,9 +71,8 @@ bool TextureExtractor::selectViews(){
 
 bool TextureExtractor::generateTexture(const std::string & newTexturePath, int width, int height){
     texture = Bitmap(width, height);
-    texture.clear(glm::vec4(0.8, 0.8, 0.8, 1));
     
-    Bitmap defaultTexture = Bitmap(10,10);
+    texture.clear(glm::vec4(0.8, 0.8, 0.8, 1));
     glm::vec4 defaultColor (0.37, 0.61, 0.62, 1);
     
     ExtractionWorker worker(mesh);
