@@ -19,7 +19,7 @@
 #include <unordered_set>
 class Rasterizer{
     
-    Bitmap texture;
+    const Bitmap * texture;
     
     int width, height;
     
@@ -39,7 +39,7 @@ public:
 
     void setRenderContext (RenderContext * rc);
     
-    void setTexture (const Bitmap & txr) {texture = txr;}
+    void setTexture (const Bitmap & txr) {texture = &txr;}
 
     
     void bindMesh (const Mesh & m){mesh = m;}

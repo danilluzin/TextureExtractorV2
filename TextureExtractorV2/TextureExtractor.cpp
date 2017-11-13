@@ -76,7 +76,10 @@ bool TextureExtractor::generateTexture(const std::string & newTexturePath, int w
     glm::vec4 defaultColor (0.37, 0.61, 0.62, 1);
     
     ExtractionWorker worker(mesh);
+    uint t = 0;
     for(auto & f : mesh.triangles){
+        t++;
+        std::cout<<"\rGeting texture for faces %"<<(100*((float)t/mesh.triangles.size()))<<"     "<<std::flush;
         Triangle & face = f.second;
         if(face.viewId != 0){
             worker.extract(face, texture, views[face.viewId]);
@@ -84,6 +87,8 @@ bool TextureExtractor::generateTexture(const std::string & newTexturePath, int w
             worker.fillTextureTriangle(face,defaultColor,texture);
         }
     }
+    std::cout<<"\rGeting texture for faces %100      \n";
+    std::cout<<"Writing texture to file\n";
     texture.toPPM(newTexturePath);
     
     return true;

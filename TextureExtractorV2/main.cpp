@@ -14,7 +14,6 @@
 #include <numeric>
 
 
-
 bool prepareMesh(Mesh & mesh,const std::string & objFilePath);
 
 bool prepareViews( TextureExtractor & extractor, const std::string & cameraInfoPath, const std::string &  cameraListFilePath);
@@ -27,7 +26,7 @@ bool generateTexture(const std::string & newTexturePath, TextureExtractor & extr
 
 void _renderViewsWithTexture(TextureExtractor & extractor);
 
-bool justRender = true;
+bool justRender = false;
 
 int main(int argc, const char * argv[]) {
     
@@ -73,18 +72,19 @@ int main(int argc, const char * argv[]) {
             return 1;
         }
         {
-        Bitmap bitmap;
-        Bitmap texture("resources/pig/derived/texture.ppm");
-//                std::vector<uint> photoSet={51};
-//                std::vector<uint> photoSet={1,26,51};
-        std::vector<uint> photoSet(extractor.numberOfViews());
-        //                std::vector<uint> photoSet={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
-        std::iota(photoSet.begin(),photoSet.end(),1);
-        for(int t=0;t<photoSet.size();t++){
-            std::cout<<"Rasterizing photos %"<<(float)t/photoSet.size()<<"\n";
-            extractor.renderView(bitmap,texture, photoSet[t]);
-            bitmap.toPPM("resources/pig/extract/pig_" + std::to_string(photoSet[t]) + ".ppm");
-        }
+            Bitmap bitmap;
+            Bitmap texture("resources/pig/pig_tex.png");
+    //                std::vector<uint> photoSet={51};
+    //                std::vector<uint> photoSet={1,26,51};
+            std::vector<uint> photoSet(extractor.numberOfViews());
+            //                std::vector<uint> photoSet={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
+            std::iota(photoSet.begin(),photoSet.end(),1);
+            for(int t=0;t<photoSet.size();t++){
+                std::cout<<"\rRasterizing photos %"<<(100*((float)t/photoSet.size()))<<"     "<<std::flush;
+                extractor.renderView(bitmap,texture, photoSet[t]);
+//                bitmap.toPPM("resources/pig/extract/pig_" + std::to_string(photoSet[t]) + ".ppm");
+            }
+            std::cout<<"\rRasterizing photos %100      \n";
         }
     }
     
@@ -109,6 +109,8 @@ int main(int argc, const char * argv[]) {
         printBold(mainTimer.stopGetResults("\nExited with error"));
         return -1;
     }
+    
+//    _renderViewsWithTexture(extractor);
     
     printBold(mainTimer.stopGetResults( "\nTottal run time " ));
 }

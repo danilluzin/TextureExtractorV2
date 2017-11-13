@@ -15,10 +15,26 @@
 #include "stb/stb_image.h"
 
 void Bitmap::clear(glm::vec4 color){
-    std::fill(imageData.begin(), imageData.end(), color);
+    
+    image = cv::Scalar((uchar)(color[2]*255), (uchar)(color[1]*255),(uchar)(color[0]*255));
+    
+//    std::fill(imageData.begin(), imageData.end(), color);
 }
 
 Bitmap::Bitmap(const std::string & filename) : RenderContext(0,0){
+    
+    image = cv::imread(filename.c_str(), CV_LOAD_IMAGE_COLOR);
+    if(! image.data) {
+        std::cerr << "ERROR Texture Loading Failed: filename = " + filename+"\n";
+        return ;
+    }
+    
+    cv::Size s = image.size();
+    width = s.width;
+    height = s.height;
+    return;
+    
+    
     int numComponents;
     unsigned char * imageData = stbi_load(filename.c_str(), &width, &height, &numComponents, 4);
     
@@ -38,12 +54,23 @@ Bitmap::Bitmap(const std::string & filename) : RenderContext(0,0){
             
             putPixel(x, y, glm::vec4(r,g,b,a));
         }
-    }
-    toPPM("./resources/w.ppm");
-    
+    }    
 }
 
 void Bitmap::toPPM(std::string destFilename){
+    
+    bool fileOk;
+    fileOk = cv::imwrite (destFilename.c_str(),image);
+    if(!fileOk){
+        std::cerr << "ERROR: couldnt open file to write:" << destFilename << "\n";
+        return;
+    }
+    return;
+    
+    
+    
+    
+    
     std::ofstream file;
     file.open(destFilename.c_str());
     if(!file.is_open()){

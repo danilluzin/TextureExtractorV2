@@ -242,10 +242,10 @@ void Rasterizer::drawScanLine(Edge left, Edge right, int y, Gradient & gradient,
             depthBuffer[index] = depth;
             scoreTable[index] = std::pair<uint,float>(id,1.0f/depth);
             float z = 1.0f / oneOverZ; //OMG!!!!
-            int srcX = (int)((texCoord.x * z) * (texture.width - 1) + 0.5f);
-            int srcY = (int)((texCoord.y * z) * (texture.height - 1) + 0.5f);
+            int srcX = (int)((texCoord.x * z) * (texture->width - 1) + 0.5f);
+            int srcY = (int)((texCoord.y * z) * (texture->height - 1) + 0.5f);
             
-            context -> putPixel(x, y, texture.at(srcX, srcY));
+            context -> putPixel(x, y, texture->at(srcX, srcY));
 
         }else{
             visibleFaces.erase(idBuffer[index]);
