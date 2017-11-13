@@ -78,7 +78,7 @@ bool TextureExtractor::generateTexture(const std::string & newTexturePath, int w
     ExtractionWorker worker(mesh);
     uint t = 0;
     for(auto & f : mesh.triangles){
-        t++;
+        
         std::cout<<"\rGeting texture for faces %"<<(100*((float)t/mesh.triangles.size()))<<"     "<<std::flush;
         Triangle & face = f.second;
         if(face.viewId != 0){
@@ -86,6 +86,7 @@ bool TextureExtractor::generateTexture(const std::string & newTexturePath, int w
         }else{
             worker.fillTextureTriangle(face,defaultColor,texture);
         }
+        t++;
     }
     std::cout<<"\rGeting texture for faces %100      \n";
     std::cout<<"Writing texture to file\n";

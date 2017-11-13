@@ -26,7 +26,7 @@ bool generateTexture(const std::string & newTexturePath, TextureExtractor & extr
 
 void _renderViewsWithTexture(TextureExtractor & extractor);
 
-bool justRender = false;
+bool justRender = true;
 
 int main(int argc, const char * argv[]) {
     
@@ -34,19 +34,19 @@ int main(int argc, const char * argv[]) {
     Timer mainTimer;
     mainTimer.start();
     
-    std::string objFilePath = "./resources/pig/pig_3_blender.obj";
-    std::string cameraListFilePath = "resources/pig/list.txt";
-    std::string cameraInfoPath = "resources/pig/bundle.rd.out";
-    std::string newTexturePath = "resources/pig/derived/texture.ppm";
-    std::string photoFolderPath = "resources/pig";
+//    std::string objFilePath = "./resources/pig/pig_3_blender.obj";
+//    std::string cameraListFilePath = "resources/pig/list.txt";
+//    std::string cameraInfoPath = "resources/pig/bundle.rd.out";
+//    std::string newTexturePath = "resources/pig/derived/texture.ppm";
+//    std::string photoFolderPath = "resources/pig";
     
-//    std::string objFilePath = "resources/slany/slany_blender_1.obj";
-//    std::string cameraListFilePath = "resources/slany/list2.txt";
-//    std::string cameraInfoPath = "resources/slany/bundle.rd.out";
-//    std::string newTexturePath = "resources/pig/derived/texture.txt";
-//    std::string photoFolderPath = "resources/slany";
+    std::string objFilePath = "resources/slany/slany_blender_0.obj";
+    std::string cameraListFilePath = "resources/slany/list2.txt";
+    std::string cameraInfoPath = "resources/slany/bundle.rd.out";
+    std::string newTexturePath = "resources/slany/derived/texture2.ppm";
+    std::string photoFolderPath = "resources/slany";
     
-    int textureWidth = 1000, textureHeight = 1000;
+    int textureWidth = 4000, textureHeight = 4000;
 
 
     Mesh mesh;
@@ -74,7 +74,8 @@ int main(int argc, const char * argv[]) {
         {
             Bitmap bitmap;
             Bitmap texture("resources/pig/pig_tex.png");
-    //                std::vector<uint> photoSet={51};
+            
+//            std::vector<uint> photoSet={};
     //                std::vector<uint> photoSet={1,26,51};
             std::vector<uint> photoSet(extractor.numberOfViews());
             //                std::vector<uint> photoSet={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
@@ -118,16 +119,16 @@ int main(int argc, const char * argv[]) {
 void _renderViewsWithTexture(TextureExtractor & extractor){
     {
         Bitmap bitmap;
-        Bitmap texture("resources/pig/derived/texture.ppm");
+        Bitmap texture("resources/slany/derived/texture2.ppm");
         //        std::vector<uint> photoSet={};
         //        std::vector<uint> photoSet={1,26,51};
 //        std::vector<uint> photoSet(extractor.numberOfViews());
         std::vector<uint> photoSet={1,2,3,44,5,46,7,8,9,30,31,12,13,22,51,16,50};
-//        std::iota(photoSet.begin(),photoSet.end(),1);
+        std::iota(photoSet.begin(),photoSet.end(),1);
         for(int t=0;t<photoSet.size();t++){
             std::cout<<"\rRasterizing photos %"<<(100*((float)t/photoSet.size()))<<"     "<<std::flush;
             extractor.renderView(bitmap,texture, photoSet[t]);
-            bitmap.toPPM("resources/pig/extract/res/pig_" + std::to_string(photoSet[t]) + ".ppm");
+            bitmap.toPPM("resources/slany/extract/res2/slany_" + std::to_string(photoSet[t]) + ".ppm");
         }
         std::cout<<"\rRasterizing photos %100      \n";
     }
@@ -144,7 +145,7 @@ bool generateTexture(const std::string & newTexturePath, TextureExtractor & extr
         printBold(timer.stopGetResults( "\tTexture generation failed.: " ));
         return false;
     }
-    print(timer.stopGetResults( "\tLables generated.: " ));
+    print(timer.stopGetResults( "\tTexture generated.: " ));
     return true;
 }
 

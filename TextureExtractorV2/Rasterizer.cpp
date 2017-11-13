@@ -64,7 +64,7 @@ void Rasterizer::drawTriangle(const Triangle & triangle){
         rasterizeTriangle(vOne, vTwo, vThree, triangle);
         return;
     }
-
+        
     if(!isInsideViewFrustrum(vOne) && !isInsideViewFrustrum(vTwo) && !isInsideViewFrustrum(vThree)){
         return;
     }

@@ -86,6 +86,7 @@ void ExtractionWorker::processTriangle(const Triangle & triangle){
     }
 
     if(!isInsideViewFrustrum(vOne) && !isInsideViewFrustrum(vTwo) && !isInsideViewFrustrum(vThree)){
+        std::cout<<"wtf\n";
         return;
     }
 
