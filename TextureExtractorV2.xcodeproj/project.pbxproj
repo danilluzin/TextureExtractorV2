@@ -77,6 +77,7 @@
 		F48D2E2F1FB22A5F00145D8D /* Display.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Display.hpp; sourceTree = "<group>"; };
 		F49D60D31FB89EEB00D62BBA /* ExtractionWorker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ExtractionWorker.cpp; sourceTree = "<group>"; };
 		F49D60D41FB89EEB00D62BBA /* ExtractionWorker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ExtractionWorker.hpp; sourceTree = "<group>"; };
+		F4E3B3D11FC03A7700C9BBF2 /* Arguments.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Arguments.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				F40DE3CA1FAF4DDE00EC32B4 /* main.cpp */,
+				F4E3B3D11FC03A7700C9BBF2 /* Arguments.h */,
 				F40DE3D91FAF587E00EC32B4 /* TextureExtractor.hpp */,
 				F40DE3DF1FAF587F00EC32B4 /* TextureExtractor.cpp */,
 				F40DE4011FAF70CB00EC32B4 /* Timer.hpp */,
