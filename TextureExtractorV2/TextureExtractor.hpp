@@ -29,6 +29,8 @@ class TextureExtractor {
     std::map<uint,View> views;
 
     Arguments arguments;
+    
+    std::map<uint,std::map<uint,float>> dataCosts;
 
 public:
 
@@ -50,6 +52,8 @@ public:
  
     bool readLabelsFromFile();
     
+    bool readDataCostsFromFile();
+    
     //DEBUG
     
     void checkCameraInfo();
@@ -65,6 +69,8 @@ public:
     void windowRender( uint view ) ;
 
 private:
+    
+    bool mapMapGetLabeling();
     
     uint addView(const View & view);
     
@@ -84,7 +90,11 @@ private:
     
     bool get2Ints(std::vector<int> & tokens,const std::string & line);
     
+    bool  parseFaceDataCost(std::ifstream & file);
+    
     bool writeLabelingToFile();
+    
+    bool writeDataCostsToFile();
 };
 
 

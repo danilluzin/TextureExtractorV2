@@ -35,6 +35,33 @@ Bitmap::Bitmap(const std::string & filename) : RenderContext(0,0){
     return;
 }
 
+Bitmap::Bitmap(const cv::Mat & img) : RenderContext(0,0){
+    image = img;
+    cv::Size s = image.size();
+    width = s.width;
+    height = s.height;
+    return;
+}
+
+Bitmap Bitmap::toSobel() const{
+    cv::Mat grayImg;
+    cv::Mat sobelImg;
+    cv::Mat grad_x, grad_y;
+    cv::Mat abs_grad_x, abs_grad_y;
+    int scale = 1;
+    int delta = 0;
+    int ddepth = CV_16S;
+    
+    cvtColor( image, grayImg, CV_BGR2GRAY );
+    Sobel( grayImg, grad_x, ddepth, 1, 0, 3, scale, delta, cv::BORDER_DEFAULT );
+    Sobel( grayImg, grad_y, ddepth, 0, 1, 3, scale, delta, cv::BORDER_DEFAULT );
+    convertScaleAbs( grad_x, abs_grad_x );
+    convertScaleAbs( grad_y, abs_grad_y );
+    
+    addWeighted( abs_grad_x, 0.5, abs_grad_y, 0.5, 0, sobelImg );
+    return Bitmap(sobelImg);
+}
+
 void Bitmap::toPPM(std::string destFilename){
     
     bool fileOk;

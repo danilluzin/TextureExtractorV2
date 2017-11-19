@@ -13,7 +13,9 @@
 #include <fstream>
 #include "stb/stb_image.h"
 #include "ExtractionWorker.hpp"
+#include "DataCostsExtractor.hpp"
 #include <numeric>
+//#include "mapmap/full.h"
 
 void windowRender( Mesh mesh );
 
@@ -57,21 +59,39 @@ bool TextureExtractor::prepareViews(){
 
 
 bool TextureExtractor::calculateDataCosts(){
-    
-    //TODO: proper calculation:
-    Bitmap bitmap;
-    Bitmap texture("resources/pig/pig_tex.png");
-    //            std::vector<uint> photoSet={};
-    //                std::vector<uint> photoSet={1,26,51};
-    std::vector<uint> photoSet(numberOfViews());
-    std::iota(photoSet.begin(),photoSet.end(),1);
-    for(int t=0;t<photoSet.size();t++){
-        std::cout<<"\rRasterizing photos %"<<(100*((float)t/photoSet.size()))<<"     "<<std::flush;
-        renderView(bitmap,texture, photoSet[t]);
+    int t = 0;
+    for(auto & v : views){
+        std::cout<<"\rGetting Data Costs %"<<(100*((float)t/views.size()))<<"     "<<std::flush;
+        View & view = v.second;
+        DataCostsExtractor extractor(mesh,view);
+        std::map<uint,float> costs = extractor.calculateCosts();
+        for(auto entry : costs){
+            dataCosts[entry.first][view.id] = entry.second;
+        }
+        t++;
     }
-    std::cout<<"\rRasterizing photos %100      \n";
+    
+    //normalisation;
+    for(auto & f : dataCosts){
+        float faceMax = 0;
+        for(auto & v : f.second){
+            faceMax = std::max(faceMax,v.second);
+        }
+        for(auto & v : f.second){
+            v.second = 1 - (v.second/faceMax);
+        }
+        
+    }
+    
+    std::cout<<"\r\rGetting Data Costs %100      \n";
+    
+    if(arguments.writeDataCostsToFile){
+        writeDataCostsToFile();
+    }
+
     return true;
 }
+
 
 bool TextureExtractor::readLabelsFromFile(){
     std::ifstream file;
@@ -103,6 +123,92 @@ bool TextureExtractor::readLabelsFromFile(){
 }
 
 
+bool TextureExtractor::readDataCostsFromFile(){
+    std::ifstream file;
+    file.open(arguments.dataCostsFilePath.c_str());
+    if(!file.is_open()){
+        std::cerr << "Unable to open data costs file: " << arguments.labelingFilePath << std::endl;
+        return false;
+    }
+    
+    std::string line;
+    getline(file,line);
+    std::vector<std::string>tokens;
+    tokens = splitString(line, ' ');
+    uint faceCount = parseInt(tokens[0]);
+    uint infoFaceCount =  parseInt(tokens[1]);
+    
+    if(faceCount != mesh.triangles.size()){
+        std::cout<<"ERROR: Data cost file format doesn't match current mesh or is wrong\n";
+        return false;
+    }
+    
+    uint successCount = 0;
+    while(file.good() && (successCount<infoFaceCount)){
+        bool parseOk;
+        parseOk = parseFaceDataCost(file);
+        if(parseOk){
+            successCount++;
+        }else{
+            std::cout<<"ERROR: Data cost file format doesn't match current mesh or is wrong\n";
+            return false;
+        }
+    }
+    file.close();
+    if(successCount < infoFaceCount){
+        std::cout<<"Number of valid dataCosts is less than promised number of faces: "<<
+        "    got = "<<successCount<<"\n"<<
+        "    expected = "<<infoFaceCount<<"\n";
+        return false;
+    }
+    return true;
+}
+
+
+bool  TextureExtractor::parseFaceDataCost(std::ifstream & file){
+    std::string line;
+    std::vector<std::string>tokens;
+    
+    getline(file,line);
+    tokens = splitString(line, ' ');
+    
+    if(!file.good())
+        return false;
+    
+    uint faceId = parseInt(tokens[0]);
+    if(faceId > mesh.triangles.size() || faceId <= 0){
+        std::cout<<"ERROR: Data cost file references wrong face ID\n";
+        return false;
+    }
+    uint viewsCount = parseInt(tokens[1]);
+    
+    for(int v = 0; v< viewsCount; v++){
+        getline(file,line);
+        if(!file.good())
+            return false;
+        
+        tokens = splitString(line, ' ');
+        uint viewId = parseInt(tokens[0]);
+        if(viewId <= 0 || viewId> views.size()){
+            std::cout<<"ERROR: Data cost file references wrong view ID\n";
+            return false;
+        }
+        float dataCost = parseFloat(tokens[1]);
+        dataCosts[faceId][viewId] = dataCost;
+    }
+    
+    getline(file,line);
+    if(!file.good())
+        return false;
+    
+    if(line.size() > 0){
+        std::cout<<"ERROR: Data cost file format wrong. Newline between face infos missing\n";
+        return false;
+    }
+    return true;
+}
+
+
 bool TextureExtractor::parseLabelingLine(const std::string & line){
     std::vector<int> tokens;
     bool got2int;
@@ -117,17 +223,8 @@ bool TextureExtractor::parseLabelingLine(const std::string & line){
 
 
 bool TextureExtractor::selectViews(){
-    //FIXME: actual label selection
-    for(auto & f : mesh.triangles){
-        Triangle & face = f.second;
-        for(auto & v : views){
-            View & view = v.second;
-            if(view.visibleFaces.count(face.id)>0){
-                face.viewId = view.id;
-                break;
-            }
-        }
-    }
+    
+    mapMapGetLabeling();
     
     if(arguments.writeLabelingToFile){
         bool writingOk;
@@ -136,28 +233,6 @@ bool TextureExtractor::selectViews(){
             std::cout<<"WARNING: Wrinting of labels to a file failed\n";
     }
     return true;
-}
-
-
-bool TextureExtractor::writeLabelingToFile(){
-    std::cout<<"Wrinig labeling into file\n";
-    std::ofstream file;
-    file.open(arguments.newLabelingFilePath.c_str());
-    if(!file.is_open()){
-        std::cerr << "Unable to open labeling file for writng: " << arguments.newLabelingFilePath << std::endl;
-        return false;
-    }
-    
-    for(const auto & f : mesh.triangles){
-        const Triangle & face = f.second;
-        file << face.id <<" "<<face.viewId<<"\n";
-    }
-    
-    if(!file.good()){
-        std::cout<< "Something went wrong when writing to file\n";
-        return false;
-    }
-   return true;
 }
 
 
@@ -186,6 +261,62 @@ bool TextureExtractor::generateTexture(){
     
     return true;
 }
+
+
+bool TextureExtractor::mapMapGetLabeling(){
+ 
+    
+    return true;
+}
+
+
+bool TextureExtractor::writeLabelingToFile(){
+    std::cout<<"Wrinig labeling into file\n";
+    std::ofstream file;
+    file.open(arguments.newLabelingFilePath.c_str());
+    if(!file.is_open()){
+        std::cerr << "Unable to open labeling file for writng: " << arguments.newLabelingFilePath << std::endl;
+        return false;
+    }
+    
+    for(const auto & f : mesh.triangles){
+        const Triangle & face = f.second;
+        file << face.id <<" "<<face.viewId<<"\n";
+    }
+    file.close();
+    if(!file.good()){
+        std::cout<< "Something went wrong when writing to file\n";
+        return false;
+    }
+   return true;
+}
+
+
+bool TextureExtractor::writeDataCostsToFile(){
+    std::cout<<"Wrinig labeling into file\n";
+    std::ofstream file;
+    file.open(arguments.newDataCostsFilePath.c_str());
+    if(!file.is_open()){
+        std::cerr << "Unable to open data cost file for writng: " << arguments.newLabelingFilePath << std::endl;
+        return false;
+    }
+    
+    file<<mesh.triangles.size()<<" "<<dataCosts.size()<<"\n";
+    for(const auto & f : dataCosts){
+        file<<f.first<<" "<<f.second.size()<<"\n";
+        for(const auto & v:f.second){
+            file<<v.first<<" "<<v.second<<"\n";
+        }
+        file<<"\n";
+    }
+    file.close();
+    if(!file.good()){
+        std::cout<< "Something went wrong when writing to file\n";
+        return false;
+    }
+    return true;
+}
+
 
 
 bool TextureExtractor::extractPhotoList(){

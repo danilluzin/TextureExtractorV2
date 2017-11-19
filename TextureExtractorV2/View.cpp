@@ -8,7 +8,8 @@
 
 #include "View.hpp"
 void View::loadImage(){
-    sourceImage = new Bitmap(fileName);
+    if(sourceImage == nullptr)
+        sourceImage = new Bitmap(fileName);
 }
 
 void View::releaseImage(){

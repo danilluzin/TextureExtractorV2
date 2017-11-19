@@ -81,6 +81,7 @@
 		F4E3B3D11FC03A7700C9BBF2 /* Arguments.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Arguments.h; sourceTree = "<group>"; };
 		F4E3B3D21FC1925500C9BBF2 /* DataCostsExtractor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataCostsExtractor.cpp; sourceTree = "<group>"; };
 		F4E3B3D31FC1925500C9BBF2 /* DataCostsExtractor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DataCostsExtractor.hpp; sourceTree = "<group>"; };
+		F4E3B3D51FC1967900C9BBF2 /* PatchQuality.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PatchQuality.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,17 +120,18 @@
 			children = (
 				F40DE3CA1FAF4DDE00EC32B4 /* main.cpp */,
 				F4E3B3D11FC03A7700C9BBF2 /* Arguments.h */,
+				F40DE4031FB06EA000EC32B4 /* Utils.h */,
 				F40DE3D91FAF587E00EC32B4 /* TextureExtractor.hpp */,
 				F40DE3DF1FAF587F00EC32B4 /* TextureExtractor.cpp */,
 				F40DE4011FAF70CB00EC32B4 /* Timer.hpp */,
 				F40DE4001FAF70CB00EC32B4 /* Timer.cpp */,
-				F40DE4031FB06EA000EC32B4 /* Utils.h */,
-				F40DE3DB1FAF587E00EC32B4 /* Mesh.hpp */,
-				F40DE3DD1FAF587E00EC32B4 /* Mesh.cpp */,
-				F4E3B3D21FC1925500C9BBF2 /* DataCostsExtractor.cpp */,
-				F4E3B3D31FC1925500C9BBF2 /* DataCostsExtractor.hpp */,
 				F49D60D41FB89EEB00D62BBA /* ExtractionWorker.hpp */,
 				F49D60D31FB89EEB00D62BBA /* ExtractionWorker.cpp */,
+				F40DE3DB1FAF587E00EC32B4 /* Mesh.hpp */,
+				F40DE3DD1FAF587E00EC32B4 /* Mesh.cpp */,
+				F4E3B3D51FC1967900C9BBF2 /* PatchQuality.h */,
+				F4E3B3D31FC1925500C9BBF2 /* DataCostsExtractor.hpp */,
+				F4E3B3D21FC1925500C9BBF2 /* DataCostsExtractor.cpp */,
 				F40DE4051FB0D98400EC32B4 /* View.hpp */,
 				F40DE4041FB0D98400EC32B4 /* View.cpp */,
 				F40DE4081FB0DB6000EC32B4 /* Camera.hpp */,

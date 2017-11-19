@@ -15,13 +15,15 @@ struct Arguments{
     Arguments(){
         //TODO: proper arg getting
         
-            objFilePath = "./resources/pig/pig_3_blender.obj";
-            cameraListFilePath = "resources/pig/list.txt";
-            cameraInfoPath = "resources/pig/bundle.rd.out";
-            newTexturePath = "resources/pig/derived/texture2.ppm";
-            photoFolderPath = "resources/pig";
-            newLabelingFilePath = "resources/pig/derived/new_labeling.txt";
-            labelingFilePath = "resources/pig/derived/labeling.txt";
+        objFilePath = "./resources/pig/pig_3_blender.obj";
+        cameraListFilePath = "resources/pig/list.txt";
+        cameraInfoPath = "resources/pig/bundle.rd.out";
+        newTexturePath = "resources/pig/derived/texture2.ppm";
+        photoFolderPath = "resources/pig";
+        newLabelingFilePath = "resources/pig/derived/new_labeling.txt";
+        labelingFilePath = "resources/pig/derived/labeling.txt";
+        dataCostsFilePath = "resources/pig/derived/dataCosts.txt";
+        newDataCostsFilePath = "resources/pig/derived/new_dataCosts.txt";
         
 //        objFilePath = "resources/slany/slany_blender_0.obj";
 //        cameraListFilePath = "resources/slany/list2.txt";
@@ -33,8 +35,11 @@ struct Arguments{
         
         textureWidth = 4000;
         textureHeight = 4000;
-        getLabelingFromFile = true;
+        getLabelingFromFile = false;
         writeLabelingToFile = true;
+        
+        getDataCostsFromFile = true;
+        writeDataCostsToFile = true;
     }
     
     int textureWidth;
@@ -46,9 +51,14 @@ struct Arguments{
     std::string photoFolderPath;
     std::string newLabelingFilePath;
     std::string labelingFilePath;
+    std::string dataCostsFilePath;
+    std::string newDataCostsFilePath;
+    
     
     bool getLabelingFromFile;
     bool writeLabelingToFile;
+    bool getDataCostsFromFile;
+    bool writeDataCostsToFile;
 };
 
 

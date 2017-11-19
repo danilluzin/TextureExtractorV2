@@ -32,13 +32,13 @@ bool calcDataCostsAndGetLebeling(TextureExtractor & extractor);
 
 bool loadLabelsFromFile(TextureExtractor & extractor);
 
+Arguments arguments;
 
 int main(int argc, const char * argv[]) {
-    
     TextureExtractor extractor;
     Timer mainTimer;
     mainTimer.start();
-    Arguments arguments;
+
     extractor.setArguments(arguments);
 
 
@@ -113,11 +113,20 @@ void _renderViewsWithTexture(TextureExtractor & extractor){
 
 
 bool calcDataCostsAndGetLebeling(TextureExtractor & extractor){
-    bool dataCostsOK;
-    dataCostsOK = calculateDataCosts( extractor );
-    if( !dataCostsOK )
-        return false;
-
+    
+    if(arguments.getDataCostsFromFile){
+        std::cout<<"\tGetting data costs from file:\n";
+        bool dataCostsOK;
+        dataCostsOK = extractor.readDataCostsFromFile();
+        if( !dataCostsOK )
+            return false;
+    }else{
+        bool dataCostsOK;
+        dataCostsOK = calculateDataCosts( extractor );
+        if( !dataCostsOK )
+            return false;
+    }
+    
     bool viewSelectionOK;
     viewSelectionOK = performViewSelection(extractor);
     if( !viewSelectionOK )
