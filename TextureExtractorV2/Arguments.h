@@ -15,30 +15,32 @@ struct Arguments{
     Arguments(){
         //TODO: proper arg getting
         
-        objFilePath = "./resources/pig/pig_3_blender.obj";
-        cameraListFilePath = "resources/pig/list.txt";
-        cameraInfoPath = "resources/pig/bundle.rd.out";
-        newTexturePath = "resources/pig/derived/texture2.ppm";
-        photoFolderPath = "resources/pig";
-        newLabelingFilePath = "resources/pig/derived/new_labeling.txt";
-        labelingFilePath = "resources/pig/derived/labeling.txt";
-        dataCostsFilePath = "resources/pig/derived/dataCosts.txt";
-        newDataCostsFilePath = "resources/pig/derived/new_dataCosts.txt";
-        
-//        objFilePath = "resources/slany/slany_blender_0.obj";
-//        cameraListFilePath = "resources/slany/list2.txt";
-//        cameraInfoPath = "resources/slany/bundle.rd.out";
-//        newTexturePath = "resources/slany/derived/texture2.ppm";
-//        photoFolderPath = "resources/slany";
-//        newLabelingFilePath = "resources/lany/derived/new_labeling.txt";
-//        labelingFilePath = "resources/lany/derived/labeling.txt";
+//        objFilePath = "./resources/pig/pig_2_blender.obj";
+//        cameraListFilePath = "resources/pig/list.txt";
+//        cameraInfoPath = "resources/pig/bundle.rd.out";
+//        newTexturePath = "resources/pig/derived/texture3.ppm";
+//        photoFolderPath = "resources/pig";
+//        newLabelingFilePath = "resources/pig/derived/new_labeling.txt";
+//        labelingFilePath = "resources/pig/derived/labeling.txt";
+//        dataCostsFilePath = "resources/pig/derived/dataCosts.txt";
+//        newDataCostsFilePath = "resources/pig/derived/new_dataCosts.txt";
+//
+        objFilePath = "resources/slany/slany_blender_0.obj";
+        cameraListFilePath = "resources/slany/list2.txt";
+        cameraInfoPath = "resources/slany/bundle.rd.out";
+        newTexturePath = "resources/slany/derived/texture2.ppm";
+        photoFolderPath = "resources/slany";
+        newLabelingFilePath = "resources/lany/derived/new_labeling.txt";
+        labelingFilePath = "resources/lany/derived/labeling.txt";
+        dataCostsFilePath = "resources/lany/derived/dataCosts.txt";
+        newDataCostsFilePath = "resources/lany/derived/new_dataCosts.txt";
         
         textureWidth = 4000;
         textureHeight = 4000;
         getLabelingFromFile = false;
         writeLabelingToFile = true;
         
-        getDataCostsFromFile = true;
+        getDataCostsFromFile = false;
         writeDataCostsToFile = true;
     }
     

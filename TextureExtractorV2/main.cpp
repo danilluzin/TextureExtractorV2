@@ -26,13 +26,13 @@ bool generateTexture(TextureExtractor & extractor);
 
 void _renderViewsWithTexture(TextureExtractor & extractor);
 
-bool justRender = false;
-
 bool calcDataCostsAndGetLebeling(TextureExtractor & extractor);
 
 bool loadLabelsFromFile(TextureExtractor & extractor);
 
 Arguments arguments;
+
+bool justRender = false;
 
 int main(int argc, const char * argv[]) {
     TextureExtractor extractor;
@@ -96,7 +96,7 @@ int main(int argc, const char * argv[]) {
 void _renderViewsWithTexture(TextureExtractor & extractor){
     {
         Bitmap bitmap;
-        Bitmap texture("resources/pig/derived/texture.ppm");
+        Bitmap texture("resources/pig/derived/texture3.ppm");
         //        std::vector<uint> photoSet={};
         //        std::vector<uint> photoSet={1,26,51};
 //        std::vector<uint> photoSet(extractor.numberOfViews());

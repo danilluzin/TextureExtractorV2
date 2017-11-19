@@ -83,9 +83,8 @@ class AdjacencyGraph{
             this->neighbours = neighbours;
         }
         Node(){}
-    private:
-        uint faceId;
         std::set<uint> neighbours;
+        uint faceId;
     };
 public:
     void addNode(uint faceId,const std::set<uint> & neighbours){
@@ -109,9 +108,9 @@ public:
     std::map<uint,std::set<uint>> facesVertexBelongsTo;
     
     bool isValidFaceId(int id);
-private:
     
     AdjacencyGraph adjacencyGraph;
+private:
     
     std::vector<uint> getEdgeAdjacentFaces(uint vert1, uint vert2);
         

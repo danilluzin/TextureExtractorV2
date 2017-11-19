@@ -25,6 +25,7 @@
 		F48D2E2D1FB22A3800145D8D /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F48D2E2C1FB22A3700145D8D /* libSDL2-2.0.0.dylib */; };
 		F48D2E301FB22A5F00145D8D /* Display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F48D2E2E1FB22A5E00145D8D /* Display.cpp */; };
 		F49D60D51FB89EEB00D62BBA /* ExtractionWorker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F49D60D31FB89EEB00D62BBA /* ExtractionWorker.cpp */; };
+		F4CBCC141FC226AA008C99F4 /* TextureExtractor_mapMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4CBCC131FC226AA008C99F4 /* TextureExtractor_mapMap.cpp */; };
 		F4E3B3D41FC1925500C9BBF2 /* DataCostsExtractor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E3B3D21FC1925500C9BBF2 /* DataCostsExtractor.cpp */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 		F49D60D31FB89EEB00D62BBA /* ExtractionWorker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ExtractionWorker.cpp; sourceTree = "<group>"; };
 		F49D60D41FB89EEB00D62BBA /* ExtractionWorker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ExtractionWorker.hpp; sourceTree = "<group>"; };
 		F4CBCC121FC20992008C99F4 /* mapmap */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mapmap; sourceTree = "<group>"; };
+		F4CBCC131FC226AA008C99F4 /* TextureExtractor_mapMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextureExtractor_mapMap.cpp; sourceTree = "<group>"; };
 		F4E3B3D11FC03A7700C9BBF2 /* Arguments.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Arguments.h; sourceTree = "<group>"; };
 		F4E3B3D21FC1925500C9BBF2 /* DataCostsExtractor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataCostsExtractor.cpp; sourceTree = "<group>"; };
 		F4E3B3D31FC1925500C9BBF2 /* DataCostsExtractor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DataCostsExtractor.hpp; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				F40DE4031FB06EA000EC32B4 /* Utils.h */,
 				F40DE3D91FAF587E00EC32B4 /* TextureExtractor.hpp */,
 				F40DE3DF1FAF587F00EC32B4 /* TextureExtractor.cpp */,
+				F4CBCC131FC226AA008C99F4 /* TextureExtractor_mapMap.cpp */,
 				F40DE4011FAF70CB00EC32B4 /* Timer.hpp */,
 				F40DE4001FAF70CB00EC32B4 /* Timer.cpp */,
 				F49D60D41FB89EEB00D62BBA /* ExtractionWorker.hpp */,
@@ -264,6 +267,7 @@
 				F40DE3EE1FAF588000EC32B4 /* Gradient.cpp in Sources */,
 				F40DE4021FAF70CB00EC32B4 /* Timer.cpp in Sources */,
 				F4E3B3D41FC1925500C9BBF2 /* DataCostsExtractor.cpp in Sources */,
+				F4CBCC141FC226AA008C99F4 /* TextureExtractor_mapMap.cpp in Sources */,
 				F48D2E301FB22A5F00145D8D /* Display.cpp in Sources */,
 				F40DE3EA1FAF588000EC32B4 /* TextureEdge.cpp in Sources */,
 				F40DE3EF1FAF588000EC32B4 /* Bitmap.cpp in Sources */,

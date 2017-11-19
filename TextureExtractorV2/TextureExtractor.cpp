@@ -15,7 +15,7 @@
 #include "ExtractionWorker.hpp"
 #include "DataCostsExtractor.hpp"
 #include <numeric>
-#include "mapmap/full.h"
+
 
 void windowRender( Mesh mesh );
 
@@ -258,13 +258,6 @@ bool TextureExtractor::generateTexture(){
     std::cout<<"\rGeting texture for faces %100      \n";
     std::cout<<"Writing texture to file\n";
     texture.toPPM(arguments.newTexturePath);
-    
-    return true;
-}
-
-
-bool TextureExtractor::mapMapGetLabeling(){
- 
     
     return true;
 }
