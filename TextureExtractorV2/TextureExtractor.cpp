@@ -13,6 +13,7 @@
 #include <fstream>
 #include "stb/stb_image.h"
 #include "ExtractionWorker.hpp"
+#include <numeric>
 
 void windowRender( Mesh mesh );
 
@@ -22,13 +23,22 @@ TextureExtractor::~TextureExtractor(){
     }
 }
 
-bool TextureExtractor::prepareViews(const std::string & cameraInfoPath, const std::string &  cameraListFilePath){
 
-    std::vector<std::string> photoPaths;
+bool TextureExtractor::isValidViewId(int id){
+    return (id>=0) && (id<=views.size());
+}
+
+
+bool TextureExtractor::isValidFaceId(int id){
+    return mesh.isValidFaceId(id);
+}
+
+
+bool TextureExtractor::prepareViews(){
 
     std::cout<<"Reading the list of source Photos\n";
     bool listOk;
-    listOk = extractPhotoList(photoPaths,cameraListFilePath);
+    listOk = extractPhotoList();
     if(!listOk){
         std::cout<<"ERROR occured when getting photo list\n";
         return false;
@@ -36,7 +46,7 @@ bool TextureExtractor::prepareViews(const std::string & cameraInfoPath, const st
 
     std::cout<<"Reading Camera info (position, rotation, fov)\n";
     bool cameraInfoOK;
-    cameraInfoOK = extractCameraInfoCreateViews(photoPaths, cameraInfoPath);
+    cameraInfoOK = extractCameraInfoCreateViews();
     if(!cameraInfoOK){
         std::cout<<"ERROR occured when getting camera info\n";
         return false;
@@ -48,6 +58,60 @@ bool TextureExtractor::prepareViews(const std::string & cameraInfoPath, const st
 
 bool TextureExtractor::calculateDataCosts(){
     
+    //TODO: proper calculation:
+    Bitmap bitmap;
+    Bitmap texture("resources/pig/pig_tex.png");
+    //            std::vector<uint> photoSet={};
+    //                std::vector<uint> photoSet={1,26,51};
+    std::vector<uint> photoSet(numberOfViews());
+    std::iota(photoSet.begin(),photoSet.end(),1);
+    for(int t=0;t<photoSet.size();t++){
+        std::cout<<"\rRasterizing photos %"<<(100*((float)t/photoSet.size()))<<"     "<<std::flush;
+        renderView(bitmap,texture, photoSet[t]);
+    }
+    std::cout<<"\rRasterizing photos %100      \n";
+    return true;
+}
+
+bool TextureExtractor::readLabelsFromFile(){
+    std::ifstream file;
+    file.open(arguments.labelingFilePath.c_str());
+    if(!file.is_open()){
+        std::cerr << "Unable to open labeling file: " << arguments.labelingFilePath << std::endl;
+        return false;
+    }
+    
+    std::string line;
+    uint successCount = 0;
+    while(file.good()){
+        getline(file, line);
+        if(line.size()>0){
+            bool parseOk;
+            parseOk = parseLabelingLine(line);
+            if(parseOk)
+                successCount++;
+        }
+    }
+    file.close();
+    if(successCount < mesh.triangles.size()){
+        std::cout<<"Number of valid labels is less than number of faces: "<<
+                    "    labels = "<<successCount<<"\n"<<
+                    "    faces = "<<mesh.triangles.size()<<"\n";
+        return false;
+    }
+    return true;
+}
+
+
+bool TextureExtractor::parseLabelingLine(const std::string & line){
+    std::vector<int> tokens;
+    bool got2int;
+    got2int = get2Ints(tokens,line);
+    if(!got2int)
+        return false;
+    if(!isValidViewId(tokens[1]) || !isValidFaceId(tokens[0]))
+        return false;
+    mesh.triangles[tokens[0]].viewId = tokens[1];
     return true;
 }
 
@@ -65,12 +129,40 @@ bool TextureExtractor::selectViews(){
         }
     }
     
+    if(arguments.writeLabelingToFile){
+        bool writingOk;
+        writingOk = writeLabelingToFile();
+        if(!writingOk)
+            std::cout<<"WARNING: Wrinting of labels to a file failed\n";
+    }
     return true;
 }
 
 
-bool TextureExtractor::generateTexture(const std::string & newTexturePath, int width, int height){
-    texture = Bitmap(width, height);
+bool TextureExtractor::writeLabelingToFile(){
+    std::cout<<"Wrinig labeling into file\n";
+    std::ofstream file;
+    file.open(arguments.newLabelingFilePath.c_str());
+    if(!file.is_open()){
+        std::cerr << "Unable to open labeling file for writng: " << arguments.newLabelingFilePath << std::endl;
+        return false;
+    }
+    
+    for(const auto & f : mesh.triangles){
+        const Triangle & face = f.second;
+        file << face.id <<" "<<face.viewId<<"\n";
+    }
+    
+    if(!file.good()){
+        std::cout<< "Something went wrong when writing to file\n";
+        return false;
+    }
+   return true;
+}
+
+
+bool TextureExtractor::generateTexture(){
+    texture = Bitmap(arguments.textureWidth, arguments.textureHeight);
     
     texture.clear(glm::vec4(0.8, 0.8, 0.8, 1));
     glm::vec4 defaultColor (0.37, 0.61, 0.62, 1);
@@ -90,20 +182,20 @@ bool TextureExtractor::generateTexture(const std::string & newTexturePath, int w
     }
     std::cout<<"\rGeting texture for faces %100      \n";
     std::cout<<"Writing texture to file\n";
-    texture.toPPM(newTexturePath);
+    texture.toPPM(arguments.newTexturePath);
     
     return true;
 }
 
 
-bool TextureExtractor::extractPhotoList(std::vector<std::string> & photoPaths,const std::string & cameraListFilePath){
+bool TextureExtractor::extractPhotoList(){
     
     std::ifstream file;
-    file.open(cameraListFilePath.c_str());
+    file.open(arguments.cameraListFilePath.c_str());
     
     std::string line;
     if(!file.is_open()){
-        std::cerr << "Unable to open camera list file: " << cameraListFilePath << std::endl;
+        std::cerr << "Unable to open camera list file: " << arguments.cameraListFilePath << std::endl;
         return false;
     }
     
@@ -111,7 +203,7 @@ bool TextureExtractor::extractPhotoList(std::vector<std::string> & photoPaths,co
         getline(file, line);
         if(line.size()>0){
             View view;
-            view.fileName = photoFolderPath +'/' +line;
+            view.fileName = arguments.photoFolderPath +'/' +line;
             //original photo dimensions
             int width, height, comp;
             bool imageOk;
@@ -125,7 +217,7 @@ bool TextureExtractor::extractPhotoList(std::vector<std::string> & photoPaths,co
             addView(view);
         }
     }
-    
+    file.close();
     if(views.size()<=0){
         std::cout<< "File was empty or error occured\n";
         return false;
@@ -134,13 +226,13 @@ bool TextureExtractor::extractPhotoList(std::vector<std::string> & photoPaths,co
 }
 
 
-bool TextureExtractor::extractCameraInfoCreateViews(const std::vector<std::string> &photoPaths,const std::string & cameraInfoPath){
+bool TextureExtractor::extractCameraInfoCreateViews(){
     std::ifstream file;
-    file.open(cameraInfoPath.c_str());
+    file.open(arguments.cameraInfoPath.c_str());
     
     std::string line;
     if(!file.is_open()){
-        std::cerr << "Unable to open camera info file: " << cameraInfoPath << std::endl;
+        std::cerr << "Unable to open camera info file: " << arguments.cameraInfoPath << std::endl;
         return false;
     }
     
@@ -260,6 +352,13 @@ bool TextureExtractor::get3Floats(std::vector<float> & tokens, std::ifstream & f
         return false;
     tokens = splitFloatLine(line);
     if(tokens.size()!=3)
+        return false;
+    return true;
+}
+
+bool TextureExtractor::get2Ints(std::vector<int> & tokens,const std::string & line){
+    tokens = splitIntLine(line);
+    if(tokens.size()!=2)
         return false;
     return true;
 }

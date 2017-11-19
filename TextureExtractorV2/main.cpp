@@ -12,106 +12,83 @@
 #include "TextureExtractor.hpp"
 #include "Utils.h"
 #include <numeric>
-
+#include "Arguments.h"
 
 bool prepareMesh(Mesh & mesh,const std::string & objFilePath);
 
-bool prepareViews( TextureExtractor & extractor, const std::string & cameraInfoPath, const std::string &  cameraListFilePath);
+bool prepareViews( TextureExtractor & extractor);
 
 bool performViewSelection(TextureExtractor & extractor);
 
 bool calculateDataCosts(TextureExtractor & extractor);
 
-bool generateTexture(const std::string & newTexturePath, TextureExtractor & extractor, int width, int height);
+bool generateTexture(TextureExtractor & extractor);
 
 void _renderViewsWithTexture(TextureExtractor & extractor);
 
-bool justRender = true;
+bool justRender = false;
+
+bool calcDataCostsAndGetLebeling(TextureExtractor & extractor);
+
+bool loadLabelsFromFile(TextureExtractor & extractor);
+
 
 int main(int argc, const char * argv[]) {
     
     TextureExtractor extractor;
     Timer mainTimer;
     mainTimer.start();
-    
-//    std::string objFilePath = "./resources/pig/pig_3_blender.obj";
-//    std::string cameraListFilePath = "resources/pig/list.txt";
-//    std::string cameraInfoPath = "resources/pig/bundle.rd.out";
-//    std::string newTexturePath = "resources/pig/derived/texture.ppm";
-//    std::string photoFolderPath = "resources/pig";
-    
-    std::string objFilePath = "resources/slany/slany_blender_0.obj";
-    std::string cameraListFilePath = "resources/slany/list2.txt";
-    std::string cameraInfoPath = "resources/slany/bundle.rd.out";
-    std::string newTexturePath = "resources/slany/derived/texture2.ppm";
-    std::string photoFolderPath = "resources/slany";
-    
-    int textureWidth = 4000, textureHeight = 4000;
+    Arguments arguments;
+    extractor.setArguments(arguments);
 
 
     Mesh mesh;
-    bool meshIsOk = prepareMesh(mesh, objFilePath);
+    bool meshIsOk = prepareMesh(mesh, arguments.objFilePath);
     if( !meshIsOk ){
         printBold(mainTimer.stopGetResults("\nExited with error"));
         return -1;
     }
     
-    extractor.setPhotoFolderPath(photoFolderPath);
     extractor.setMesh( mesh );
     bool viewsOK;
-    viewsOK = prepareViews( extractor, cameraInfoPath, cameraListFilePath );
+    viewsOK = prepareViews( extractor);
     if( !viewsOK ){
         printBold(mainTimer.stopGetResults("\nExited with error"));
         return -1;
     }
     
-    {
-        //TODO:remove
-        if(justRender){
-            _renderViewsWithTexture(extractor);
-            return 1;
+    if(justRender){
+        _renderViewsWithTexture(extractor);
+        return 1;
+    }
+    
+    
+    if(arguments.getLabelingFromFile){
+        bool lebelingReadingOK;
+        lebelingReadingOK = loadLabelsFromFile(extractor);
+        if( !lebelingReadingOK ){
+            printBold(mainTimer.stopGetResults("\nExited with error"));
+            return -1;
         }
-        {
-            Bitmap bitmap;
-            Bitmap texture("resources/pig/pig_tex.png");
-            
-//            std::vector<uint> photoSet={};
-    //                std::vector<uint> photoSet={1,26,51};
-            std::vector<uint> photoSet(extractor.numberOfViews());
-            //                std::vector<uint> photoSet={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
-            std::iota(photoSet.begin(),photoSet.end(),1);
-            for(int t=0;t<photoSet.size();t++){
-                std::cout<<"\rRasterizing photos %"<<(100*((float)t/photoSet.size()))<<"     "<<std::flush;
-                extractor.renderView(bitmap,texture, photoSet[t]);
-//                bitmap.toPPM("resources/pig/extract/pig_" + std::to_string(photoSet[t]) + ".ppm");
-            }
-            std::cout<<"\rRasterizing photos %100      \n";
+    }else{
+        bool calculationOK;
+        calculationOK = calcDataCostsAndGetLebeling(extractor);
+        if( !calculationOK ){
+            printBold(mainTimer.stopGetResults("\nExited with error"));
+            return -1;
         }
     }
     
-    bool dataCostsOK;
-    dataCostsOK = calculateDataCosts( extractor );
-    if( !dataCostsOK ){
-        printBold(mainTimer.stopGetResults("\nExited with error"));
-        return -1;
-    }
-    
-    
-    bool viewSelectionOK;
-    viewSelectionOK = performViewSelection(extractor);
-    if( !viewSelectionOK ){
-        printBold(mainTimer.stopGetResults("\nExited with error"));
-        return -1;
-    }
+   
     
     bool textureOk;
-    textureOk = generateTexture(newTexturePath, extractor, textureWidth, textureHeight);
+    textureOk = generateTexture(extractor);
     if( !textureOk ){
         printBold(mainTimer.stopGetResults("\nExited with error"));
         return -1;
     }
     
-//    _renderViewsWithTexture(extractor);
+    _renderViewsWithTexture(extractor);
     
     printBold(mainTimer.stopGetResults( "\nTottal run time " ));
 }
@@ -119,7 +96,7 @@ int main(int argc, const char * argv[]) {
 void _renderViewsWithTexture(TextureExtractor & extractor){
     {
         Bitmap bitmap;
-        Bitmap texture("resources/slany/derived/texture2.ppm");
+        Bitmap texture("resources/pig/derived/texture.ppm");
         //        std::vector<uint> photoSet={};
         //        std::vector<uint> photoSet={1,26,51};
 //        std::vector<uint> photoSet(extractor.numberOfViews());
@@ -128,19 +105,46 @@ void _renderViewsWithTexture(TextureExtractor & extractor){
         for(int t=0;t<photoSet.size();t++){
             std::cout<<"\rRasterizing photos %"<<(100*((float)t/photoSet.size()))<<"     "<<std::flush;
             extractor.renderView(bitmap,texture, photoSet[t]);
-            bitmap.toPPM("resources/slany/extract/res2/slany_" + std::to_string(photoSet[t]) + ".ppm");
+            bitmap.toPPM("resources/pig/extract/res/pig_" + std::to_string(photoSet[t]) + ".ppm");
         }
         std::cout<<"\rRasterizing photos %100      \n";
     }
 }
 
 
-bool generateTexture(const std::string & newTexturePath, TextureExtractor & extractor,int width, int height){
+bool calcDataCostsAndGetLebeling(TextureExtractor & extractor){
+    bool dataCostsOK;
+    dataCostsOK = calculateDataCosts( extractor );
+    if( !dataCostsOK )
+        return false;
+
+    bool viewSelectionOK;
+    viewSelectionOK = performViewSelection(extractor);
+    if( !viewSelectionOK )
+        return false;
+    return true;
+}
+
+bool loadLabelsFromFile(TextureExtractor & extractor){
+    Timer timer;
+    timer.start();
+    print("\nGetting labeling from file:\n");
+    bool labelingOk;
+    labelingOk = extractor.readLabelsFromFile();
+    if( !labelingOk ){
+        printBold(timer.stopGetResults( "\tLabeling reading failed.: " ));
+        return false;
+    }
+    print(timer.stopGetResults( "\tLabeling extracted.: " ));
+    return true;
+}
+
+bool generateTexture(TextureExtractor & extractor){
     Timer timer;
     timer.start();
     print("\nPerforming Texture Generation:\n");
     bool textureOk;
-    textureOk = extractor.generateTexture(newTexturePath, width, height);
+    textureOk = extractor.generateTexture();
     if( !textureOk ){
         printBold(timer.stopGetResults( "\tTexture generation failed.: " ));
         return false;
@@ -180,12 +184,12 @@ bool prepareMesh(Mesh & mesh,const std::string & objFilePath){
 }
 
 
-bool prepareViews( TextureExtractor & extractor, const std::string & cameraInfoPath, const std::string &  cameraListFilePath){
+bool prepareViews( TextureExtractor & extractor){
     Timer timer;
     timer.start();
     std::cout <<"\nReading and Preparing Camera Views:\n";
     bool viewsAreOK;
-    viewsAreOK = extractor.prepareViews( cameraInfoPath, cameraListFilePath);
+    viewsAreOK = extractor.prepareViews();
     if( !viewsAreOK ){
         std::cout << timer.stopGetResults( "\tViews inicialization failed.: " );
         return false;

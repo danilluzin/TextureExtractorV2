@@ -228,7 +228,7 @@ void ExtractionWorker::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex max
 
 
 void ExtractionWorker::drawScanLine(TextureEdge left, TextureEdge right, int y, TextureGradient & gradient, uint id){
-    int xMin = (int)ceil(left.currentX);
+    int xMin = (int)floor(left.currentX);
     int xMax = (int)ceil(right.currentX);
     float xPrestep = xMin - left.currentX;
     float xDist = right.currentX - left.currentX;

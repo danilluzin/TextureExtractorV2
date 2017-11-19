@@ -17,7 +17,7 @@
 #include "View.hpp"
 #include "Transformation.hpp"
 #include "Display.hpp"
-
+#include "Arguments.h"
 
 
 class TextureExtractor {
@@ -25,16 +25,16 @@ class TextureExtractor {
     Bitmap texture;
     
     Mesh mesh;
-    
-    std::string photoFolderPath;
-    
+        
     std::map<uint,View> views;
+
+    Arguments arguments;
 
 public:
 
     ~TextureExtractor();
     
-    bool prepareViews(const std::string & cameraInfoPath, const std::string &  cameraListFilePath);
+    bool prepareViews();
     
     bool calculateDataCosts();
     
@@ -42,11 +42,13 @@ public:
     
     void setMesh (const Mesh & m){mesh = m;}
     
-    void setPhotoFolderPath(const std::string &photoFolderPath){this->photoFolderPath = photoFolderPath;}
-    
-    bool generateTexture(const std::string & newTexturePath, int width, int height);
+    bool generateTexture();
     
     uint numberOfViews(){return (uint)views.size();}
+    
+    void setArguments(const Arguments & arguments){this->arguments = arguments;}
+ 
+    bool readLabelsFromFile();
     
     //DEBUG
     
@@ -66,14 +68,23 @@ private:
     
     uint addView(const View & view);
     
-    bool extractPhotoList(std::vector<std::string> & photoPaths,const std::string & cameraListFilePath);
+    bool isValidViewId(int id);
     
-    bool extractCameraInfoCreateViews(const std::vector<std::string> &photoPaths,const std::string & cameraInfoPath);
+    bool isValidFaceId(int id);
+    
+    bool extractPhotoList();
+    
+    bool extractCameraInfoCreateViews();
     
     bool parseCameraInfo(std::ifstream & file,uint readCounter);
     
+    bool parseLabelingLine(const std::string & line);
+    
     bool get3Floats(std::vector<float> & tokens, std::ifstream & file);
     
+    bool get2Ints(std::vector<int> & tokens,const std::string & line);
+    
+    bool writeLabelingToFile();
 };
 
 

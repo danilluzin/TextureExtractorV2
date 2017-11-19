@@ -84,6 +84,16 @@ inline std::vector<float> splitFloatLine(const std::string & line){
     return floatTokens;
 }
 
+inline std::vector<int> splitIntLine(const std::string & line){
+    std::vector<std::string> stringTokens;
+    std::vector<int> intTokens;
+    stringTokens = splitString(line,' ');
+    for(auto s : stringTokens ){
+        intTokens.push_back(parseInt(s));
+    }
+    return intTokens;
+}
+
 
 inline void printMatrix(const glm::mat4 & m){
     for(int y=0;y<4;y++){

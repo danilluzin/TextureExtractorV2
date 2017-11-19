@@ -31,6 +31,9 @@ public:
     Bitmap(const std::string & filename);
     
     glm::vec4 at(int x, int y) const{
+        if(x<0||x>=width||y<0||y>=height){
+            return glm::vec4(0,0,0,1);
+        }
         cv::Vec3b vec = image.at<cv::Vec3b>(y,x);
         return glm::vec4((float)vec[2]/255,(float)vec[1]/255,(float)vec[0]/255,1);
 //        return imageData[y * width + x];

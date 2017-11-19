@@ -113,11 +113,14 @@ Mesh & Mesh::addNormal(Normal normal){
 }
 
 uint Mesh::addTriangle(Triangle triangle){
-    triangle.id = (uint)triangles.size() + 18;
+    triangle.id = (uint)triangles.size() + 1;
     triangles[triangle.id] = triangle;
     return triangle.id;
 }
 
+bool Mesh::isValidFaceId(int id){
+    return (id >= 1) && (id<=triangles.size());
+}
 
 Vertex Vertex::lerp(const Vertex & other, float ammount){
     Vertex res;

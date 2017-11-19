@@ -107,6 +107,8 @@ public:
     std::map<uint,Triangle> triangles;
     
     std::map<uint,std::set<uint>> facesVertexBelongsTo;
+    
+    bool isValidFaceId(int id);
 private:
     
     AdjacencyGraph adjacencyGraph;
