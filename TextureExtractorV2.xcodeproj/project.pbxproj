@@ -78,6 +78,7 @@
 		F48D2E2F1FB22A5F00145D8D /* Display.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Display.hpp; sourceTree = "<group>"; };
 		F49D60D31FB89EEB00D62BBA /* ExtractionWorker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ExtractionWorker.cpp; sourceTree = "<group>"; };
 		F49D60D41FB89EEB00D62BBA /* ExtractionWorker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ExtractionWorker.hpp; sourceTree = "<group>"; };
+		F4CBCC121FC20992008C99F4 /* mapmap */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mapmap; sourceTree = "<group>"; };
 		F4E3B3D11FC03A7700C9BBF2 /* Arguments.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Arguments.h; sourceTree = "<group>"; };
 		F4E3B3D21FC1925500C9BBF2 /* DataCostsExtractor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataCostsExtractor.cpp; sourceTree = "<group>"; };
 		F4E3B3D31FC1925500C9BBF2 /* DataCostsExtractor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DataCostsExtractor.hpp; sourceTree = "<group>"; };
@@ -142,8 +143,8 @@
 				F40DE3D51FAF587D00EC32B4 /* Transformation.cpp */,
 				F40DE3E41FAF588000EC32B4 /* Bitmap.hpp */,
 				F40DE3E51FAF588000EC32B4 /* Bitmap.cpp */,
+				F4CBCC121FC20992008C99F4 /* mapmap */,
 				F40DE3FE1FAF6E0600EC32B4 /* old source code */,
-				F40DE3FC1FAF58D000EC32B4 /* stb */,
 				F40DE3FB1FAF58A100EC32B4 /* resources */,
 			);
 			path = TextureExtractorV2;
@@ -163,6 +164,7 @@
 				F40DE3D81FAF587E00EC32B4 /* TextureEdge.cpp */,
 				F40DE3D71FAF587E00EC32B4 /* TextureGradient.hpp */,
 				F40DE3E01FAF587F00EC32B4 /* TextureGradient.cpp */,
+				F40DE3FC1FAF58D000EC32B4 /* stb */,
 			);
 			name = "old source code";
 			sourceTree = "<group>";
@@ -382,12 +384,16 @@
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = /usr/local/include;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/usr/local/Cellar/tbb/2018_U1/include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glew/2.0.0/lib,
 					/usr/local/Cellar/opencv/3.3.1_1/lib,
 					/usr/local/Cellar/sdl2/2.0.6/lib,
+					/usr/local/Cellar/tbb/2018_U1/lib,
 				);
 				OTHER_LDFLAGS = (
 					"-lopencv_shape",
@@ -406,6 +412,7 @@
 					"-lopencv_imgproc",
 					"-lopencv_flann",
 					"-lopencv_core",
+					"-ltbb",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -416,12 +423,16 @@
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = /usr/local/include;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/usr/local/Cellar/tbb/2018_U1/include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glew/2.0.0/lib,
 					/usr/local/Cellar/opencv/3.3.1_1/lib,
 					/usr/local/Cellar/sdl2/2.0.6/lib,
+					/usr/local/Cellar/tbb/2018_U1/lib,
 				);
 				OTHER_LDFLAGS = (
 					"-lopencv_shape",
@@ -440,6 +451,7 @@
 					"-lopencv_imgproc",
 					"-lopencv_flann",
 					"-lopencv_core",
+					"-ltbb",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

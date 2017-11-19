@@ -15,7 +15,7 @@
 #include "ExtractionWorker.hpp"
 #include "DataCostsExtractor.hpp"
 #include <numeric>
-//#include "mapmap/full.h"
+#include "mapmap/full.h"
 
 void windowRender( Mesh mesh );
 
