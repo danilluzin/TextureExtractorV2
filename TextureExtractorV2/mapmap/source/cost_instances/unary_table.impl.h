@@ -135,6 +135,7 @@ throw()
         return v_init<COSTTYPE, SIMDWIDTH>();
 
     const COSTTYPE * ptr = &m_cost_table[m_offsets[node_id]] + offset;
+        
     return v_load<COSTTYPE, SIMDWIDTH>(ptr);
 }
 

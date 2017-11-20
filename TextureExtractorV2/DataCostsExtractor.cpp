@@ -39,6 +39,9 @@ std::map<uint,float> DataCostsExtractor::calculateCosts(){
         PatchQuality info = i.second;
         if(info.sampleCount != 0){
             maxQuality = std::max(maxQuality,info.quality());
+//            if(i.first == 33449 || isnan(info.quality())){
+//                std::cout<<"Huntin2'\n";
+//            }
             costs[i.first] = info.quality();
             //TODO: possible disadvantage if potentialSample > actualSampleCount
         }

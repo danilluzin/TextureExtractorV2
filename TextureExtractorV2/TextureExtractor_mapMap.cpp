@@ -33,6 +33,10 @@ bool TextureExtractor::mapMapGetLabeling(){
             
             /* Uni directional */
             if (n.first < af) {
+                if (n.first == 0 || af== 0){
+                    std::cout<<"dddd\n";
+                }
+                
                 mgraph.add_edge(n.first - 1, af - 1, 1.0f);
             }
         }
@@ -50,9 +54,15 @@ bool TextureExtractor::mapMapGetLabeling(){
             labels.resize(data_costs_for_node.size());
             uint j = 0;
             for(auto & cost : data_costs_for_node) {
+                if (cost.first == 0){
+                    std::cout<<"dddd\n";
+                }
                 labels[j] = cost.first;
                 j++;
             }
+        }
+        if (dc.first == 0){
+            std::cout<<"dddd\n";
         }
         label_set.set_label_set_for_node(dc.first - 1, labels);
     }
@@ -72,6 +82,9 @@ bool TextureExtractor::mapMapGetLabeling(){
                 costs[j] = cost.second;
                 j++;
             }
+        }
+        if (dc.first == 0){
+            std::cout<<"dddd\n";
         }
         unaries.set_costs_for_node(dc.first - 1, costs);
     }

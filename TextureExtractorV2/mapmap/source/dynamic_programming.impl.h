@@ -625,6 +625,12 @@ top_down_opt(
                     }
                 }
 
+                if(min_label == 2147483647){
+                    std::cout<<"root:"<<root<<"\n";
+                    for(int i =0 ;i < 100000; i++){
+                        std::cout<<my_labels[i]<<"\n";
+                    }
+                }
                 solution[root] = min_label;
 
                 /* add children to queue */
@@ -648,6 +654,23 @@ top_down_opt(
             /* set n's label (index) */
             const _iv_st<COSTTYPE, SIMDWIDTH> * my_labels =
                 m_opt_label_nodes[n];
+
+//            if(my_labels[p_label]==2147483647){
+//            if(true){
+//                uint_t qqq_r_label_set_size = this->m_label_set->
+//                label_set_size(node.node_id);
+//
+//                std::cout<<"p_lable:"<<p_label<<"\n";
+//                std::cout<<"node_id:"<<node.node_id<<"\n";
+//                std::cout<<"size:"<<qqq_r_label_set_size<<"\n";
+//
+//                for(int i =0 ;i < qqq_r_label_set_size; i++){
+//                    std::cout<<my_labels[i]<<"\n";
+//                }
+//                if(qqq_r_label_set_size<4){
+//                    std::cout<<"smal\n";
+//                }
+//            }
             solution[n] = my_labels[p_label];
 
             /* add children to queue */

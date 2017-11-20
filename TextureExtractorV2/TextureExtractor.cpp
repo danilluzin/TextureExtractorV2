@@ -66,6 +66,9 @@ bool TextureExtractor::calculateDataCosts(){
         DataCostsExtractor extractor(mesh,view);
         std::map<uint,float> costs = extractor.calculateCosts();
         for(auto entry : costs){
+//            if(entry.first == 33449 || isnan(entry.second)){
+//                std::cout<<"Huntin'\n";
+//            }
             dataCosts[entry.first][view.id] = entry.second;
         }
         t++;
@@ -77,8 +80,15 @@ bool TextureExtractor::calculateDataCosts(){
         for(auto & v : f.second){
             faceMax = std::max(faceMax,v.second);
         }
+//        if(f.first == 33449){
+//            std::cout<<"Huntin3'\n";
+//        }
         for(auto & v : f.second){
-            v.second = 1 - (v.second/faceMax);
+            if(faceMax > 0){
+                v.second = 1 - (v.second/faceMax);
+            }else{
+                 v.second = 1 - v.second;
+            }
         }
         
     }
@@ -297,7 +307,14 @@ bool TextureExtractor::writeDataCostsToFile(){
     file<<mesh.triangles.size()<<" "<<dataCosts.size()<<"\n";
     for(const auto & f : dataCosts){
         file<<f.first<<" "<<f.second.size()<<"\n";
+        if(f.first == 58988){
+            std::cout << "FIRE!!!!!\n";
+        }
         for(const auto & v:f.second){
+            if(isnan(v.second)){
+                
+                std::cout << "FIRE2!!!!!\n";
+            }
             file<<v.first<<" "<<v.second<<"\n";
         }
         file<<"\n";
@@ -651,7 +668,7 @@ bool TextureExtractor::_old_test_render(){
     Bitmap * bitmap = new Bitmap(4032,3024);
     bitmap->clear(glm::vec4(0.4,0.4,0.4,1));
     View v;
-    v.camera = Camera(true);
+    v.camera = Camera();
     v.camera.fov = 0.88922719077834;
     v.camera.rotationMatrix[0][0] =  -0.272774424923  ;
     v.camera.rotationMatrix[1][0] =  -0.33027662254  ;

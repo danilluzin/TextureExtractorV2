@@ -10,17 +10,6 @@
 #include "Utils.h"
 
 
-Camera::Camera(bool eh, const glm::vec3 pos, float fov, float aspect,
-               glm::vec3 forward, glm::vec3 up, float zNear, float zFar){
-    perspective = glm::perspective(fov,aspect,zNear,zFar);
-    position = pos;
-    this->forward = forward;
-    this->up = up;
-    this->fov = fov ;
-    this->zNear = zNear;
-    this->zFar = zFar;
-}
-
 glm::mat4 Camera::getViewProjection() const {
 //    //    std::cout<<"Perspective\n";
 //    //    printMatrix(perspective);
