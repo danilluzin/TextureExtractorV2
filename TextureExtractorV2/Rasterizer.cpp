@@ -131,6 +131,8 @@ void Rasterizer::rasterizeTriangle(Vertex minYVert, Vertex midYVert, Vertex maxY
     midYVert = transformation.doPerspectiveDevide(screenSpaceTransform * midYVert);
     maxYVert = transformation.doPerspectiveDevide(screenSpaceTransform * maxYVert);
     
+    uint id = triangle.id;
+    
     if (triangleArea(minYVert, maxYVert, midYVert) <= 0){
         return; //BackFace culling
     }
@@ -153,11 +155,11 @@ void Rasterizer::rasterizeTriangle(Vertex minYVert, Vertex midYVert, Vertex maxY
     
     bool handedness = (area >= 0);
     
-    fillTriangle(minYVert, midYVert, maxYVert, handedness, triangle);
+    fillTriangle(minYVert, midYVert, maxYVert, handedness, id);
 }
 
 
-void Rasterizer::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex maxYVert ,bool handedness,const Triangle & triangle){
+void Rasterizer::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex maxYVert ,bool handedness,uint id){
     
     Gradient gradient(minYVert,midYVert,maxYVert);
     
@@ -176,7 +178,7 @@ void Rasterizer::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex maxYVert 
     int yEnd   = topToMiddle.yEnd;
     
     for(int j = yStart; j< yEnd; j++){
-        drawScanLine(*left,*right,j,gradient,triangle.id);
+        drawScanLine(*left,*right,j,gradient,id);
         left->Step();
         right->Step();
     }
@@ -191,7 +193,7 @@ void Rasterizer::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex maxYVert 
     yEnd   =  middleToBottom.yEnd;
     
     for(int j = yStart; j<yEnd; j++){
-        drawScanLine(*left,*right,j,gradient,triangle.id);
+        drawScanLine(*left,*right,j,gradient,id);
         left->Step();
         right->Step();
     }

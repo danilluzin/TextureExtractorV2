@@ -39,11 +39,7 @@ std::map<uint,float> DataCostsExtractor::calculateCosts(){
         PatchQuality info = i.second;
         if(info.sampleCount != 0){
             maxQuality = std::max(maxQuality,info.quality());
-//            if(i.first == 33449 || isnan(info.quality())){
-//                std::cout<<"Huntin2'\n";
-//            }
             costs[i.first] = info.quality();
-            //TODO: possible disadvantage if potentialSample > actualSampleCount
         }
     }
     return costs;
@@ -80,8 +76,11 @@ void DataCostsExtractor::rasterizeTriangle(Vertex minYVert, Vertex midYVert, Ver
     midYVert = transformation.doPerspectiveDevide(screenSpaceTransform * midYVert);
     maxYVert = transformation.doPerspectiveDevide(screenSpaceTransform * maxYVert);
     
+    uint id = triangle.id;
+    
     if (triangleArea(minYVert, maxYVert, midYVert) <= 0){
-        return; //BackFace culling
+        id = 0;
+//        return; //BackFace culling
     }
     
     if( (minYVert.z()<-minYVert.w() || minYVert.z()>minYVert.w()) &&
@@ -101,11 +100,11 @@ void DataCostsExtractor::rasterizeTriangle(Vertex minYVert, Vertex midYVert, Ver
     
     bool handedness = (area >= 0);
     
-    fillTriangle(minYVert, midYVert, maxYVert, handedness, triangle);
+    fillTriangle(minYVert, midYVert, maxYVert, handedness, id);
 }
 
 
-void DataCostsExtractor::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex maxYVert ,bool handedness,const Triangle & triangle){
+void DataCostsExtractor::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex maxYVert ,bool handedness, uint id){
     
     Gradient gradient(minYVert,midYVert,maxYVert);
     
@@ -124,7 +123,7 @@ void DataCostsExtractor::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex m
     int yEnd   = topToMiddle.yEnd;
     
     for(int j = yStart; j<yEnd; j++){
-        drawScanLine(*left,*right,j,gradient,triangle.id);
+        drawScanLine(*left,*right,j,gradient,id);
         left->Step();
         right->Step();
     }
@@ -139,7 +138,7 @@ void DataCostsExtractor::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex m
     yEnd   =  middleToBottom.yEnd;
     
     for(int j = yStart; j<yEnd; j++){
-        drawScanLine(*left,*right,j,gradient,triangle.id);
+        drawScanLine(*left,*right,j,gradient,id);
         left->Step();
         right->Step();
     }
@@ -159,7 +158,8 @@ void DataCostsExtractor::drawScanLine(Edge left, Edge right, int y, Gradient & g
     
     for(int x = xMin; x<xMax ; x++){
         int index = x + y*width;
-        patchInfos[id].potentialCount++;
+        if(id != 0)
+            patchInfos[id].potentialCount++;
         if(depth < depthBuffer[index]){
             glm::vec4 color = sobelImage.at(x, y);
             if(idBuffer[index]!=0){
@@ -167,8 +167,10 @@ void DataCostsExtractor::drawScanLine(Edge left, Edge right, int y, Gradient & g
                 patchInfos[previousID].gradientMagnitudeSum -= color[0];
                 patchInfos[previousID].sampleCount--;
             }
-            patchInfos[id].sampleCount++;
-            patchInfos[id].gradientMagnitudeSum += color[0];
+            if(id != 0){
+                patchInfos[id].sampleCount++;
+                patchInfos[id].gradientMagnitudeSum += color[0];
+            }
             idBuffer[index] = id;
             depthBuffer[index] = depth;
         }

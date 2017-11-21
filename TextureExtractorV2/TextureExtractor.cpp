@@ -307,14 +307,7 @@ bool TextureExtractor::writeDataCostsToFile(){
     file<<mesh.triangles.size()<<" "<<dataCosts.size()<<"\n";
     for(const auto & f : dataCosts){
         file<<f.first<<" "<<f.second.size()<<"\n";
-        if(f.first == 58988){
-            std::cout << "FIRE!!!!!\n";
-        }
         for(const auto & v:f.second){
-            if(isnan(v.second)){
-                
-                std::cout << "FIRE2!!!!!\n";
-            }
             file<<v.first<<" "<<v.second<<"\n";
         }
         file<<"\n";

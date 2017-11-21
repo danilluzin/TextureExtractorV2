@@ -52,7 +52,7 @@ private:
     
     void processTriangle(const Triangle & triangle);
     
-    void fillTriangle(Vertex  minYVert, Vertex midYVert, Vertex maxYVert ,bool handedness, const Triangle & triangle);
+    void fillTriangle(Vertex  minYVert, Vertex midYVert, Vertex maxYVert ,bool handedness, uint id);
     
     void setTransformation(Transformation transformation){
         this->transformation = transformation;
