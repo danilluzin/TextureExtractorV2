@@ -12,6 +12,9 @@
 struct PatchQuality {
     uint sampleCount = 0;
     uint potentialCount = 0;
+    double colorR = 0;
+    double colorG = 0;
+    double colorB = 0;
     float gradientMagnitudeSum=0;
     float quality(){
         if(sampleCount>0)

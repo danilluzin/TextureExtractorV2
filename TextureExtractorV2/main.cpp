@@ -96,7 +96,7 @@ int main(int argc, const char * argv[]) {
 void _renderViewsWithTexture(TextureExtractor & extractor){
     {
         Bitmap bitmap;
-        Bitmap texture("resources/slany/derived/texture4.ppm");
+        Bitmap texture("resources/pig/derived/texture3.ppm");
 //                std::vector<uint> photoSet={};
 //            std::vector<uint> photoSet={28,27,26};
         std::vector<uint> photoSet(extractor.numberOfViews());
@@ -105,7 +105,7 @@ void _renderViewsWithTexture(TextureExtractor & extractor){
         for(int t=0;t<photoSet.size();t++){
             std::cout<<"\rRasterizing photos %"<<(100*((float)t/photoSet.size()))<<"     "<<std::flush;
             extractor.renderView(bitmap,texture, photoSet[t]);
-            bitmap.toPPM("resources/slany/extract/res5/slany_" + std::to_string(photoSet[t]) + ".ppm");
+            bitmap.toPPM("resources/pig/extract/res/pig_" + std::to_string(photoSet[t]) + ".ppm");
         }
         std::cout<<"\rRasterizing photos %100      \n";
     }

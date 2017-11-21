@@ -20,6 +20,7 @@
 		F40DE4021FAF70CB00EC32B4 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE4001FAF70CB00EC32B4 /* Timer.cpp */; };
 		F40DE4061FB0D98400EC32B4 /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE4041FB0D98400EC32B4 /* View.cpp */; };
 		F40DE4091FB0DB6000EC32B4 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40DE4071FB0DB6000EC32B4 /* Camera.cpp */; };
+		F45B26CC1FC471A1007E9874 /* DataCostExtractionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F45B26CA1FC471A1007E9874 /* DataCostExtractionManager.cpp */; };
 		F48D2E291FB229E200145D8D /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48D2E281FB229E200145D8D /* OpenGL.framework */; };
 		F48D2E2B1FB22A2600145D8D /* libGLEW.2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F48D2E2A1FB22A2600145D8D /* libGLEW.2.0.0.dylib */; };
 		F48D2E2D1FB22A3800145D8D /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F48D2E2C1FB22A3700145D8D /* libSDL2-2.0.0.dylib */; };
@@ -72,6 +73,8 @@
 		F40DE4051FB0D98400EC32B4 /* View.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = View.hpp; sourceTree = "<group>"; };
 		F40DE4071FB0DB6000EC32B4 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		F40DE4081FB0DB6000EC32B4 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
+		F45B26CA1FC471A1007E9874 /* DataCostExtractionManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataCostExtractionManager.cpp; sourceTree = "<group>"; };
+		F45B26CB1FC471A1007E9874 /* DataCostExtractionManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DataCostExtractionManager.hpp; sourceTree = "<group>"; };
 		F48D2E281FB229E200145D8D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		F48D2E2A1FB22A2600145D8D /* libGLEW.2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.0.0.dylib; path = ../../../../../../usr/local/Cellar/glew/2.0.0/lib/libGLEW.2.0.0.dylib; sourceTree = "<group>"; };
 		F48D2E2C1FB22A3700145D8D /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../../usr/local/Cellar/sdl2/2.0.6/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
@@ -134,6 +137,8 @@
 				F40DE3DB1FAF587E00EC32B4 /* Mesh.hpp */,
 				F40DE3DD1FAF587E00EC32B4 /* Mesh.cpp */,
 				F4E3B3D51FC1967900C9BBF2 /* PatchQuality.h */,
+				F45B26CA1FC471A1007E9874 /* DataCostExtractionManager.cpp */,
+				F45B26CB1FC471A1007E9874 /* DataCostExtractionManager.hpp */,
 				F4E3B3D31FC1925500C9BBF2 /* DataCostsExtractor.hpp */,
 				F4E3B3D21FC1925500C9BBF2 /* DataCostsExtractor.cpp */,
 				F40DE4051FB0D98400EC32B4 /* View.hpp */,
@@ -268,6 +273,7 @@
 				F40DE4021FAF70CB00EC32B4 /* Timer.cpp in Sources */,
 				F4E3B3D41FC1925500C9BBF2 /* DataCostsExtractor.cpp in Sources */,
 				F4CBCC141FC226AA008C99F4 /* TextureExtractor_mapMap.cpp in Sources */,
+				F45B26CC1FC471A1007E9874 /* DataCostExtractionManager.cpp in Sources */,
 				F48D2E301FB22A5F00145D8D /* Display.cpp in Sources */,
 				F40DE3EA1FAF588000EC32B4 /* TextureEdge.cpp in Sources */,
 				F40DE3EF1FAF588000EC32B4 /* Bitmap.cpp in Sources */,

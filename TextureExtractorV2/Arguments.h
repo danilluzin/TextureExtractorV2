@@ -15,25 +15,25 @@ struct Arguments{
     Arguments(){
         //TODO: proper arg getting
 //        
-//        objFilePath = "./resources/pig/pig_2_blender.obj";
-//        cameraListFilePath = "resources/pig/list.txt";
-//        cameraInfoPath = "resources/pig/bundle.rd.out";
-//        newTexturePath = "resources/pig/derived/texture3.ppm";
-//        photoFolderPath = "resources/pig";
-//        newLabelingFilePath = "resources/pig/derived/new_labeling.txt";
-//        labelingFilePath = "resources/pig/derived/labeling.txt";
-//        dataCostsFilePath = "resources/pig/derived/dataCosts.txt";
-//        newDataCostsFilePath = "resources/pig/derived/new_dataCosts.txt";
+        objFilePath = "./resources/pig/pig_3_blender.obj";
+        cameraListFilePath = "resources/pig/list.txt";
+        cameraInfoPath = "resources/pig/bundle.rd.out";
+        newTexturePath = "resources/pig/derived/texture3.ppm";
+        photoFolderPath = "resources/pig";
+        newLabelingFilePath = "resources/pig/derived/new_labeling.txt";
+        labelingFilePath = "resources/pig/derived/labeling.txt";
+        dataCostsFilePath = "resources/pig/derived/dataCosts_small.txt";
+        newDataCostsFilePath = "resources/pig/derived/new_dataCosts.txt";
 //
-        objFilePath = "resources/slany/slany_pieremoved.obj";
-        cameraListFilePath = "resources/slany/list3.txt";
-        cameraInfoPath = "resources/slany/bundle.rd.out";
-        newTexturePath = "resources/slany/derived/texture4.ppm";
-        photoFolderPath = "resources/slany";
-        newLabelingFilePath = "resources/slany/derived/new_labeling.txt";
-        labelingFilePath = "resources/slany/derived/labeling.txt";
-        dataCostsFilePath = "resources/slany/derived/dataCosts.txt";
-        newDataCostsFilePath = "resources/slany/derived/new_dataCosts.txt";
+//        objFilePath = "resources/slany/slany_pieremoved.obj";
+//        cameraListFilePath = "resources/slany/list3.txt";
+//        cameraInfoPath = "resources/slany/bundle.rd.out";
+//        newTexturePath = "resources/slany/derived/texture4.ppm";
+//        photoFolderPath = "resources/slany";
+//        newLabelingFilePath = "resources/slany/derived/new_labeling.txt";
+//        labelingFilePath = "resources/slany/derived/labeling.txt";
+//        dataCostsFilePath = "resources/slany/derived/dataCosts.txt";
+//        newDataCostsFilePath = "resources/slany/derived/new_dataCosts.txt";
 
 //        objFilePath = "resources/slany2/slany_pieremoved.obj";
 //        cameraListFilePath = "resources/slany2/list3.txt";
@@ -50,8 +50,8 @@ struct Arguments{
         getLabelingFromFile = false;
         writeLabelingToFile = true;
         
-        getDataCostsFromFile = false;
-        writeDataCostsToFile = true;
+        getDataCostsFromFile = true;
+        writeDataCostsToFile = false;
     }
     
     int textureWidth;

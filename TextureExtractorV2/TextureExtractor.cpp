@@ -13,9 +13,10 @@
 #include <fstream>
 #include "stb/stb_image.h"
 #include "ExtractionWorker.hpp"
-#include "DataCostsExtractor.hpp"
+#include "DataCostExtractionManager.hpp"
 #include <numeric>
-
+#include <thread>
+#include <mutex>
 
 void windowRender( Mesh mesh );
 
@@ -60,18 +61,51 @@ bool TextureExtractor::prepareViews(){
 
 bool TextureExtractor::calculateDataCosts(){
     int t = 0;
+    uint progressCounter=0;
+    int threadCount = 4;
+    std::mutex printMtx;
+    uint viewsPerOneManager = (uint)views.size()/threadCount;
+    
+    std::vector<DataCostExtractionManager> managers(threadCount, mesh);
+    std::vector<std::map<uint,std::map<uint,float>>> managerDataSets(threadCount);
+    
+    for(int m = 0; m < managers.size(); m++){
+        managers[m].dataCosts = &managerDataSets[m];
+        managers[m].mtx = &printMtx;
+        managers[m].totalViewCount = views.size();
+        managers[m].progressCounter = &progressCounter;
+    }
+    
+    int currentManager = 0;
+    int currentManagerWorkLoad = 0;
     for(auto & v : views){
-        std::cout<<"\rGetting Data Costs %"<<(100*((float)t/views.size()))<<"     "<<std::flush;
-        View & view = v.second;
-        DataCostsExtractor extractor(mesh,view);
-        std::map<uint,float> costs = extractor.calculateCosts();
-        for(auto entry : costs){
-//            if(entry.first == 33449 || isnan(entry.second)){
-//                std::cout<<"Huntin'\n";
-//            }
-            dataCosts[entry.first][view.id] = entry.second;
+        managers[currentManager].viewsToDo.push_back(&v.second);
+        currentManagerWorkLoad++;
+        if((currentManagerWorkLoad==viewsPerOneManager) && (currentManager!=(threadCount-1))){
+            currentManager++;
+            currentManagerWorkLoad = 0;
         }
-        t++;
+    }
+    
+    std::cout<<"\rProgress %0";
+    std::vector<std::thread> threads;
+    for(int t = 0 ;t< threadCount; t++){
+        threads.push_back( std::thread(&DataCostExtractionManager::doWork, &managers[t]));
+    }
+    
+    for(int t = 0 ;t< threadCount; t++){
+        threads[t].join();
+    }
+    
+    std::cout<<"Merging datasets\n";
+    //Merging manager datasets
+    for(auto & ds : managerDataSets){
+        for(auto & v : ds){
+            uint viewId = v.first;
+            for(auto entry : v.second){
+                dataCosts[entry.first][viewId] = entry.second;
+            }
+        }
     }
     
     //normalisation;
@@ -80,9 +114,6 @@ bool TextureExtractor::calculateDataCosts(){
         for(auto & v : f.second){
             faceMax = std::max(faceMax,v.second);
         }
-//        if(f.first == 33449){
-//            std::cout<<"Huntin3'\n";
-//        }
         for(auto & v : f.second){
             if(faceMax > 0){
                 v.second = 1 - (v.second/faceMax);
@@ -90,7 +121,6 @@ bool TextureExtractor::calculateDataCosts(){
                  v.second = 1 - v.second;
             }
         }
-        
     }
     
     std::cout<<"\r\rGetting Data Costs %100      \n";
