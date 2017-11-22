@@ -28,6 +28,119 @@ void ExtractionWorker::extract(Triangle face,Bitmap & tex, View & view){
     
 }
 
+void ExtractionWorker::extend(Triangle face,Bitmap & tex, View & view){
+    this->texture = &tex;
+    this->view = &view;
+    transformation.setCamera(view.camera);
+    transformation.setAspectRatio(view.photoWidth, view.photoHeight);
+    extendTriangle(face);
+    this->texture = nullptr;
+    this->view = nullptr;
+}
+
+
+float getScale(glm::vec2 centroid, glm::vec2 texCoord, int goal,int textureWidth){
+    float dist = glm::distance(centroid, texCoord);
+    
+    float scale;
+    float pixels = dist * textureWidth;
+    
+    float distToPix = 1.0f/textureWidth;
+    float goalDist = ((float)(goal+pixels))*distToPix;
+    scale = goalDist/dist;
+    return scale;
+}
+
+
+void ExtractionWorker::extendTriangle(Triangle triangle){
+    Vertex minYVert = mesh.verticies.at(triangle.verticies[0]);
+    Vertex midYVert = mesh.verticies.at(triangle.verticies[1]);
+    Vertex maxYVert = mesh.verticies.at(triangle.verticies[2]);
+    
+    minYVert.texCoord = mesh.texCoords.at(triangle.texCoords.at(minYVert.id)).coord;
+    midYVert.texCoord = mesh.texCoords.at(triangle.texCoords.at(midYVert.id)).coord;
+    maxYVert.texCoord = mesh.texCoords.at(triangle.texCoords.at(maxYVert.id)).coord;
+
+    if(minYVert.texCoord.y>midYVert.texCoord.y)
+        std::swap(minYVert, midYVert);
+    if(midYVert.texCoord.y > maxYVert.texCoord.y)
+        std::swap(maxYVert, midYVert);
+    if(minYVert.texCoord.y>midYVert.texCoord.y)
+        std::swap(minYVert, midYVert);
+    
+    minYVert.texCoord.x = minYVert.texCoord.x*(texture->width - 1);
+    minYVert.texCoord.y = minYVert.texCoord.y*(texture->height - 1);
+    
+    midYVert.texCoord.x = midYVert.texCoord.x*(texture->width - 1);
+    midYVert.texCoord.y = midYVert.texCoord.y*(texture->height - 1);
+    
+    maxYVert.texCoord.x = maxYVert.texCoord.x*(texture->width - 1);
+    maxYVert.texCoord.y = maxYVert.texCoord.y*(texture->height - 1);
+    
+    float area = triangleAreaTexture(minYVert, maxYVert, midYVert);
+    bool handedness = (area >= 0);
+    
+    
+    int dist = 4;
+    Vertex minYVert2;
+    Vertex maxYVert2;
+    Vertex midYVert2;
+//    //// 1
+    TextureEdge topToBottom(minYVert, maxYVert);
+    minYVert2 = minYVert;
+    maxYVert2 = maxYVert;
+    if(handedness){
+        //ttb is right;
+        minYVert2.texCoord.x += dist;
+        maxYVert2.texCoord.x += dist;
+    }else{
+        minYVert2.texCoord.x -= dist;
+        maxYVert2.texCoord.x -= dist;
+    }
+    TextureEdge topToBottom2(minYVert2, maxYVert2);
+    if(handedness){
+        fillBetweenEdges(topToBottom, topToBottom2, true);
+    }else{
+        fillBetweenEdges(topToBottom2, topToBottom, false);
+    }
+    
+    //// 2
+    TextureEdge topToMiddle(minYVert, midYVert);
+    minYVert2 = minYVert;
+    midYVert2 = midYVert;
+    if(handedness){
+        //ttb is right;
+        midYVert2.texCoord.x -= dist;
+        minYVert2.texCoord.x -= dist;
+    }else{
+        midYVert2.texCoord.x += dist;
+        minYVert2.texCoord.x += dist;
+    }
+    TextureEdge topToMiddle2(minYVert2, midYVert2);
+    if(handedness){
+        fillBetweenEdges(topToMiddle2, topToMiddle, false);
+    }else{
+        fillBetweenEdges(topToMiddle, topToMiddle2, true);
+    }
+    ///3
+    TextureEdge middleToBottom(midYVert, maxYVert);
+    maxYVert2 = maxYVert;
+    midYVert2 = midYVert;
+    if(handedness){
+        midYVert2.texCoord.x -= dist;
+        maxYVert2.texCoord.x -= dist;
+    }else{
+        midYVert2.texCoord.x += dist;
+        maxYVert2.texCoord.x += dist;
+    }
+    TextureEdge middleToBottom2(midYVert2, maxYVert2);
+    if(handedness){
+        fillBetweenEdges(middleToBottom2, middleToBottom, false);
+    }else{
+        fillBetweenEdges(middleToBottom, middleToBottom2, true);
+    }
+}
+
 
 void ExtractionWorker::fillTextureTriangle(Triangle face,glm::vec4 color, Bitmap & destination){
     texture = &destination;
@@ -42,7 +155,7 @@ void ExtractionWorker::fillTextureTriangle(Triangle face,glm::vec4 color, Bitmap
     
     if(minYVert.texCoord.y>midYVert.texCoord.y)
         std::swap(minYVert, midYVert);
-    if(midYVert.texCoord.y>maxYVert.texCoord.y)
+    if(midYVert.texCoord.y > maxYVert.texCoord.y)
         std::swap(maxYVert, midYVert);
     if(minYVert.texCoord.y>midYVert.texCoord.y)
         std::swap(minYVert, midYVert);
@@ -107,7 +220,6 @@ void ExtractionWorker::processTriangle(const Triangle & triangle){
     }
 }
 
-
 void ExtractionWorker::extractTriangle(Vertex  minYVert, Vertex midYVert, Vertex maxYVert,const Triangle & triangle){
     glm::mat4 screenSpaceTransform = transformation.getScreenTransform();
 
@@ -143,7 +255,7 @@ void ExtractionWorker::extractTriangle(Vertex  minYVert, Vertex midYVert, Vertex
     fillTriangle(minYVert, midYVert, maxYVert, handedness, triangle);
 }
 
-
+//func pointer
 void ExtractionWorker::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex maxYVert ,bool handedness,const Triangle & triangle){
 
     TextureGradient gradient(minYVert,midYVert,maxYVert);
@@ -185,6 +297,25 @@ void ExtractionWorker::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex max
 
 }
 
+
+void ExtractionWorker::fillBetweenEdges(TextureEdge left, TextureEdge right, bool leftIsSample){
+    int yStart = left.yStart;
+    int yEnd   = left.yEnd;
+    for(int j = yStart; j< yEnd; j++){
+        glm::vec4 color;
+        if(leftIsSample){
+            color= texture->at((int)floor(left.currentX),j);
+        }else{
+            color= texture->at((int)floor(right.currentX),j);
+        }
+//        color = glm::vec4(0,1,0.2,1);
+        drawScanLineColorNoMask(left,right,j,color);
+        left.Step();
+        right.Step();
+    }
+}
+
+
 void ExtractionWorker::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex maxYVert ,bool handedness,glm::vec4 color){
     
     TextureGradient gradient(minYVert,midYVert,maxYVert);
@@ -204,7 +335,7 @@ void ExtractionWorker::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex max
     int yEnd   = topToMiddle.yEnd;
     
     for(int j = yStart; j< yEnd; j++){
-        drawScanLineColor(*left,*right,j,gradient,color);
+        drawScanLineColor(*left,*right,j,color);
         left->Step();
         right->Step();
     }
@@ -219,7 +350,7 @@ void ExtractionWorker::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex max
     yEnd   =  middleToBottom.yEnd;
     
     for(int j = yStart; j<yEnd; j++){
-        drawScanLineColor(*left,*right,j,gradient,color);
+        drawScanLineColor(*left,*right,j,color);
         left->Step();
         right->Step();
     }
@@ -245,17 +376,12 @@ void ExtractionWorker::drawScanLine(TextureEdge left, TextureEdge right, int y, 
     float oneOverZ = left.oneOverZ + oneOverZXStep*xPrestep;
 
     for(int x = xMin; x<xMax ; x++){
-
         float z = 1/oneOverZ;
         int photoX = (int)((photoCoord.x * z) + 0.5f);
         int photoY = (int)((photoCoord.y * z) + 0.5f);
-        //
-        //        int photoX = (int)((photoCoord.x) + 0.5f);
-        //        int photoY = (int)((photoCoord.y) + 0.5f);
-    
-
         texture->putPixel(x, y, source->at(photoX, photoY));
-        
+        if(mask)
+            mask->putPixel(x,y,glm::vec4(1,1,1,1));
         photoCoord.x += photoCoordXXStep;
         photoCoord.y += photoCoordYXStep;
         oneOverZ   += oneOverZXStep;
@@ -263,11 +389,20 @@ void ExtractionWorker::drawScanLine(TextureEdge left, TextureEdge right, int y, 
 }
 
 
-void ExtractionWorker::drawScanLineColor(TextureEdge left, TextureEdge right, int y, TextureGradient & gradient, glm::vec4 color){
+void ExtractionWorker::drawScanLineColor(TextureEdge left, TextureEdge right, int y, glm::vec4 color){
     int xMin = (int)ceil(left.currentX);
     int xMax = (int)ceil(right.currentX);
     for(int x = xMin; x<xMax ; x++){
         texture->putPixel(x, y, color);
+    }
+}
+
+void ExtractionWorker::drawScanLineColorNoMask(TextureEdge left, TextureEdge right, int y, glm::vec4 color){
+    int xMin = (int)ceil(left.currentX);
+    int xMax = (int)ceil(right.currentX);
+    for(int x = xMin; x<xMax ; x++){
+        if(mask->at(x,y)!=glm::vec4(1,1,1,1))
+            texture->putPixel(x, y, color);
     }
 }
 

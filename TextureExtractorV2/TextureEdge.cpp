@@ -39,6 +39,18 @@ TextureEdge::TextureEdge(Vertex start, Vertex end, TextureGradient gradient,int 
 
 }
 
+TextureEdge::TextureEdge(Vertex start, Vertex end){
+    yStart = (int)ceil(start.texCoord.y);
+    yEnd   = (int)ceil(end.texCoord.y); //0-1 wrong
+    float yDistance = end.texCoord.y - start.texCoord.y;
+    float xDistance =  end.texCoord.x - start.texCoord.x;
+    
+    float yPrestep = yStart - start.texCoord.y;
+    xStep = (float)xDistance/(float)yDistance;
+    currentX = start.texCoord.x + yPrestep*xStep ;
+    float xPrestep = currentX - start.texCoord.x;
+}
+
 
 void TextureEdge::Step(){
     currentX += xStep;

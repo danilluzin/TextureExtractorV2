@@ -316,14 +316,17 @@ bool TextureExtractor::selectViews(){
 
 bool TextureExtractor::generateTexture(){
     texture = Bitmap(arguments.textureWidth, arguments.textureHeight);
+    Bitmap mask(arguments.textureWidth, arguments.textureHeight);
+    mask.clear(glm::vec4(0,0,0,1));
     
     texture.clear(glm::vec4(0.8, 0.8, 0.8, 1));
     glm::vec4 defaultColor (0.37, 0.61, 0.62, 1);
     
     ExtractionWorker worker(mesh);
+    worker.setMask(&mask);
     uint t = 0;
+    
     for(auto & f : mesh.triangles){
-        
         std::cout<<"\rGeting texture for faces %"<<(100*((float)t/mesh.triangles.size()))<<"     "<<std::flush;
         Triangle & face = f.second;
         if(face.viewId != 0){
@@ -334,6 +337,20 @@ bool TextureExtractor::generateTexture(){
         t++;
     }
     std::cout<<"\rGeting texture for faces %100      \n";
+    
+    std::cout<<"PostProcessing:\n";
+    t=0;
+    Bitmap ext (texture.width , texture.height);
+    for(auto & f : mesh.triangles){
+        std::cout<<"\rPostProcessing faces %"<<(100*((float)t/mesh.triangles.size()))<<"     "<<std::flush;
+        Triangle & face = f.second;
+        if(face.viewId != 0){
+            worker.extend(face, texture, views[face.viewId]);
+        }
+        t++;
+    }
+    ext.toPPM("resources/slany/derived/ext_texture.ppm");
+    mask.toPPM("resources/slany/derived/msk_texture.ppm");
     std::cout<<"Writing texture to file\n";
     texture.toPPM(arguments.newTexturePath);
     
@@ -655,6 +672,11 @@ void TextureExtractor::renderViewAndDepth(Bitmap & bitmap,Bitmap & bitmapDepth,c
     Transformation transform;
     transform.setCamera(v.camera);
     transform.setAspectRatio(bitmap.width, bitmap.height);
+    
+    glm::mat4 cameraModelTransform = transform.getViewProjection()*
+    transform.getModelMatrix();
+    
+    printMatrix(cameraModelTransform);
     
     rasterizer.setTransformation(transform);
     rasterizer.clearBuffer();

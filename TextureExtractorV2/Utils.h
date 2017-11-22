@@ -14,6 +14,22 @@
 #include <vector>
 
 
+class Coord{
+public:
+    int x;
+    int y;
+    Coord(int x,int y):x(x),y(y){}
+    bool operator < (const Coord & other) const{
+       return x<other.x?true:y<other.y;
+    }
+    Coord operator + (const Coord & other) const{
+        return Coord(x+other.x, y+other.y);
+    }
+    
+};
+
+static const Coord dir[8] = {{0,-1},{1,-1},{1,0},{1,1},{0,1},{-1,1},{-1,0},{-1,-1}};
+
 inline std::ostream& bold_on(std::ostream& os)
 {
     return os << "\e[1m";

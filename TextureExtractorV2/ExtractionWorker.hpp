@@ -17,6 +17,7 @@
 
 class ExtractionWorker{
 private:
+    Bitmap * mask;
     
     Bitmap * texture = nullptr;
     
@@ -34,6 +35,12 @@ public:
     
     void extract(Triangle face,Bitmap & tex, View & view);
     
+    void extend(Triangle face,Bitmap & tex, View & view);
+    
+    void extendTriangle(Triangle face);
+    
+    void setMask (Bitmap * m) {mask = m;}
+    
     void fillTextureTriangle(Triangle face,glm::vec4 color, Bitmap & destination);
     
 private:
@@ -50,8 +57,10 @@ private:
     
     void drawScanLine(TextureEdge left, TextureEdge right, int y, TextureGradient & gradient, uint id);
     
-    void drawScanLineColor(TextureEdge left, TextureEdge right, int y, TextureGradient & gradient, glm::vec4 color);
+    void fillExtensionLine(TextureEdge left, TextureEdge right, int y, TextureGradient & gradient);
     
+    void drawScanLineColor(TextureEdge left, TextureEdge right, int y, glm::vec4 color);
+    void drawScanLineColorNoMask(TextureEdge left, TextureEdge right, int y, glm::vec4 color);
     bool clipPoligonAxis (std::vector<Vertex> & verticies, int component);
     
     void clipPoligonComponent (std::vector<Vertex> & verticies, std::vector<Vertex> & result , int component, int clipFactor);
@@ -59,8 +68,13 @@ private:
     bool isInsideViewFrustrum (Vertex v);
     
     float triangleArea(Vertex v1, Vertex v2, Vertex v3);
+    
     float triangleAreaTexture(Vertex v1, Vertex v2, Vertex v3);
+    
+    glm::vec4 getClosestValidColor(int x, int y);
 
+    void fillBetweenEdges(TextureEdge left, TextureEdge right, bool leftIsSample);
+    
 };
 
 

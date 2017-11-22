@@ -25,15 +25,15 @@ struct Arguments{
 //        dataCostsFilePath = "resources/pig/derived/dataCosts_small.txt";
 //        newDataCostsFilePath = "resources/pig/derived/sv13_dis_dataCosts.txt";
 //
-        objFilePath = "resources/slany/slany_blender_1.obj";
+        objFilePath = "resources/slany/slany_pieremoved.obj";
         cameraListFilePath = "resources/slany/list3.txt";
         cameraInfoPath = "resources/slany/bundle.rd.out";
-        newTexturePath = "resources/slany/derived/texture_sv13.ppm";
+        newTexturePath = "resources/slany/derived/out_ext2_texture_sv13.ppm";
         photoFolderPath = "resources/slany";
         newLabelingFilePath = "resources/slany/derived/new_labeling.txt";
-        labelingFilePath = "resources/slany/derived/labeling.txt";
+        labelingFilePath = "resources/slany/derived/new_labeling.txt";
         dataCostsFilePath = "resources/slany/derived/dataCosts.txt";
-        newDataCostsFilePath = "resources/slany/derived/new_dataCosts.txt";
+        newDataCostsFilePath = "resources/slany/derived/out_dataCosts.txt";
 
 //        objFilePath = "resources/slany2/slany_pieremoved.obj";
 //        cameraListFilePath = "resources/slany2/list3.txt";
@@ -47,7 +47,7 @@ struct Arguments{
         
         textureWidth = 4000;
         textureHeight = 4000;
-        getLabelingFromFile = false;
+        getLabelingFromFile = true;
         writeLabelingToFile = true;
         
         getDataCostsFromFile = false;
