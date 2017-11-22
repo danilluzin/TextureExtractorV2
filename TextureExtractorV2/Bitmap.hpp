@@ -36,6 +36,8 @@ public:
     
     Bitmap toSobel() const;
     
+    Bitmap toHSV() const;
+    
     glm::vec4 at(int x, int y) const{
         if(x<0||x>=width||y<0||y>=height){
             return glm::vec4(0,0,0,1);

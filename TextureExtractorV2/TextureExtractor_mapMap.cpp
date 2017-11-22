@@ -19,7 +19,7 @@ bool TextureExtractor::mapMapGetLabeling(){
     using pairwise_t = mapmap::PairwisePotts<cost_t, simd_w>;
     
     /* Construct graph */
-    uint numNodes = mesh.adjacencyGraph.nodes.size();
+    uint numNodes = (uint)mesh.adjacencyGraph.nodes.size();
     mapmap::Graph<cost_t> mgraph(mesh.adjacencyGraph.nodes.size());
     
     for (auto & n : mesh.adjacencyGraph.nodes) {
@@ -45,7 +45,7 @@ bool TextureExtractor::mapMapGetLabeling(){
     
     mapmap::LabelSet<cost_t, simd_w> label_set(numNodes, false);
     for (auto & dc : dataCosts) {
-        std::map<uint,float> & data_costs_for_node = dc.second;
+        std::map<uint,PatchQuality> & data_costs_for_node = dc.second;
         
         std::vector<mapmap::_iv_st<cost_t, simd_w> > labels;
         if (data_costs_for_node.empty()) {
@@ -70,7 +70,7 @@ bool TextureExtractor::mapMapGetLabeling(){
     mapmap::UnaryTable<cost_t, simd_w> unaries(&mgraph, &label_set);
     mapmap::PairwisePotts<cost_t, simd_w> pairwise(1.0f);
     for (auto & dc : dataCosts) {
-        std::map<uint,float> & data_costs_for_node = dc.second;
+        std::map<uint,PatchQuality> & data_costs_for_node = dc.second;
         
         std::vector<mapmap::_s_t<cost_t, simd_w> > costs;
         if (data_costs_for_node.empty()) {
@@ -79,7 +79,7 @@ bool TextureExtractor::mapMapGetLabeling(){
             costs.resize(data_costs_for_node.size());
             uint j=0;
             for(auto & cost : data_costs_for_node) {
-                costs[j] = cost.second;
+                costs[j] = cost.second.quality;
                 j++;
             }
         }

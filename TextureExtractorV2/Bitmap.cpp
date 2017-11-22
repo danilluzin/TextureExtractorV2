@@ -62,6 +62,14 @@ Bitmap Bitmap::toSobel() const{
     return Bitmap(sobelImg);
 }
 
+
+Bitmap Bitmap::toHSV() const{
+    cv::Mat HSV;
+    cvtColor(image, HSV,CV_BGR2HSV);
+    return Bitmap(HSV);
+}
+
+
 void Bitmap::toPPM(std::string destFilename){
     
     bool fileOk;

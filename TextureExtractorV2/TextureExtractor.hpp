@@ -18,7 +18,7 @@
 #include "Transformation.hpp"
 #include "Display.hpp"
 #include "Arguments.h"
-
+#include "PatchQuality.h"
 
 class TextureExtractor {
     
@@ -30,7 +30,7 @@ class TextureExtractor {
 
     Arguments arguments;
     
-    std::map<uint,std::map<uint,float>> dataCosts;
+    std::map<uint,std::map<uint,PatchQuality>> dataCosts;
 
 public:
 

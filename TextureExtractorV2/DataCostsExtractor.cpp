@@ -20,6 +20,7 @@ DataCostsExtractor::DataCostsExtractor(const Mesh & mesh, View & view) : mesh(me
     transformation.setAspectRatio(width, height);
     view.loadImage();
     sobelImage = view.sourceImage->toSobel();
+    HSVImage = view.sourceImage->toHSV();
     clearBuffer();
 }
 
@@ -28,18 +29,16 @@ DataCostsExtractor::~DataCostsExtractor(){
 }
 
 
-std::map<uint,float> DataCostsExtractor::calculateCosts(){
+std::map<uint,PatchQuality> DataCostsExtractor::calculateCosts(){
     for(auto triangle : mesh.triangles){
         processTriangle(triangle.second);
     }
     
-    std::map<uint,float> costs;
-    float maxQuality = 0;
+    std::map<uint,PatchQuality> costs;
     for(auto i : patchInfos){
         PatchQuality info = i.second;
         if(info.sampleCount != 0){
-            maxQuality = std::max(maxQuality,info.quality());
-            costs[i.first] = info.quality();
+            costs[i.first] = info;
         }
     }
     return costs;
@@ -162,14 +161,21 @@ void DataCostsExtractor::drawScanLine(Edge left, Edge right, int y, Gradient & g
             patchInfos[id].potentialCount++;
         if(depth < depthBuffer[index]){
             glm::vec4 color = sobelImage.at(x, y);
+            glm::vec4 colorHSV = HSVImage.at(x, y);
             if(idBuffer[index]!=0){
                 uint previousID = idBuffer[index];
                 patchInfos[previousID].gradientMagnitudeSum -= color[0];
                 patchInfos[previousID].sampleCount--;
+                patchInfos[previousID].hue -= colorHSV[0];
+                patchInfos[previousID].saturation -= colorHSV[1];
+                patchInfos[previousID].value -= colorHSV[2];
             }
             if(id != 0){
                 patchInfos[id].sampleCount++;
                 patchInfos[id].gradientMagnitudeSum += color[0];
+                patchInfos[id].hue += colorHSV[0];
+                patchInfos[id].saturation += colorHSV[1];
+                patchInfos[id].value += colorHSV[2];
             }
             idBuffer[index] = id;
             depthBuffer[index] = depth;

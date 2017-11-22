@@ -19,7 +19,7 @@ public:
     const Mesh & mesh;
     std::mutex * mtx;
     DataCostExtractionManager(const Mesh & mesh) : mesh(mesh){}
-    std::map<uint,std::map<uint,float>> * dataCosts;
+    std::map<uint,std::map<uint,PatchQuality>> * dataCosts;
     std::vector<View *> viewsToDo;
     void doWork();
 };

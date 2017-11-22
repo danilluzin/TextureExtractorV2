@@ -32,7 +32,7 @@ bool loadLabelsFromFile(TextureExtractor & extractor);
 
 Arguments arguments;
 
-bool justRender = false;
+bool justRender = true;
 
 int main(int argc, const char * argv[]) {
     TextureExtractor extractor;
@@ -58,6 +58,7 @@ int main(int argc, const char * argv[]) {
     }
     
     if(justRender){
+        
         _renderViewsWithTexture(extractor);
         return 1;
     }
@@ -95,17 +96,21 @@ int main(int argc, const char * argv[]) {
 
 void _renderViewsWithTexture(TextureExtractor & extractor){
     {
+        Bitmap depth;
         Bitmap bitmap;
-        Bitmap texture("resources/pig/derived/texture3.ppm");
-//                std::vector<uint> photoSet={};
-//            std::vector<uint> photoSet={28,27,26};
-        std::vector<uint> photoSet(extractor.numberOfViews());
+        Bitmap texture(arguments.newTexturePath);
+        std::vector<uint> photoSet={};
+        //            std::vector<uint> photoSet={28,27};
+        
+        extractor.renderViewAndDepth(bitmap, depth, texture, 43);
+        depth.toPPM("resources/slany/extract/res6/slany_d_43.ppm");
+//        std::vector<uint> photoSet(extractor.numberOfViews());
 //        std::vector<uint> photoSet={1,2,3,44,5,46,7,8,9,30,31,12,13,22,51,16,50};
         std::iota(photoSet.begin(),photoSet.end(),1);
         for(int t=0;t<photoSet.size();t++){
             std::cout<<"\rRasterizing photos %"<<(100*((float)t/photoSet.size()))<<"     "<<std::flush;
             extractor.renderView(bitmap,texture, photoSet[t]);
-            bitmap.toPPM("resources/pig/extract/res/pig_" + std::to_string(photoSet[t]) + ".ppm");
+            bitmap.toPPM("resources/slany/extract/res6/slany_" + std::to_string(photoSet[t]) + ".ppm");
         }
         std::cout<<"\rRasterizing photos %100      \n";
     }

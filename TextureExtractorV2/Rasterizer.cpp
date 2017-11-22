@@ -224,10 +224,6 @@ void Rasterizer::drawScanLine(Edge left, Edge right, int y, Gradient & gradient,
     
     
     for(int x = xMin; x<xMax ; x++){
-//        glm::vec4 lerpedColor = glm::mix(minColor, maxColor, lerpAmmount);
-//        clampRGBA(lerpedColor);
-//        lerpAmmount += lerpStep;
-        
         int index = x + y*width;
         if(depth < depthBuffer[index]){
         
@@ -298,7 +294,7 @@ bool Rasterizer::isInsideViewFrustrum (Vertex v){
 void Rasterizer::_getDepthBitmap(Bitmap & bitmap){
     bitmap = Bitmap(width,height);
     std::cout<<"Getting grayscale\n";
-    float grayFactor = 1/(maxDepth - minDepth);
+    float grayFactor = 1.0f/(maxDepth - minDepth);
     for(int x = 0; x<width; x++){
         for(int y = 0; y<height; y++){
             int index = x + y*width;

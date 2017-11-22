@@ -12,15 +12,17 @@
 struct PatchQuality {
     uint sampleCount = 0;
     uint potentialCount = 0;
-    double colorR = 0;
-    double colorG = 0;
-    double colorB = 0;
+    double value=0;
+    double hue=0;
+    double saturation=0;
     float gradientMagnitudeSum=0;
-    float quality(){
+    void calcQuality(){
         if(sampleCount>0)
-            return gradientMagnitudeSum;
-        return 0;
+            quality =  gradientMagnitudeSum;
+        else
+        quality = 0;
     }
+    float quality;
 };
 
 

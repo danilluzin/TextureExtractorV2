@@ -38,11 +38,12 @@ class DataCostsExtractor{
     std::vector<uint> idBuffer;
     
     Bitmap sobelImage;
+    Bitmap HSVImage;
     
 public:
     DataCostsExtractor(const Mesh & mesh, View & view);
     
-    std::map<uint,float> calculateCosts();
+    std::map<uint,PatchQuality> calculateCosts();
     
     ~DataCostsExtractor();
     

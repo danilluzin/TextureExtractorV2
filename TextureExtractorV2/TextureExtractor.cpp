@@ -17,6 +17,7 @@
 #include <numeric>
 #include <thread>
 #include <mutex>
+#include <algorithm>
 
 void windowRender( Mesh mesh );
 
@@ -60,19 +61,18 @@ bool TextureExtractor::prepareViews(){
 
 
 bool TextureExtractor::calculateDataCosts(){
-    int t = 0;
     uint progressCounter=0;
-    int threadCount = 4;
+    int threadCount = 10;
     std::mutex printMtx;
     uint viewsPerOneManager = (uint)views.size()/threadCount;
     
     std::vector<DataCostExtractionManager> managers(threadCount, mesh);
-    std::vector<std::map<uint,std::map<uint,float>>> managerDataSets(threadCount);
+    std::vector<std::map<uint,std::map<uint,PatchQuality>>> managerDataSets(threadCount);
     
     for(int m = 0; m < managers.size(); m++){
         managers[m].dataCosts = &managerDataSets[m];
         managers[m].mtx = &printMtx;
-        managers[m].totalViewCount = views.size();
+        managers[m].totalViewCount = (uint)views.size();
         managers[m].progressCounter = &progressCounter;
     }
     
@@ -111,16 +111,54 @@ bool TextureExtractor::calculateDataCosts(){
     //normalisation;
     for(auto & f : dataCosts){
         float faceMax = 0;
+        std::vector<double> hue;
+        std::vector<double> saturation;
+        std::vector<double> value;
+        
         for(auto & v : f.second){
-            faceMax = std::max(faceMax,v.second);
+            v.second.hue = v.second.hue/v.second.sampleCount;
+            v.second.saturation = v.second.saturation/v.second.sampleCount;
+            v.second.value = v.second.value/v.second.sampleCount;
+            hue.push_back(v.second.hue);
+            saturation.push_back(v.second.saturation);
+            value.push_back(v.second.value);
+            v.second.calcQuality();
+            faceMax = std::max(faceMax,v.second.quality);
         }
+        //getting mean color
+        std::sort(hue.begin(), hue.end());
+        std::sort(saturation.begin(), saturation.end());
+        std::sort(value.begin(), value.end());
+        
+        double meanHue = hue[floor(hue.size()/2)];
+        double meanSaturation = saturation[floor(saturation.size()/2)];
+        double meanValue = value[floor(value.size()/2)];
+        
+        float outlinerPersentage = 0.40f;
+        std::vector<uint> outlinerViews;
         for(auto & v : f.second){
             if(faceMax > 0){
-                v.second = 1 - (v.second/faceMax);
+                v.second.quality = 1 - (v.second.quality/faceMax);
             }else{
-                 v.second = 1 - v.second;
+                 v.second.quality = 1 - v.second.quality;
+            }
+            float percentHue = std::min(v.second.hue,meanHue) / std::max(v.second.hue,meanHue);
+            float percentSaturation = std::min(v.second.saturation,meanSaturation) / std::max(v.second.saturation,meanSaturation);
+            float percentValue = std::min(v.second.value,meanValue) / std::max(v.second.value,meanValue);
+            
+            if((percentSaturation<outlinerPersentage) || (percentValue<outlinerPersentage)){
+                v.second.quality *= 1.3;
+            }
+            if(v.second.value>0.50){
+                v.second.quality *= 1.3;
             }
         }
+//        if(outlinerViews.size()<f.second.size()){
+//            //can remove some
+//            for(int t=0;t<outlinerViews.size();t++)
+//                f.second.erase(outlinerViews[t]);
+//        }
+         std::cout<<"";
     }
     
     std::cout<<"\r\rGetting Data Costs %100      \n";
@@ -234,7 +272,7 @@ bool  TextureExtractor::parseFaceDataCost(std::ifstream & file){
             return false;
         }
         float dataCost = parseFloat(tokens[1]);
-        dataCosts[faceId][viewId] = dataCost;
+        dataCosts[faceId][viewId].quality = dataCost;
     }
     
     getline(file,line);
@@ -338,7 +376,7 @@ bool TextureExtractor::writeDataCostsToFile(){
     for(const auto & f : dataCosts){
         file<<f.first<<" "<<f.second.size()<<"\n";
         for(const auto & v:f.second){
-            file<<v.first<<" "<<v.second<<"\n";
+            file<<v.first<<" "<<v.second.quality<<"\n";
         }
         file<<"\n";
     }
