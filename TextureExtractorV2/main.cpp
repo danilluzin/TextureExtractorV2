@@ -13,7 +13,7 @@
 #include "Utils.h"
 #include <numeric>
 #include "Arguments.h"
-
+ 
 bool prepareMesh(Mesh & mesh,const std::string & objFilePath);
 
 bool prepareViews( TextureExtractor & extractor);
