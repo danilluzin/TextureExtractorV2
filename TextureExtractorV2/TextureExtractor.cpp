@@ -18,6 +18,8 @@
 #include <thread>
 #include <mutex>
 #include <algorithm>
+#include <cstdlib>
+
 
 void windowRender( Mesh mesh );
 
@@ -55,6 +57,14 @@ bool TextureExtractor::prepareViews(){
         std::cout<<"ERROR occured when getting camera info\n";
         return false;
     }
+    
+    for(auto v : views){
+        float rndR = ((float)rand())/RAND_MAX;
+        float rndG = ((float)rand())/RAND_MAX;
+        float rndB = ((float)rand())/RAND_MAX;
+        viewColors[v.first] = glm::vec4(rndR,rndG,rndB,1);
+        std::cout<< v.first<<" ("<<rndR<<" "<<rndG<<" "<<rndB<<")\n";
+    }
 
     return true;
 }
@@ -62,7 +72,7 @@ bool TextureExtractor::prepareViews(){
 
 bool TextureExtractor::calculateDataCosts(){
     uint progressCounter=0;
-    int threadCount = 10;
+    int threadCount = 5;
     std::mutex printMtx;
     uint viewsPerOneManager = (uint)views.size()/threadCount;
     
@@ -97,7 +107,7 @@ bool TextureExtractor::calculateDataCosts(){
         threads[t].join();
     }
     
-    std::cout<<"Merging datasets\n";
+    std::cout<<"\nMerging datasets\n";
     //Merging manager datasets
     for(auto & ds : managerDataSets){
         for(auto & v : ds){
@@ -134,7 +144,7 @@ bool TextureExtractor::calculateDataCosts(){
         double meanSaturation = saturation[floor(saturation.size()/2)];
         double meanValue = value[floor(value.size()/2)];
         
-        float outlinerPersentage = 0.40f;
+        float outlinerPersentage = 0.70f;
         std::vector<uint> outlinerViews;
         for(auto & v : f.second){
             if(faceMax > 0){
@@ -146,18 +156,16 @@ bool TextureExtractor::calculateDataCosts(){
             float percentSaturation = std::min(v.second.saturation,meanSaturation) / std::max(v.second.saturation,meanSaturation);
             float percentValue = std::min(v.second.value,meanValue) / std::max(v.second.value,meanValue);
             
-            if((percentSaturation<outlinerPersentage) || (percentValue<outlinerPersentage)){
-                v.second.quality *= 1.3;
-            }
-            if(v.second.value>0.50){
-                v.second.quality *= 1.3;
+            if((percentHue<outlinerPersentage) || (percentValue<outlinerPersentage)){
+                v.second.quality *= 1.5;
+//                outlinerViews.push_back(v.first);
             }
         }
-//        if(outlinerViews.size()<f.second.size()){
-//            //can remove some
-//            for(int t=0;t<outlinerViews.size();t++)
-//                f.second.erase(outlinerViews[t]);
-//        }
+        if(outlinerViews.size()<f.second.size()){
+            //can remove some
+            for(int t=0;t<outlinerViews.size();t++)
+                f.second.erase(outlinerViews[t]);
+        }
          std::cout<<"";
     }
     
@@ -318,8 +326,10 @@ bool TextureExtractor::generateTexture(){
     texture = Bitmap(arguments.textureWidth, arguments.textureHeight);
     Bitmap mask(arguments.textureWidth, arguments.textureHeight);
     mask.clear(glm::vec4(0,0,0,1));
+    Bitmap labelTexture(arguments.textureWidth, arguments.textureHeight);
     
     texture.clear(glm::vec4(0.8, 0.8, 0.8, 1));
+    labelTexture.clear(glm::vec4(0.8, 0.8, 0.8, 1));
     glm::vec4 defaultColor (0.37, 0.61, 0.62, 1);
     
     ExtractionWorker worker(mesh);
@@ -331,6 +341,9 @@ bool TextureExtractor::generateTexture(){
         Triangle & face = f.second;
         if(face.viewId != 0){
             worker.extract(face, texture, views[face.viewId]);
+            if(arguments.genLebelingTexture){
+                worker.fillTextureTriangle(face,viewColors[face.viewId],labelTexture);
+            }
         }else{
             worker.fillTextureTriangle(face,defaultColor,texture);
         }
@@ -349,10 +362,15 @@ bool TextureExtractor::generateTexture(){
         }
         t++;
     }
+    std::cout<<"\rPostProcessing faces %100      \n";
     ext.toPPM("resources/slany/derived/ext_texture.ppm");
     mask.toPPM("resources/slany/derived/msk_texture.ppm");
     std::cout<<"Writing texture to file\n";
     texture.toPPM(arguments.newTexturePath);
+    if(arguments.genLebelingTexture){
+        std::cout<<"Generating lable assignment texture\n";
+        labelTexture.toPPM(arguments.viewAssignmentFilePath);
+    }
     
     return true;
 }

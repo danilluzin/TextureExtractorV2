@@ -32,7 +32,7 @@ bool loadLabelsFromFile(TextureExtractor & extractor);
 
 Arguments arguments;
 
-bool justRender = true;
+bool justRender = false;
 
 int main(int argc, const char * argv[]) {
     TextureExtractor extractor;
@@ -89,9 +89,10 @@ int main(int argc, const char * argv[]) {
         return -1;
     }
     
-    _renderViewsWithTexture(extractor);
-    
     printBold(mainTimer.stopGetResults( "\nTottal run time " ));
+    
+    _renderViewsWithTexture(extractor);
+
 }
 
 void _renderViewsWithTexture(TextureExtractor & extractor){
@@ -99,6 +100,7 @@ void _renderViewsWithTexture(TextureExtractor & extractor){
         Bitmap depth;
         Bitmap bitmap;
         Bitmap texture(arguments.newTexturePath);
+        Bitmap labelTexture(arguments.viewAssignmentFilePath);
 //        std::vector<uint> photoSet={};
         //            std::vector<uint> photoSet={28,27};
         
@@ -111,6 +113,10 @@ void _renderViewsWithTexture(TextureExtractor & extractor){
             std::cout<<"\rRasterizing photos %"<<(100*((float)t/photoSet.size()))<<"     "<<std::flush;
             extractor.renderView(bitmap,texture, photoSet[t]);
             bitmap.toPPM("resources/slany/extract/res6/slany_" + std::to_string(photoSet[t]) + ".ppm");
+            if(arguments.rasterLabelAssignment){
+                extractor.renderView(bitmap,labelTexture, photoSet[t]);
+                bitmap.toPPM("resources/slany/extract/res7/slany_label_" + std::to_string(photoSet[t]) + ".ppm");
+            }
         }
         std::cout<<"\rRasterizing photos %100      \n";
     }

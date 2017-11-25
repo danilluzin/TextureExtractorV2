@@ -34,7 +34,7 @@ struct Arguments{
         labelingFilePath = "resources/slany/derived/new_labeling.txt";
         dataCostsFilePath = "resources/slany/derived/dataCosts.txt";
         newDataCostsFilePath = "resources/slany/derived/out_dataCosts.txt";
-
+        viewAssignmentFilePath = "resources/slany/derived/view_labeling.ppm";
 //        objFilePath = "resources/slany2/slany_pieremoved.obj";
 //        cameraListFilePath = "resources/slany2/list3.txt";
 //        cameraInfoPath = "resources/slany2/s.bundle.rd.out";
@@ -52,6 +52,8 @@ struct Arguments{
         
         getDataCostsFromFile = false;
         writeDataCostsToFile = true;
+        genLebelingTexture = true;
+        rasterLabelAssignment = false;
     }
     
     int textureWidth;
@@ -65,12 +67,15 @@ struct Arguments{
     std::string labelingFilePath;
     std::string dataCostsFilePath;
     std::string newDataCostsFilePath;
+    std::string viewAssignmentFilePath;
     
     
     bool getLabelingFromFile;
     bool writeLabelingToFile;
     bool getDataCostsFromFile;
     bool writeDataCostsToFile;
+    bool genLebelingTexture;
+    bool rasterLabelAssignment;
 };
 
 
