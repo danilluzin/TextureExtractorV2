@@ -15,10 +15,7 @@
 #include "stb/stb_image.h"
 
 void Bitmap::clear(glm::vec4 color){
-    
     image = cv::Scalar((uchar)(color[2]*255), (uchar)(color[1]*255),(uchar)(color[0]*255));
-    
-//    std::fill(imageData.begin(), imageData.end(), color);
 }
 
 Bitmap::Bitmap(const std::string & filename) : RenderContext(0,0){

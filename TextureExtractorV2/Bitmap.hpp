@@ -18,14 +18,20 @@
 
 
 class Bitmap : public RenderContext{
-    
-    std::vector<glm::vec4> imageData;
     cv::Mat image;
     
 public:
+    Bitmap & operator = (const Bitmap & other){
+        if (this != &other) { // self-assignment check expected
+            width = other.width;
+            height = other.height;
+            image = other.image.clone();
+        }
+        return *this;
+    }
+    
     Bitmap(int width, int height) : RenderContext(width,height){
         image = cv::Mat(height, width, CV_8UC3);
-        imageData.resize(width * height);
     }
     
     Bitmap():RenderContext(0,0){};

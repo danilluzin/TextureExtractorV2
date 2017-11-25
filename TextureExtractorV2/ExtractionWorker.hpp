@@ -35,9 +35,9 @@ public:
     
     void extract(Triangle face,Bitmap & tex, View & view);
     
-    void extend(Triangle face,Bitmap & tex, View & view);
+    void extend(Triangle face,Bitmap & tex);
     
-    void extendTriangle(Triangle face);
+    void applyGradient(Triangle face,Bitmap & src,Bitmap & dst, glm::vec4 color [3]);
     
     void setMask (Bitmap * m) {mask = m;}
     
@@ -45,11 +45,17 @@ public:
     
 private:
     
+    void extendTriangle(Triangle face);
+    
     void processTriangle(const Triangle & triangle);
 
+    void proccesGradientTriangle(const Triangle & triangle, glm::vec4 color [3]);
+    
     void fillTriangle(Vertex  minYVert, Vertex midYVert, Vertex maxYVert ,bool handedness, const Triangle & triangle);
     
-     void fillTriangle(Vertex  minYVert, Vertex midYVert, Vertex maxYVert ,bool handedness, glm::vec4 color);
+    void fillTriangle(Vertex  minYVert, Vertex midYVert, Vertex maxYVert ,bool handedness, glm::vec4 color);
+    
+    void fillTriangleGradient(Vertex minYVert, Vertex midYVert, Vertex maxYVert ,bool handedness,const Triangle & triangle,glm::vec4 color [3]);
     
     void rasterizeTriangle(Vertex  minYVert, Vertex midYVert, Vertex maxYVert,const Triangle & triangle);
     
@@ -57,10 +63,14 @@ private:
     
     void drawScanLine(TextureEdge left, TextureEdge right, int y, TextureGradient & gradient, uint id);
     
+    void addGradientLine(TextureEdge left, TextureEdge right, int y, TextureGradient & gradient, uint id);
+    
     void fillExtensionLine(TextureEdge left, TextureEdge right, int y, TextureGradient & gradient);
     
     void drawScanLineColor(TextureEdge left, TextureEdge right, int y, glm::vec4 color);
+    
     void drawScanLineColorNoMask(TextureEdge left, TextureEdge right, int y, glm::vec4 color);
+    
     bool clipPoligonAxis (std::vector<Vertex> & verticies, int component);
     
     void clipPoligonComponent (std::vector<Vertex> & verticies, std::vector<Vertex> & result , int component, int clipFactor);

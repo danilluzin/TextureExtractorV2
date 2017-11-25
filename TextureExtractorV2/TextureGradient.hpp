@@ -17,7 +17,7 @@ class TextureGradient {
     
 public:
     TextureGradient(Vertex minYVert, Vertex midYVert, Vertex maxYVert) ;
-
+    TextureGradient(Vertex minYVert, Vertex midYVert, Vertex maxYVert, glm::vec4 color [3]);
     float photoCoordXXStep;
     float photoCoordXYStep;
     float photoCoordYXStep;
@@ -27,6 +27,10 @@ public:
     
     glm::vec4 photoCoords [3];
 
+    glm::vec4 colorXStep;
+    glm::vec4 colorYStep;
+    glm::vec4 color [3];
+    
     float oneOverZ [3];
 private:
 };

@@ -9,6 +9,7 @@
 #include <iostream>
 #include <algorithm>
 #include "Utils.h"
+
 bool useColor = false;
 
 Rasterizer::Rasterizer(int width, int height){

@@ -35,6 +35,7 @@ struct Arguments{
         dataCostsFilePath = "resources/slany/derived/dataCosts.txt";
         newDataCostsFilePath = "resources/slany/derived/out_dataCosts.txt";
         viewAssignmentFilePath = "resources/slany/derived/view_labeling.ppm";
+        
 //        objFilePath = "resources/slany2/slany_pieremoved.obj";
 //        cameraListFilePath = "resources/slany2/list3.txt";
 //        cameraInfoPath = "resources/slany2/s.bundle.rd.out";
@@ -52,6 +53,7 @@ struct Arguments{
         
         getDataCostsFromFile = false;
         writeDataCostsToFile = true;
+        
         genLebelingTexture = true;
         rasterLabelAssignment = false;
     }

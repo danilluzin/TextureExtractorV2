@@ -75,9 +75,6 @@ private:
     
     bool isInsideViewFrustrum (Vertex v);
     
-    void clampRGBA(glm::vec4 & color);
-    
-    
     float triangleArea(Vertex v1, Vertex v2, Vertex v3);
 
     float minDepth = std::numeric_limits<float>::max();

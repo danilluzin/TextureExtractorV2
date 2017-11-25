@@ -27,6 +27,9 @@ public:
     glm::vec2 photoCoord;
     glm::vec2 photoCoordStep;
     
+    glm::vec4 color;
+    glm::vec4 colorStep;
+    
     TextureEdge (Vertex start, Vertex end, TextureGradient gradient,int minYVertIndex);
     TextureEdge (Vertex start, Vertex end);
     void Step();

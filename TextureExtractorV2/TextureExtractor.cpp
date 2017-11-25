@@ -324,6 +324,7 @@ bool TextureExtractor::selectViews(){
 
 bool TextureExtractor::generateTexture(){
     texture = Bitmap(arguments.textureWidth, arguments.textureHeight);
+    Bitmap textureCopy(arguments.textureWidth, arguments.textureHeight);
     Bitmap mask(arguments.textureWidth, arguments.textureHeight);
     mask.clear(glm::vec4(0,0,0,1));
     Bitmap labelTexture(arguments.textureWidth, arguments.textureHeight);
@@ -351,20 +352,45 @@ bool TextureExtractor::generateTexture(){
     }
     std::cout<<"\rGeting texture for faces %100      \n";
     
+    
     std::cout<<"PostProcessing:\n";
+    getSampleList(texture,mask);
+    
+    textureCopy = texture;
     t=0;
-    Bitmap ext (texture.width , texture.height);
     for(auto & f : mesh.triangles){
-        std::cout<<"\rPostProcessing faces %"<<(100*((float)t/mesh.triangles.size()))<<"     "<<std::flush;
+        std::cout<<"\rApplying gradient to faces %"<<(100*((float)t/mesh.triangles.size()))<<"     "<<std::flush;
         Triangle & face = f.second;
         if(face.viewId != 0){
-            worker.extend(face, texture, views[face.viewId]);
+            
+            glm::vec4 color[3];
+            for(int t=0 ; t< 3; t++){
+                color[t] = colorAverages[face.verticies[t]] - colorSamples[face.verticies[t]][face.viewId];
+                if(color[t].x <0 ||color[t].y<0||color[t].z <0){
+                    std::cout<<"hmmmm ;/\n";
+                }
+            }
+            
+            
+            worker.applyGradient(face,textureCopy,texture,color);
         }
         t++;
     }
-    std::cout<<"\rPostProcessing faces %100      \n";
-    ext.toPPM("resources/slany/derived/ext_texture.ppm");
+    
+    std::cout<<"\rApplying gradient to faces %100      \n";
+    t=0;
+    
+    for(auto & f : mesh.triangles){
+        std::cout<<"\rExpanding faces %"<<(100*((float)t/mesh.triangles.size()))<<"     "<<std::flush;
+        Triangle & face = f.second;
+        if(face.viewId != 0){
+            worker.extend(face, texture);
+        }
+        t++;
+    }
+    std::cout<<"\rExpanding faces %100      \n";
     mask.toPPM("resources/slany/derived/msk_texture.ppm");
+    textureCopy.toPPM("resources/slany/derived/texCopy.ppm");
     std::cout<<"Writing texture to file\n";
     texture.toPPM(arguments.newTexturePath);
     if(arguments.genLebelingTexture){
@@ -374,6 +400,48 @@ bool TextureExtractor::generateTexture(){
     
     return true;
 }
+
+
+void TextureExtractor::getSampleList(Bitmap & texture, Bitmap & mask){
+    for(auto & f : mesh.triangles){
+        if(f.second.viewId == 0)
+            continue;
+        View & v = views[f.second.viewId];
+        if(!v.sourceImage){
+            v.loadImage();
+        }
+        Transformation transformation;
+        transformation.setCamera(v.camera);
+        transformation.setAspectRatio(v.photoWidth, v.photoHeight);
+        glm::mat4 cameraModelTransform = transformation.getViewProjection()* transformation.getModelMatrix();
+        glm::mat4 screenSpaceTransform = transformation.getScreenTransform();
+        
+        
+        for(int t=0;t<3;t++){
+            Vertex vertex = mesh.verticies.at(f.second.verticies[t]);
+            vertex = cameraModelTransform * vertex;
+            vertex = transformation.doPerspectiveDevide(screenSpaceTransform * vertex);
+            colorSamples[vertex.id][f.second.viewId] = v.sourceImage->at(vertex.x(), vertex.y());
+        }
+    }
+    //getting averages
+    for(auto & v : colorSamples){
+        glm::vec4 sum = glm::vec4(0,0,0,0);
+        if(v.second.size()>1){
+            std::cout<<"wowowow\n";
+        }
+        for(auto & f : v.second){
+            sum += f.second;
+        }
+        sum[0] /= v.second.size();
+        sum[1] /= v.second.size();
+        sum[2] /= v.second.size();
+        sum[3] = 1;
+        colorAverages[v.first] = sum;
+    }
+
+}
+
 
 
 bool TextureExtractor::writeLabelingToFile(){

@@ -19,7 +19,19 @@ TextureGradient::TextureGradient(Vertex minYVert, Vertex midYVert, Vertex maxYVe
     float oneOverdy = -oneOverdx;
     
     
-  
+//    //Color
+//    color[0] = minYVert.color;
+//    color[1] = midYVert.color;
+//    color[2] = maxYVert.color;
+//
+//    glm::vec4 dColorX =(color[1]-color[2])*(minYVert.texCoord.y-maxYVert.texCoord.y) -
+//    (color[0]-color[2])*(midYVert.texCoord.y-maxYVert.texCoord.y);
+//
+//    glm::vec4 dColorY =(color[1]-color[2])*(minYVert.texCoord.x-maxYVert.texCoord.x) -
+//    (color[0]-color[2])*(midYVert.texCoord.x-maxYVert.texCoord.x);
+//
+//    colorXStep = dColorX * oneOverdx;
+//    colorYStep = dColorY * oneOverdy;
     
     //OneOverZ
     
@@ -68,4 +80,25 @@ TextureGradient::TextureGradient(Vertex minYVert, Vertex midYVert, Vertex maxYVe
     photoCoordYYStep = ((photoCoords[1].y-photoCoords[2].y)*(minYVert.texCoord.x-maxYVert.texCoord.x) -
                       (photoCoords[0].y-photoCoords[2].y)*(midYVert.texCoord.x-maxYVert.texCoord.x) ) * oneOverdy;
 }
+
+
+TextureGradient::TextureGradient(Vertex minYVert, Vertex midYVert, Vertex maxYVert, glm::vec4 color [3]){
+    float oneOverdx = 1.0f/((midYVert.texCoord.x-maxYVert.texCoord.x)*(minYVert.texCoord.y-maxYVert.texCoord.y) -
+                            (midYVert.texCoord.y-maxYVert.texCoord.y)*(minYVert.texCoord.x-maxYVert.texCoord.x));
+    float oneOverdy = -oneOverdx;
+    this->color[0] = color[0];
+    this->color[1] = color[1];
+    this->color[2] = color[2];
+    
+    glm::vec4 dColorX =(color[1]-color[2])*(minYVert.texCoord.y-maxYVert.texCoord.y) -
+    (color[0]-color[2])*(midYVert.texCoord.y-maxYVert.texCoord.y);
+    
+    glm::vec4 dColorY =(color[1]-color[2])*(minYVert.texCoord.x-maxYVert.texCoord.x) -
+    (color[0]-color[2])*(midYVert.texCoord.x-maxYVert.texCoord.x);
+    
+    colorXStep = dColorX * oneOverdx;
+    colorYStep = dColorY * oneOverdy;
+    
+}
+
 

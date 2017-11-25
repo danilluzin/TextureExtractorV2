@@ -21,6 +21,11 @@ TextureEdge::TextureEdge(Vertex start, Vertex end, TextureGradient gradient,int 
     float xPrestep = currentX - start.texCoord.x;
     
     
+    //calc color gradientStep
+    color = gradient.color[minYVertIndex] + gradient.colorYStep*yPrestep +
+    gradient.colorXStep*xPrestep;
+    colorStep = gradient.colorYStep + gradient.colorXStep*xStep;
+    
     //calc texture gradientStep
     photoCoord.x = gradient.photoCoords[minYVertIndex].x +
     gradient.photoCoordXXStep*xPrestep +
@@ -48,7 +53,6 @@ TextureEdge::TextureEdge(Vertex start, Vertex end){
     float yPrestep = yStart - start.texCoord.y;
     xStep = (float)xDistance/(float)yDistance;
     currentX = start.texCoord.x + yPrestep*xStep ;
-    float xPrestep = currentX - start.texCoord.x;
 }
 
 
@@ -57,5 +61,6 @@ void TextureEdge::Step(){
     photoCoord.x += photoCoordStep.x;
     photoCoord.y += photoCoordStep.y;
     oneOverZ += oneOverZStep;
+    color += colorStep;
 }
 

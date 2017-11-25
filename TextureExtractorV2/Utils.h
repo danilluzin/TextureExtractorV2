@@ -120,5 +120,31 @@ inline void printMatrix(const glm::mat4 & m){
     }
 }
 
+inline void clampRGBA(glm::vec4 & color){
+    if(color.r < 0)
+        color.r = 0;
+    
+    if(color.g < 0)
+        color.g = 0;
+    
+    if(color.b < 0)
+        color.b = 0;
+    
+    if(color.a < 0)
+        color.a = 0;
+    
+    if(color.r > 1)
+        color.r = 1;
+    
+    if(color.g > 1)
+        color.g = 1;
+    
+    if(color.b > 1)
+        color.b = 1;
+    
+    if(color.a > 1)
+        color.a = 1;
+}
+
 
 #endif /* Utils_h */

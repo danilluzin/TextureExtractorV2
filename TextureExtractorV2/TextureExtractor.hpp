@@ -33,6 +33,10 @@ class TextureExtractor {
     Arguments arguments;
     
     std::map<uint,std::map<uint,PatchQuality>> dataCosts;
+    
+    std::map<uint,std::map<uint,glm::vec4>> colorSamples;
+    
+    std::map<uint,glm::vec4> colorAverages;
 
 public:
 
@@ -97,6 +101,8 @@ private:
     bool writeLabelingToFile();
     
     bool writeDataCostsToFile();
+    
+    void getSampleList(Bitmap & texture, Bitmap & mask);
 };
 
 
