@@ -14,13 +14,13 @@
 void ExtractionWorker::fillTextureTriangle(Triangle face,glm::vec4 color, Bitmap & destination){
     texture = &destination;
     
-    Vertex minYVert = mesh.verticies.at(face.verticies[0]);
-    Vertex midYVert = mesh.verticies.at(face.verticies[1]);
-    Vertex maxYVert = mesh.verticies.at(face.verticies[2]);
+    Vertex minYVert = mesh->verticies.at(face.verticies[0]);
+    Vertex midYVert = mesh->verticies.at(face.verticies[1]);
+    Vertex maxYVert = mesh->verticies.at(face.verticies[2]);
     
-    minYVert.texCoord = mesh.texCoords.at(face.texCoords.at(minYVert.id)).coord;
-    midYVert.texCoord = mesh.texCoords.at(face.texCoords.at(midYVert.id)).coord;
-    maxYVert.texCoord = mesh.texCoords.at(face.texCoords.at(maxYVert.id)).coord;
+    minYVert.texCoord = mesh->texCoords.at(face.texCoords.at(minYVert.id)).coord;
+    midYVert.texCoord = mesh->texCoords.at(face.texCoords.at(midYVert.id)).coord;
+    maxYVert.texCoord = mesh->texCoords.at(face.texCoords.at(maxYVert.id)).coord;
     
     if(minYVert.texCoord.y>midYVert.texCoord.y)
         std::swap(minYVert, midYVert);

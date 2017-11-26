@@ -17,13 +17,13 @@ void ExtractionWorker::extend(Triangle face,Bitmap & tex){
 }
 
 void ExtractionWorker::extendTriangle(Triangle triangle){
-    Vertex minYVert = mesh.verticies.at(triangle.verticies[0]);
-    Vertex midYVert = mesh.verticies.at(triangle.verticies[1]);
-    Vertex maxYVert = mesh.verticies.at(triangle.verticies[2]);
+    Vertex minYVert = mesh->verticies.at(triangle.verticies[0]);
+    Vertex midYVert = mesh->verticies.at(triangle.verticies[1]);
+    Vertex maxYVert = mesh->verticies.at(triangle.verticies[2]);
     
-    minYVert.texCoord = mesh.texCoords.at(triangle.texCoords.at(minYVert.id)).coord;
-    midYVert.texCoord = mesh.texCoords.at(triangle.texCoords.at(midYVert.id)).coord;
-    maxYVert.texCoord = mesh.texCoords.at(triangle.texCoords.at(maxYVert.id)).coord;
+    minYVert.texCoord = mesh->texCoords.at(triangle.texCoords.at(minYVert.id)).coord;
+    midYVert.texCoord = mesh->texCoords.at(triangle.texCoords.at(midYVert.id)).coord;
+    maxYVert.texCoord = mesh->texCoords.at(triangle.texCoords.at(maxYVert.id)).coord;
     
     if(minYVert.texCoord.y>midYVert.texCoord.y)
         std::swap(minYVert, midYVert);

@@ -10,22 +10,24 @@
 #include <glm/ext.hpp>
 #include "Utils.h"
 
-void ExtractionWorker::applyGradient(Triangle face,Bitmap & src,Bitmap & dst, glm::vec4 color [3]){
+void ExtractionWorker::applyGradient(Triangle face,Bitmap & src,Bitmap & dst, glm::vec4 color [3],Bitmap & levelingTexture){
     this->texture = &dst;
     this->source = &src;
+    this->levelingTexture = &levelingTexture;
     proccesGradientTriangle(face,color);
     this->texture = nullptr;
     this->source = nullptr;
+    this->levelingTexture = nullptr;
 }
 
 void ExtractionWorker::proccesGradientTriangle(const Triangle & triangle, glm::vec4 color [3]){
-    Vertex minYVert = mesh.verticies.at(triangle.verticies[0]);
-    Vertex midYVert = mesh.verticies.at(triangle.verticies[1]);
-    Vertex maxYVert = mesh.verticies.at(triangle.verticies[2]);
+    Vertex minYVert = mesh->verticies.at(triangle.verticies[0]);
+    Vertex midYVert = mesh->verticies.at(triangle.verticies[1]);
+    Vertex maxYVert = mesh->verticies.at(triangle.verticies[2]);
     
-    minYVert.texCoord = mesh.texCoords.at(triangle.texCoords.at(minYVert.id)).coord;
-    midYVert.texCoord = mesh.texCoords.at(triangle.texCoords.at(midYVert.id)).coord;
-    maxYVert.texCoord = mesh.texCoords.at(triangle.texCoords.at(maxYVert.id)).coord;
+    minYVert.texCoord = mesh->texCoords.at(triangle.texCoords.at(minYVert.id)).coord;
+    midYVert.texCoord = mesh->texCoords.at(triangle.texCoords.at(midYVert.id)).coord;
+    maxYVert.texCoord = mesh->texCoords.at(triangle.texCoords.at(maxYVert.id)).coord;
 
     if(minYVert.texCoord.y>midYVert.texCoord.y){
         std::swap(minYVert, midYVert);
@@ -100,7 +102,6 @@ void ExtractionWorker::addGradientLine(TextureEdge left, TextureEdge right, int 
     int xMin = (int)floor(left.currentX);
     int xMax = (int)ceil(right.currentX);
     float xPrestep = xMin - left.currentX;
-    float xDist = right.currentX - left.currentX;
     
     //color
     glm::vec4 minColor = left.color + gradient.colorXStep*xPrestep;
@@ -110,15 +111,17 @@ void ExtractionWorker::addGradientLine(TextureEdge left, TextureEdge right, int 
     
     for(int x = xMin; x<xMax ; x++){
         glm::vec4 lerpedColor = glm::mix(minColor, maxColor, lerpAmmount);
-        if(lerpedColor.x<0||lerpedColor.y<0||lerpedColor.z<0){
-            std::cout<<"ok/n";
-        }
         lerpAmmount += lerpStep;
-        
         glm::vec4 gradientColor =  source->at(x, y);
         gradientColor += lerpedColor;
         clampRGBA(gradientColor);
         texture->putPixel(x, y, gradientColor);
+        if(levelingTexture){
+            glm::vec4 c = levelingTexture->at(x,y);
+            glm::vec4 levelColor = c + lerpedColor;
+            clampRGBA(levelColor);
+            levelingTexture->putPixel(x, y, levelColor);
+        }
     }
     
 }

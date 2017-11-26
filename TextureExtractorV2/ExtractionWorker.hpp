@@ -17,9 +17,11 @@
 
 class ExtractionWorker{
 private:
-    Bitmap * mask;
+    Bitmap * mask = nullptr;
     
     Bitmap * texture = nullptr;
+    
+    Bitmap * levelingTexture = nullptr;
     
     Bitmap * source = nullptr;
     
@@ -27,19 +29,23 @@ private:
     
     Transformation transformation;
     
-    const Mesh & mesh;
+    const Mesh * mesh;
     
 public:
     
-    ExtractionWorker(const Mesh & mesh) : mesh(mesh){};
+    ExtractionWorker(const Mesh * mesh) : mesh(mesh){};
+    
+    ExtractionWorker() {};
     
     void extract(Triangle face,Bitmap & tex, View & view);
     
     void extend(Triangle face,Bitmap & tex);
     
-    void applyGradient(Triangle face,Bitmap & src,Bitmap & dst, glm::vec4 color [3]);
+    void applyGradient(Triangle face,Bitmap & src,Bitmap & dst, glm::vec4 color [3], Bitmap & levelingTexture);
     
     void setMask (Bitmap * m) {mask = m;}
+    
+    void setMesh (const Mesh * m) {mesh = m;}
     
     void fillTextureTriangle(Triangle face,glm::vec4 color, Bitmap & destination);
     

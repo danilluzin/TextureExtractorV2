@@ -19,10 +19,13 @@
 #include "Display.hpp"
 #include "Arguments.h"
 #include "PatchQuality.h"
+#include "ExtractionWorker.hpp"
 
 class TextureExtractor {
     
     Bitmap texture;
+    
+    Bitmap mask;
     
     Mesh mesh;
         
@@ -37,6 +40,8 @@ class TextureExtractor {
     std::map<uint,std::map<uint,glm::vec4>> colorSamples;
     
     std::map<uint,glm::vec4> colorAverages;
+    
+    ExtractionWorker worker;
 
 public:
 
@@ -48,7 +53,7 @@ public:
     
     bool selectViews();
     
-    void setMesh (const Mesh & m){mesh = m;}
+    void setMesh (const Mesh & m){mesh = m; worker.setMesh(&mesh);}
     
     bool generateTexture();
     
@@ -75,6 +80,12 @@ public:
     void windowRender( uint view ) ;
 
 private:
+    
+    void extractAllFaces(Bitmap & labelTexture);
+    
+    void extendAllFaces();
+    
+    void applyGradientAllFaces(Bitmap & textureCopy, Bitmap & levelingTexture);
     
     bool mapMapGetLabeling();
     

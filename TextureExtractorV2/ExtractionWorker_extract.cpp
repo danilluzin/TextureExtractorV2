@@ -29,13 +29,13 @@ void ExtractionWorker::extract(Triangle face,Bitmap & tex, View & view){
 }
 
 void ExtractionWorker::processTriangle(const Triangle & triangle){
-    Vertex vOne = mesh.verticies.at(triangle.verticies[0]);
-    Vertex vTwo = mesh.verticies.at(triangle.verticies[1]);
-    Vertex vThree = mesh.verticies.at(triangle.verticies[2]);
+    Vertex vOne = mesh->verticies.at(triangle.verticies[0]);
+    Vertex vTwo = mesh->verticies.at(triangle.verticies[1]);
+    Vertex vThree = mesh->verticies.at(triangle.verticies[2]);
     
-    vOne.texCoord = mesh.texCoords.at(triangle.texCoords.at(vOne.id)).coord;
-    vTwo.texCoord = mesh.texCoords.at(triangle.texCoords.at(vTwo.id)).coord;
-    vThree.texCoord = mesh.texCoords.at(triangle.texCoords.at(vThree.id)).coord;
+    vOne.texCoord = mesh->texCoords.at(triangle.texCoords.at(vOne.id)).coord;
+    vTwo.texCoord = mesh->texCoords.at(triangle.texCoords.at(vTwo.id)).coord;
+    vThree.texCoord = mesh->texCoords.at(triangle.texCoords.at(vThree.id)).coord;
     
     glm::mat4 cameraModelTransform = transformation.getViewProjection();
     

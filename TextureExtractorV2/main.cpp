@@ -32,7 +32,7 @@ bool loadLabelsFromFile(TextureExtractor & extractor);
 
 Arguments arguments;
 
-bool justRender = true;
+bool justRender = false;
 
 int main(int argc, const char * argv[]) {
     TextureExtractor extractor;
@@ -112,7 +112,7 @@ void _renderViewsWithTexture(TextureExtractor & extractor){
         for(int t=0;t<photoSet.size();t++){
             std::cout<<"\rRasterizing photos %"<<(100*((float)t/photoSet.size()))<<"     "<<std::flush;
             extractor.renderView(bitmap,texture, photoSet[t]);
-            bitmap.toPPM("resources/slany/extract/res6/slany_" + std::to_string(photoSet[t]) + ".ppm");
+            bitmap.toPPM(arguments.resultRenderFolder+"/"+arguments.projectName+"_" + std::to_string(photoSet[t]) + ".ppm");
             if(arguments.rasterLabelAssignment){
                 extractor.renderView(bitmap,labelTexture, photoSet[t]);
                 bitmap.toPPM("resources/slany/extract/res8/slany_label_" + std::to_string(photoSet[t]) + ".ppm");
