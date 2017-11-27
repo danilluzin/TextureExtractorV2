@@ -37,9 +37,13 @@ class TextureExtractor {
     
     std::map<uint,std::map<uint,PatchQuality>> dataCosts;
     
+    std::map<uint,std::map<uint,glm::vec4>> faceViewAverages;
+    
     std::map<uint,std::map<uint,glm::vec4>> colorSamples;
     
     std::map<uint,glm::vec4> colorAverages;
+    
+    std::map<uint,glm::vec4> faceAverages;
     
     ExtractionWorker worker;
 

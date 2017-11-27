@@ -123,25 +123,44 @@ bool TextureExtractor::calculateDataCosts(){
         std::vector<double> hue;
         std::vector<double> saturation;
         std::vector<double> value;
+        std::vector<glm::vec4> colors;
         
         for(auto & v : f.second){
             v.second.hue = v.second.hue/v.second.sampleCount;
             v.second.saturation = v.second.saturation/v.second.sampleCount;
             v.second.value = v.second.value/v.second.sampleCount;
+            v.second.colorSum[0] = v.second.colorSum[0]/v.second.sampleCount;
+            v.second.colorSum[1] = v.second.colorSum[1]/v.second.sampleCount;
+            v.second.colorSum[2] = v.second.colorSum[2]/v.second.sampleCount;
+            v.second.colorSum[3] = v.second.colorSum[3]/v.second.sampleCount;
+            
             hue.push_back(v.second.hue);
             saturation.push_back(v.second.saturation);
             value.push_back(v.second.value);
+            colors.push_back(v.second.colorSum);
             v.second.calcQuality();
             faceMax = std::max(faceMax,v.second.quality);
+            faceViewAverages[f.first][v.first] = v.second.colorSum;
         }
         //getting mean color
         std::sort(hue.begin(), hue.end());
         std::sort(saturation.begin(), saturation.end());
         std::sort(value.begin(), value.end());
         
+        glm::vec4 averageColor;
+        for(auto c:colors){
+            averageColor += c;
+        }
+        averageColor[0] /= colors.size();
+        averageColor[1] /= colors.size();
+        averageColor[2] /= colors.size();
+        averageColor[3] /= colors.size();
+        
         double meanHue = hue[floor(hue.size()/2)];
         double meanSaturation = saturation[floor(saturation.size()/2)];
         double meanValue = value[floor(value.size()/2)];
+        
+        faceAverages[f.first] = averageColor;
         
         float outlinerPersentage = 0.70f;
         std::vector<uint> outlinerViews;
@@ -353,19 +372,42 @@ void TextureExtractor::extendAllFaces(){
 
 
 void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & levelingTexture){
+//    Bitmap globalCopy;
+//    //global
+//    int t=0;
+//    for(auto & f : mesh.triangles){
+//        std::cout<<"\rApplying global gradient to faces %"<<(100*((float)t/mesh.triangles.size()))<<"     "<<std::flush;
+//        Triangle & face = f.second;
+//        if(faceViewAverages[f.first].size() > 6){
+//            continue;
+//        }
+//        if(face.viewId != 0){
+//            glm::vec4 colorGlobal[3];
+//            colorGlobal[0] = faceAverages[f.first] - faceViewAverages[f.first][face.viewId];
+//            colorGlobal[1] = faceAverages[f.first] - faceViewAverages[f.first][face.viewId];
+//            colorGlobal[2] = faceAverages[f.first] - faceViewAverages[f.first][face.viewId];
+//            worker.applyGradient(face,textureCopy,texture,colorGlobal,levelingTexture);
+//        }
+//        t++;
+//    }
+//    globalCopy = texture;
+    //seam
     int t=0;
     for(auto & f : mesh.triangles){
-        std::cout<<"\rApplying gradient to faces %"<<(100*((float)t/mesh.triangles.size()))<<"     "<<std::flush;
+        std::cout<<"\rApplying local gradient to faces %"<<(100*((float)t/mesh.triangles.size()))<<"     "<<std::flush;
         Triangle & face = f.second;
         if(face.viewId != 0){
             glm::vec4 color[3];
             for(int t=0 ; t< 3; t++){
                 color[t] = colorAverages[face.verticies[t]] - colorSamples[face.verticies[t]][face.viewId];
             }
+            //use global here if reimplementing
             worker.applyGradient(face,textureCopy,texture,color,levelingTexture);
         }
         t++;
     }
+    
+//    globalCopy.toPPM(arguments.gloabalAdjustementPath);
     std::cout<<"\rApplying gradient to faces %100      \n";
 }
 
@@ -434,7 +476,11 @@ void TextureExtractor::getSampleList(Bitmap & texture, Bitmap & mask){
             Vertex vertex = mesh.verticies.at(f.second.verticies[t]);
             vertex = cameraModelTransform * vertex;
             vertex = transformation.doPerspectiveDevide(screenSpaceTransform * vertex);
+//            if(faceViewAverages[f.first].size() <= 6){
+//                colorSamples[vertex.id][f.second.viewId] = v.sourceImage->at(vertex.x(), vertex.y()) + (faceAverages[f.first] - faceViewAverages[f.first][f.second.viewId]);
+//            }else{
             colorSamples[vertex.id][f.second.viewId] = v.sourceImage->at(vertex.x(), vertex.y());
+//            }
         }
     }
     //getting averages

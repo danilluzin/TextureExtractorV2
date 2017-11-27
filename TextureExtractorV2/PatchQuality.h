@@ -15,6 +15,7 @@ struct PatchQuality {
     double value=0;
     double hue=0;
     double saturation=0;
+    glm::vec4 colorSum;
     float gradientMagnitudeSum=0;
     void calcQuality(){
         if(sampleCount>0)

@@ -39,6 +39,7 @@ class DataCostsExtractor{
     
     Bitmap sobelImage;
     Bitmap HSVImage;
+    Bitmap * sourceImage;
     
 public:
     DataCostsExtractor(const Mesh & mesh, View & view);
