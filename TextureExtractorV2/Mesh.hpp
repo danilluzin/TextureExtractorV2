@@ -93,6 +93,11 @@ public:
     std::map<uint,Node> nodes;
 };
 
+struct Object{
+    std::string name;
+    std::vector<uint> triangles;
+};
+
 class Mesh {
 public:
     bool initialize(const std::string & filename);
@@ -106,6 +111,8 @@ public:
     std::map<uint,Triangle> triangles;
     
     std::map<uint,std::set<uint>> facesVertexBelongsTo;
+    
+    std::vector<Object> objects;
     
     bool isValidFaceId(int id);
     
@@ -134,9 +141,10 @@ private:
 
     void parseTriangle(std::vector<std::string> one,
                        std::vector<std::string> two,
-                       std::vector<std::string> three);
+                       std::vector<std::string> three,
+                       Object & object);
 
-    void parsePlane(std::vector<std::string>);
+    void parsePlane(std::vector<std::string> tokens, Object & object);
     
     std::vector<std::string> objectNames;
 };

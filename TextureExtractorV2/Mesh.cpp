@@ -139,7 +139,8 @@ bool Mesh::loadFromFile(const std::string &filename){
         std::cerr << "Unable to load mesh: " << filename << std::endl;
         return false;
     }
-    
+    bool canAdd = false;
+    Object newObject;
     while(file.good()){
         getline(file, line);
         
@@ -173,19 +174,28 @@ bool Mesh::loadFromFile(const std::string &filename){
                     std::vector<std::string> one = splitString(tokens[1], '/');
                     std::vector<std::string> two = splitString(tokens[2], '/');
                     std::vector<std::string> three = splitString(tokens[3], '/');
-                    parseTriangle(one,two,three);
+                    parseTriangle(one,two,three,newObject);
                 }
                 if(tokens.size()==5)
-                    parsePlane(tokens);
+                    parsePlane(tokens,newObject);
                 break;
             }
             case 'o':{
-                objectNames.push_back(line.substr(2,line.size()));
+                if(!canAdd){
+                    objectNames.push_back(line.substr(2,line.size()));
+                    newObject.name = line.substr(2,line.size());
+                    canAdd = true;
+                }else{
+                    objects.push_back(newObject);
+                    newObject = Object();
+                    objectNames.push_back(line.substr(2,line.size()));
+                    newObject.name = line.substr(2,line.size());
+                }
             }
             default: break;
         };
     }
-    
+    objects.push_back(newObject);
     file.close();
     return true;
 }
@@ -213,7 +223,8 @@ void Mesh::parseNormal(std::vector<std::string> tokens){
 
 void Mesh::parseTriangle (std::vector<std::string> one,
                           std::vector<std::string> two,
-                          std::vector<std::string> three){
+                          std::vector<std::string> three,
+                          Object & object){
 
     uint vert [3];
     vert[0] = parseInt(one[0]);
@@ -235,6 +246,7 @@ void Mesh::parseTriangle (std::vector<std::string> one,
     triangle.normalVecs[ vert[2] ] = parseInt(three[2]);
 
     uint triangleId = addTriangle(triangle);
+    object.triangles.push_back(triangleId);
     
     facesVertexBelongsTo[vert[0]].insert(triangleId);
     facesVertexBelongsTo[vert[1]].insert(triangleId);
@@ -242,14 +254,15 @@ void Mesh::parseTriangle (std::vector<std::string> one,
 }
 
 
-void Mesh::parsePlane(std::vector<std::string> tokens){
+void Mesh::parsePlane(std::vector<std::string> tokens,
+                      Object & object){
     std::vector<std::string> one = splitString(tokens[1], '/');
     std::vector<std::string> two = splitString(tokens[2], '/');
     std::vector<std::string> three = splitString(tokens[3], '/');
     std::vector<std::string> four = splitString(tokens[4], '/');
 
-    parseTriangle(one, two, three);
-    parseTriangle(one, three, four);
+    parseTriangle(one, two, three,object);
+    parseTriangle(one, three, four,object);
 }
 
 

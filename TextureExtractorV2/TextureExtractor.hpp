@@ -23,8 +23,6 @@
 
 class TextureExtractor {
     
-    Bitmap texture;
-    
     Bitmap mask;
     
     Mesh mesh;
@@ -61,6 +59,8 @@ public:
     
     bool generateTexture();
     
+    bool generateTextureForObject(Object & object);
+    
     uint numberOfViews(){return (uint)views.size();}
     
     void setArguments(const Arguments & arguments){this->arguments = arguments;}
@@ -85,11 +85,11 @@ public:
 
 private:
     
-    void extractAllFaces(Bitmap & labelTexture);
+    void extractAllFaces(Bitmap & labelTexture,Bitmap & texture,Object & object);
     
-    void extendAllFaces();
+    void extendAllFaces(Bitmap & texture,Object & object);
     
-    void applyGradientAllFaces(Bitmap & textureCopy, Bitmap & levelingTexture);
+    void applyGradientAllFaces(Bitmap & textureCopy, Bitmap & levelingTexture, Bitmap & texture,Object & object);
     
     bool mapMapGetLabeling();
     

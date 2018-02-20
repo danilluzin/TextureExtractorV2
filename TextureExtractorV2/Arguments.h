@@ -47,9 +47,9 @@ struct Arguments{
             return false;
         }
         
-        newTexturePath = reader.Get("basics", "newTexturePath", "UNKNOWN");
+        newTextureFolderPath = reader.Get("basics", "newTextureFolderPath", "UNKNOWN");
         if(photoFolderPath == "UNKNOWN"){
-            printError("ERROR: newTexturePath is required in the .ini file\n");
+            printError("ERROR: newTextureFolderPath is required in the .ini file\n");
             return false;
         }
         textureHeight = (int)reader.GetInteger("basics", "textureHeight", -1);
@@ -149,7 +149,7 @@ struct Arguments{
     std::string objFilePath ;
     std::string cameraListFilePath;
     std::string cameraInfoPath;
-    std::string newTexturePath;
+    std::string newTextureFolderPath;
     std::string photoFolderPath;
     std::string newLabelingFilePath;
     std::string labelingFilePath;

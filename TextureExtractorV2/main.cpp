@@ -106,7 +106,7 @@ void _renderViewsWithTexture(TextureExtractor & extractor){
     {
         Bitmap depth;
         Bitmap bitmap;
-        Bitmap texture(arguments.newTexturePath);
+        Bitmap texture(arguments.newTextureFolderPath);
         Bitmap labelTexture(arguments.viewAssignmentFilePath);
 //        std::vector<uint> photoSet={};
         //            std::vector<uint> photoSet={28,27};

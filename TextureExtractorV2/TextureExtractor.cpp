@@ -337,12 +337,13 @@ bool TextureExtractor::selectViews(){
 }
 
 
-void TextureExtractor::extractAllFaces(Bitmap & labelTexture){
+void TextureExtractor::extractAllFaces(Bitmap & labelTexture, Bitmap & texture,Object & object){
     glm::vec4 defaultColor (0.37, 0.61, 0.62, 1);
     uint t = 0;
-    for(auto & f : mesh.triangles){
-        std::cout<<"\rGeting texture for faces %"<<(100*((float)t/mesh.triangles.size()))<<"     "<<std::flush;
-        Triangle & face = f.second;
+    //TODO:here pick triangles
+    for(auto & f : object.triangles){
+        std::cout<<"\rGeting texture for faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
+        Triangle & face = mesh.triangles[f];
         if(face.viewId != 0){
             worker.extract(face, texture, views[face.viewId]);
             if(arguments.genLebelingTexture){
@@ -357,11 +358,11 @@ void TextureExtractor::extractAllFaces(Bitmap & labelTexture){
 }
 
 
-void TextureExtractor::extendAllFaces(){
+void TextureExtractor::extendAllFaces(Bitmap & texture,Object & object){
     int t=0;
-    for(auto & f : mesh.triangles){
-        std::cout<<"\rExpanding faces %"<<(100*((float)t/mesh.triangles.size()))<<"     "<<std::flush;
-        Triangle & face = f.second;
+    for(auto & f : object.triangles){
+        std::cout<<"\rExpanding faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
+        Triangle & face = mesh.triangles[f];
         if(face.viewId != 0){
             worker.extend(face, texture);
         }
@@ -371,21 +372,21 @@ void TextureExtractor::extendAllFaces(){
 }
 
 
-void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & levelingTexture){
+void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & levelingTexture,Bitmap & texture,Object & object){
 //    Bitmap globalCopy;
 //    //global
 //    int t=0;
-//    for(auto & f : mesh.triangles){
-//        std::cout<<"\rApplying global gradient to faces %"<<(100*((float)t/mesh.triangles.size()))<<"     "<<std::flush;
-//        Triangle & face = f.second;
-//        if(faceViewAverages[f.first].size() > 6){
+//    for(auto & f : object.triangles){
+//        std::cout<<"\rApplying global gradient to faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
+//        Triangle & face = mesh.triangles[f];
+//        if(faceViewAverages[f].size() > 6){
 //            continue;
 //        }
 //        if(face.viewId != 0){
 //            glm::vec4 colorGlobal[3];
-//            colorGlobal[0] = faceAverages[f.first] - faceViewAverages[f.first][face.viewId];
-//            colorGlobal[1] = faceAverages[f.first] - faceViewAverages[f.first][face.viewId];
-//            colorGlobal[2] = faceAverages[f.first] - faceViewAverages[f.first][face.viewId];
+//            colorGlobal[0] = faceAverages[f] - faceViewAverages[f][face.viewId];
+//            colorGlobal[1] = faceAverages[f] - faceViewAverages[f][face.viewId];
+//            colorGlobal[2] = faceAverages[f] - faceViewAverages[f][face.viewId];
 //            worker.applyGradient(face,textureCopy,texture,colorGlobal,levelingTexture);
 //        }
 //        t++;
@@ -393,9 +394,9 @@ void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & leve
 //    globalCopy = texture;
     //seam
     int t=0;
-    for(auto & f : mesh.triangles){
-        std::cout<<"\rApplying local gradient to faces %"<<(100*((float)t/mesh.triangles.size()))<<"     "<<std::flush;
-        Triangle & face = f.second;
+    for(auto & f : object.triangles){
+        std::cout<<"\rApplying local gradient to faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
+        Triangle & face = mesh.triangles[f];
         if(face.viewId != 0){
             glm::vec4 color[3];
             for(int t=0 ; t< 3; t++){
@@ -411,9 +412,16 @@ void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & leve
     std::cout<<"\rApplying gradient to faces %100      \n";
 }
 
-
 bool TextureExtractor::generateTexture(){
-    texture = Bitmap(arguments.textureWidth, arguments.textureHeight);
+    for(auto & o : mesh.objects){
+        print("Generating texture for object :"+o.name+"\n");
+        generateTextureForObject(o);
+    }
+    return true;
+}
+
+bool TextureExtractor::generateTextureForObject(Object & object){
+    Bitmap texture = Bitmap(arguments.textureWidth, arguments.textureHeight);
     mask = Bitmap(arguments.textureWidth, arguments.textureHeight);
     Bitmap labelTexture(arguments.textureWidth, arguments.textureHeight);
     Bitmap levelingTexture(arguments.textureWidth, arguments.textureHeight);
@@ -424,35 +432,36 @@ bool TextureExtractor::generateTexture(){
     levelingTexture.clear(glm::vec4(0.8, 0.8, 0.8, 1));
     labelTexture.clear(glm::vec4(0.8, 0.8, 0.8, 1));
     
-    extractAllFaces(labelTexture);
+    extractAllFaces(labelTexture,texture,object);
  
     std::cout<<"PostProcessing:\n";
     getSampleList(texture,mask);
     Bitmap textureCopy;
     textureCopy = texture;
-    applyGradientAllFaces(textureCopy,levelingTexture);
+    applyGradientAllFaces(textureCopy,levelingTexture,texture,object);
     
-    extendAllFaces();
+    extendAllFaces(texture,object);
     
     
     if(arguments.genLevelingTexture){
         std::cout<<"Generating leveling texture\n";
-        levelingTexture.toPPM(arguments.levelingTextureFilePath);
+        levelingTexture.toPPM(arguments.newTextureFolderPath+"/"+object.name+"_leveling.ppm");
     }
     if(arguments.genMaskTexture){
         std::cout<<"Generating mask texture\n";
-        levelingTexture.toPPM(arguments.maskTextureFilePath);
+        mask.toPPM(arguments.newTextureFolderPath+"/"+object.name+"_mask.ppm");
     }
     if(arguments.genRawTexture){
         std::cout<<"Generating raw texture\n";
-        textureCopy.toPPM(arguments.rawTextureFilePath);
+        textureCopy.toPPM(arguments.newTextureFolderPath+"/"+object.name+"_raw.ppm");
     }
     if(arguments.genLebelingTexture){
         std::cout<<"Generating lable assignment texture\n";
-        labelTexture.toPPM(arguments.viewAssignmentFilePath);
+        labelTexture.toPPM(arguments.newTextureFolderPath+"/"+object.name+"_labeling.ppm");
     }
     std::cout<<"Writing texture to file\n";
-    texture.toPPM(arguments.newTexturePath);
+    
+    texture.toPPM(arguments.newTextureFolderPath+"/"+object.name+"_texture.ppm");
     return true;
 }
 
@@ -783,6 +792,7 @@ void TextureExtractor::renderView(Bitmap & bitmap,const Bitmap & texture,uint vi
     bitmap.clear(glm::vec4(0.4,0.4,0.4,1));
     Rasterizer rasterizer(bitmap.width,bitmap.height);
     rasterizer.bindMesh(mesh);
+    //here use new texturel
     rasterizer.setTexture(texture);
 
     Transformation transform;
