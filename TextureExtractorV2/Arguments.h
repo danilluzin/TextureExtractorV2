@@ -49,23 +49,44 @@ struct Arguments{
 //                projectName = "pig2";
         
         
+        ///THISONE VVVVVVVVVVVVVV before i came back
+//        objFilePath = "resources/slany/slany_pieremoved.obj";
+//        cameraListFilePath = "resources/slany/list3.txt";
+//        cameraInfoPath = "resources/slany/bundle.rd.out";
+//        newTexturePath = "resources/slany/derived/out_ext2_texture_sv13.ppm";
+//        photoFolderPath = "resources/slany";
+//        newLabelingFilePath = "resources/slany/derived/new_labeling.txt";
+//        labelingFilePath = "resources/slany/derived/new_labeling.txt";
+//        dataCostsFilePath = "resources/slany/derived/dataCosts.txt";
+//        newDataCostsFilePath = "resources/slany/derived/out_dataCosts.txt";
+//        viewAssignmentFilePath = "resources/slany/derived/view_labeling.ppm";
+//        levelingTextureFilePath = "resources/slany/derived/leveling.ppm";
+//        maskTextureFilePath = "resources/slany/derived/mask.ppm";
+//        rawTextureFilePath = "resources/slany/derived/raw.ppm";
+//        resultRenderFolder = "resources/slany/extract/res9/";
+//        gloabalAdjustementPath = "resources/slany/derived/gloabalAdjustement.ppm";
+//        projectName = "slany";
+        
+        
+        
         
         objFilePath = "resources/slany/slany_pieremoved.obj";
-        cameraListFilePath = "resources/slany/list3.txt";
+        cameraListFilePath = "resources/slany/list3small.txt";
         cameraInfoPath = "resources/slany/bundle.rd.out";
-        newTexturePath = "resources/slany/derived/out_ext2_texture_sv13.ppm";
+        newTexturePath = "resources/slany/derivednew/out_ext2_texture_sv13.ppm";
         photoFolderPath = "resources/slany";
-        newLabelingFilePath = "resources/slany/derived/new_labeling.txt";
-        labelingFilePath = "resources/slany/derived/new_labeling.txt";
-        dataCostsFilePath = "resources/slany/derived/dataCosts.txt";
-        newDataCostsFilePath = "resources/slany/derived/out_dataCosts.txt";
-        viewAssignmentFilePath = "resources/slany/derived/view_labeling.ppm";
-        levelingTextureFilePath = "resources/slany/derived/leveling.ppm";
-        maskTextureFilePath = "resources/slany/derived/mask.ppm";
-        rawTextureFilePath = "resources/slany/derived/raw.ppm";
-        resultRenderFolder = "resources/slany/extract/res9/";
-        gloabalAdjustementPath = "resources/slany/derived/gloabalAdjustement.ppm";
+        newLabelingFilePath = "resources/slany/derivednew/new_labeling.txt";
+        labelingFilePath = "resources/slany/derivednew/new_labeling.txt";
+        dataCostsFilePath = "resources/slany/derivednew/dataCosts.txt";
+        newDataCostsFilePath = "resources/slany/derivednew/out_dataCosts.txt";
+        viewAssignmentFilePath = "resources/slany/derivednew/view_labeling.ppm";
+        levelingTextureFilePath = "resources/slany/derivednew/leveling.ppm";
+        maskTextureFilePath = "resources/slany/derivednew/mask.ppm";
+        rawTextureFilePath = "resources/slany/derivednew/raw.ppm";
+        resultRenderFolder = "resources/slany/derivednew/res";
+        gloabalAdjustementPath = "resources/slany/derivednew/gloabalAdjustement.ppm";
         projectName = "slany";
+        
         
 //        objFilePath = "resources/slany2/slany_pieremoved.obj";
 //        cameraListFilePath = "resources/slany2/list3.txt";
@@ -79,7 +100,7 @@ struct Arguments{
         
         textureWidth = 4000;
         textureHeight = 4000;
-        getLabelingFromFile = true;
+        getLabelingFromFile = false;
         writeLabelingToFile = true;
         
         getDataCostsFromFile = false;
@@ -88,7 +109,7 @@ struct Arguments{
         genLevelingTexture = true;
         genMaskTexture = true;
         genLebelingTexture = true;
-        rasterLabelAssignment = false;
+        rasterLabelAssignment = true;
     }
     
     int textureWidth;
