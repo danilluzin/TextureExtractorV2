@@ -157,7 +157,7 @@ bool TextureExtractor::calculateDataCosts(){
         averageColor[3] /= colors.size();
         
         double meanHue = hue[floor(hue.size()/2)];
-        double meanSaturation = saturation[floor(saturation.size()/2)];
+//        double meanSaturation = saturation[floor(saturation.size()/2)];
         double meanValue = value[floor(value.size()/2)];
         
         faceAverages[f.first] = averageColor;

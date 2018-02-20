@@ -46,6 +46,13 @@ inline void print(const std::string & text){
     std::cout << text;
 }
 
+inline void printError(const std::string & text){
+    std::cout << text;
+}
+
+inline void printWarning(const std::string & text){
+    std::cout << text;
+}
 
 inline void printBold(const std::string & text){
 //    std::cout << bold_on << text << bold_off;

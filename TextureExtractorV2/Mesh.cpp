@@ -179,6 +179,9 @@ bool Mesh::loadFromFile(const std::string &filename){
                     parsePlane(tokens);
                 break;
             }
+            case 'o':{
+                objectNames.push_back(line.substr(2,line.size()));
+            }
             default: break;
         };
     }

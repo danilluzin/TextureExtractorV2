@@ -32,13 +32,19 @@ bool loadLabelsFromFile(TextureExtractor & extractor);
 
 Arguments arguments;
 
-bool justRender = false;
-
 int main(int argc, const char * argv[]) {
     TextureExtractor extractor;
     Timer mainTimer;
     mainTimer.start();
-
+    //TODO: add ini file reading proper
+    bool configSuccessful;
+//    configSuccessful = arguments.initializeConfig("resources/test.ini");
+    configSuccessful = arguments.initializeConfig("resources/slanyCut2.ini");
+    if(!configSuccessful){
+        printError("Error occured when paring the config. Stopping\n");
+        return -1;
+    }
+    
     extractor.setArguments(arguments);
 
 
@@ -57,7 +63,7 @@ int main(int argc, const char * argv[]) {
         return -1;
     }
     
-    if(justRender){
+    if(arguments._justRender){
         
         _renderViewsWithTexture(extractor);
         return 1;
@@ -91,7 +97,8 @@ int main(int argc, const char * argv[]) {
     
     printBold(mainTimer.stopGetResults( "\nTottal run time " ));
     
-    _renderViewsWithTexture(extractor);
+    if(arguments._renderInTheEnd)
+        _renderViewsWithTexture(extractor);
 
 }
 
@@ -115,7 +122,7 @@ void _renderViewsWithTexture(TextureExtractor & extractor){
             bitmap.toPPM(arguments.resultRenderFolder+"/"+arguments.projectName+"_" + std::to_string(photoSet[t]) + ".ppm");
             if(arguments.rasterLabelAssignment){
                 extractor.renderView(bitmap,labelTexture, photoSet[t]);
-                bitmap.toPPM("resources/slany/extract/res8/slany_label_" + std::to_string(photoSet[t]) + ".ppm");
+                bitmap.toPPM(arguments.rasterLabelAssignmentFolder+"/"+arguments.projectName+"_lable_" + std::to_string(photoSet[t]) + ".ppm");
             }
         }
         std::cout<<"\rRasterizing photos %100      \n";

@@ -138,6 +138,7 @@ private:
 
     void parsePlane(std::vector<std::string>);
     
+    std::vector<std::string> objectNames;
 };
 
 
