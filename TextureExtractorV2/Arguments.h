@@ -13,6 +13,9 @@
 #include "INIReader.h"
 #include "Utils.h"
 
+//TODO: message by enum
+
+
 struct Arguments{
     
     bool initializeConfig(std::string filename){

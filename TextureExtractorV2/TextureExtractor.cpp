@@ -71,6 +71,7 @@ bool TextureExtractor::prepareViews(){
 
 bool TextureExtractor::calculateDataCosts(){
     uint progressCounter=0;
+    //FIXME: Thread count in arguments
     int threadCount = 5;
     std::mutex printMtx;
     uint viewsPerOneManager = (uint)views.size()/threadCount;
@@ -340,7 +341,6 @@ bool TextureExtractor::selectViews(){
 void TextureExtractor::extractAllFaces(Bitmap & labelTexture, Bitmap & texture,Object & object){
     glm::vec4 defaultColor (0.37, 0.61, 0.62, 1);
     uint t = 0;
-    //TODO:here pick triangles
     for(auto & f : object.triangles){
         std::cout<<"\rGeting texture for faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
         Triangle & face = mesh.triangles[f];

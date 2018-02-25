@@ -41,7 +41,7 @@ int main(int argc, const char * argv[]) {
 //    configSuccessful = arguments.initializeConfig("resources/test.ini");
     configSuccessful = arguments.initializeConfig("resources/slanyCut2.ini");
     if(!configSuccessful){
-        printError("Error occured when paring the config. Stopping\n");
+        printError("Error occured when parsing the config. Stopping\n");
         return -1;
     }
     
