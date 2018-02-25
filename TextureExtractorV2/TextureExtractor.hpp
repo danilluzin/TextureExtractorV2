@@ -16,7 +16,6 @@
 #include "TextureEdge.hpp"
 #include "View.hpp"
 #include "Transformation.hpp"
-#include "Display.hpp"
 #include "Arguments.h"
 #include "PatchQuality.h"
 #include "ExtractionWorker.hpp"
@@ -74,14 +73,10 @@ public:
     void checkCameraInfo();
 
     void checkCameraInfo(uint viewId);
-
-    bool _old_test_render();
     
     void renderView(Bitmap & bitmap,const Bitmap & texture,uint viewId);
     
     void renderViewAndDepth(Bitmap & bitmap,Bitmap & bitmapDepth,const Bitmap & texture,uint viewId);
-    
-    void windowRender( uint view ) ;
 
 private:
     

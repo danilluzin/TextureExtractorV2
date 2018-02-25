@@ -24,7 +24,6 @@
 		F48D2E291FB229E200145D8D /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48D2E281FB229E200145D8D /* OpenGL.framework */; };
 		F48D2E2B1FB22A2600145D8D /* libGLEW.2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F48D2E2A1FB22A2600145D8D /* libGLEW.2.0.0.dylib */; };
 		F48D2E2D1FB22A3800145D8D /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F48D2E2C1FB22A3700145D8D /* libSDL2-2.0.0.dylib */; };
-		F48D2E301FB22A5F00145D8D /* Display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F48D2E2E1FB22A5E00145D8D /* Display.cpp */; };
 		F48DFA201FC9A9210055A5CD /* ExtractionWorker_extract.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F48DFA1F1FC9A9210055A5CD /* ExtractionWorker_extract.cpp */; };
 		F48DFA221FC9AC150055A5CD /* ExtractionWorker_fillTextureTriangleColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F48DFA211FC9AC150055A5CD /* ExtractionWorker_fillTextureTriangleColor.cpp */; };
 		F48DFA241FC9B0AA0055A5CD /* ExtractionWorker_extend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F48DFA231FC9B0AA0055A5CD /* ExtractionWorker_extend.cpp */; };
@@ -84,8 +83,6 @@
 		F48D2E281FB229E200145D8D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		F48D2E2A1FB22A2600145D8D /* libGLEW.2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.0.0.dylib; path = ../../../../../../usr/local/Cellar/glew/2.0.0/lib/libGLEW.2.0.0.dylib; sourceTree = "<group>"; };
 		F48D2E2C1FB22A3700145D8D /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../../usr/local/Cellar/sdl2/2.0.6/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
-		F48D2E2E1FB22A5E00145D8D /* Display.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Display.cpp; sourceTree = "<group>"; };
-		F48D2E2F1FB22A5F00145D8D /* Display.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Display.hpp; sourceTree = "<group>"; };
 		F48DFA1F1FC9A9210055A5CD /* ExtractionWorker_extract.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ExtractionWorker_extract.cpp; sourceTree = "<group>"; };
 		F48DFA211FC9AC150055A5CD /* ExtractionWorker_fillTextureTriangleColor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ExtractionWorker_fillTextureTriangleColor.cpp; sourceTree = "<group>"; };
 		F48DFA231FC9B0AA0055A5CD /* ExtractionWorker_extend.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ExtractionWorker_extend.cpp; sourceTree = "<group>"; };
@@ -167,18 +164,7 @@
 				F40DE3E41FAF588000EC32B4 /* Bitmap.hpp */,
 				F40DE3E51FAF588000EC32B4 /* Bitmap.cpp */,
 				F4890595203C368400C46AE9 /* INIReader.h */,
-				F4CBCC121FC20992008C99F4 /* mapmap */,
-				F40DE3FE1FAF6E0600EC32B4 /* old source code */,
-			);
-			path = TextureExtractorV2;
-			sourceTree = "<group>";
-		};
-		F40DE3FE1FAF6E0600EC32B4 /* old source code */ = {
-			isa = PBXGroup;
-			children = (
 				F40DE3DC1FAF587E00EC32B4 /* RenderContext.h */,
-				F48D2E2F1FB22A5F00145D8D /* Display.hpp */,
-				F48D2E2E1FB22A5E00145D8D /* Display.cpp */,
 				F40DE3D21FAF587D00EC32B4 /* Edge.hpp */,
 				F40DE3D31FAF587D00EC32B4 /* Edge.cpp */,
 				F40DE3E21FAF587F00EC32B4 /* Gradient.hpp */,
@@ -188,8 +174,9 @@
 				F40DE3D71FAF587E00EC32B4 /* TextureGradient.hpp */,
 				F40DE3E01FAF587F00EC32B4 /* TextureGradient.cpp */,
 				F40DE3FC1FAF58D000EC32B4 /* stb */,
+				F4CBCC121FC20992008C99F4 /* mapmap */,
 			);
-			name = "old source code";
+			path = TextureExtractorV2;
 			sourceTree = "<group>";
 		};
 		F48D2E271FB229E100145D8D /* Frameworks */ = {
@@ -293,7 +280,6 @@
 				F45B26CC1FC471A1007E9874 /* DataCostExtractionManager.cpp in Sources */,
 				F48DFA241FC9B0AA0055A5CD /* ExtractionWorker_extend.cpp in Sources */,
 				F48DFA261FC9B5FF0055A5CD /* ExtractionWorker_applyGradient.cpp in Sources */,
-				F48D2E301FB22A5F00145D8D /* Display.cpp in Sources */,
 				F40DE3EA1FAF588000EC32B4 /* TextureEdge.cpp in Sources */,
 				F40DE3EF1FAF588000EC32B4 /* Bitmap.cpp in Sources */,
 				F40DE3EC1FAF588000EC32B4 /* TextureExtractor.cpp in Sources */,
