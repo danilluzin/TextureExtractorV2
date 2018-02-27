@@ -16,6 +16,8 @@
 
 bool prepareMesh(Mesh & mesh,const std::string & objFilePath);
 
+bool prepareConfig(int argc, const char * argv[]);
+
 bool prepareViews( TextureExtractor & extractor);
 
 bool performViewSelection(TextureExtractor & extractor);
@@ -33,17 +35,28 @@ bool loadLabelsFromFile(TextureExtractor & extractor);
 Arguments arguments;
 
 int main(int argc, const char * argv[]) {
+    
     TextureExtractor extractor;
     Timer mainTimer;
     mainTimer.start();
-    //TODO: add ini file reading proper
+   
+    if(argc >= 2){
+        std::string flag = std::string(argv[1]);
+        //Check for flags
+        if(flag == "-genIni\n"){
+            //TODO:proper generation
+            print("generating ini...");
+            return 1;
+        }
+    }
+    
     bool configSuccessful;
-//    configSuccessful = arguments.initializeConfig("resources/test.ini");
-    configSuccessful = arguments.initializeConfig("resources/slanyCut2.ini");
+    configSuccessful = prepareConfig(argc, argv);
     if(!configSuccessful){
         printError("Error occured when parsing the config. Stopping\n");
         return -1;
     }
+    
     
     extractor.setArguments(arguments);
 
@@ -85,8 +98,7 @@ int main(int argc, const char * argv[]) {
             return -1;
         }
     }
-    
-   
+
     
     bool textureOk;
     textureOk = generateTexture(extractor);
@@ -129,6 +141,16 @@ void _renderViewsWithTexture(TextureExtractor & extractor){
     }
 }
 
+
+bool prepareConfig(int argc, const char * argv[]){
+    if(argc < 2){
+        print("No arguments provided\n"
+              "Usage:\n"+std::string(argv[0])+" <ini config file path>\n"
+              "To generate examaple ini file:\n"+std::string(argv[0])+" -genIni\n" );
+        return false;
+    }
+    return arguments.initializeConfig(argv[1]);
+}
 
 bool calcDataCostsAndGetLebeling(TextureExtractor & extractor){
     

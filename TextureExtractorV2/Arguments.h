@@ -22,10 +22,10 @@ struct Arguments{
         INIReader reader(filename);
         
         if (reader.ParseError() < 0) {
-            printError("ERROR: Can't load 'resources/test.ini'\n");
+            printError("ERROR: Can't load config file: "+filename+"\n");
             return false;
         }
-        print("Config loaded from 'test.ini' parsing...\n");
+        print("Config loaded from " + filename +". Parsing...\n");
         //basics
         objFilePath = reader.Get("basics", "objFilePath", "UNKNOWN");
         if(objFilePath == "UNKNOWN"){
@@ -103,15 +103,8 @@ struct Arguments{
             }
         }
         //debug
-        projectName = reader.Get("debug", "projectName", "projectName");
-        rasterLabelAssignment = reader.GetBoolean("debug", "rasterLabelAssignment", false);
-        if(rasterLabelAssignment == true){
-            rasterLabelAssignmentFolder = reader.Get("optional", "rasterLabelAssignmentFolder", "UNKNOWN");
-            if(rasterLabelAssignmentFolder == "UNKNOWN"){
-                printError("ERROR: rasterLabelAssignment was set to TRUE, but the rasterLabelAssignmentFolder was not provided the .ini file\n");
-                return false;
-            }
-        }
+        projectName = reader.Get("basic", "projectName", "projectName");
+        addProjectNameToFiles = reader.GetBoolean("basic", "addProjectNameToFiles", false);
         
         genRawTexture = reader.GetBoolean("debug", "genRawTexture", false);
         if(genRawTexture == true){
@@ -175,6 +168,8 @@ struct Arguments{
     bool genLevelingTexture;
     bool genMaskTexture;
     bool rasterLabelAssignment;
+    bool addProjectNameToFiles;
+
     bool genRawTexture;
     bool _justRender;
     bool _renderInTheEnd;

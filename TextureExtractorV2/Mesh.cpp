@@ -141,6 +141,7 @@ bool Mesh::loadFromFile(const std::string &filename){
     }
     bool canAdd = false;
     Object newObject;
+    newObject.name = "default";
     while(file.good()){
         getline(file, line);
         
