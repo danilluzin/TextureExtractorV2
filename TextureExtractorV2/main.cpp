@@ -32,8 +32,10 @@ bool calcDataCostsAndGetLebeling(TextureExtractor & extractor);
 
 bool loadLabelsFromFile(TextureExtractor & extractor);
 
+Arguments arguments;
+
 int main(int argc, const char * argv[]) {
-    
+
     TextureExtractor extractor;
     Timer mainTimer;
     mainTimer.start();
@@ -122,17 +124,17 @@ void _renderViewsWithTexture(TextureExtractor & extractor){
         //            std::vector<uint> photoSet={28,27};
         
 //        extractor.renderViewAndDepth(bitmap, depth, texture, 43);
-//        depth.toPPM("resources/slany/extract/res6/slany_d_43.ppm");
+//        depth.save("resources/slany/extract/res6/slany_d_43.ppm");
         std::vector<uint> photoSet(extractor.numberOfViews());
 //        std::vector<uint> photoSet={1,2,3,44,5,46,7,8,9,30,31,12,13,22,51,16,50};
         std::iota(photoSet.begin(),photoSet.end(),1);
         for(int t=0;t<photoSet.size();t++){
             std::cout<<"\rRasterizing photos %"<<(100*((float)t/photoSet.size()))<<"     "<<std::flush;
             extractor.renderView(bitmap,texture, photoSet[t]);
-            bitmap.toPPM(arguments.resultRenderFolder+"/"+arguments.projectName+"_" + std::to_string(photoSet[t]) + ".ppm");
+            bitmap.save(arguments.resultRenderFolder+"/"+arguments.projectName+"_" + std::to_string(photoSet[t]) + ".ppm");
             if(arguments.rasterLabelAssignment){
                 extractor.renderView(bitmap,labelTexture, photoSet[t]);
-                bitmap.toPPM(arguments.rasterLabelAssignmentFolder+"/"+arguments.projectName+"_lable_" + std::to_string(photoSet[t]) + ".ppm");
+                bitmap.save(arguments.rasterLabelAssignmentFolder+"/"+arguments.projectName+"_lable_" + std::to_string(photoSet[t]) + ".ppm");
             }
         }
         std::cout<<"\rRasterizing photos %100      \n";
@@ -259,12 +261,4 @@ bool calculateDataCosts(TextureExtractor & extractor){
     std::cout << timer.stopGetResults( "\tData Costs Calculated.: " );
     return true;
 }
-
-
-
-//DEBUG
-
-
-
-
 

@@ -73,7 +73,7 @@ public:
         vec = image.at<cv::Vec3b>(y,x);
     }
     
-    void toPPM(std::string destFilename);
+    void save(std::string destFilename);
     
     void clear(glm::vec4 color);
     

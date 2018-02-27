@@ -18,7 +18,7 @@ bool TextureExtractor::mapMapGetLabeling(){
     using unary_t = mapmap::UnaryTable<cost_t, simd_w>;
     using pairwise_t = mapmap::PairwisePotts<cost_t, simd_w>;
     
-    /* Construct graph */
+    
     uint numNodes = (uint)mesh.adjacencyGraph.nodes.size();
     mapmap::Graph<cost_t> mgraph(mesh.adjacencyGraph.nodes.size());
     
@@ -31,7 +31,6 @@ bool TextureExtractor::mapMapGetLabeling(){
             if (dataCosts[af].empty())
                 continue;
             
-            /* Uni directional */
             if (n.first < af) {
                 mgraph.add_edge(n.first - 1, af - 1, 1.0f);
             }
@@ -95,10 +94,10 @@ bool TextureExtractor::mapMapGetLabeling(){
     std::cout << "\tOptimizing:\n\t\tTime[s]\tEnergy" << std::endl;
     solver.optimize(solution);
     
-    /* Label 0 is undefined. */
+   
     std::size_t num_labels = views.size() + 1;
     std::size_t undefined = 0;
-    /* Extract resulting labeling from solver. */
+   
     for (std::size_t i = 0; i < numNodes; ++i) {
         int label = label_set.label_from_offset(i, solution[i]);
         if (label < 0 || num_labels <= static_cast<std::size_t>(label)) {
@@ -107,7 +106,6 @@ bool TextureExtractor::mapMapGetLabeling(){
         if (label == 0) undefined += 1;
         mesh.triangles[i + 1].viewId = (uint)static_cast<std::size_t>(label);
     }
-    std::cout << '\t' << undefined << " faces have not been seen" << std::endl;
     
     return true;
 }

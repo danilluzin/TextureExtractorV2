@@ -104,11 +104,24 @@ struct Arguments{
         
         verbose = reader.GetBoolean("basic", "verbose", true);
 
+        threadCount = (int)reader.GetInteger("basics", "threadCount", 1);
+        if(threadCount < 1){
+            printWarning("WARNING: Invalid number of working threads(threadCount). Defaulting to 1\n");
+            threadCount = 1;
+        }
+        
+        
+        imageFormat = reader.Get("basics", "imageFormat", "UNKNOWN");
+        if(imageFormat == "UNKNOWN"){
+            printWarning("WARNING: imageFormat was not specified. Defaulting to png\n");
+            imageFormat = "png";
+        }
+        
+        projectName = reader.Get("basics", "projectName", "projectName");
+        
+        addProjectNameToFiles = reader.GetBoolean("basics", "addProjectNameToFiles", false);
         
         //debug
-        projectName = reader.Get("basic", "projectName", "projectName");
-        addProjectNameToFiles = reader.GetBoolean("basic", "addProjectNameToFiles", false);
-        
         genRawTexture = reader.GetBoolean("debug", "genRawTexture", false);
         if(genRawTexture == true){
             rawTextureFilePath = reader.Get("optional", "rawTextureFilePath", "rawTexture");
@@ -143,8 +156,16 @@ struct Arguments{
         return true;
     }
     
+    std::string appendix(){
+        if(addProjectNameToFiles)
+            return projectName+"_";
+        return "";
+    }
+    
     int textureWidth;
     int textureHeight;
+    
+    int threadCount;
     std::string objFilePath ;
     std::string cameraListFilePath;
     std::string cameraInfoPath;
@@ -162,6 +183,7 @@ struct Arguments{
     std::string resultRenderFolder;
     std::string gloabalAdjustementPath;
     std::string rasterLabelAssignmentFolder;
+    std::string imageFormat;
     
     bool getLabelingFromFile;
     bool writeLabelingToFile;
@@ -178,7 +200,7 @@ struct Arguments{
     bool _renderInTheEnd;
 };
 
-static Arguments arguments;
+extern Arguments arguments;
 
 
 #endif /* Arguments_h */

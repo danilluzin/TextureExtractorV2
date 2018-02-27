@@ -71,8 +71,9 @@ bool TextureExtractor::prepareViews(){
 
 bool TextureExtractor::calculateDataCosts(){
     uint progressCounter=0;
-    //FIXME: Thread count in arguments
-    int threadCount = 5;
+    int threadCount = arguments.threadCount;
+    
+    print("Working Threads: "+std::to_string(arguments.threadCount)+"\n");
     std::mutex printMtx;
     uint viewsPerOneManager = (uint)views.size()/threadCount;
     
@@ -408,7 +409,7 @@ void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & leve
         t++;
     }
     
-//    globalCopy.toPPM(arguments.gloabalAdjustementPath);
+//    globalCopy.save(arguments.gloabalAdjustementPath);
     std::cout<<"\rApplying gradient to faces %100      \n";
 }
 
@@ -445,23 +446,28 @@ bool TextureExtractor::generateTextureForObject(Object & object){
     
     if(arguments.genLevelingTexture){
         std::cout<<"Generating leveling texture\n";
-        levelingTexture.toPPM(arguments.newTextureFolderPath+"/"+object.name+"_leveling.ppm");
+        std::string name = arguments.newTextureFolderPath+"/"+arguments.appendix()+object.name+"_leveling."+arguments.imageFormat;
+        levelingTexture.save(name);
     }
     if(arguments.genMaskTexture){
         std::cout<<"Generating mask texture\n";
-        mask.toPPM(arguments.newTextureFolderPath+"/"+object.name+"_mask.ppm");
+        std::string name = arguments.newTextureFolderPath+"/"+arguments.appendix()+object.name+"_mask."+arguments.imageFormat;
+        mask.save(name);
     }
     if(arguments.genRawTexture){
         std::cout<<"Generating raw texture\n";
-        textureCopy.toPPM(arguments.newTextureFolderPath+"/"+object.name+"_raw.ppm");
+        std::string name = arguments.newTextureFolderPath+"/"+arguments.appendix()+object.name+"_raw."+arguments.imageFormat;
+        textureCopy.save(name);
     }
     if(arguments.genLebelingTexture){
         std::cout<<"Generating lable assignment texture\n";
-        labelTexture.toPPM(arguments.newTextureFolderPath+"/"+object.name+"_labeling.ppm");
+        std::string name = arguments.newTextureFolderPath+"/"+arguments.appendix()+object.name+"_labeling."+arguments.imageFormat;
+        labelTexture.save(name);
     }
-    std::cout<<"Writing texture to file\n";
     
-    texture.toPPM(arguments.newTextureFolderPath+"/"+object.name+"_texture.ppm");
+    std::cout<<"Writing texture to file\n";
+    std::string name = arguments.newTextureFolderPath+"/"+arguments.appendix()+object.name+"_texture."+arguments.imageFormat;
+    texture.save(name);
     return true;
 }
 
@@ -510,7 +516,7 @@ void TextureExtractor::getSampleList(Bitmap & texture, Bitmap & mask){
 
 
 bool TextureExtractor::writeLabelingToFile(){
-    std::cout<<"Wrinig labeling into file\n";
+    std::cout<<"Writing labeling into file\n";
     std::ofstream file;
     file.open(arguments.newLabelingFilePath.c_str());
     if(!file.is_open()){
@@ -532,7 +538,7 @@ bool TextureExtractor::writeLabelingToFile(){
 
 
 bool TextureExtractor::writeDataCostsToFile(){
-    std::cout<<"Wrinig labeling into file\n";
+    std::cout<<"Writing labeling into file\n";
     std::ofstream file;
     file.open(arguments.newDataCostsFilePath.c_str());
     if(!file.is_open()){

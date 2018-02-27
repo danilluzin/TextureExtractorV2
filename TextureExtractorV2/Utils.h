@@ -12,7 +12,6 @@
 #include <iostream>
 #include <glm/glm.hpp>
 #include <vector>
-//TODO: add argumet for verbose
 
 static bool verbose = true;
 

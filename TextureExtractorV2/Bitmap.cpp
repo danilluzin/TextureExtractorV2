@@ -67,7 +67,7 @@ Bitmap Bitmap::toHSV() const{
 }
 
 
-void Bitmap::toPPM(std::string destFilename){
+void Bitmap::save(std::string destFilename){
     
     bool fileOk;
     fileOk = cv::imwrite (destFilename.c_str(),image);
