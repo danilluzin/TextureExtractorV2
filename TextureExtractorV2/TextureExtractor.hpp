@@ -30,7 +30,7 @@ class TextureExtractor {
 
     std::map<uint,glm::vec4> viewColors;
     
-    Arguments arguments;
+//    Arguments arguments;
     
     std::map<uint,std::map<uint,PatchQuality>> dataCosts;
     
@@ -62,7 +62,7 @@ public:
     
     uint numberOfViews(){return (uint)views.size();}
     
-    void setArguments(const Arguments & arguments){this->arguments = arguments;}
+//    void setArguments(const Arguments & arguments){this->arguments = arguments;}
  
     bool readLabelsFromFile();
     

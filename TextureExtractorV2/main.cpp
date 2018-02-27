@@ -32,8 +32,6 @@ bool calcDataCostsAndGetLebeling(TextureExtractor & extractor);
 
 bool loadLabelsFromFile(TextureExtractor & extractor);
 
-Arguments arguments;
-
 int main(int argc, const char * argv[]) {
     
     TextureExtractor extractor;
@@ -58,7 +56,7 @@ int main(int argc, const char * argv[]) {
     }
     
     
-    extractor.setArguments(arguments);
+//    extractor.setArguments(arguments);
 
 
     Mesh mesh;

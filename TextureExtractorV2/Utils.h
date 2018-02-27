@@ -12,8 +12,9 @@
 #include <iostream>
 #include <glm/glm.hpp>
 #include <vector>
-
 //TODO: add argumet for verbose
+
+static bool verbose = true;
 
 class Coord{
 public:
@@ -44,7 +45,8 @@ inline std::ostream& bold_off(std::ostream& os)
 
 
 inline void print(const std::string & text){
-    std::cout << text;
+    if(verbose)
+        std::cout << text;
 }
 
 inline void printError(const std::string & text){
@@ -56,8 +58,9 @@ inline void printWarning(const std::string & text){
 }
 
 inline void printBold(const std::string & text){
+    if(verbose)
+        std::cout << text;
 //    std::cout << bold_on << text << bold_off;
-    std::cout << text;
 }
 
 

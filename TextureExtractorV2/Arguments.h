@@ -15,7 +15,6 @@
 
 //TODO: message by enum
 
-
 struct Arguments{
     
     bool initializeConfig(std::string filename){
@@ -102,6 +101,10 @@ struct Arguments{
                 newDataCostsFilePath = "new_datacosts.txt";
             }
         }
+        
+        verbose = reader.GetBoolean("basic", "verbose", true);
+
+        
         //debug
         projectName = reader.Get("basic", "projectName", "projectName");
         addProjectNameToFiles = reader.GetBoolean("basic", "addProjectNameToFiles", false);
@@ -169,13 +172,13 @@ struct Arguments{
     bool genMaskTexture;
     bool rasterLabelAssignment;
     bool addProjectNameToFiles;
-
+    
     bool genRawTexture;
     bool _justRender;
     bool _renderInTheEnd;
 };
 
-
+static Arguments arguments;
 
 
 #endif /* Arguments_h */
