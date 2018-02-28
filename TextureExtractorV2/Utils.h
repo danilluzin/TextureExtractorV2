@@ -70,9 +70,9 @@ inline float parseFloat(std::string txt){
 }
 
 
-inline float parseInt(std::string txt){
+inline int parseInt(std::string txt){
     if(txt.size()<=0)
-        return -1;
+        return 0;
     return std::stoi (txt);
 }
 

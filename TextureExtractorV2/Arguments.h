@@ -156,11 +156,7 @@ struct Arguments{
         return true;
     }
     
-    std::string appendix(){
-        if(addProjectNameToFiles)
-            return projectName+"_";
-        return "";
-    }
+   
     
     int textureWidth;
     int textureHeight;
@@ -198,6 +194,34 @@ struct Arguments{
     bool genRawTexture;
     bool _justRender;
     bool _renderInTheEnd;
+    
+    std::string appendix(){
+        if(addProjectNameToFiles)
+            return projectName+"_";
+        return "";
+    }
+    
+    std::string genLevelingTexturePath(std::string objName){
+        return newTextureFolderPath + "/" + appendix() + objName + "_leveling." + imageFormat;
+    }
+    
+    std::string genMaskTexturePath(std::string objName){
+        return newTextureFolderPath + "/" + appendix() + objName + "_mask." + imageFormat;
+    }
+    
+    
+    std::string genRawTexturePath(std::string objName){
+        return newTextureFolderPath + "/" + appendix() + objName + "_raw." + imageFormat;
+    }
+    
+    std::string genLebelingTexturePath(std::string objName){
+        return newTextureFolderPath + "/" + appendix() + objName + "_labeling." + imageFormat;
+    }
+    
+    std::string genFinalTexturePath(std::string objName){
+        return newTextureFolderPath + "/" + appendix() + objName + "_texture." + imageFormat;
+    }
+    
 };
 
 extern Arguments arguments;

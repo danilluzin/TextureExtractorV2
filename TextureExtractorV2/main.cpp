@@ -77,7 +77,6 @@ int main(int argc, const char * argv[]) {
     }
     
     if(arguments._justRender){
-        
         _renderViewsWithTexture(extractor);
         return 1;
     }
@@ -118,8 +117,6 @@ void _renderViewsWithTexture(TextureExtractor & extractor){
     {
         Bitmap depth;
         Bitmap bitmap;
-        Bitmap texture(arguments.newTextureFolderPath);
-        Bitmap labelTexture(arguments.viewAssignmentFilePath);
 //        std::vector<uint> photoSet={};
         //            std::vector<uint> photoSet={28,27};
         
@@ -130,12 +127,8 @@ void _renderViewsWithTexture(TextureExtractor & extractor){
         std::iota(photoSet.begin(),photoSet.end(),1);
         for(int t=0;t<photoSet.size();t++){
             std::cout<<"\rRasterizing photos %"<<(100*((float)t/photoSet.size()))<<"     "<<std::flush;
-            extractor.renderView(bitmap,texture, photoSet[t]);
-            bitmap.save(arguments.resultRenderFolder+"/"+arguments.projectName+"_" + std::to_string(photoSet[t]) + ".ppm");
-            if(arguments.rasterLabelAssignment){
-                extractor.renderView(bitmap,labelTexture, photoSet[t]);
-                bitmap.save(arguments.rasterLabelAssignmentFolder+"/"+arguments.projectName+"_lable_" + std::to_string(photoSet[t]) + ".ppm");
-            }
+            extractor.renderView(bitmap, photoSet[t]);
+            bitmap.save(arguments.resultRenderFolder+"/"+arguments.projectName+"_" + std::to_string(photoSet[t]) + ".png");
         }
         std::cout<<"\rRasterizing photos %100      \n";
     }

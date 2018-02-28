@@ -6,6 +6,7 @@
 //  Copyright © 2017 Danil Luzin. All rights reserved.
 //
 #include "Rasterizer.hpp"
+#include "Arguments.h"
 #include <iostream>
 #include <algorithm>
 #include "Utils.h"
@@ -30,8 +31,12 @@ void Rasterizer::setRenderContext (RenderContext * rc) {
 }
 
 void Rasterizer::drawMesh(){
-    for(auto triangle : mesh.triangles){
-        drawTriangle(triangle.second);
+    for(auto & o : mesh.objects ){
+        Bitmap texture(arguments.genFinalTexturePath(o.name));
+        setTexture(texture);
+        for(auto triangleID : o.triangles){
+            drawTriangle(mesh.triangles[triangleID]);
+        }
     }
 }
 

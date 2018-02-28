@@ -74,7 +74,7 @@ public:
 
     void checkCameraInfo(uint viewId);
     
-    void renderView(Bitmap & bitmap,const Bitmap & texture,uint viewId);
+    void renderView(Bitmap & bitmap,uint viewId);
     
     void renderViewAndDepth(Bitmap & bitmap,Bitmap & bitmapDepth,const Bitmap & texture,uint viewId);
 

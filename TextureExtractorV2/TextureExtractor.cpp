@@ -446,28 +446,23 @@ bool TextureExtractor::generateTextureForObject(Object & object){
     
     if(arguments.genLevelingTexture){
         std::cout<<"Generating leveling texture\n";
-        std::string name = arguments.newTextureFolderPath+"/"+arguments.appendix()+object.name+"_leveling."+arguments.imageFormat;
-        levelingTexture.save(name);
+        levelingTexture.save(arguments.genLevelingTexturePath(object.name));
     }
     if(arguments.genMaskTexture){
         std::cout<<"Generating mask texture\n";
-        std::string name = arguments.newTextureFolderPath+"/"+arguments.appendix()+object.name+"_mask."+arguments.imageFormat;
-        mask.save(name);
+        mask.save(arguments.genMaskTexturePath(object.name));
     }
     if(arguments.genRawTexture){
         std::cout<<"Generating raw texture\n";
-        std::string name = arguments.newTextureFolderPath+"/"+arguments.appendix()+object.name+"_raw."+arguments.imageFormat;
-        textureCopy.save(name);
+        textureCopy.save(arguments.genRawTexturePath(object.name));
     }
     if(arguments.genLebelingTexture){
         std::cout<<"Generating lable assignment texture\n";
-        std::string name = arguments.newTextureFolderPath+"/"+arguments.appendix()+object.name+"_labeling."+arguments.imageFormat;
-        labelTexture.save(name);
+        labelTexture.save(arguments.genLebelingTexturePath(object.name));
     }
     
     std::cout<<"Writing texture to file\n";
-    std::string name = arguments.newTextureFolderPath+"/"+arguments.appendix()+object.name+"_texture."+arguments.imageFormat;
-    texture.save(name);
+    texture.save(arguments.genFinalTexturePath(object.name));
     return true;
 }
 
@@ -785,7 +780,7 @@ void TextureExtractor::checkCameraInfo(uint viewId){
 }
 
 
-void TextureExtractor::renderView(Bitmap & bitmap,const Bitmap & texture,uint viewId){
+void TextureExtractor::renderView(Bitmap & bitmap,uint viewId){
     if(views.find(viewId)==views.end()){
         std::cout<<"No such viewId:"<<viewId<<"\n";
         return;
@@ -799,7 +794,7 @@ void TextureExtractor::renderView(Bitmap & bitmap,const Bitmap & texture,uint vi
     Rasterizer rasterizer(bitmap.width,bitmap.height);
     rasterizer.bindMesh(mesh);
     //here use new texturel
-    rasterizer.setTexture(texture);
+//    rasterizer.setTexture(texture);
 
     Transformation transform;
     transform.setCamera(v.camera);
