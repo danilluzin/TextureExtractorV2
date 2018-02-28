@@ -237,6 +237,11 @@ void Mesh::parseTriangle (std::vector<std::string> one,
     triangle.verticies[0] = vert[0];
     triangle.verticies[1] = vert[1];
     triangle.verticies[2] = vert[2];
+    
+    triangle.boundingBox.addVertex(verticies[vert[0]]);
+    triangle.boundingBox.addVertex(verticies[vert[1]]);
+    triangle.boundingBox.addVertex(verticies[vert[2]]);
+    
     //FIXME: check unset texcoords
     triangle.texCoords[ vert[0] ] = std::max(parseInt(one[1]),1);
     triangle.texCoords[ vert[1] ] = std::max(parseInt(two[1]),1);
@@ -248,6 +253,7 @@ void Mesh::parseTriangle (std::vector<std::string> one,
 
     uint triangleId = addTriangle(triangle);
     object.triangles.push_back(triangleId);
+    object.boundingBox.addBoundingBox(triangle.boundingBox);
     
     facesVertexBelongsTo[vert[0]].insert(triangleId);
     facesVertexBelongsTo[vert[1]].insert(triangleId);

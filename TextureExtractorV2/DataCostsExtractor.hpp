@@ -66,6 +66,8 @@ private:
     
     bool isInsideViewFrustrum (Vertex v);
     
+    bool isInsideViewFrustrum (const Object & object);
+    
     float triangleArea(Vertex v1, Vertex v2, Vertex v3);
 };
 

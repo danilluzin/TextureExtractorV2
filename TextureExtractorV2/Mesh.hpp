@@ -16,9 +16,16 @@
 #include <iostream>
 #include <fstream>
 
+
+class BoundingBox;
+
 struct Vertex{
     Vertex (glm::vec4 coord = glm::vec4(0,0,0,0)){
         this->coord = coord;
+    }
+    
+    Vertex (float x, float y, float z){
+        this->coord = glm::vec4(x,y,z,1);
     }
     
     Vertex operator*(const glm::mat4 & matrix){
@@ -39,6 +46,33 @@ struct Vertex{
     uint id;
 };
 
+struct BoundingBox{
+    
+    glm::vec4 minVec;
+    
+    glm::vec4 maxVec;
+    
+    BoundingBox(){
+        minVec.x = minVec.y = minVec.z = std::numeric_limits<float>::max();
+        maxVec.x = maxVec.y = maxVec.z = std::numeric_limits<float>::lowest();
+        minVec.w = maxVec.w = 1;
+    }
+    
+    void addVertex(const Vertex & v ){
+        minVec.x = std::min(minVec.x , v.x());
+        minVec.y = std::min(minVec.y , v.y());
+        minVec.z = std::min(minVec.z , v.z());
+        
+        maxVec.x = std::max(maxVec.x , v.x());
+        maxVec.y = std::max(maxVec.y , v.y());
+        maxVec.z = std::max(maxVec.z , v.z());
+    }
+    
+    void addBoundingBox(const BoundingBox & boundingBox){
+        addVertex(Vertex(boundingBox.minVec));
+        addVertex(Vertex(boundingBox.maxVec));
+    }
+};
 
 struct Triangle {
     Triangle(const uint verticies[3]){
@@ -52,6 +86,7 @@ struct Triangle {
     std::map<uint,uint> normalVecs;
     uint id;
     uint viewId = 0;
+    BoundingBox boundingBox;
 };
 
 struct TexCoord{
@@ -94,9 +129,12 @@ public:
 };
 
 struct Object{
+    BoundingBox boundingBox;
     std::string name;
     std::vector<uint> triangles;
 };
+
+
 
 class Mesh {
 public:

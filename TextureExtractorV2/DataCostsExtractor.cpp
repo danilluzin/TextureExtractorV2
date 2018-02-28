@@ -31,6 +31,16 @@ DataCostsExtractor::~DataCostsExtractor(){
 
 
 std::map<uint,PatchQuality> DataCostsExtractor::calculateCosts(){
+    //TODO: check bounding boxes
+    //FIXME: wip
+    std::cout<<"ViewID: "<<view.id<<"\n";
+    
+    glm::mat4 cameraModelTransform = transformation.getViewProjection() * transformation.getModelMatrix();
+    for(auto & o: mesh.objects){
+        bool isVisible = isInsideViewFrustrum(o);
+        std::cout<<o.name<<" visibility:"<<isVisible<<"\n";
+    }
+    //
     for(auto triangle : mesh.triangles){
         processTriangle(triangle.second);
     }
@@ -216,6 +226,27 @@ bool DataCostsExtractor::isInsideViewFrustrum (Vertex v){
     return (abs(v.x()) <= abs(v.w())) &&
     (abs(v.y()) <= abs(v.w())) &&
     (abs(v.z()) <= abs(v.w()));
+}
+
+
+bool DataCostsExtractor::isInsideViewFrustrum (const Object & object){
+    float x[2],y[2],z[2];
+    glm::mat4 cameraModelTransform = transformation.getViewProjection() * transformation.getModelMatrix();
+    
+    x[0] = object.boundingBox.minVec.x; x[1] = object.boundingBox.maxVec.x;
+    y[0] = object.boundingBox.minVec.y; y[1] = object.boundingBox.maxVec.y;
+    z[0] = object.boundingBox.minVec.z; z[1] = object.boundingBox.maxVec.z;
+    
+    for(int i = 0; i<2; i++){
+        for(int m = 0; m<2; m++){
+            for(int q = 0; q<2; q++){
+                if(isInsideViewFrustrum(cameraModelTransform * Vertex(x[i],y[m],z[q])))
+                    return true;
+            }
+        }
+    }
+    
+    return false;
 }
 
 
