@@ -57,12 +57,16 @@ bool TextureExtractor::prepareViews(){
         std::cout<<"ERROR occured when getting camera info\n";
         return false;
     }
-    
+
     for(auto v : views){
-        float rndR = ((float)rand())/RAND_MAX;
-        float rndG = ((float)rand())/RAND_MAX;
-        float rndB = ((float)rand())/RAND_MAX;
-        viewColors[v.first] = glm::vec4(rndR,rndG,rndB,1);
+        float gs = (float)v.second.id / views.size();
+//        float rndR = ((float)rand())/RAND_MAX;
+//        float rndG = ((float)rand())/RAND_MAX;
+//        float rndB = ((float)rand())/RAND_MAX;
+//        viewColors[v.first] = glm::vec4(rndR,rndG,rndB,1);
+        viewColors[v.first] = glm::vec4(gs,gs,gs,1);
+        if(v.first == 14)
+             viewColors[v.first] = glm::vec4(1,0,0,1);
     }
 
     return true;
@@ -346,34 +350,40 @@ void TextureExtractor::extendAllFaces(Bitmap & texture,Object & object){
 
 
 void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & levelingTexture,Bitmap & texture,Object & object){
-//    Bitmap globalCopy;
-//    //global
-//    int t=0;
-//    for(auto & f : object.triangles){
-//        std::cout<<"\rApplying global gradient to faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
-//        Triangle & face = mesh.triangles[f];
-//        if(faceViewAverages[f].size() > 6){
-//            continue;
-//        }
-//        if(face.viewId != 0){
-//            glm::vec4 colorGlobal[3];
-//            colorGlobal[0] = faceAverages[f] - faceViewAverages[f][face.viewId];
-//            colorGlobal[1] = faceAverages[f] - faceViewAverages[f][face.viewId];
-//            colorGlobal[2] = faceAverages[f] - faceViewAverages[f][face.viewId];
-//            worker.applyGradient(face,textureCopy,texture,colorGlobal,levelingTexture);
-//        }
-//        t++;
-//    }
-//    globalCopy = texture;
-    //seam
+    Bitmap globalCopy;
+    //global
     int t=0;
+    for(auto & f : object.triangles){
+        std::cout<<"\rApplying global gradient to faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
+        Triangle & face = mesh.triangles[f];
+        if(face.viewId != 0){
+            uint texturePatchID = patchDictionary.triangleMembership[f];
+            TexturePatch & texturePatch = patchDictionary.patches[texturePatchID];
+            glm::vec4 colorGlobal[3];
+            colorGlobal[0] = texturePatch.meanColorDiff;
+            colorGlobal[1] = texturePatch.meanColorDiff;
+            colorGlobal[2] = texturePatch.meanColorDiff;
+            worker.applyGradient(face,textureCopy,texture,colorGlobal,levelingTexture);
+        }
+        t++;
+    }
+    globalCopy = texture;
+    //TODO: cleanup if works
+    globalCopy.save("working_resources/slany/derived7/"+object.name+"_global.png");
+    
+    
+    
+    //seam
+    t=0;
     for(auto & f : object.triangles){
         std::cout<<"\rApplying local gradient to faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
         Triangle & face = mesh.triangles[f];
         if(face.viewId != 0){
             glm::vec4 color[3];
             for(int t=0 ; t< 3; t++){
-                color[t] = colorAverages[face.verticies[t]] - colorSamples[face.verticies[t]][face.viewId];
+                uint texturePatchID = patchDictionary.triangleMembership[face.verticies[t]];
+                TexturePatch & texturePatch = patchDictionary.patches[texturePatchID];
+                color[t] = colorAverages[face.verticies[t]] - colorSamples[face.verticies[t]][face.viewId] - texturePatch.meanColorDiff;
             }
             //use global here if reimplementing
             worker.applyGradient(face,textureCopy,texture,color,levelingTexture);
@@ -386,6 +396,8 @@ void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & leve
 }
 
 bool TextureExtractor::generateTexture(){
+    getSampleList();
+    preparePatchDictionary();
     for(auto & o : mesh.objects){
         print("Generating texture for object :"+o.name+"\n");
         generateTextureForObject(o);
@@ -402,13 +414,37 @@ bool TextureExtractor::generateTextureForObject(Object & object){
     worker.setMask(&mask);
     mask.clear(glm::vec4(0,0,0,1));
     texture.clear(glm::vec4(0.8, 0.8, 0.8, 1));
-    levelingTexture.clear(glm::vec4(0.8, 0.8, 0.8, 1));
-    labelTexture.clear(glm::vec4(0.8, 0.8, 0.8, 1));
+    levelingTexture.clear(glm::vec4(0.8, 0.8, 1, 1));
+    labelTexture.clear(glm::vec4(0.8, 0.8, 1, 1));
     
     extractAllFaces(labelTexture,texture,object);
- 
+
     std::cout<<"PostProcessing:\n";
-    getSampleList(texture,mask);
+    
+    //TODO:remove  v v vvvvvvv
+    std::map<uint,glm::vec4> patchColor;
+    for(auto & p : patchDictionary.patches){
+        float rndR = ((float)rand())/RAND_MAX;
+        float rndG = ((float)rand())/RAND_MAX;
+        float rndB = ((float)rand())/RAND_MAX;
+        patchColor[p.second.patchID] = glm::vec4(rndR,rndG,rndB,1);
+    }
+    uint t = 0;
+    Bitmap selectTest(arguments.textureWidth, arguments.textureHeight);
+    selectTest.clear(glm::vec4(0.8, 0.8, 1, 1));
+    
+    for(auto & f : object.triangles){
+        Triangle & face = mesh.triangles[f];
+        if(face.viewId != 0){
+            if(arguments.genLebelingTexture){
+                worker.fillTextureTriangle(face,patchColor[patchDictionary.triangleMembership[f]],selectTest);
+            }
+        }
+        t++;
+    }
+    selectTest.save(arguments.genLevelingTexturePath(object.name));
+    //TODO:remove ^^^^^^^
+    
     Bitmap textureCopy;
     textureCopy = texture;
     applyGradientAllFaces(textureCopy,levelingTexture,texture,object);
@@ -439,7 +475,67 @@ bool TextureExtractor::generateTextureForObject(Object & object){
 }
 
 
-void TextureExtractor::getSampleList(Bitmap & texture, Bitmap & mask){
+void TextureExtractor::preparePatchDictionary(){
+     for(auto & t : mesh.triangles){
+         if(t.second.viewId==0)
+            continue;
+         if(patchDictionary.triangleMembership.find(t.first)!=patchDictionary.triangleMembership.end()) //face already belongs
+             continue;
+         
+        TexturePatch & currentPatch = patchDictionary.patches[patchDictionary.genNewPatch()];
+        currentPatch.viewID = t.second.viewId;
+        currentPatch.myTriangles.insert(t.first);
+        patchDictionary.triangleMembership[t.first] = currentPatch.patchID;
+        //BFS
+        std::set<uint> visited;
+        std::queue<uint> queue;
+    
+        queue.push(t.first);
+        visited.insert(t.first);
+        while(!queue.empty()){
+            uint currentTri = queue.front();
+            queue.pop();
+            for(auto n : mesh.adjacencyGraph.nodes[currentTri].neighbours){
+                if(visited.find(n) == visited.end()){
+                    visited.insert(n);
+                    if(mesh.triangles[n].viewId == currentPatch.viewID){
+                        patchDictionary.triangleMembership[n] = currentPatch.patchID;
+                        currentPatch.myTriangles.insert(n); //same patch
+                        queue.push(n); //add to queue
+                    }else{
+                        if(mesh.triangles[n].viewId != 0){
+                            currentPatch.neighbourTriangles.insert(n);
+                            for(int t=0;t<3;t++){
+                                if(mesh.triangles[n].verticies[t]==mesh.triangles[currentTri].verticies[0] ||
+                                   mesh.triangles[n].verticies[t]==mesh.triangles[currentTri].verticies[1] ||
+                                   mesh.triangles[n].verticies[t]==mesh.triangles[currentTri].verticies[2]){
+                                    //common vertex
+                                    EdgeVertex edgeVertex;
+                                    edgeVertex.commonVertex = mesh.triangles[n].verticies[t];
+                                    edgeVertex.neighbourID = n;
+                                    edgeVertex.colorDiff = colorSamples[edgeVertex.commonVertex][mesh.triangles[n].viewId] - colorSamples[edgeVertex.commonVertex][currentPatch.viewID];
+                                    edgeVertex.colorDiff /= 2;
+                                    currentPatch.edgeVerticies.push_back(edgeVertex);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                  }
+                }
+          }
+         //get meanColorDiff
+         glm::vec4 sumColorDiff;
+         for(auto & ev : currentPatch.edgeVerticies){
+             sumColorDiff += ev.colorDiff;
+         }
+         currentPatch.meanColorDiff = sumColorDiff/currentPatch.edgeVerticies.size();
+
+     }
+}
+
+
+void TextureExtractor::getSampleList(){
     for(auto & f : mesh.triangles){
         if(f.second.viewId == 0)
             continue;
@@ -458,11 +554,7 @@ void TextureExtractor::getSampleList(Bitmap & texture, Bitmap & mask){
             Vertex vertex = mesh.verticies.at(f.second.verticies[t]);
             vertex = cameraModelTransform * vertex;
             vertex = transformation.doPerspectiveDevide(screenSpaceTransform * vertex);
-//            if(faceViewAverages[f.first].size() <= 6){
-//                colorSamples[vertex.id][f.second.viewId] = v.sourceImage->at(vertex.x(), vertex.y()) + (faceAverages[f.first] - faceViewAverages[f.first][f.second.viewId]);
-//            }else{
             colorSamples[vertex.id][f.second.viewId] = v.sourceImage->at(vertex.x(), vertex.y());
-//            }
         }
     }
     //getting averages

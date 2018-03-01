@@ -19,6 +19,7 @@
 #include "Arguments.h"
 #include "PatchQuality.h"
 #include "ExtractionWorker.hpp"
+#include "TexturePatch.hpp"
 
 class TextureExtractor {
     
@@ -43,7 +44,9 @@ class TextureExtractor {
     std::map<uint,glm::vec4> faceAverages;
     
     ExtractionWorker worker;
-
+    
+    TexturePatchDictionary patchDictionary;
+    
 public:
 
     ~TextureExtractor();
@@ -112,7 +115,9 @@ private:
     
     bool writeDataCostsToFile();
     
-    void getSampleList(Bitmap & texture, Bitmap & mask);
+    void getSampleList();
+    
+    void preparePatchDictionary();
 };
 
 
