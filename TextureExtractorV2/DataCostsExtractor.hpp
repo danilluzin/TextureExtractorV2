@@ -38,7 +38,6 @@ class DataCostsExtractor{
     std::vector<uint> idBuffer;
     
     Bitmap sobelImage;
-    Bitmap HSVImage;
     Bitmap * sourceImage;
     
 public:

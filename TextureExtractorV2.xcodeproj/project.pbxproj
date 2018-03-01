@@ -28,6 +28,7 @@
 		F48DFA221FC9AC150055A5CD /* ExtractionWorker_fillTextureTriangleColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F48DFA211FC9AC150055A5CD /* ExtractionWorker_fillTextureTriangleColor.cpp */; };
 		F48DFA241FC9B0AA0055A5CD /* ExtractionWorker_extend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F48DFA231FC9B0AA0055A5CD /* ExtractionWorker_extend.cpp */; };
 		F48DFA261FC9B5FF0055A5CD /* ExtractionWorker_applyGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F48DFA251FC9B5FF0055A5CD /* ExtractionWorker_applyGradient.cpp */; };
+		F490C1912048081E0023B02F /* TexturePatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F490C18F2048081E0023B02F /* TexturePatch.cpp */; };
 		F49D60D51FB89EEB00D62BBA /* ExtractionWorker_commonCode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F49D60D31FB89EEB00D62BBA /* ExtractionWorker_commonCode.cpp */; };
 		F4CBCC141FC226AA008C99F4 /* TextureExtractor_mapMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4CBCC131FC226AA008C99F4 /* TextureExtractor_mapMap.cpp */; };
 		F4E3B3D41FC1925500C9BBF2 /* DataCostsExtractor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E3B3D21FC1925500C9BBF2 /* DataCostsExtractor.cpp */; };
@@ -87,6 +88,8 @@
 		F48DFA211FC9AC150055A5CD /* ExtractionWorker_fillTextureTriangleColor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ExtractionWorker_fillTextureTriangleColor.cpp; sourceTree = "<group>"; };
 		F48DFA231FC9B0AA0055A5CD /* ExtractionWorker_extend.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ExtractionWorker_extend.cpp; sourceTree = "<group>"; };
 		F48DFA251FC9B5FF0055A5CD /* ExtractionWorker_applyGradient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ExtractionWorker_applyGradient.cpp; sourceTree = "<group>"; };
+		F490C18F2048081E0023B02F /* TexturePatch.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TexturePatch.cpp; sourceTree = "<group>"; };
+		F490C1902048081E0023B02F /* TexturePatch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TexturePatch.hpp; sourceTree = "<group>"; };
 		F49D60D31FB89EEB00D62BBA /* ExtractionWorker_commonCode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ExtractionWorker_commonCode.cpp; sourceTree = "<group>"; };
 		F49D60D41FB89EEB00D62BBA /* ExtractionWorker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ExtractionWorker.hpp; sourceTree = "<group>"; };
 		F4CBCC121FC20992008C99F4 /* mapmap */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mapmap; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 				F4E3B3D11FC03A7700C9BBF2 /* Arguments.h */,
 				F40DE4031FB06EA000EC32B4 /* Utils.h */,
 				F40DE3D91FAF587E00EC32B4 /* TextureExtractor.hpp */,
+				F490C18F2048081E0023B02F /* TexturePatch.cpp */,
+				F490C1902048081E0023B02F /* TexturePatch.hpp */,
 				F40DE3DF1FAF587F00EC32B4 /* TextureExtractor.cpp */,
 				F4CBCC131FC226AA008C99F4 /* TextureExtractor_mapMap.cpp */,
 				F40DE4011FAF70CB00EC32B4 /* Timer.hpp */,
@@ -280,6 +285,7 @@
 				F45B26CC1FC471A1007E9874 /* DataCostExtractionManager.cpp in Sources */,
 				F48DFA241FC9B0AA0055A5CD /* ExtractionWorker_extend.cpp in Sources */,
 				F48DFA261FC9B5FF0055A5CD /* ExtractionWorker_applyGradient.cpp in Sources */,
+				F490C1912048081E0023B02F /* TexturePatch.cpp in Sources */,
 				F40DE3EA1FAF588000EC32B4 /* TextureEdge.cpp in Sources */,
 				F40DE3EF1FAF588000EC32B4 /* Bitmap.cpp in Sources */,
 				F40DE3EC1FAF588000EC32B4 /* TextureExtractor.cpp in Sources */,

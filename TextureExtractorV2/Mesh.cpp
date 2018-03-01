@@ -218,45 +218,53 @@ void Mesh::preparePartition(){
     for(auto & o : objects){
         o.partitionRoot.triangles = o.triangles;
         o.partitionRoot.boundingBox = o.boundingBox;
-        o.partitionRoot.direction = getOptimalSeparation(o.boundingBox);
-        o.partitionRoot.leftNode = new PartitionNode();
-        o.partitionRoot.rightNode = new PartitionNode();
-        o.partitionRoot.leftNode->parent = o.partitionRoot.rightNode->parent = &o.partitionRoot;
-        switch (o.partitionRoot.direction) {
-            case X:
-                o.partitionRoot.separator = ( o.boundingBox.maxVec.x + o.boundingBox.minVec.x)/2;
-                for(auto & t : o.triangles){
-                    if(triangles[t].boundingBox.maxVec.x < o.partitionRoot.separator){
-                        o.partitionRoot.leftNode->addTriangle(triangles[t]);
-                    }else{
-                        o.partitionRoot.rightNode->addTriangle(triangles[t]);
-                    }
-                }
-                break;
-            case Y:
-                o.partitionRoot.separator = ( o.boundingBox.maxVec.y + o.boundingBox.minVec.y)/2;
-                for(auto & t : o.triangles){
-                    if(triangles[t].boundingBox.maxVec.y < o.partitionRoot.separator){
-                        o.partitionRoot.leftNode->addTriangle(triangles[t]);
-                    }else{
-                        o.partitionRoot.rightNode->addTriangle(triangles[t]);
-                    }
-                }
-                break;
-            case Z:
-                o.partitionRoot.separator = ( o.boundingBox.maxVec.z + o.boundingBox.minVec.z)/2;
-                for(auto & t : o.triangles){
-                    if(triangles[t].boundingBox.maxVec.z < o.partitionRoot.separator){
-                        o.partitionRoot.leftNode->addTriangle(triangles[t]);
-                    }else{
-                        o.partitionRoot.rightNode->addTriangle(triangles[t]);
-                    }
-                }
-                break;
-            default:
-                break;
-        }
+        constructNode(&o.partitionRoot);
     }
+}
+
+void Mesh::constructNode(PartitionNode * node){
+    if(node->triangles.size() <= 200)
+        return;
+    node->direction = getOptimalSeparation(node->boundingBox);
+    node->leftNode = new PartitionNode();
+    node->rightNode = new PartitionNode();
+    node->leftNode->parent = node->rightNode->parent = node;
+    switch (node->direction) {
+        case X:
+            node->separator = ( node->boundingBox.maxVec.x + node->boundingBox.minVec.x)/2;
+            for(auto & t : node->triangles){
+                if(triangles[t].boundingBox.maxVec.x < node->separator){
+                    node->leftNode->addTriangle(triangles[t]);
+                }else{
+                    node->rightNode->addTriangle(triangles[t]);
+                }
+            }
+            break;
+        case Y:
+            node->separator = ( node->boundingBox.maxVec.y + node->boundingBox.minVec.y)/2;
+            for(auto & t : node->triangles){
+                if(triangles[t].boundingBox.maxVec.y < node->separator){
+                    node->leftNode->addTriangle(triangles[t]);
+                }else{
+                    node->rightNode->addTriangle(triangles[t]);
+                }
+            }
+            break;
+        case Z:
+            node->separator = ( node->boundingBox.maxVec.z + node->boundingBox.minVec.z)/2;
+            for(auto & t : node->triangles){
+                if(triangles[t].boundingBox.maxVec.z < node->separator){
+                    node->leftNode->addTriangle(triangles[t]);
+                }else{
+                    node->rightNode->addTriangle(triangles[t]);
+                }
+            }
+            break;
+        default:
+            break;
+    }
+    constructNode(node->leftNode);
+    constructNode(node->rightNode);
 }
 
 

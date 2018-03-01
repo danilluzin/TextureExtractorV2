@@ -128,26 +128,16 @@ bool TextureExtractor::calculateDataCosts(){
         std::vector<glm::vec4> colors;
         
         for(auto & v : f.second){
-            v.second.hue = v.second.hue/v.second.sampleCount;
-            v.second.saturation = v.second.saturation/v.second.sampleCount;
-            v.second.value = v.second.value/v.second.sampleCount;
             v.second.colorSum[0] = v.second.colorSum[0]/v.second.sampleCount;
             v.second.colorSum[1] = v.second.colorSum[1]/v.second.sampleCount;
             v.second.colorSum[2] = v.second.colorSum[2]/v.second.sampleCount;
             v.second.colorSum[3] = v.second.colorSum[3]/v.second.sampleCount;
             
-            hue.push_back(v.second.hue);
-            saturation.push_back(v.second.saturation);
-            value.push_back(v.second.value);
             colors.push_back(v.second.colorSum);
             v.second.calcQuality();
             faceMax = std::max(faceMax,v.second.quality);
             faceViewAverages[f.first][v.first] = v.second.colorSum;
         }
-        //getting mean color
-        std::sort(hue.begin(), hue.end());
-        std::sort(saturation.begin(), saturation.end());
-        std::sort(value.begin(), value.end());
         
         glm::vec4 averageColor;
         for(auto c:colors){
@@ -158,32 +148,14 @@ bool TextureExtractor::calculateDataCosts(){
         averageColor[2] /= colors.size();
         averageColor[3] /= colors.size();
         
-        double meanHue = hue[floor(hue.size()/2)];
-//        double meanSaturation = saturation[floor(saturation.size()/2)];
-        double meanValue = value[floor(value.size()/2)];
-        
         faceAverages[f.first] = averageColor;
-        
-        float outlinerPersentage = 0.70f;
-        std::vector<uint> outlinerViews;
+
         for(auto & v : f.second){
             if(faceMax > 0){
                 v.second.quality = 1 - (v.second.quality/faceMax);
             }else{
                  v.second.quality = 1 - v.second.quality;
             }
-            float percentHue = std::min(v.second.hue,meanHue) / std::max(v.second.hue,meanHue);
-//            float percentSaturation = std::min(v.second.saturation,meanSaturation) / std::max(v.second.saturation,meanSaturation);
-            float percentValue = std::min(v.second.value,meanValue) / std::max(v.second.value,meanValue);
-            
-            if((percentHue<outlinerPersentage) || (percentValue<outlinerPersentage)){
-                v.second.quality *= 1.5;
-//                outlinerViews.push_back(v.first);
-            }
-        }
-        if(outlinerViews.size()<f.second.size()){
-            for(int t=0;t<outlinerViews.size();t++)
-                f.second.erase(outlinerViews[t]);
         }
          std::cout<<"";
     }

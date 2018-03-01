@@ -180,6 +180,8 @@ private:
     
     void preparePartition();
     
+    void constructNode(PartitionNode * node);
+    
     bool loadFromFile(const std::string & filename);
     
     uint addTriangle(Triangle triangle);
