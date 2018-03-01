@@ -128,13 +128,30 @@ public:
     std::map<uint,Node> nodes;
 };
 
+enum Direction{
+    X,Y,Z
+};
+
+struct PartitionNode{
+    PartitionNode * leftNode = nullptr;
+    PartitionNode * rightNode = nullptr;
+    PartitionNode * parent = nullptr;
+    std::vector<uint> triangles;
+    BoundingBox boundingBox;
+    float separator;
+    Direction direction;
+    void addTriangle(Triangle & triangle){
+        triangles.push_back(triangle.id);
+        boundingBox.addBoundingBox(triangle.boundingBox);
+    }
+};
+
 struct Object{
     BoundingBox boundingBox;
     std::string name;
     std::vector<uint> triangles;
+    PartitionNode partitionRoot;
 };
-
-
 
 class Mesh {
 public:
@@ -160,6 +177,8 @@ private:
     std::vector<uint> getEdgeAdjacentFaces(uint vert1, uint vert2);
         
     void buildAdjacencyGraph();
+    
+    void preparePartition();
     
     bool loadFromFile(const std::string & filename);
     

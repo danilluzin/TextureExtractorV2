@@ -19,6 +19,18 @@ bool Mesh::initialize(const std::string & filename){
     return true;
 }
 
+Direction getOptimalSeparation(const BoundingBox & boundinBox){
+    float xLength = abs( boundinBox.maxVec.x - boundinBox.minVec.x);
+    float yLength = abs( boundinBox.maxVec.y - boundinBox.minVec.y);
+    float zLength = abs( boundinBox.maxVec.z - boundinBox.minVec.z);
+    
+    if(xLength >= yLength && xLength >= zLength  )
+        return X;
+    if(yLength >= xLength && yLength >= zLength  )
+        return Y;
+    return Z;
+}
+
 
 void Mesh::buildAdjacencyGraph(){
     for(auto t : triangles){
@@ -198,7 +210,53 @@ bool Mesh::loadFromFile(const std::string &filename){
     }
     objects.push_back(newObject);
     file.close();
+    preparePartition();
     return true;
+}
+
+void Mesh::preparePartition(){
+    for(auto & o : objects){
+        o.partitionRoot.triangles = o.triangles;
+        o.partitionRoot.boundingBox = o.boundingBox;
+        o.partitionRoot.direction = getOptimalSeparation(o.boundingBox);
+        o.partitionRoot.leftNode = new PartitionNode();
+        o.partitionRoot.rightNode = new PartitionNode();
+        o.partitionRoot.leftNode->parent = o.partitionRoot.rightNode->parent = &o.partitionRoot;
+        switch (o.partitionRoot.direction) {
+            case X:
+                o.partitionRoot.separator = ( o.boundingBox.maxVec.x + o.boundingBox.minVec.x)/2;
+                for(auto & t : triangles){
+                    if(t.second.boundingBox.minVec.x < o.partitionRoot.separator){
+                        o.partitionRoot.leftNode->addTriangle(t.second);
+                    }else{
+                        o.partitionRoot.rightNode->addTriangle(t.second);
+                    }
+                }
+                break;
+            case Y:
+                o.partitionRoot.separator = ( o.boundingBox.maxVec.y + o.boundingBox.minVec.y)/2;
+                for(auto & t : triangles){
+                    if(t.second.boundingBox.minVec.y < o.partitionRoot.separator){
+                        o.partitionRoot.leftNode->addTriangle(t.second);
+                    }else{
+                        o.partitionRoot.rightNode->addTriangle(t.second);
+                    }
+                }
+                break;
+            case Z:
+                o.partitionRoot.separator = ( o.boundingBox.maxVec.z + o.boundingBox.minVec.z)/2;
+                for(auto & t : triangles){
+                    if(t.second.boundingBox.minVec.z < o.partitionRoot.separator){
+                        o.partitionRoot.leftNode->addTriangle(t.second);
+                    }else{
+                        o.partitionRoot.rightNode->addTriangle(t.second);
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 

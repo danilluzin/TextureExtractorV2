@@ -31,20 +31,15 @@ DataCostsExtractor::~DataCostsExtractor(){
 
 
 std::map<uint,PatchQuality> DataCostsExtractor::calculateCosts(){
-    //TODO: check bounding boxes
-    //FIXME: wip
-    std::cout<<"ViewID: "<<view.id<<"\n";
-    
-    glm::mat4 cameraModelTransform = transformation.getViewProjection() * transformation.getModelMatrix();
+
     for(auto & o: mesh.objects){
         bool isVisible = isInsideViewFrustrum(o);
-        std::cout<<o.name<<" visibility:"<<isVisible<<"\n";
+        if(isVisible)
+            for(auto triangle : o.triangles){
+                processTriangle(mesh.triangles.at(triangle));
+            }
     }
-    //
-    for(auto triangle : mesh.triangles){
-        processTriangle(triangle.second);
-    }
-    
+
     std::map<uint,PatchQuality> costs;
     for(auto i : patchInfos){
         PatchQuality info = i.second;
