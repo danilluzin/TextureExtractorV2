@@ -225,31 +225,31 @@ void Mesh::preparePartition(){
         switch (o.partitionRoot.direction) {
             case X:
                 o.partitionRoot.separator = ( o.boundingBox.maxVec.x + o.boundingBox.minVec.x)/2;
-                for(auto & t : triangles){
-                    if(t.second.boundingBox.minVec.x < o.partitionRoot.separator){
-                        o.partitionRoot.leftNode->addTriangle(t.second);
+                for(auto & t : o.triangles){
+                    if(triangles[t].boundingBox.maxVec.x < o.partitionRoot.separator){
+                        o.partitionRoot.leftNode->addTriangle(triangles[t]);
                     }else{
-                        o.partitionRoot.rightNode->addTriangle(t.second);
+                        o.partitionRoot.rightNode->addTriangle(triangles[t]);
                     }
                 }
                 break;
             case Y:
                 o.partitionRoot.separator = ( o.boundingBox.maxVec.y + o.boundingBox.minVec.y)/2;
-                for(auto & t : triangles){
-                    if(t.second.boundingBox.minVec.y < o.partitionRoot.separator){
-                        o.partitionRoot.leftNode->addTriangle(t.second);
+                for(auto & t : o.triangles){
+                    if(triangles[t].boundingBox.maxVec.y < o.partitionRoot.separator){
+                        o.partitionRoot.leftNode->addTriangle(triangles[t]);
                     }else{
-                        o.partitionRoot.rightNode->addTriangle(t.second);
+                        o.partitionRoot.rightNode->addTriangle(triangles[t]);
                     }
                 }
                 break;
             case Z:
                 o.partitionRoot.separator = ( o.boundingBox.maxVec.z + o.boundingBox.minVec.z)/2;
-                for(auto & t : triangles){
-                    if(t.second.boundingBox.minVec.z < o.partitionRoot.separator){
-                        o.partitionRoot.leftNode->addTriangle(t.second);
+                for(auto & t : o.triangles){
+                    if(triangles[t].boundingBox.maxVec.z < o.partitionRoot.separator){
+                        o.partitionRoot.leftNode->addTriangle(triangles[t]);
                     }else{
-                        o.partitionRoot.rightNode->addTriangle(t.second);
+                        o.partitionRoot.rightNode->addTriangle(triangles[t]);
                     }
                 }
                 break;

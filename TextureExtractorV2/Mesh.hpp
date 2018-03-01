@@ -129,7 +129,7 @@ public:
 };
 
 enum Direction{
-    X,Y,Z
+    X,Y,Z,NONE
 };
 
 struct PartitionNode{
@@ -139,7 +139,7 @@ struct PartitionNode{
     std::vector<uint> triangles;
     BoundingBox boundingBox;
     float separator;
-    Direction direction;
+    Direction direction = NONE;
     void addTriangle(Triangle & triangle){
         triangles.push_back(triangle.id);
         boundingBox.addBoundingBox(triangle.boundingBox);

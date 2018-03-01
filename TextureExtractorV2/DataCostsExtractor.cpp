@@ -29,15 +29,33 @@ DataCostsExtractor::~DataCostsExtractor(){
     view.releaseImage();
 }
 
+void DataCostsExtractor::traversePartition(const PartitionNode * node){
+    if(node == nullptr)
+        return;
+     if(!isInsideViewFrustrum(node->boundingBox))
+         return;
+    if(node->direction == NONE){
+        for(auto triangle : node->triangles){
+            processTriangle(mesh.triangles.at(triangle));
+        }
+        return;
+    }
+    traversePartition(node->leftNode);
+    traversePartition(node->rightNode);
+    
+}
 
 std::map<uint,PatchQuality> DataCostsExtractor::calculateCosts(){
 
     for(auto & o: mesh.objects){
-        bool isVisible = isInsideViewFrustrum(o);
-        if(isVisible)
-            for(auto triangle : o.triangles){
-                processTriangle(mesh.triangles.at(triangle));
-            }
+        //traverse visibility
+        traversePartition(&o.partitionRoot);
+        
+//        bool isVisible = isInsideViewFrustrum(o);
+//        if(isVisible)
+//            for(auto triangle : o.triangles){
+//                processTriangle(mesh.triangles.at(triangle));
+//            }
     }
 
     std::map<uint,PatchQuality> costs;
@@ -231,6 +249,26 @@ bool DataCostsExtractor::isInsideViewFrustrum (const Object & object){
     x[0] = object.boundingBox.minVec.x; x[1] = object.boundingBox.maxVec.x;
     y[0] = object.boundingBox.minVec.y; y[1] = object.boundingBox.maxVec.y;
     z[0] = object.boundingBox.minVec.z; z[1] = object.boundingBox.maxVec.z;
+    
+    for(int i = 0; i<2; i++){
+        for(int m = 0; m<2; m++){
+            for(int q = 0; q<2; q++){
+                if(isInsideViewFrustrum(cameraModelTransform * Vertex(x[i],y[m],z[q])))
+                    return true;
+            }
+        }
+    }
+    
+    return false;
+}
+
+bool DataCostsExtractor::isInsideViewFrustrum (const BoundingBox & boundingBox){
+    float x[2],y[2],z[2];
+    glm::mat4 cameraModelTransform = transformation.getViewProjection() * transformation.getModelMatrix();
+    
+    x[0] = boundingBox.minVec.x; x[1] = boundingBox.maxVec.x;
+    y[0] = boundingBox.minVec.y; y[1] = boundingBox.maxVec.y;
+    z[0] = boundingBox.minVec.z; z[1] = boundingBox.maxVec.z;
     
     for(int i = 0; i<2; i++){
         for(int m = 0; m<2; m++){
