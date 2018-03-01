@@ -381,12 +381,11 @@ void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & leve
         if(face.viewId != 0){
             glm::vec4 color[3];
             for(int t=0 ; t< 3; t++){
-                uint texturePatchID = patchDictionary.triangleMembership[face.verticies[t]];
-                TexturePatch & texturePatch = patchDictionary.patches[texturePatchID];
-                color[t] = colorAverages[face.verticies[t]] - colorSamples[face.verticies[t]][face.viewId] - texturePatch.meanColorDiff;
+                color[t] = colorAverages[face.verticies[t]] - colorSamples[face.verticies[t]][face.viewId];
             }
             //use global here if reimplementing
-            worker.applyGradient(face,textureCopy,texture,color,levelingTexture);
+            //TODO:if do global?
+            worker.applyGradient(face,globalCopy,texture,color,levelingTexture);
         }
         t++;
     }
@@ -398,6 +397,8 @@ void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & leve
 bool TextureExtractor::generateTexture(){
     getSampleList();
     preparePatchDictionary();
+    //TODO:deal with if global;
+    updateSampleList();
     for(auto & o : mesh.objects){
         print("Generating texture for object :"+o.name+"\n");
         generateTextureForObject(o);
@@ -571,6 +572,47 @@ void TextureExtractor::getSampleList(){
     }
 
 }
+
+
+void TextureExtractor::updateSampleList(){
+    for(auto & f : mesh.triangles){
+        if(f.second.viewId == 0)
+            continue;
+        View & v = views[f.second.viewId];
+        if(!v.sourceImage){
+            v.loadImage();
+        }
+        Transformation transformation;
+        transformation.setCamera(v.camera);
+        transformation.setAspectRatio(v.photoWidth, v.photoHeight);
+        glm::mat4 cameraModelTransform = transformation.getViewProjection()* transformation.getModelMatrix();
+        glm::mat4 screenSpaceTransform = transformation.getScreenTransform();
+        
+        uint texturePatchID = patchDictionary.triangleMembership[f.first];
+        TexturePatch & texturePatch = patchDictionary.patches[texturePatchID];
+        
+        for(int t=0;t<3;t++){
+            Vertex vertex = mesh.verticies.at(f.second.verticies[t]);
+            vertex = cameraModelTransform * vertex;
+            vertex = transformation.doPerspectiveDevide(screenSpaceTransform * vertex);
+            colorSamples[vertex.id][f.second.viewId] = v.sourceImage->at(vertex.x(), vertex.y()) + texturePatch.meanColorDiff;
+        }
+    }
+    //getting averages
+    for(auto & v : colorSamples){
+        glm::vec4 sum = glm::vec4(0,0,0,0);
+        for(auto & f : v.second){
+            sum += f.second;
+        }
+        sum[0] /= v.second.size();
+        sum[1] /= v.second.size();
+        sum[2] /= v.second.size();
+        sum[3] = 1;
+        colorAverages[v.first] = sum;
+    }
+    
+}
+
 
 
 

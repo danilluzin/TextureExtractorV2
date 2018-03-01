@@ -116,6 +116,7 @@ private:
     bool writeDataCostsToFile();
     
     void getSampleList();
+    void updateSampleList();
     
     void preparePatchDictionary();
 };
