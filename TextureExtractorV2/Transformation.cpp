@@ -71,8 +71,33 @@ glm::mat4 Transformation::getModelMatrix() const{
     return posMatrix*rotMatrix*scaleMatrix;
 }
 
+bool higherThan (int component,const Vertex & v){
+  
+    return true;
+};
 
-
+bool isInsideViewFrustrum (const BoundingBox & boundingBox, const Transformation & transformation){
+    float x[2],y[2],z[2];
+    glm::mat4 cameraModelTransform = transformation.getViewProjection() * transformation.getModelMatrix();
+    
+    x[0] = boundingBox.minVec.x; x[1] = boundingBox.maxVec.x;
+    y[0] = boundingBox.minVec.y; y[1] = boundingBox.maxVec.y;
+    z[0] = boundingBox.minVec.z; z[1] = boundingBox.maxVec.z;
+    
+    std::vector<Vertex> corners;
+    
+    for(int i = 0; i<2; i++){
+        for(int m = 0; m<2; m++){
+            for(int q = 0; q<2; q++){
+                Vertex toCheck(x[i],y[m],z[q]);
+                if(isInsideViewFrustrum(cameraModelTransform * Vertex(x[i],y[m],z[q])))
+                    return true;
+            }
+        }
+    }
+    
+    return false;
+}
 
 
 

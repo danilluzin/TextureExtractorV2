@@ -80,9 +80,7 @@ private:
     bool clipPoligonAxis (std::vector<Vertex> & verticies, int component);
     
     void clipPoligonComponent (std::vector<Vertex> & verticies, std::vector<Vertex> & result , int component, int clipFactor);
-    
-    bool isInsideViewFrustrum (Vertex v);
-    
+        
     float triangleArea(Vertex v1, Vertex v2, Vertex v3);
     
     float triangleAreaTexture(Vertex v1, Vertex v2, Vertex v3);

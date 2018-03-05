@@ -17,6 +17,8 @@
 #include "Transformation.hpp"
 #include "RenderContext.h"
 #include <unordered_set>
+
+
 class Rasterizer{
     
     const Bitmap * texture;
@@ -41,7 +43,7 @@ public:
     
     void setTexture (const Bitmap & txr) {texture = &txr;}
 
-    
+    //FIXME: no copy
     void bindMesh (const Mesh & m){mesh = m;}
 
     Rasterizer(int width, int height);
@@ -66,20 +68,20 @@ public:
      void _getDepthBitmap(Bitmap & bitmap);
     
 private:
-    
+    void traversePartition(const PartitionNode * node);
+        
     bool clipPoligonAxis (std::vector<Vertex> & verticies, int component);
     
      void clipPoligonComponent (std::vector<Vertex> & verticies, std::vector<Vertex> & result , int component, int clipFactor);
     
     void drawScanLine(Edge left, Edge right, int y, Gradient & gradient, uint id);
     
-    bool isInsideViewFrustrum (Vertex v);
-    
     float triangleArea(Vertex v1, Vertex v2, Vertex v3);
 
     float minDepth = std::numeric_limits<float>::max();
     float maxDepth = std::numeric_limits<float>::min();
     
+    /*
     std::map <int,glm::vec4>colors = {
         {0,glm::vec4(0.0f,0.0f,0.0f,1)},
         {1,glm::vec4(0.5f,0.0f,0.0f,1)},
@@ -92,6 +94,7 @@ private:
         {8,glm::vec4(0.0f,1.0f,0.5f,1)},
         {9,glm::vec4(0.5f,0.0f,1.0,1)}
     };
+     */
 
 };
 

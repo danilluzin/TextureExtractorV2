@@ -50,4 +50,7 @@ private:
     
 };
 
+bool isInsideViewFrustrum (const BoundingBox & boundingBox, const Transformation & transformation);
+
+
 #endif /* Transformation_hpp */

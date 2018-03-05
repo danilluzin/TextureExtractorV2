@@ -28,4 +28,5 @@ public:
     void releaseImage();
 };
 
+
 #endif /* View_hpp */

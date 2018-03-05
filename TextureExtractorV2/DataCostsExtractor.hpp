@@ -65,12 +65,6 @@ private:
     
     void drawScanLine(Edge left, Edge right, int y, Gradient & gradient, uint id);
     
-    bool isInsideViewFrustrum (Vertex v);
-    
-    bool isInsideViewFrustrum (const Object & object);
-    
-    bool isInsideViewFrustrum (const BoundingBox & boundingBox);
-    
     float triangleArea(Vertex v1, Vertex v2, Vertex v3);
 };
 

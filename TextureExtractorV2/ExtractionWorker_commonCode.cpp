@@ -47,13 +47,6 @@ void ExtractionWorker::clipPoligonComponent (std::vector<Vertex> & verticies, st
 }
 
 
-bool ExtractionWorker::isInsideViewFrustrum (Vertex v){
-    return (abs(v.x()) <= abs(v.w())) &&
-            (abs(v.y()) <= abs(v.w())) &&
-            (abs(v.z()) <= abs(v.w()));
-}
-
-
 float ExtractionWorker::triangleArea(Vertex v1, Vertex v2, Vertex v3){
     glm::vec4 a = v1.coord;
     glm::vec4 b = v2.coord;

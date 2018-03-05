@@ -211,4 +211,6 @@ private:
 
 Vertex operator * (const glm::mat4 & matrix , const Vertex & vertex);
 
+bool isInsideViewFrustrum(const Vertex & v);
+
 #endif /* Mesh_hpp */

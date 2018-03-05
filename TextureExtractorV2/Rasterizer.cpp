@@ -11,6 +11,7 @@
 #include <algorithm>
 #include "Utils.h"
 
+
 bool useColor = false;
 
 Rasterizer::Rasterizer(int width, int height){
@@ -30,13 +31,32 @@ void Rasterizer::setRenderContext (RenderContext * rc) {
 
 }
 
+void Rasterizer::traversePartition(const PartitionNode * node){
+    if(node == nullptr)
+        return;
+    if(!isInsideViewFrustrum(node->boundingBox, transformation))
+        return;
+    if(node->direction == NONE){
+        for(auto triangle : node->triangles){
+            drawTriangle(mesh.triangles.at(triangle));
+        }
+        return;
+    }
+    traversePartition(node->leftNode);
+    traversePartition(node->rightNode);
+    
+}
+
 void Rasterizer::drawMesh(){
     for(auto & o : mesh.objects ){
         Bitmap texture(arguments.genFinalTexturePath(o.name));
         setTexture(texture);
+        traversePartition(&o.partitionRoot);
+        /*
         for(auto triangleID : o.triangles){
             drawTriangle(mesh.triangles[triangleID]);
         }
+         */
     }
 }
 
@@ -288,14 +308,6 @@ void Rasterizer::clearBuffer(){
     maxDepth = std::numeric_limits<float>::min();
     visibleFaces.clear();
 }
-
-
-bool Rasterizer::isInsideViewFrustrum (Vertex v){
-    return (abs(v.x()) <= abs(v.w())) &&
-           (abs(v.y()) <= abs(v.w())) &&
-           (abs(v.z()) <= abs(v.w()));
-}
-
 
 void Rasterizer::_getDepthBitmap(Bitmap & bitmap){
     bitmap = Bitmap(width,height);

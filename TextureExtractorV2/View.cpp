@@ -16,3 +16,5 @@ void View::releaseImage(){
     delete sourceImage;
     sourceImage = nullptr;
 }
+
+

@@ -338,5 +338,9 @@ void Mesh::parsePlane(std::vector<std::string> tokens,
     parseTriangle(one, three, four,object);
 }
 
-
+bool isInsideViewFrustrum(const Vertex & v){
+    return (abs(v.x()) <= abs(v.w())) &&
+    (abs(v.y()) <= abs(v.w())) &&
+    (abs(v.z()) <= abs(v.w()));
+}
 

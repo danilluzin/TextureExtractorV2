@@ -47,5 +47,5 @@ glm::mat4 Camera::getViewProjection() const {
     
     return perspective * cameraView ;
     
-    
 }
+
