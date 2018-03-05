@@ -71,9 +71,29 @@ glm::mat4 Transformation::getModelMatrix() const{
     return posMatrix*rotMatrix*scaleMatrix;
 }
 
-bool higherThan (int component,const Vertex & v){
+bool componentFitsW (int component,const Vertex & v){
+    //0 = x >= -w
+    //1 = x <=  w
+    //2 = y >= -w
+    //3 = y <=  w
+    //4 = z >= -w
+    //5 = z <=  w
+    switch (component) {
+        case 0:
+            return v.x() >= -v.w();
+        case 1:
+            return v.x() <= v.w();
+        case 2:
+            return v.y() >= -v.w();
+        case 3:
+            return v.y() <= v.w();
+        case 4:
+            return v.z() >= -v.w();
+        case 5:
+            return v.z() <= v.w();
+    }
   
-    return true;
+    return false;
 };
 
 bool isInsideViewFrustrum (const BoundingBox & boundingBox, const Transformation & transformation){
@@ -89,14 +109,24 @@ bool isInsideViewFrustrum (const BoundingBox & boundingBox, const Transformation
     for(int i = 0; i<2; i++){
         for(int m = 0; m<2; m++){
             for(int q = 0; q<2; q++){
-                Vertex toCheck(x[i],y[m],z[q]);
-                if(isInsideViewFrustrum(cameraModelTransform * Vertex(x[i],y[m],z[q])))
-                    return true;
+                corners.push_back(cameraModelTransform * Vertex(x[i],y[m],z[q]));
             }
         }
     }
     
-    return false;
+    for(int i=0; i < 6; i++) {
+        int out=0,in=0;
+        for (int k = 0; k < 8 && (in==0 || out==0); k++) {
+            if (componentFitsW(i,corners[k]))
+                in++;
+            else
+                out++;
+        }
+        if (!in)
+            return false;
+    }
+    
+    return true;
 }
 
 
