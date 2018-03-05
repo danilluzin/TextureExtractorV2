@@ -914,7 +914,7 @@ void TextureExtractor::renderView(Bitmap & bitmap,uint viewId){
 }
 
 
-void TextureExtractor::renderViewAndDepth(Bitmap & bitmap,Bitmap & bitmapDepth,const Bitmap & texture,uint viewId){
+void TextureExtractor::renderViewAndDepth(Bitmap & bitmap,Bitmap & bitmapDepth,uint viewId){
     if(views.find(viewId)==views.end()){
         std::cout<<"No such viewId:"<<viewId<<"\n";
         return;
@@ -926,7 +926,6 @@ void TextureExtractor::renderViewAndDepth(Bitmap & bitmap,Bitmap & bitmapDepth,c
     bitmap.clear(glm::vec4(0.4,0.4,0.4,1));
     Rasterizer rasterizer(bitmap.width,bitmap.height);
     rasterizer.bindMesh(mesh);
-    rasterizer.setTexture(texture);
     
     Transformation transform;
     transform.setCamera(v.camera);

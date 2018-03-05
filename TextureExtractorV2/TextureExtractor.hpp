@@ -79,7 +79,7 @@ public:
     
     void renderView(Bitmap & bitmap,uint viewId);
     
-    void renderViewAndDepth(Bitmap & bitmap,Bitmap & bitmapDepth,const Bitmap & texture,uint viewId);
+    void renderViewAndDepth(Bitmap & bitmap,Bitmap & bitmapDepth,uint viewId);
 
 private:
     
