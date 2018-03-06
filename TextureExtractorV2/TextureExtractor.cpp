@@ -349,55 +349,60 @@ void TextureExtractor::extendAllFaces(Bitmap & texture,Object & object){
 
 void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & levelingTexture,Bitmap & texture,Object & object){
     Bitmap globalCopy;
-    //global
     int t=0;
-    for(auto & f : object.triangles){
-        std::cout<<"\rApplying global gradient to faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
-        Triangle & face = mesh.triangles[f];
-        if(face.viewId != 0){
-            uint texturePatchID = patchDictionary.triangleMembership[f];
-            TexturePatch & texturePatch = patchDictionary.patches[texturePatchID];
-            glm::vec4 colorGlobal[3];
-            colorGlobal[0] = texturePatch.meanColorDiff;
-            colorGlobal[1] = texturePatch.meanColorDiff;
-            colorGlobal[2] = texturePatch.meanColorDiff;
-            worker.applyGradient(face,textureCopy,texture,colorGlobal,levelingTexture);
-        }
-        t++;
-    }
-    globalCopy = texture;
-    if(arguments.genGlobalTexture){
-        std::cout<<"Generating global adjustment texture\n";
-        globalCopy.save(arguments.genGlobalTexturePath(object.name));
-    }
-    
-    
-    
-    //seam
-    t=0;
-    for(auto & f : object.triangles){
-        std::cout<<"\rApplying local gradient to faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
-        Triangle & face = mesh.triangles[f];
-        if(face.viewId != 0){
-            glm::vec4 color[3];
-            for(int t=0 ; t< 3; t++){
-                color[t] = colorAverages[face.verticies[t]] - colorSamples[face.verticies[t]][face.viewId];
+    //global leveling
+    if(arguments.doGloabalAdjustment){
+        for(auto & f : object.triangles){
+            std::cout<<"\rApplying global gradient to faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
+            Triangle & face = mesh.triangles[f];
+            if(face.viewId != 0){
+                uint texturePatchID = patchDictionary.triangleMembership[f];
+                TexturePatch & texturePatch = patchDictionary.patches[texturePatchID];
+                glm::vec4 colorGlobal[3];
+                colorGlobal[0] = texturePatch.meanColorDiff;
+                colorGlobal[1] = texturePatch.meanColorDiff;
+                colorGlobal[2] = texturePatch.meanColorDiff;
+                worker.applyGradient(face,textureCopy,texture,colorGlobal,levelingTexture);
             }
-            //use global here if reimplementing
-            //TODO:if do global?
-            worker.applyGradient(face,globalCopy,texture,color,levelingTexture);
+            t++;
         }
-        t++;
+            std::cout<<"\rApplying global gradient  to faces %100      \n";
+        globalCopy = texture;
+        if(arguments.genGlobalTexture){
+            std::cout<<"Generating global adjustment texture\n";
+            globalCopy.save(arguments.genGlobalTexturePath(object.name));
+        }
     }
-
-    std::cout<<"\rApplying gradient to faces %100      \n";
+    
+    //seam leveling
+    if(arguments.doSeamLeveling){
+        t=0;
+        for(auto & f : object.triangles){
+            std::cout<<"\rApplying seam leveling to faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
+            Triangle & face = mesh.triangles[f];
+            if(face.viewId != 0){
+                glm::vec4 color[3];
+                for(int t=0 ; t< 3; t++){
+                    color[t] = colorAverages[face.verticies[t]] - colorSamples[face.verticies[t]][face.viewId];
+                }
+                if(arguments.doGloabalAdjustment){
+                    worker.applyGradient(face,globalCopy,texture,color,levelingTexture);
+                }else{
+                    worker.applyGradient(face,textureCopy,texture,color,levelingTexture);
+                }
+            }
+            t++;
+        }
+        std::cout<<"\rApplying seam leveling  to faces %100      \n";
+    }
 }
 
 bool TextureExtractor::generateTexture(){
     getSampleList();
-    preparePatchDictionary();
-    //TODO:deal with if global;
-    updateSampleList();
+    if(arguments.doGloabalAdjustment){
+        preparePatchDictionary();
+        updateSampleList();
+    }
     for(auto & o : mesh.objects){
         print("Generating texture for object :"+o.name+"\n");
         generateTextureForObject(o);
@@ -426,10 +431,11 @@ bool TextureExtractor::generateTextureForObject(Object & object){
     textureCopy = texture;
     applyGradientAllFaces(textureCopy,levelingTexture,texture,object);
     
-    extendAllFaces(texture,object);
+    if(arguments.doTextureExtension)
+        extendAllFaces(texture,object);
     
     
-    if(arguments.genLevelingTexture){
+    if(arguments.genLevelingTexture && arguments.doSeamLeveling){
         std::cout<<"Generating leveling texture\n";
         levelingTexture.save(arguments.genLevelingTexturePath(object.name));
     }

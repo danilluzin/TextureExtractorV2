@@ -17,6 +17,48 @@
 
 struct Arguments{
     
+    int textureWidth;
+    int textureHeight;
+    
+    int threadCount;
+    std::string objFilePath ;
+    std::string cameraListFilePath;
+    std::string cameraInfoPath;
+    std::string newTextureFolderPath;
+    std::string photoFolderPath;
+    std::string newLabelingFilePath;
+    std::string labelingFilePath;
+    std::string dataCostsFilePath;
+    std::string newDataCostsFilePath;
+    
+    
+    
+    std::string projectName;
+    std::string resultRenderFolder;
+    std::string rasterLabelAssignmentFolder;
+    std::string imageFormat;
+    
+    bool getLabelingFromFile;
+    bool writeLabelingToFile;
+    bool getDataCostsFromFile;
+    bool writeDataCostsToFile;
+    bool genLebelingTexture;
+    bool genLevelingTexture;
+    bool genMaskTexture;
+    bool genGlobalTexture;
+    bool rasterLabelAssignment;
+    bool addProjectNameToFiles;
+    
+    bool doGloabalAdjustment;
+    bool doSeamLeveling;
+    bool doTextureExtension;
+    
+    bool genRawTexture;
+    bool _justRender;
+    bool _renderInTheEnd;
+    
+    
+    
     bool initializeConfig(std::string filename){
         INIReader reader(filename);
         
@@ -65,6 +107,7 @@ struct Arguments{
             textureWidth = 1000;
         }
         
+
         getLabelingFromFile = reader.GetBoolean("basics", "getLabelingFromFile", false);
         if(getLabelingFromFile == true){
             labelingFilePath = reader.Get("optional", "labelingFilePath", "UNKNOWN");
@@ -118,8 +161,11 @@ struct Arguments{
         }
         
         projectName = reader.Get("basics", "projectName", "projectName");
-        
         addProjectNameToFiles = reader.GetBoolean("basics", "addProjectNameToFiles", false);
+        
+        doGloabalAdjustment = reader.GetBoolean("optional", "doGloabalAdjustment", true);
+        doSeamLeveling = reader.GetBoolean("optional", "doSeamLeveling", true);
+        doTextureExtension = reader.GetBoolean("optional", "doTextureExtension", true);
         
         //debug
         genRawTexture = reader.GetBoolean("debug", "genRawTexture", false);
@@ -145,41 +191,7 @@ struct Arguments{
     
    
     
-    int textureWidth;
-    int textureHeight;
-    
-    int threadCount;
-    std::string objFilePath ;
-    std::string cameraListFilePath;
-    std::string cameraInfoPath;
-    std::string newTextureFolderPath;
-    std::string photoFolderPath;
-    std::string newLabelingFilePath;
-    std::string labelingFilePath;
-    std::string dataCostsFilePath;
-    std::string newDataCostsFilePath;
-    
 
-
-    std::string projectName;
-    std::string resultRenderFolder;
-    std::string rasterLabelAssignmentFolder;
-    std::string imageFormat;
-    
-    bool getLabelingFromFile;
-    bool writeLabelingToFile;
-    bool getDataCostsFromFile;
-    bool writeDataCostsToFile;
-    bool genLebelingTexture;
-    bool genLevelingTexture;
-    bool genMaskTexture;
-    bool genGlobalTexture;
-    bool rasterLabelAssignment;
-    bool addProjectNameToFiles;
-    
-    bool genRawTexture;
-    bool _justRender;
-    bool _renderInTheEnd;
     
     std::string appendix(){
         if(addProjectNameToFiles)
