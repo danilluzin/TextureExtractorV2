@@ -307,8 +307,7 @@ void Mesh::parseTriangle (std::vector<std::string> one,
     triangle.boundingBox.addVertex(verticies[vert[0]]);
     triangle.boundingBox.addVertex(verticies[vert[1]]);
     triangle.boundingBox.addVertex(verticies[vert[2]]);
-    
-    //FIXME: check unset texcoords
+
     triangle.texCoords[ vert[0] ] = std::max(parseInt(one[1]),1);
     triangle.texCoords[ vert[1] ] = std::max(parseInt(two[1]),1);
     triangle.texCoords[ vert[2] ] = std::max(parseInt(three[1]),1);

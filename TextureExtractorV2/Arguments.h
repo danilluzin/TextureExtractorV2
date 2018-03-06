@@ -123,24 +123,11 @@ struct Arguments{
         
         //debug
         genRawTexture = reader.GetBoolean("debug", "genRawTexture", false);
-        if(genRawTexture == true){
-            rawTextureFilePath = reader.Get("optional", "rawTextureFilePath", "rawTexture");
-        }
-        
         genLevelingTexture = reader.GetBoolean("debug", "genLevelingTexture", false);
-        if(genLevelingTexture == true){
-            levelingTextureFilePath = reader.Get("optional", "levelingTextureFilePath", "levelingTexture");
-        }
-        
         genMaskTexture = reader.GetBoolean("debug", "genMaskTexture", false);
-        if(genMaskTexture == true){
-            maskTextureFilePath = reader.Get("optional", "maskTextureFilePath", "maskTexture");
-        }
-        
         genLebelingTexture = reader.GetBoolean("debug", "genLebelingTexture", false);
-        if(genLebelingTexture == true){
-            viewAssignmentFilePath = reader.Get("optional", "viewAssignmentFilePath", "labelingTexture");
-        }
+        genGlobalTexture = reader.GetBoolean("debug", "genGlobalTexture", false);
+        
         
          _justRender = reader.GetBoolean("debug", "justRender", false);
          _renderInTheEnd = reader.GetBoolean("debug", "renderInTheEnd", false);
@@ -171,13 +158,11 @@ struct Arguments{
     std::string labelingFilePath;
     std::string dataCostsFilePath;
     std::string newDataCostsFilePath;
-    std::string viewAssignmentFilePath;
-    std::string levelingTextureFilePath;
-    std::string maskTextureFilePath;
-    std::string rawTextureFilePath;
+    
+
+
     std::string projectName;
     std::string resultRenderFolder;
-    std::string gloabalAdjustementPath;
     std::string rasterLabelAssignmentFolder;
     std::string imageFormat;
     
@@ -188,6 +173,7 @@ struct Arguments{
     bool genLebelingTexture;
     bool genLevelingTexture;
     bool genMaskTexture;
+    bool genGlobalTexture;
     bool rasterLabelAssignment;
     bool addProjectNameToFiles;
     
@@ -220,6 +206,10 @@ struct Arguments{
     
     std::string genFinalTexturePath(std::string objName){
         return newTextureFolderPath + "/" + appendix() + objName + "_texture." + imageFormat;
+    }
+    
+    std::string genGlobalTexturePath(std::string objName){
+        return newTextureFolderPath + "/" + appendix() + objName + "_global." + imageFormat;
     }
     
 };

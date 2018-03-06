@@ -57,9 +57,6 @@ int main(int argc, const char * argv[]) {
         return -1;
     }
     
-    
-//    extractor.setArguments(arguments);
-
 
     Mesh mesh;
     bool meshIsOk = prepareMesh(mesh, arguments.objFilePath);

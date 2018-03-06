@@ -65,8 +65,6 @@ bool TextureExtractor::prepareViews(){
 //        float rndB = ((float)rand())/RAND_MAX;
 //        viewColors[v.first] = glm::vec4(rndR,rndG,rndB,1);
         viewColors[v.first] = glm::vec4(gs,gs,gs,1);
-        if(v.first == 14)
-             viewColors[v.first] = glm::vec4(1,0,0,1);
     }
 
     return true;
@@ -368,8 +366,10 @@ void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & leve
         t++;
     }
     globalCopy = texture;
-    //TODO: cleanup if works
-    globalCopy.save("working_resources/slany/derived7/"+object.name+"_global.png");
+    if(arguments.genGlobalTexture){
+        std::cout<<"Generating global adjustment texture\n";
+        globalCopy.save(arguments.genGlobalTexturePath(object.name));
+    }
     
     
     
@@ -389,8 +389,7 @@ void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & leve
         }
         t++;
     }
-    
-//    globalCopy.save(arguments.gloabalAdjustementPath);
+
     std::cout<<"\rApplying gradient to faces %100      \n";
 }
 
@@ -422,29 +421,6 @@ bool TextureExtractor::generateTextureForObject(Object & object){
 
     std::cout<<"PostProcessing:\n";
     
-    //TODO:remove  v v vvvvvvv
-    std::map<uint,glm::vec4> patchColor;
-    for(auto & p : patchDictionary.patches){
-        float rndR = ((float)rand())/RAND_MAX;
-        float rndG = ((float)rand())/RAND_MAX;
-        float rndB = ((float)rand())/RAND_MAX;
-        patchColor[p.second.patchID] = glm::vec4(rndR,rndG,rndB,1);
-    }
-    uint t = 0;
-    Bitmap selectTest(arguments.textureWidth, arguments.textureHeight);
-    selectTest.clear(glm::vec4(0.8, 0.8, 1, 1));
-    
-    for(auto & f : object.triangles){
-        Triangle & face = mesh.triangles[f];
-        if(face.viewId != 0){
-            if(arguments.genLebelingTexture){
-                worker.fillTextureTriangle(face,patchColor[patchDictionary.triangleMembership[f]],selectTest);
-            }
-        }
-        t++;
-    }
-    selectTest.save(arguments.genLevelingTexturePath(object.name));
-    //TODO:remove ^^^^^^^
     
     Bitmap textureCopy;
     textureCopy = texture;
