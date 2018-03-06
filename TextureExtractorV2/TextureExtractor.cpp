@@ -70,6 +70,9 @@ bool TextureExtractor::prepareViews(){
     return true;
 }
 
+double vecSum(glm::vec4 v){
+    return v[0]+v[1]+v[2];
+}
 
 bool TextureExtractor::calculateDataCosts(){
     uint progressCounter=0;
@@ -124,9 +127,7 @@ bool TextureExtractor::calculateDataCosts(){
     //normalisation;
     for(auto & f : dataCosts){
         float faceMax = 0;
-        std::vector<double> hue;
-        std::vector<double> saturation;
-        std::vector<double> value;
+        std::vector<double> colorCombined;
         std::vector<glm::vec4> colors;
         
         for(auto & v : f.second){
@@ -136,10 +137,13 @@ bool TextureExtractor::calculateDataCosts(){
             v.second.colorSum[3] = v.second.colorSum[3]/v.second.sampleCount;
             
             colors.push_back(v.second.colorSum);
+            colorCombined.push_back(vecSum(v.second.colorSum));
             v.second.calcQuality();
             faceMax = std::max(faceMax,v.second.quality);
             faceViewAverages[f.first][v.first] = v.second.colorSum;
         }
+        //getting mean color
+        std::sort(colorCombined.begin(),colorCombined.end());
         
         glm::vec4 averageColor;
         for(auto c:colors){
@@ -150,13 +154,31 @@ bool TextureExtractor::calculateDataCosts(){
         averageColor[2] /= colors.size();
         averageColor[3] /= colors.size();
         
+        double meanColor = colorCombined[floor(colorCombined.size()/2)];
+        
         faceAverages[f.first] = averageColor;
-
+        //TODO:add to config 0.70f
+        float outlinerPersentage = 0.70f;
+        std::vector<uint> outlinerViews;
+        
         for(auto & v : f.second){
             if(faceMax > 0){
                 v.second.quality = 1 - (v.second.quality/faceMax);
             }else{
                  v.second.quality = 1 - v.second.quality;
+            }
+            float percentColor = std::min(vecSum(v.second.colorSum),meanColor) / std::max(vecSum(v.second.colorSum),meanColor);
+            
+            if(percentColor<outlinerPersentage){
+//                v.second.quality *= 1.5;
+                outlinerViews.push_back(v.first);
+            }
+            
+        }
+        if(outlinerViews.size()<f.second.size()){
+            for(int t=0;t<outlinerViews.size();t++){
+                f.second.erase(outlinerViews[t]);
+                std::cout<<"erased/n";
             }
         }
          std::cout<<"";
