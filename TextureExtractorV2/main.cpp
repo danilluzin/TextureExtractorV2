@@ -150,6 +150,7 @@ bool calcDataCostsAndGetLebeling(TextureExtractor & extractor){
         dataCostsOK = extractor.readDataCostsFromFile();
         if( !dataCostsOK )
             return false;
+        extractor.postprocessDataCosts();
     }else{
         bool dataCostsOK;
         dataCostsOK = calculateDataCosts( extractor );

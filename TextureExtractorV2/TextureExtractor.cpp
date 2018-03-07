@@ -81,13 +81,45 @@ double calcQuality(PatchQuality & patchQuality){
         return 0;
 }
 
+
+void TextureExtractor::photoConsistencyDataCosts(){
+    int removed = 0;
+    for(auto & f : dataCosts){
+        std::vector<double> colorCombined;
+        for(auto & v : f.second){
+            colorCombined.push_back(vecSum(v.second.colorSum));
+        }
+        //getting mean color
+        std::sort(colorCombined.begin(),colorCombined.end());
+        double meanColor = colorCombined[floor(colorCombined.size()/2)];
+        
+        float outlinerPersentage = 0.7f;
+        std::vector<uint> outlinerViews;
+        
+        for(auto & v : f.second){
+            float percentColor = std::min(vecSum(v.second.colorSum),meanColor) / std::max(vecSum(v.second.colorSum),meanColor);
+            
+            if(percentColor<outlinerPersentage){
+                outlinerViews.push_back(v.first);
+            }
+        } 
+        if(outlinerViews.size()<f.second.size()){
+            for(int t=0;t<outlinerViews.size();t++){
+                f.second.erase(outlinerViews[t]);
+                removed++;
+            }
+        }
+    }
+    std::cout<<"Removed "<< removed<<" view:face pairs (color consistency)\n";
+}
+
+
 void TextureExtractor::postprocessDataCosts(){
     //normalisation and post;
     print("Post-processing\n");
-    int removed = 0;
+    
     for(auto & f : dataCosts){
         float faceMax = 0;
-        std::vector<double> colorCombined;
         std::vector<glm::vec4> colors;
         
         for(auto & v : f.second){
@@ -97,39 +129,22 @@ void TextureExtractor::postprocessDataCosts(){
             v.second.colorSum[3] = v.second.colorSum[3]/v.second.sampleCount;
             
             colors.push_back(v.second.colorSum);
-            colorCombined.push_back(vecSum(v.second.colorSum));
             
             v.second.quality = calcQuality(v.second);
             faceMax = std::max(faceMax,v.second.quality);
         }
-        //getting mean color
-        std::sort(colorCombined.begin(),colorCombined.end());
-        double meanColor = colorCombined[floor(colorCombined.size()/2)];
-
-        //TODO:add to config 0.70f
-        float outlinerPersentage = 0.70f;
-        std::vector<uint> outlinerViews;
-       
+        
         for(auto & v : f.second){
             if(faceMax > 0){
                 v.second.quality = 1 - (v.second.quality/faceMax);
             }else{
                 v.second.quality = 1 - v.second.quality;
             }
-            float percentColor = std::min(vecSum(v.second.colorSum),meanColor) / std::max(vecSum(v.second.colorSum),meanColor);
-            
-            if(percentColor<outlinerPersentage){
-                outlinerViews.push_back(v.first);
-            }
-        }
-        if(outlinerViews.size()<f.second.size()){
-            for(int t=0;t<outlinerViews.size();t++){
-                f.second.erase(outlinerViews[t]);
-                removed++;
-            }
         }
     }
-    std::cout<<"Removed "<< removed<<" view:face pairs (color consistency)\n";
+    
+    //TODO: in arguments
+    photoConsistencyDataCosts();
 }
 
 
@@ -184,14 +199,12 @@ bool TextureExtractor::calculateDataCosts(){
     }
     
     std::cout<<"\r\rGetting Data Costs %100      \n";
-
-    //TODO: move to main pipeline and deal with load
-    postprocessDataCosts();
-    
+ 
     if(arguments.writeDataCostsToFile){
         writeDataCostsToFile();
     }
     
+    postprocessDataCosts();
 
     return true;
 }

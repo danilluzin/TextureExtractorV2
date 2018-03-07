@@ -13,8 +13,6 @@
 #include "INIReader.h"
 #include "Utils.h"
 
-//TODO: message by enum
-
 struct Arguments{
     
     int textureWidth;

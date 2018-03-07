@@ -76,7 +76,9 @@ public:
     void renderView(Bitmap & bitmap,uint viewId);
     
     void renderViewAndDepth(Bitmap & bitmap,Bitmap & bitmapDepth,uint viewId);
-
+    
+    void postprocessDataCosts();
+    
 private:
     
     void extractAllFaces(Bitmap & labelTexture,Bitmap & texture,Object & object);
@@ -114,9 +116,10 @@ private:
     void getSampleList();
     void updateSampleList();
     
-    void postprocessDataCosts();
-    
     void preparePatchDictionary();
+    
+    void photoConsistencyDataCosts();
+    
 };
 
 
