@@ -173,8 +173,6 @@ void DataCostsExtractor::drawScanLine(Edge left, Edge right, int y, Gradient & g
     
     for(int x = xMin; x<xMax ; x++){
         int index = x + y*width;
-        if(id != 0)
-            patchInfos[id].potentialCount++;
         if(depth < depthBuffer[index]){
             glm::vec4 color = sobelImage.at(x, y);
             glm::vec4 originColor = sourceImage->at(x,y);

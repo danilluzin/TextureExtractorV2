@@ -74,6 +74,65 @@ double vecSum(glm::vec4 v){
     return v[0]+v[1]+v[2];
 }
 
+double calcQuality(PatchQuality & patchQuality){
+    if(patchQuality.sampleCount>0)
+        return patchQuality.gradientMagnitudeSum;
+    else
+        return 0;
+}
+
+void TextureExtractor::postprocessDataCosts(){
+    //normalisation and post;
+    print("Post-processing\n");
+    int removed = 0;
+    for(auto & f : dataCosts){
+        float faceMax = 0;
+        std::vector<double> colorCombined;
+        std::vector<glm::vec4> colors;
+        
+        for(auto & v : f.second){
+            v.second.colorSum[0] = v.second.colorSum[0]/v.second.sampleCount;
+            v.second.colorSum[1] = v.second.colorSum[1]/v.second.sampleCount;
+            v.second.colorSum[2] = v.second.colorSum[2]/v.second.sampleCount;
+            v.second.colorSum[3] = v.second.colorSum[3]/v.second.sampleCount;
+            
+            colors.push_back(v.second.colorSum);
+            colorCombined.push_back(vecSum(v.second.colorSum));
+            
+            v.second.quality = calcQuality(v.second);
+            faceMax = std::max(faceMax,v.second.quality);
+        }
+        //getting mean color
+        std::sort(colorCombined.begin(),colorCombined.end());
+        double meanColor = colorCombined[floor(colorCombined.size()/2)];
+
+        //TODO:add to config 0.70f
+        float outlinerPersentage = 0.70f;
+        std::vector<uint> outlinerViews;
+       
+        for(auto & v : f.second){
+            if(faceMax > 0){
+                v.second.quality = 1 - (v.second.quality/faceMax);
+            }else{
+                v.second.quality = 1 - v.second.quality;
+            }
+            float percentColor = std::min(vecSum(v.second.colorSum),meanColor) / std::max(vecSum(v.second.colorSum),meanColor);
+            
+            if(percentColor<outlinerPersentage){
+                outlinerViews.push_back(v.first);
+            }
+        }
+        if(outlinerViews.size()<f.second.size()){
+            for(int t=0;t<outlinerViews.size();t++){
+                f.second.erase(outlinerViews[t]);
+                removed++;
+            }
+        }
+    }
+    std::cout<<"Removed "<< removed<<" view:face pairs (color consistency)\n";
+}
+
+
 bool TextureExtractor::calculateDataCosts(){
     uint progressCounter=0;
     int threadCount = arguments.threadCount;
@@ -124,71 +183,15 @@ bool TextureExtractor::calculateDataCosts(){
         }
     }
     
-    //normalisation;
-    for(auto & f : dataCosts){
-        float faceMax = 0;
-        std::vector<double> colorCombined;
-        std::vector<glm::vec4> colors;
-        
-        for(auto & v : f.second){
-            v.second.colorSum[0] = v.second.colorSum[0]/v.second.sampleCount;
-            v.second.colorSum[1] = v.second.colorSum[1]/v.second.sampleCount;
-            v.second.colorSum[2] = v.second.colorSum[2]/v.second.sampleCount;
-            v.second.colorSum[3] = v.second.colorSum[3]/v.second.sampleCount;
-            
-            colors.push_back(v.second.colorSum);
-            colorCombined.push_back(vecSum(v.second.colorSum));
-            v.second.calcQuality();
-            faceMax = std::max(faceMax,v.second.quality);
-            faceViewAverages[f.first][v.first] = v.second.colorSum;
-        }
-        //getting mean color
-        std::sort(colorCombined.begin(),colorCombined.end());
-        
-        glm::vec4 averageColor;
-        for(auto c:colors){
-            averageColor += c;
-        }
-        averageColor[0] /= colors.size();
-        averageColor[1] /= colors.size();
-        averageColor[2] /= colors.size();
-        averageColor[3] /= colors.size();
-        
-        double meanColor = colorCombined[floor(colorCombined.size()/2)];
-        
-        faceAverages[f.first] = averageColor;
-        //TODO:add to config 0.70f
-        float outlinerPersentage = 0.70f;
-        std::vector<uint> outlinerViews;
-        
-        for(auto & v : f.second){
-            if(faceMax > 0){
-                v.second.quality = 1 - (v.second.quality/faceMax);
-            }else{
-                 v.second.quality = 1 - v.second.quality;
-            }
-            float percentColor = std::min(vecSum(v.second.colorSum),meanColor) / std::max(vecSum(v.second.colorSum),meanColor);
-            
-            if(percentColor<outlinerPersentage){
-//                v.second.quality *= 1.5;
-                outlinerViews.push_back(v.first);
-            }
-            
-        }
-        if(outlinerViews.size()<f.second.size()){
-            for(int t=0;t<outlinerViews.size();t++){
-                f.second.erase(outlinerViews[t]);
-                std::cout<<"erased/n";
-            }
-        }
-         std::cout<<"";
-    }
-    
     std::cout<<"\r\rGetting Data Costs %100      \n";
+
+    //TODO: move to main pipeline and deal with load
+    postprocessDataCosts();
     
     if(arguments.writeDataCostsToFile){
         writeDataCostsToFile();
     }
+    
 
     return true;
 }
@@ -294,8 +297,15 @@ bool  TextureExtractor::parseFaceDataCost(std::ifstream & file){
             std::cout<<"ERROR: Data cost file references wrong view ID\n";
             return false;
         }
-        float dataCost = parseFloat(tokens[1]);
-        dataCosts[faceId][viewId].quality = dataCost;
+
+        dataCosts[faceId][viewId].gradientMagnitudeSum = parseFloat(tokens[1]);
+        dataCosts[faceId][viewId].sampleCount = parseFloat(tokens[2]);
+        dataCosts[faceId][viewId].colorSum[0] = parseFloat(tokens[3]);
+        dataCosts[faceId][viewId].colorSum[1] = parseFloat(tokens[4]);
+        dataCosts[faceId][viewId].colorSum[2] = parseFloat(tokens[5]);
+        
+        
+        
     }
     
     getline(file,line);
@@ -655,7 +665,12 @@ bool TextureExtractor::writeDataCostsToFile(){
     for(const auto & f : dataCosts){
         file<<f.first<<" "<<f.second.size()<<"\n";
         for(const auto & v:f.second){
-            file<<v.first<<" "<<v.second.quality<<"\n";
+            file << v.first<<" "
+                 << v.second.gradientMagnitudeSum<<" "
+                 << v.second.sampleCount<<" "
+                 << v.second.colorSum[0]<<" "
+                 << v.second.colorSum[1]<<" "
+                 << v.second.colorSum[2]<<"\n";
         }
         file<<"\n";
     }

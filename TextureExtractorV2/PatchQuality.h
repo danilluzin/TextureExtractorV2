@@ -11,7 +11,6 @@
 
 struct PatchQuality {
     uint sampleCount = 0;
-    uint potentialCount = 0;
     glm::vec4 colorSum;
     float gradientMagnitudeSum=0;
     void calcQuality(){
