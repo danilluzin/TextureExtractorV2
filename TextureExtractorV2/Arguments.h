@@ -12,6 +12,8 @@
 #include <iostream>
 #include "INIReader.h"
 #include "Utils.h"
+#include<fstream>
+#include<iostream>
 
 struct Arguments{
     
@@ -19,6 +21,8 @@ struct Arguments{
     int textureHeight;
     
     int threadCount;
+    int BVHMinNode;
+
     std::string objFilePath ;
     std::string cameraListFilePath;
     std::string cameraInfoPath;
@@ -29,8 +33,6 @@ struct Arguments{
     std::string dataCostsFilePath;
     std::string newDataCostsFilePath;
     
-    
-    
     std::string projectName;
     std::string resultRenderFolder;
     std::string rasterLabelAssignmentFolder;
@@ -40,21 +42,25 @@ struct Arguments{
     bool writeLabelingToFile;
     bool getDataCostsFromFile;
     bool writeDataCostsToFile;
-    bool genLebelingTexture;
-    bool genLevelingTexture;
-    bool genMaskTexture;
-    bool genGlobalTexture;
-    bool rasterLabelAssignment;
-    bool addProjectNameToFiles;
     
     bool doGloabalAdjustment;
     bool doSeamLeveling;
     bool doTextureExtension;
+    bool doColorConsistency;
     
+    float colorConsistencyThreshold;
+    
+    bool genLebelingTexture;
+    bool genLevelingTexture;
+    bool genMaskTexture;
+    bool genGlobalTexture;
     bool genRawTexture;
+    
+    bool addProjectNameToFiles;
+    
     bool _justRender;
     bool _renderInTheEnd;
-    
+    bool rasterLabelAssignment;
     
     
     bool initializeConfig(std::string filename){
@@ -145,6 +151,7 @@ struct Arguments{
         
         verbose = reader.GetBoolean("basic", "verbose", true);
 
+        BVHMinNode = (int)reader.GetInteger("perfomance","BVHMinNode",200);
         threadCount = (int)reader.GetInteger("basics", "threadCount", 1);
         if(threadCount < 1){
             printWarning("WARNING: Invalid number of working threads(threadCount). Defaulting to 1\n");
@@ -158,12 +165,22 @@ struct Arguments{
             imageFormat = "png";
         }
         
-        projectName = reader.Get("basics", "projectName", "projectName");
-        addProjectNameToFiles = reader.GetBoolean("basics", "addProjectNameToFiles", false);
+        projectName = reader.Get("optional", "projectName", "projectName");
+        addProjectNameToFiles = reader.GetBoolean("optional", "addProjectNameToFiles", false);
         
         doGloabalAdjustment = reader.GetBoolean("optional", "doGloabalAdjustment", true);
         doSeamLeveling = reader.GetBoolean("optional", "doSeamLeveling", true);
         doTextureExtension = reader.GetBoolean("optional", "doTextureExtension", true);
+        
+        doColorConsistency = reader.GetBoolean("optional", "doColorConsistency", true);
+        if(doColorConsistency == true){
+            colorConsistencyThreshold = reader.GetReal("optional", "colorConsistencyThreshold", -1.0);
+            if(colorConsistencyThreshold==-1.0){
+                printWarning("WARNING: Valid colorConsistencyThreshold was not specified. Defaulting to 0.5\n");
+                colorConsistencyThreshold = 0.5;
+            }
+        }
+        
         
         //debug
         genRawTexture = reader.GetBoolean("debug", "genRawTexture", false);
@@ -187,9 +204,6 @@ struct Arguments{
         return true;
     }
     
-   
-    
-
     
     std::string appendix(){
         if(addProjectNameToFiles)
@@ -220,6 +234,23 @@ struct Arguments{
     
     std::string genGlobalTexturePath(std::string objName){
         return newTextureFolderPath + "/" + appendix() + objName + "_global." + imageFormat;
+    }
+    
+    bool generateIni(){
+        std::string iniExampleFilename = "example.ini";
+        std::ofstream iniFile;
+        iniFile.open (iniExampleFilename);
+        if(!iniFile.is_open()){
+            printError("Error openning file to write exampleIni!\n");
+            return false;
+        }
+        iniFile << exampleIni;
+        if(!iniFile.good()){
+            printError("Error occured when writing exampleIni!\n");
+            return false;
+        }
+        iniFile.close();
+        return true;
     }
     
 };

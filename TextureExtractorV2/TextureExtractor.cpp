@@ -84,6 +84,8 @@ double calcQuality(PatchQuality & patchQuality){
 
 void TextureExtractor::photoConsistencyDataCosts(){
     int removed = 0;
+    float outlinerPersentage = arguments.colorConsistencyThreshold;
+    
     for(auto & f : dataCosts){
         std::vector<double> colorCombined;
         for(auto & v : f.second){
@@ -93,7 +95,6 @@ void TextureExtractor::photoConsistencyDataCosts(){
         std::sort(colorCombined.begin(),colorCombined.end());
         double meanColor = colorCombined[floor(colorCombined.size()/2)];
         
-        float outlinerPersentage = 0.7f;
         std::vector<uint> outlinerViews;
         
         for(auto & v : f.second){
@@ -110,7 +111,7 @@ void TextureExtractor::photoConsistencyDataCosts(){
             }
         }
     }
-    std::cout<<"Removed "<< removed<<" view:face pairs (color consistency)\n";
+    std::cout<<"Removed "<< removed <<" view:face pairs (color consistency)\n";
 }
 
 
@@ -143,8 +144,9 @@ void TextureExtractor::postprocessDataCosts(){
         }
     }
     
-    //TODO: in arguments
-    photoConsistencyDataCosts();
+    if(arguments.doColorConsistency){
+        photoConsistencyDataCosts();
+    }
 }
 
 

@@ -12,6 +12,7 @@
 #include <iostream>
 #include <glm/glm.hpp>
 #include <vector>
+#include "Misc.h"
 
 static bool verbose = true;
 
@@ -155,6 +156,7 @@ inline void clampRGBA(glm::vec4 & color){
     if(color.a > 1)
         color.a = 1;
 }
+
 
 
 #endif /* Utils_h */

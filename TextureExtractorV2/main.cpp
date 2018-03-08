@@ -34,26 +34,25 @@ bool loadLabelsFromFile(TextureExtractor & extractor);
 
 Arguments arguments;
 
-int main(int argc, const char * argv[]) {
+bool checkFlags(const char * argv[]);
 
+int main(int argc, const char * argv[]) {
+    
     TextureExtractor extractor;
     Timer mainTimer;
     mainTimer.start();
    
     if(argc >= 2){
-        std::string flag = std::string(argv[1]);
-        //Check for flags
-        if(flag == "-genIni\n"){
-            //TODO:proper generation
-            print("generating ini...");
+        bool continueRun = checkFlags(argv);
+        if(!continueRun)
             return 1;
-        }
     }
     
     bool configSuccessful;
     configSuccessful = prepareConfig(argc, argv);
     if(!configSuccessful){
         printError("Error occured when parsing the config. Stopping\n");
+        printBold(mainTimer.stopGetResults("\nExited with error"));
         return -1;
     }
     
@@ -254,7 +253,21 @@ bool calculateDataCosts(TextureExtractor & extractor){
 }
 
 
-
+bool checkFlags(const char * argv[]){
+    std::string flag = std::string(argv[1]);
+    if(flag == "-genIni"){
+        print("generating ini...\n");
+        bool generationOk;
+        generationOk = arguments.generateIni();
+        if(!generationOk){
+            std::cout<<"Error when generationg example ini config\n";
+        }else{
+            std::cout<<"Example ini config generated\n";
+        }
+        return false;
+    }
+    return true;
+}
 
 
 
