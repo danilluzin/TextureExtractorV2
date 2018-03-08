@@ -70,7 +70,7 @@ struct Arguments{
             printError("ERROR: Can't load config file: "+filename+"\n");
             return false;
         }
-        print("Config loaded from " + filename +". Parsing...\n");
+        print("Config loaded from " + filename +". Parsing :\n");
         //basics
         objFilePath = reader.Get("basics", "objFilePath", "UNKNOWN");
         if(objFilePath == "UNKNOWN"){

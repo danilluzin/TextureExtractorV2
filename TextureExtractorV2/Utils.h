@@ -13,8 +13,13 @@
 #include <glm/glm.hpp>
 #include <vector>
 #include "Misc.h"
+#include <sstream>
+#include <iomanip>
 
 static bool verbose = true;
+extern int pad;
+
+
 
 class Coord{
 public:
@@ -32,34 +37,41 @@ public:
 
 static const Coord dir[8] = {{0,-1},{1,-1},{1,0},{1,1},{0,1},{-1,1},{-1,0},{-1,-1}};
 
-inline std::ostream& bold_on(std::ostream& os)
-{
-    return os << "\e[1m";
+inline std::string fitPercent(float p){
+    std::stringstream ss;
+    ss.precision(2);
+    ss << std::fixed << std::setw(6) << std::setfill(' ') << p;
+    return ss.str();
 }
 
-
-inline std::ostream& bold_off(std::ostream& os)
-{
-    return os << "\e[0m";
+inline std::string s(int c){
+    std::string str;
+    str.insert(0, c,' ');
+    return str;
 }
 
 
 inline void print(const std::string & text){
     if(verbose)
-        std::cout << text;
+        std::cout <<s(pad)<< text << COLOR_RESET;
+}
+
+inline void printOver(const std::string & text){
+    if(verbose)
+        std::cout << "\r"<< s(pad) << text << COLOR_RESET << std::flush;
 }
 
 inline void printError(const std::string & text){
-    std::cout << text;
+    std::cout << COLOR_RED << s(pad) << text << COLOR_RESET;
 }
 
 inline void printWarning(const std::string & text){
-    std::cout << text;
+    std::cout << COLOR_YELLOW << s(pad) << text << COLOR_RESET;
 }
 
 inline void printBold(const std::string & text){
     if(verbose)
-        std::cout << text;
+        std::cout << s(pad) << text;
 //    std::cout << bold_on << text << bold_off;
 }
 
@@ -157,6 +169,8 @@ inline void clampRGBA(glm::vec4 & color){
         color.a = 1;
 }
 
-
+inline void adjPad(int t){
+    pad += t;
+}
 
 #endif /* Utils_h */

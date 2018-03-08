@@ -42,22 +42,24 @@ bool TextureExtractor::isValidFaceId(int id){
 
 bool TextureExtractor::prepareViews(){
 
-    std::cout<<"Reading the list of source Photos\n";
+    print("Reading the list of source Photos\n");
+    adjPad(2);
     bool listOk;
     listOk = extractPhotoList();
     if(!listOk){
-        std::cout<<"ERROR occured when getting photo list\n";
+        printError("ERROR occured when getting photo list\n");
         return false;
     }
-
-    std::cout<<"Reading Camera info (position, rotation, fov)\n";
+    adjPad(-2);
+    print("Reading camera info (position, rotation, fov)\n");
+    adjPad(2);
     bool cameraInfoOK;
     cameraInfoOK = extractCameraInfoCreateViews();
     if(!cameraInfoOK){
-        std::cout<<"ERROR occured when getting camera info\n";
+        printError("ERROR occured when getting camera info\n");
         return false;
     }
-
+    adjPad(-2);
     for(auto v : views){
         float gs = (float)v.second.id / views.size();
 //        float rndR = ((float)rand())/RAND_MAX;
@@ -111,14 +113,14 @@ void TextureExtractor::photoConsistencyDataCosts(){
             }
         }
     }
-    std::cout<<"Removed "<< removed <<" view:face pairs (color consistency)\n";
+    print("Removed "+COLOR_BOLD+std::to_string(removed) + COLOR_RESET + " [face : view] pairs (color consistency)\n");
 }
 
 
 void TextureExtractor::postprocessDataCosts(){
     //normalisation and post;
-    print("Post-processing\n");
-    
+    print("Post-processing datasets:\n");
+    adjPad(2);
     for(auto & f : dataCosts){
         float faceMax = 0;
         std::vector<glm::vec4> colors;
@@ -147,6 +149,7 @@ void TextureExtractor::postprocessDataCosts(){
     if(arguments.doColorConsistency){
         photoConsistencyDataCosts();
     }
+    adjPad(-2);
 }
 
 
@@ -178,8 +181,8 @@ bool TextureExtractor::calculateDataCosts(){
             currentManagerWorkLoad = 0;
         }
     }
+    printOver(COLOR_TEAL+"["+fitPercent(0)+"%]"+COLOR_RESET + " Getting Data Costs");
     
-    std::cout<<"\rProgress %0";
     std::vector<std::thread> threads;
     for(int t = 0 ;t< threadCount; t++){
         threads.push_back( std::thread(&DataCostExtractionManager::doWork, &managers[t]));
@@ -188,8 +191,8 @@ bool TextureExtractor::calculateDataCosts(){
     for(int t = 0 ;t< threadCount; t++){
         threads[t].join();
     }
-    
-    std::cout<<"\nMerging datasets\n";
+    print("\n");
+    print("Merging datasets\n");
     //Merging manager datasets
     for(auto & ds : managerDataSets){
         for(auto & v : ds){
@@ -199,8 +202,6 @@ bool TextureExtractor::calculateDataCosts(){
             }
         }
     }
-    
-    std::cout<<"\r\rGetting Data Costs %100      \n";
  
     if(arguments.writeDataCostsToFile){
         writeDataCostsToFile();
@@ -216,7 +217,7 @@ bool TextureExtractor::readLabelsFromFile(){
     std::ifstream file;
     file.open(arguments.labelingFilePath.c_str());
     if(!file.is_open()){
-        std::cerr << "Unable to open labeling file: " << arguments.labelingFilePath << std::endl;
+        printError("Unable to open labeling file: " + arguments.labelingFilePath + "\n");
         return false;
     }
     
@@ -233,9 +234,9 @@ bool TextureExtractor::readLabelsFromFile(){
     }
     file.close();
     if(successCount < mesh.triangles.size()){
-        std::cout<<"Number of valid labels is less than number of faces: "<<
-                    "    labels = "<<successCount<<"\n"<<
-                    "    faces = "<<mesh.triangles.size()<<"\n";
+        printError("Number of valid labels is less than number of faces: \n");
+        printError("    labels = "+std::to_string(successCount)+"\n");
+        printError("    faces = "+std::to_string(mesh.triangles.size())+"\n");
         return false;
     }
     return true;
@@ -246,7 +247,7 @@ bool TextureExtractor::readDataCostsFromFile(){
     std::ifstream file;
     file.open(arguments.dataCostsFilePath.c_str());
     if(!file.is_open()){
-        std::cerr << "Unable to open data costs file: " << arguments.labelingFilePath << std::endl;
+        printError("Unable to open data costs file: " + arguments.labelingFilePath+"\n");
         return false;
     }
     
@@ -258,7 +259,7 @@ bool TextureExtractor::readDataCostsFromFile(){
     uint infoFaceCount =  parseInt(tokens[1]);
     
     if(faceCount != mesh.triangles.size()){
-        std::cout<<"ERROR: Data cost file format doesn't match current mesh or is wrong\n";
+        printError("ERROR: Data cost file format doesn't match current mesh or is wrong\n");
         return false;
     }
     
@@ -269,15 +270,15 @@ bool TextureExtractor::readDataCostsFromFile(){
         if(parseOk){
             successCount++;
         }else{
-            std::cout<<"ERROR: Data cost file format doesn't match current mesh or is wrong\n";
+            printError("ERROR: Data cost file format doesn't match current mesh or is wrong\n");
             return false;
         }
     }
     file.close();
     if(successCount < infoFaceCount){
-        std::cout<<"Number of valid dataCosts is less than promised number of faces: "<<
-        "    got = "<<successCount<<"\n"<<
-        "    expected = "<<infoFaceCount<<"\n";
+        printError("Number of valid dataCosts is less than promised number of faces: ");
+        printError("    got = "+std::to_string(successCount)+"\n");
+        printError("    expected = "+std::to_string(infoFaceCount)+"\n");
         return false;
     }
     return true;
@@ -296,7 +297,7 @@ bool  TextureExtractor::parseFaceDataCost(std::ifstream & file){
     
     uint faceId = parseInt(tokens[0]);
     if(faceId > mesh.triangles.size() || faceId <= 0){
-        std::cout<<"ERROR: Data cost file references wrong face ID\n";
+        printError("ERROR: Data cost file references wrong face ID\n");
         return false;
     }
     uint viewsCount = parseInt(tokens[1]);
@@ -309,7 +310,7 @@ bool  TextureExtractor::parseFaceDataCost(std::ifstream & file){
         tokens = splitString(line, ' ');
         uint viewId = parseInt(tokens[0]);
         if(viewId <= 0 || viewId> views.size()){
-            std::cout<<"ERROR: Data cost file references wrong view ID\n";
+            printError("ERROR: Data cost file references wrong view ID\n");
             return false;
         }
 
@@ -328,7 +329,7 @@ bool  TextureExtractor::parseFaceDataCost(std::ifstream & file){
         return false;
     
     if(line.size() > 0){
-        std::cout<<"ERROR: Data cost file format wrong. Newline between face infos missing\n";
+        printError("ERROR: Data cost file format wrong. Newline between face infos missing\n");
         return false;
     }
     return true;
@@ -354,7 +355,7 @@ bool TextureExtractor::selectViews(){
         bool writingOk;
         writingOk = writeLabelingToFile();
         if(!writingOk)
-            std::cout<<"WARNING: Wrinting of labels to a file failed\n";
+            printWarning("WARNING: Writing of labels to a file failed\n");
     }
     return true;
 }
@@ -364,7 +365,9 @@ void TextureExtractor::extractAllFaces(Bitmap & labelTexture, Bitmap & texture,O
     glm::vec4 defaultColor (0.37, 0.61, 0.62, 1);
     uint t = 0;
     for(auto & f : object.triangles){
-        std::cout<<"\rGeting texture for faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
+        float progress = (100*((float)t/object.triangles.size()));
+        printOver(COLOR_TEAL+"["+fitPercent(progress)+"%]"+COLOR_RESET + " Getting texture for faces");
+        
         Triangle & face = mesh.triangles[f];
         if(face.viewId != 0){
             worker.extract(face, texture, views[face.viewId]);
@@ -376,21 +379,22 @@ void TextureExtractor::extractAllFaces(Bitmap & labelTexture, Bitmap & texture,O
         }
         t++;
     }
-    std::cout<<"\rGeting texture for faces %100      \n";
+    printOver(COLOR_TEAL+"["+fitPercent(100)+"%]"+COLOR_RESET + " Getting texture for faces\n");
 }
 
 
 void TextureExtractor::extendAllFaces(Bitmap & texture,Object & object){
     int t=0;
     for(auto & f : object.triangles){
-        std::cout<<"\rExpanding faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
+        float progress = (100*((float)t/object.triangles.size()));
+        printOver(COLOR_TEAL+"["+fitPercent(progress)+"%]"+COLOR_RESET + " Expanding faces");
         Triangle & face = mesh.triangles[f];
         if(face.viewId != 0){
             worker.extend(face, texture);
         }
         t++;
     }
-    std::cout<<"\rExpanding faces %100      \n";
+    printOver(COLOR_TEAL+"["+fitPercent(100)+"%]"+COLOR_RESET + " Expanding faces\n");
 }
 
 
@@ -400,7 +404,8 @@ void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & leve
     //global leveling
     if(arguments.doGloabalAdjustment){
         for(auto & f : object.triangles){
-            std::cout<<"\rApplying global gradient to faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
+            float progress = (100*((float)t/object.triangles.size()));
+            printOver(COLOR_TEAL+"["+fitPercent(progress)+"%]"+COLOR_RESET + " Applying global gradient to faces");
             Triangle & face = mesh.triangles[f];
             if(face.viewId != 0){
                 uint texturePatchID = patchDictionary.triangleMembership[f];
@@ -413,11 +418,13 @@ void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & leve
             }
             t++;
         }
-            std::cout<<"\rApplying global gradient  to faces %100      \n";
+        printOver(COLOR_TEAL+"["+fitPercent(100)+"%]"+COLOR_RESET + " Applying global gradient to faces\n");
         globalCopy = texture;
         if(arguments.genGlobalTexture){
-            std::cout<<"Generating global adjustment texture\n";
+            adjPad(-2);
+            print("Generating global adjustment texture\n");
             globalCopy.save(arguments.genGlobalTexturePath(object.name));
+            adjPad(2);
         }
     }
     
@@ -425,7 +432,8 @@ void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & leve
     if(arguments.doSeamLeveling){
         t=0;
         for(auto & f : object.triangles){
-            std::cout<<"\rApplying seam leveling to faces %"<<(100*((float)t/object.triangles.size()))<<"     "<<std::flush;
+            float progress = (100*((float)t/object.triangles.size()));
+            printOver(COLOR_TEAL+"["+fitPercent(progress)+"%]"+COLOR_RESET + " Applying seam leveling to faces");
             Triangle & face = mesh.triangles[f];
             if(face.viewId != 0){
                 glm::vec4 color[3];
@@ -440,24 +448,30 @@ void TextureExtractor::applyGradientAllFaces(Bitmap & textureCopy, Bitmap & leve
             }
             t++;
         }
-        std::cout<<"\rApplying seam leveling  to faces %100      \n";
+        printOver(COLOR_TEAL+"["+fitPercent(100)+"%]"+COLOR_RESET + " Applying seam leveling to faces\n");
     }
 }
 
 bool TextureExtractor::generateTexture(){
+    adjPad(2);
+    print("Getting verticies color sample list\n");
     getSampleList();
     if(arguments.doGloabalAdjustment){
+        print("Building texture patch adjacency\n");
         preparePatchDictionary();
+        print("Updating verticies sample list for global adjustments\n");
         updateSampleList();
     }
     for(auto & o : mesh.objects){
-        print("Generating texture for object :"+o.name+"\n");
+        print("Generating texture for object [ "+COLOR_BOLD+o.name+COLOR_RESET+" ] :\n");
         generateTextureForObject(o);
     }
+    adjPad(-2);
     return true;
 }
 
 bool TextureExtractor::generateTextureForObject(Object & object){
+    adjPad(2);
     Bitmap texture = Bitmap(arguments.textureWidth, arguments.textureHeight);
     mask = Bitmap(arguments.textureWidth, arguments.textureHeight);
     Bitmap labelTexture(arguments.textureWidth, arguments.textureHeight);
@@ -471,9 +485,8 @@ bool TextureExtractor::generateTextureForObject(Object & object){
     
     extractAllFaces(labelTexture,texture,object);
 
-    std::cout<<"PostProcessing:\n";
-    
-    
+    print("Post-processing:\n");
+    adjPad(2);
     Bitmap textureCopy;
     textureCopy = texture;
     applyGradientAllFaces(textureCopy,levelingTexture,texture,object);
@@ -481,26 +494,27 @@ bool TextureExtractor::generateTextureForObject(Object & object){
     if(arguments.doTextureExtension)
         extendAllFaces(texture,object);
     
-    
+    adjPad(-2);
     if(arguments.genLevelingTexture && arguments.doSeamLeveling){
-        std::cout<<"Generating leveling texture\n";
+        print("Generating leveling texture\n");
         levelingTexture.save(arguments.genLevelingTexturePath(object.name));
     }
     if(arguments.genMaskTexture){
-        std::cout<<"Generating mask texture\n";
+        print("Generating mask texture\n");
         mask.save(arguments.genMaskTexturePath(object.name));
     }
     if(arguments.genRawTexture){
-        std::cout<<"Generating raw texture\n";
+        print("Generating raw texture\n");
         textureCopy.save(arguments.genRawTexturePath(object.name));
     }
     if(arguments.genLebelingTexture){
-        std::cout<<"Generating lable assignment texture\n";
+        print("Generating lable assignment texture\n");
         labelTexture.save(arguments.genLebelingTexturePath(object.name));
     }
     
-    std::cout<<"Writing texture to file\n";
+    print("Writing texture to file\n");
     texture.save(arguments.genFinalTexturePath(object.name));
+    adjPad(-2);
     return true;
 }
 
@@ -646,11 +660,11 @@ void TextureExtractor::updateSampleList(){
 
 
 bool TextureExtractor::writeLabelingToFile(){
-    std::cout<<"Writing labeling into file\n";
+    print("Writing labeling into file\n");
     std::ofstream file;
     file.open(arguments.newLabelingFilePath.c_str());
     if(!file.is_open()){
-        std::cerr << "Unable to open labeling file for writng: " << arguments.newLabelingFilePath << std::endl;
+        printWarning(s(2)+"Unable to open labeling file for writng: " + arguments.newLabelingFilePath+"\n");
         return false;
     }
     
@@ -660,7 +674,7 @@ bool TextureExtractor::writeLabelingToFile(){
     }
     file.close();
     if(!file.good()){
-        std::cout<< "Something went wrong when writing to file\n";
+        printWarning(s(2)+"Something went wrong when writing to file\n");
         return false;
     }
    return true;
@@ -668,11 +682,11 @@ bool TextureExtractor::writeLabelingToFile(){
 
 
 bool TextureExtractor::writeDataCostsToFile(){
-    std::cout<<"Writing labeling into file\n";
+    print("Writing data costs into file\n");
     std::ofstream file;
     file.open(arguments.newDataCostsFilePath.c_str());
     if(!file.is_open()){
-        std::cerr << "Unable to open data cost file for writng: " << arguments.newLabelingFilePath << std::endl;
+         printWarning(s(2)+"Unable to open data cost file for writng: " + arguments.newLabelingFilePath+"\n");
         return false;
     }
     
@@ -691,7 +705,7 @@ bool TextureExtractor::writeDataCostsToFile(){
     }
     file.close();
     if(!file.good()){
-        std::cout<< "Something went wrong when writing to file\n";
+        printWarning(s(2)+"Something went wrong when writing to file\n");
         return false;
     }
     return true;
@@ -706,7 +720,7 @@ bool TextureExtractor::extractPhotoList(){
     
     std::string line;
     if(!file.is_open()){
-        std::cerr << "Unable to open camera list file: " << arguments.cameraListFilePath << std::endl;
+        printError("Unable to open camera list file: " + arguments.cameraListFilePath+"\n");
         return false;
     }
     
@@ -720,7 +734,7 @@ bool TextureExtractor::extractPhotoList(){
             bool imageOk;
             imageOk = stbi_info(view.fileName.c_str(), &width, &height, &comp);
             if(!imageOk){
-                std::cout<<"ERROR Wasnt able to read the file:" << view.fileName <<"\n";
+                printError("ERROR Wasnt able to read the file:" + view.fileName +"\n");
                 return false;
             }
             view.photoWidth = width;
@@ -730,7 +744,7 @@ bool TextureExtractor::extractPhotoList(){
     }
     file.close();
     if(views.size()<=0){
-        std::cout<< "File was empty or error occured\n";
+        printError("File was empty or error occured\n");
         return false;
     }
     return true;
@@ -743,14 +757,14 @@ bool TextureExtractor::extractCameraInfoCreateViews(){
     
     std::string line;
     if(!file.is_open()){
-        std::cerr << "Unable to open camera info file: " << arguments.cameraInfoPath << std::endl;
+        printError("Unable to open camera info file: " + arguments.cameraInfoPath+"\n");
         return false;
     }
     
-    std::cout<<"Reading Bundler format\n";
+    print("Reading Bundler format\n");
     getline(file, line);
     if(line.at(0)!='#'){
-        std::cout<<"Bundler format violated. First comment line missing (\"# ....\")\n";
+        printError("Bundler format violated. First comment line missing (\"# ....\")\n");
         return false;
     }
     
@@ -758,20 +772,20 @@ bool TextureExtractor::extractCameraInfoCreateViews(){
     std::vector<std::string> tokens;
     tokens = splitString(line, ' ');
     if(tokens.size()!=2){
-        std::cout<<"Bundler format violated.\"camera_count point_count\" line missing\n";
+        printError("Bundler format violated.\"camera_count point_count\" line missing\n");
         return false;
     }
     
     uint cameraCount = parseInt(tokens[0]);
     if(cameraCount<=0){
-        std::cout<<"Number of cameras is invalid: "<<cameraCount<<"\n";
+        printError("Number of cameras is invalid: "+std::to_string(cameraCount)+"\n");
         return false;
     }
     
     if(cameraCount<views.size()){
-        std::cout<<"Number of cameras is less than photo list: "<<
-                   "    list_size = "<<views.size()<<"\n"<<
-                   "    camera_info_size = "<<cameraCount<<"\n";
+        printError("Number of cameras is less than photo list: \n");
+        printError("    list_size = " + std::to_string(views.size())+ "\n");
+        printError("    camera_info_size = "+ std::to_string(cameraCount) + "\n");
         return false;
     }
     
@@ -787,8 +801,9 @@ bool TextureExtractor::extractCameraInfoCreateViews(){
     file.close();
     
     if(readCounter != views.size()){
-        std::cout << "ERROR camera info count missmatch\n"<<
-                     "    got: "<<readCounter<<" expected: " << views.size()<<"\n";
+        printError("ERROR camera info count missmatch\n");
+        printError("      got: " + std::to_string(readCounter) +
+                   " expected: " + std::to_string(views.size()) + "\n");
         return false;
     }
     return true;

@@ -148,7 +148,7 @@ bool Mesh::loadFromFile(const std::string &filename){
     
     std::string line;
     if(!file.is_open()){
-        std::cerr << "Unable to load mesh: " << filename << std::endl;
+        printError("Unable to load mesh: "+filename+"\n");
         return false;
     }
     bool canAdd = false;

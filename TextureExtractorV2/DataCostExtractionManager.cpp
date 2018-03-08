@@ -17,7 +17,11 @@ void DataCostExtractionManager::doWork(){
         
         mtx->lock();
         *progressCounter = *progressCounter + 1;
-        std::cout<<"\rProgress %"<<(100*((float)(*progressCounter)/totalViewCount))<<"     "<<std::flush;
+        
+        float progress = (100*((float)(*progressCounter)/totalViewCount));
+        printOver(COLOR_TEAL+"["+fitPercent(progress)+"%]"+COLOR_RESET + " Getting Data Costs");
+        
+//        std::cout<<"\rProgress %"<<(100*((float)(*progressCounter)/totalViewCount))<<"     "<<std::flush;
         mtx->unlock();
     }
 }

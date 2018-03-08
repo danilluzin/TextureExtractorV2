@@ -77,7 +77,7 @@
 		F40DE4051FB0D98400EC32B4 /* View.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = View.hpp; sourceTree = "<group>"; };
 		F40DE4071FB0DB6000EC32B4 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		F40DE4081FB0DB6000EC32B4 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
-		F42C06462051728100C31F3C /* Misc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Misc.h; sourceTree = "<group>"; };
+		F42C064720518E2B00C31F3C /* Misc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Misc.h; sourceTree = "<group>"; };
 		F45B26CA1FC471A1007E9874 /* DataCostExtractionManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataCostExtractionManager.cpp; sourceTree = "<group>"; };
 		F45B26CB1FC471A1007E9874 /* DataCostExtractionManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DataCostExtractionManager.hpp; sourceTree = "<group>"; };
 		F4890593203C2DFF00C46AE9 /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = "<group>"; };
@@ -137,8 +137,8 @@
 			isa = PBXGroup;
 			children = (
 				F40DE3CA1FAF4DDE00EC32B4 /* main.cpp */,
+				F42C064720518E2B00C31F3C /* Misc.h */,
 				F4E3B3D11FC03A7700C9BBF2 /* Arguments.h */,
-				F42C06462051728100C31F3C /* Misc.h */,
 				F40DE4031FB06EA000EC32B4 /* Utils.h */,
 				F40DE3D91FAF587E00EC32B4 /* TextureExtractor.hpp */,
 				F490C18F2048081E0023B02F /* TexturePatch.cpp */,

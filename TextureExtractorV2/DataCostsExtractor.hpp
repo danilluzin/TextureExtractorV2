@@ -18,6 +18,7 @@
 #include "Transformation.hpp"
 #include "View.hpp"
 #include "PatchQuality.h"
+#include "Utils.h"
 #include <unordered_set>
 
 

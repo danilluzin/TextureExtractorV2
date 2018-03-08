@@ -33,10 +33,13 @@ bool calcDataCostsAndGetLebeling(TextureExtractor & extractor);
 bool loadLabelsFromFile(TextureExtractor & extractor);
 
 Arguments arguments;
+int pad = 0;
 
 bool checkFlags(const char * argv[]);
 
 int main(int argc, const char * argv[]) {
+    
+    print(COLOR_BOLD+"\n\tTexture Extractor\n\n"+COLOR_RESET);
     
     TextureExtractor extractor;
     Timer mainTimer;
@@ -52,15 +55,17 @@ int main(int argc, const char * argv[]) {
     configSuccessful = prepareConfig(argc, argv);
     if(!configSuccessful){
         printError("Error occured when parsing the config. Stopping\n");
-        printBold(mainTimer.stopGetResults("\nExited with error"));
+        printError(mainTimer.stopGetResults("\nExited with error"));
         return -1;
+    }else{
+        print(s(2)+"Config parsed\n");
     }
     
 
     Mesh mesh;
     bool meshIsOk = prepareMesh(mesh, arguments.objFilePath);
     if( !meshIsOk ){
-        printBold(mainTimer.stopGetResults("\nExited with error"));
+        printError(mainTimer.stopGetResults("\nExited with error"));
         return -1;
     }
     
@@ -68,7 +73,7 @@ int main(int argc, const char * argv[]) {
     bool viewsOK;
     viewsOK = prepareViews( extractor);
     if( !viewsOK ){
-        printBold(mainTimer.stopGetResults("\nExited with error"));
+        printError(mainTimer.stopGetResults("\nExited with error"));
         return -1;
     }
     
@@ -82,14 +87,14 @@ int main(int argc, const char * argv[]) {
         bool lebelingReadingOK;
         lebelingReadingOK = loadLabelsFromFile(extractor);
         if( !lebelingReadingOK ){
-            printBold(mainTimer.stopGetResults("\nExited with error"));
+            printError(mainTimer.stopGetResults("\nExited with error"));
             return -1;
         }
     }else{
         bool calculationOK;
         calculationOK = calcDataCostsAndGetLebeling(extractor);
         if( !calculationOK ){
-            printBold(mainTimer.stopGetResults("\nExited with error"));
+            printError(mainTimer.stopGetResults("\nExited with error"));
             return -1;
         }
     }
@@ -98,11 +103,11 @@ int main(int argc, const char * argv[]) {
     bool textureOk;
     textureOk = generateTexture(extractor);
     if( !textureOk ){
-        printBold(mainTimer.stopGetResults("\nExited with error"));
+        printError(mainTimer.stopGetResults("\nExited with error"));
         return -1;
     }
     
-    printBold(mainTimer.stopGetResults( "\nTottal run time " ));
+    print(COLOR_TEAL+COLOR_BOLD+mainTimer.stopGetResults( "\nTottal run time " ));
     
     if(arguments._renderInTheEnd)
         _renderViewsWithTexture(extractor);
@@ -133,7 +138,7 @@ void _renderViewsWithTexture(TextureExtractor & extractor){
 
 bool prepareConfig(int argc, const char * argv[]){
     if(argc < 2){
-        print("No arguments provided\n"
+        print(COLOR_RED+"No arguments provided\n"+COLOR_RESET+COLOR_BOLD+
               "Usage:\n"+std::string(argv[0])+" <ini config file path>\n"
               "To generate examaple ini file:\n"+std::string(argv[0])+" -genIni\n" );
         return false;
@@ -144,9 +149,11 @@ bool prepareConfig(int argc, const char * argv[]){
 bool calcDataCostsAndGetLebeling(TextureExtractor & extractor){
     
     if(arguments.getDataCostsFromFile){
-        std::cout<<"\tGetting data costs from file:\n";
+        print("Getting data costs from file :\n");
+        adjPad(2);
         bool dataCostsOK;
         dataCostsOK = extractor.readDataCostsFromFile();
+        adjPad(-2);
         if( !dataCostsOK )
             return false;
         extractor.postprocessDataCosts();
@@ -167,28 +174,34 @@ bool calcDataCostsAndGetLebeling(TextureExtractor & extractor){
 bool loadLabelsFromFile(TextureExtractor & extractor){
     Timer timer;
     timer.start();
-    print("\nGetting labeling from file:\n");
+    print("Getting labeling from file :\n");
+    adjPad(2);
     bool labelingOk;
     labelingOk = extractor.readLabelsFromFile();
     if( !labelingOk ){
-        printBold(timer.stopGetResults( "\tLabeling reading failed.: " ));
+        printError(timer.stopGetResults( "Labeling reading failed : " ));
+        adjPad(-2);
         return false;
     }
-    print(timer.stopGetResults( "\tLabeling extracted.: " ));
+    print(COLOR_TEAL+timer.stopGetResults( "Labeling extracted : " ));
+    adjPad(-2);
     return true;
 }
 
 bool generateTexture(TextureExtractor & extractor){
     Timer timer;
     timer.start();
-    print("\nPerforming Texture Generation:\n");
+    print("Performing Texture Generation:\n");
+    adjPad(2);
     bool textureOk;
     textureOk = extractor.generateTexture();
     if( !textureOk ){
-        printBold(timer.stopGetResults( "\tTexture generation failed.: " ));
+        printError(timer.stopGetResults( "Texture generation failed : " ));
+        adjPad(-2);
         return false;
     }
-    print(timer.stopGetResults( "\tTexture generated.: " ));
+    print(COLOR_TEAL+timer.stopGetResults( "Texture generated : " ));
+    adjPad(-2);
     return true;
 }
 
@@ -196,14 +209,17 @@ bool generateTexture(TextureExtractor & extractor){
 bool performViewSelection(TextureExtractor & extractor){
     Timer timer;
     timer.start();
-    print("\nPerforming Lable Assignment:\n");
+    print("Performing Lable Assignment:\n");
+    adjPad(2);
     bool viewSelectionOK;
     viewSelectionOK = extractor.selectViews();
     if( !viewSelectionOK ){
-        printBold(timer.stopGetResults( "\tLables generation failed.: " ));
+        printError(timer.stopGetResults( "Lables generation failed : " ));
+        adjPad(-2);
         return false;
     }
-    print(timer.stopGetResults( "\tLables generated.: " ));
+    print(COLOR_TEAL+timer.stopGetResults( "Lables generated : " ));
+    adjPad(-2);
     return true;
 }
 
@@ -211,14 +227,17 @@ bool performViewSelection(TextureExtractor & extractor){
 bool prepareMesh(Mesh & mesh,const std::string & objFilePath){
     Timer timer;
     timer.start();
-    print("\nReading and Preparing the Mesh from obj File:\n");
+    print("Reading and preparing the mesh from obj file :\n");
+    adjPad(2);
     bool meshIsOk;
     meshIsOk = mesh.initialize(objFilePath);
     if( !meshIsOk ){
-        printBold(timer.stopGetResults( "\tMesh inicialization failed.: " ));
+        printError(timer.stopGetResults( "Mesh inicialization failed : " ));
+        adjPad(-2);
         return false;
     }
-    print(timer.stopGetResults( "\tMesh inicialized.: " ));
+    print(COLOR_TEAL+timer.stopGetResults( "Mesh inicialized : " ));
+    adjPad(-2);
     return true;
 }
 
@@ -226,14 +245,16 @@ bool prepareMesh(Mesh & mesh,const std::string & objFilePath){
 bool prepareViews( TextureExtractor & extractor){
     Timer timer;
     timer.start();
-    std::cout <<"\nReading and Preparing Camera Views:\n";
+    print("Reading and preparing camera views :\n");
+    adjPad(2);
     bool viewsAreOK;
     viewsAreOK = extractor.prepareViews();
     if( !viewsAreOK ){
-        std::cout << timer.stopGetResults( "\tViews inicialization failed.: " );
+        printError(timer.stopGetResults( "Views inicialization failed : "));
         return false;
     }
-    std::cout << timer.stopGetResults( "\tViews inicialized.: " );
+    print(COLOR_TEAL+ timer.stopGetResults( "Views inicialized : " ));
+    adjPad(-2);
     return true;
 }
 
@@ -241,14 +262,16 @@ bool prepareViews( TextureExtractor & extractor){
 bool calculateDataCosts(TextureExtractor & extractor){
     Timer timer;
     timer.start();
-    std::cout <<"\nCalculating Data Costs:\n";
+    print("Calculating Data Costs :\n");
+    adjPad(2);
     bool dataCostsOK;
     dataCostsOK = extractor.calculateDataCosts();
     if( !dataCostsOK ){
-        std::cout << timer.stopGetResults( "\tData Costs Calculation failed.: " );
+       printError(timer.stopGetResults( "Data Costs Calculation failed : "));
         return false;
     }
-    std::cout << timer.stopGetResults( "\tData Costs Calculated.: " );
+    print(COLOR_TEAL+timer.stopGetResults( "Data Costs Calculated : "));
+    adjPad(-2);
     return true;
 }
 
@@ -256,14 +279,16 @@ bool calculateDataCosts(TextureExtractor & extractor){
 bool checkFlags(const char * argv[]){
     std::string flag = std::string(argv[1]);
     if(flag == "-genIni"){
-        print("generating ini...\n");
+        print("Generating ini :\n");
+        adjPad(2);
         bool generationOk;
         generationOk = arguments.generateIni();
         if(!generationOk){
-            std::cout<<"Error when generationg example ini config\n";
+            printError("Error when generationg example ini config\n");
         }else{
-            std::cout<<"Example ini config generated\n";
+            print(COLOR_BOLD+"Example ini config generated\n");
         }
+        adjPad(-2);
         return false;
     }
     return true;
