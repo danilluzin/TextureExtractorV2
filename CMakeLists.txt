@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(texture_extractor)
 
+
 set (CMAKE_CXX_STANDARD 11)
 
 file(GLOB_RECURSE sources   TextureExtractorV2/*.cpp TextureExtractorV2/*.h TextureExtractorV2/*.hpp)

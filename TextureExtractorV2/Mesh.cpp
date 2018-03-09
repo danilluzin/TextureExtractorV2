@@ -8,7 +8,7 @@
 
 #include "Mesh.hpp"
 #include "Utils.h"
-
+#include "Arguments.h"
 
 bool Mesh::initialize(const std::string & filename){
     bool fileLoaded = loadFromFile(filename);
@@ -210,6 +210,7 @@ bool Mesh::loadFromFile(const std::string &filename){
     }
     objects.push_back(newObject);
     file.close();
+
     preparePartition();
     return true;
 }
@@ -223,7 +224,8 @@ void Mesh::preparePartition(){
 }
 
 void Mesh::constructNode(PartitionNode * node){
-    if(node->triangles.size() <= 200)
+
+    if(node->triangles.size() <= arguments.BVHMinNode)
         return;
     node->direction = getOptimalSeparation(node->boundingBox);
     node->leftNode = new PartitionNode();
@@ -232,7 +234,7 @@ void Mesh::constructNode(PartitionNode * node){
     switch (node->direction) {
         case X:
             node->separator = ( node->boundingBox.maxVec.x + node->boundingBox.minVec.x)/2;
-            for(auto & t : node->triangles){
+            for(auto t : node->triangles){
                 if(triangles[t].boundingBox.maxVec.x < node->separator){
                     node->leftNode->addTriangle(triangles[t]);
                 }else{
@@ -262,6 +264,10 @@ void Mesh::constructNode(PartitionNode * node){
             break;
         default:
             break;
+    }
+    if(node->leftNode->triangles.size() == 0 || node->rightNode->triangles.size() == 0){
+        //edge case where cant devide
+        return;
     }
     constructNode(node->leftNode);
     constructNode(node->rightNode);

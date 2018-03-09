@@ -80,7 +80,9 @@ struct Triangle {
         this->verticies[1] = verticies[1];
         this->verticies[2] = verticies[2];
     }
+    
     Triangle(){};
+
     uint verticies [3];
     std::map<uint,uint> texCoords;
     std::map<uint,uint> normalVecs;

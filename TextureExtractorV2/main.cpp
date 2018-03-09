@@ -39,7 +39,7 @@ bool checkFlags(const char * argv[]);
 
 int main(int argc, const char * argv[]) {
     
-    print(COLOR_BOLD+"\n\tTexture Extractor\n\n"+COLOR_RESET);
+    print(COLOR_BOLD+"\n\t[[[  Texture Extractor  ]]]\n\n"+COLOR_RESET);
     
     TextureExtractor extractor;
     Timer mainTimer;

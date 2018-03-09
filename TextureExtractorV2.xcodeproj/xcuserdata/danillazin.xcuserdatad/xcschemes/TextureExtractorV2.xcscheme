@@ -66,7 +66,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "resources/slanyCut2.ini"
+            argument = "resources/FEL_TEST_DATA/FINAL3/pot.ini"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

@@ -727,6 +727,9 @@ bool TextureExtractor::extractPhotoList(){
     while(file.good()){
         getline(file, line);
         if(line.size()>0){
+            if ( line[line.size()-1] == '\r' ) {
+                line = line.substr(0, line.size() - 1);
+            }
             View view;
             view.fileName = arguments.photoFolderPath +'/' +line;
             //original photo dimensions
