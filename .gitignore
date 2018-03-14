@@ -1,8 +1,8 @@
 DerivedData/
 working_resources/
+resources/
 TextureExtractorV2.xcodeproj/project.xcworkspace/
 TextureExtractorV2.xcodeproj/xcuserdata/danillazin.xcuserdatad/xcdebugger/
 TextureExtractorV2/TEv2
 cmakeBuild/
-bin_Cmake/
 tex_extract
