@@ -31,6 +31,7 @@ bool TextureExtractor::mapMapGetLabeling(){
             if (dataCosts[af].empty())
                 continue;
             
+            //TODO:consistency amplifier here
             if (n.first < af) {
                 mgraph.add_edge(n.first - 1, af - 1, 1.0f);
             }

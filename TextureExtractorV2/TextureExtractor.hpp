@@ -31,8 +31,6 @@ class TextureExtractor {
 
     std::map<uint,glm::vec4> viewColors;
     
-//    Arguments arguments;
-    
     std::map<uint,std::map<uint,PatchQuality>> dataCosts;
     
     std::map<uint,std::map<uint,glm::vec4>> colorSamples;
