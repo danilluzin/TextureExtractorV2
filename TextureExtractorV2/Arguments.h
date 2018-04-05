@@ -55,6 +55,7 @@ struct Arguments{
     bool genMaskTexture;
     bool genGlobalTexture;
     bool genRawTexture;
+    bool strictOclusionCheck;
     
     bool addProjectNameToFiles;
     
@@ -181,6 +182,8 @@ struct Arguments{
             }
         }
         
+        //TODO: get strick occlusioncheck
+        strictOclusionCheck = false;
         
         //debug
         genRawTexture = reader.GetBoolean("debug", "genRawTexture", false);
@@ -200,6 +203,8 @@ struct Arguments{
                 return false;
             }
         }
+        
+        
         
         return true;
     }

@@ -84,6 +84,8 @@ bool TextureExtractor::mapMapGetLabeling(){
         std::cout << "\r\t" << time_ms / 1000 << "\t" << objective << std::flush;
     };
     
+    print("Data loaded into the mapMap solver.");
+    
     mapmap::mapMAP<cost_t, simd_w, unary_t, pairwise_t> solver;
     solver.set_graph(&mgraph);
     solver.set_label_set(&label_set);

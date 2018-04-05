@@ -10,6 +10,7 @@
 #include <iostream>
 #include <algorithm>
 #include "Utils.h"
+#include "Arguments.h"
 
 DataCostsExtractor::DataCostsExtractor(const Mesh & mesh, View & view) : mesh(mesh), view(view){
     width  = view.photoWidth;
@@ -53,7 +54,9 @@ std::map<uint,PatchQuality> DataCostsExtractor::calculateCosts(){
     std::map<uint,PatchQuality> costs;
     for(auto i : patchInfos){
         PatchQuality info = i.second;
-        if(info.sampleCount != 0){
+        if(info.sampleCount != 0 ){
+            if(arguments.strictOclusionCheck && info.sampleCount==info.potentialSampleCount)
+                continue;
             costs[i.first] = info;
         }
     }
@@ -173,6 +176,7 @@ void DataCostsExtractor::drawScanLine(Edge left, Edge right, int y, Gradient & g
     
     for(int x = xMin; x<xMax ; x++){
         int index = x + y*width;
+        patchInfos[id].potentialSampleCount++;
         if(depth < depthBuffer[index]){
             glm::vec4 color = sobelImage.at(x, y);
             glm::vec4 originColor = sourceImage->at(x,y);

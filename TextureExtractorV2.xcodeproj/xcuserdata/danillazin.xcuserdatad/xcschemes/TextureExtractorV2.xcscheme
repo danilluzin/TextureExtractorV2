@@ -66,8 +66,16 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "resources/FEL_TEST_DATA/FINAL3/pot.ini"
+            argument = "resources/bird.ini"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "resources/slanyCut2.ini"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "resources/FEL_TEST_DATA/FINAL3/pot.ini"
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
