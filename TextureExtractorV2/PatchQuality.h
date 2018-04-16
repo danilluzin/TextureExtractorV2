@@ -10,10 +10,11 @@
 #define DataCost_h
 
 struct PatchQuality {
-    uint sampleCount = 0;
-    uint potentialSampleCount = 0;
+    uint sampleCount           = 0;
+    uint potentialSampleCount  = 0;
+    float gradientMagnitudeSum = 0;
     glm::vec4 colorSum;
-    float gradientMagnitudeSum=0;
+
     void calcQuality(){
         if(sampleCount>0)
             quality =  gradientMagnitudeSum;

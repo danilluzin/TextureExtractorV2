@@ -135,9 +135,9 @@ enum Direction{
 };
 
 struct PartitionNode{
-    PartitionNode * leftNode = nullptr;
+    PartitionNode * leftNode  = nullptr;
     PartitionNode * rightNode = nullptr;
-    PartitionNode * parent = nullptr;
+    PartitionNode * parent    = nullptr;
     std::vector<uint> triangles;
     BoundingBox boundingBox;
     float separator;

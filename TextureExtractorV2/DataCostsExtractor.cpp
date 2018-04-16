@@ -29,12 +29,13 @@ DataCostsExtractor::~DataCostsExtractor(){
     view.releaseImage();
 }
 
-void DataCostsExtractor::traversePartition(const PartitionNode * node){
+void
+DataCostsExtractor::traversePartition(const PartitionNode * node){
     if(node == nullptr)
         return;
-     if(!isInsideViewFrustrum(node->boundingBox, transformation))
+    if(!isInsideViewFrustrum(node->boundingBox, transformation))
          return;
-    if(node->direction == NONE){
+    if(node->direction == NONE){ //node has no children
         for(auto triangle : node->triangles){
             processTriangle(mesh.triangles.at(triangle));
         }
