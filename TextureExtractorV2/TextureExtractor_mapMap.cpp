@@ -22,6 +22,7 @@ bool TextureExtractor::mapMapGetLabeling(){
     uint numNodes = (uint)mesh.adjacencyGraph.nodes.size();
     mapmap::Graph<cost_t> mgraph(mesh.adjacencyGraph.nodes.size());
     
+    print("Loading graph into the mapMap solver.(this may take a while)\n");
     for (auto & n : mesh.adjacencyGraph.nodes) {
         if (dataCosts[n.first].empty())
             continue;
@@ -84,7 +85,7 @@ bool TextureExtractor::mapMapGetLabeling(){
         std::cout << "\r\t" << time_ms / 1000 << "\t" << objective << std::flush;
     };
     
-    print("Data loaded into the mapMap solver.");
+    print("Data loaded into the mapMap solver.\n");
     
     mapmap::mapMAP<cost_t, simd_w, unary_t, pairwise_t> solver;
     solver.set_graph(&mgraph);

@@ -70,6 +70,10 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "resources/pig.ini"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "resources/slanyCut2.ini"
             isEnabled = "YES">
          </CommandLineArgument>

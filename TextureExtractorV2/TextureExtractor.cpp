@@ -62,11 +62,11 @@ bool TextureExtractor::prepareViews(){
     adjPad(-2);
     for(auto v : views){
         float gs = (float)v.second.id / views.size();
-//        float rndR = ((float)rand())/RAND_MAX;
-//        float rndG = ((float)rand())/RAND_MAX;
-//        float rndB = ((float)rand())/RAND_MAX;
-//        viewColors[v.first] = glm::vec4(rndR,rndG,rndB,1);
-        viewColors[v.first] = glm::vec4(gs,gs,gs,1);
+        float rndR = ((float)rand())/RAND_MAX;
+        float rndG = ((float)rand())/RAND_MAX;
+        float rndB = ((float)rand())/RAND_MAX;
+        viewColors[v.first] = glm::vec4(rndR,rndG,rndB,1);
+//        viewColors[v.first] = glm::vec4(gs,gs,gs,1);
     }
 
     return true;

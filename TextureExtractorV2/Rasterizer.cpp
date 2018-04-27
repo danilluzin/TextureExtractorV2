@@ -160,7 +160,7 @@ void Rasterizer::rasterizeTriangle(Vertex minYVert, Vertex midYVert, Vertex maxY
     uint id = triangle.id;
     
     if (triangleArea(minYVert, maxYVert, midYVert) <= 0){
-        return; //BackFace culling
+//        return; //BackFace culling
     }
     
     

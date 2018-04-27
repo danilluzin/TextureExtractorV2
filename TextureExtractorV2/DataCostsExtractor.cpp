@@ -99,7 +99,6 @@ void DataCostsExtractor::rasterizeTriangle(Vertex minYVert, Vertex midYVert, Ver
     
     if (triangleArea(minYVert, maxYVert, midYVert) <= 0){
         id = 0;
-//        return; //BackFace culling
     }
     
     if( (minYVert.z()<-minYVert.w() || minYVert.z()>minYVert.w()) &&

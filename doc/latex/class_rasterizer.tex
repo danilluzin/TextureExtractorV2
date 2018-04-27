@@ -1,0 +1,53 @@
+\hypertarget{class_rasterizer}{}\section{Rasterizer Class Reference}
+\label{class_rasterizer}\index{Rasterizer@{Rasterizer}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_rasterizer_accac2d0878675f9fe01ae2fedd30f84f}{}void {\bfseries set\+Render\+Context} (\hyperlink{class_render_context}{Render\+Context} $\ast$rc)\label{class_rasterizer_accac2d0878675f9fe01ae2fedd30f84f}
+
+\item 
+\hypertarget{class_rasterizer_a401966b0d0572d8c944e6b319515ac5e}{}void {\bfseries set\+Texture} (const \hyperlink{class_bitmap}{Bitmap} \&txr)\label{class_rasterizer_a401966b0d0572d8c944e6b319515ac5e}
+
+\item 
+\hypertarget{class_rasterizer_a4e43391ca21604f52d4baabc44b34933}{}void {\bfseries bind\+Mesh} (const \hyperlink{class_mesh}{Mesh} \&m)\label{class_rasterizer_a4e43391ca21604f52d4baabc44b34933}
+
+\item 
+\hypertarget{class_rasterizer_a2eec0e17ef479f0e0af5640d6786e077}{}{\bfseries Rasterizer} (int width, int height)\label{class_rasterizer_a2eec0e17ef479f0e0af5640d6786e077}
+
+\item 
+\hypertarget{class_rasterizer_a39a7b6f424f2bc8e7111892cbf387509}{}void {\bfseries rasterize\+Triangle} (\hyperlink{struct_vertex}{Vertex} min\+Y\+Vert, \hyperlink{struct_vertex}{Vertex} mid\+Y\+Vert, \hyperlink{struct_vertex}{Vertex} max\+Y\+Vert, const \hyperlink{struct_triangle}{Triangle} \&triangle)\label{class_rasterizer_a39a7b6f424f2bc8e7111892cbf387509}
+
+\item 
+\hypertarget{class_rasterizer_a3be827df6aeec982f2a1e5106ee6e99b}{}void {\bfseries draw\+Triangle} (const \hyperlink{struct_triangle}{Triangle} \&triangle)\label{class_rasterizer_a3be827df6aeec982f2a1e5106ee6e99b}
+
+\item 
+\hypertarget{class_rasterizer_ab2d26833e9b47e3e1a1b9e94a77d0a18}{}void {\bfseries draw\+Mesh} ()\label{class_rasterizer_ab2d26833e9b47e3e1a1b9e94a77d0a18}
+
+\item 
+\hypertarget{class_rasterizer_adcecbd138ae8c58d583037467f77ea35}{}void {\bfseries fill\+Triangle} (\hyperlink{struct_vertex}{Vertex} min\+Y\+Vert, \hyperlink{struct_vertex}{Vertex} mid\+Y\+Vert, \hyperlink{struct_vertex}{Vertex} max\+Y\+Vert, bool handedness, uint id)\label{class_rasterizer_adcecbd138ae8c58d583037467f77ea35}
+
+\item 
+\hypertarget{class_rasterizer_ad18b358f6db3c9d0304feb402d37689e}{}void {\bfseries set\+Transformation} (\hyperlink{class_transformation}{Transformation} transformation)\label{class_rasterizer_ad18b358f6db3c9d0304feb402d37689e}
+
+\item 
+\hypertarget{class_rasterizer_a32023cfe311be2b5118912364a1d2219}{}void {\bfseries clear\+Buffer} ()\label{class_rasterizer_a32023cfe311be2b5118912364a1d2219}
+
+\item 
+\hypertarget{class_rasterizer_a53689efa323cb4c5a9df0d4e5b19008f}{}std\+::unordered\+\_\+set$<$ uint $>$ {\bfseries get\+Visible\+Faces} () const \label{class_rasterizer_a53689efa323cb4c5a9df0d4e5b19008f}
+
+\item 
+\hypertarget{class_rasterizer_a75040e8d77887db53f23f3fccf9eace7}{}void {\bfseries \+\_\+get\+Depth\+Bitmap} (\hyperlink{class_bitmap}{Bitmap} \&bitmap)\label{class_rasterizer_a75040e8d77887db53f23f3fccf9eace7}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_rasterizer_a8c5ae8edeb03c773a841eef9207bef4d}{}std\+::vector$<$ std\+::pair$<$ uint, float $>$ $>$ {\bfseries score\+Table}\label{class_rasterizer_a8c5ae8edeb03c773a841eef9207bef4d}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Texture\+Extractor\+V2/Rasterizer.\+hpp\item 
+Texture\+Extractor\+V2/Rasterizer.\+cpp\end{DoxyCompactItemize}

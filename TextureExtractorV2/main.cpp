@@ -120,9 +120,11 @@ void _renderViewsWithTexture(TextureExtractor & extractor){
         Bitmap bitmap;
 //        std::vector<uint> photoSet={};
         //            std::vector<uint> photoSet={28,27};
+//        std::cout<<"depth\n";
+//        extractor.renderViewAndDepth(bitmap, depth, 27);
+//    depth.save("working_resources/slany/derived1/slany_d_27.png");
+//        std::cout<<"done\n";
         
-//        extractor.renderViewAndDepth(bitmap, depth, 33);
-//        depth.save("working_resources/slany/derived8/slany_d_43.png");
         std::vector<uint> photoSet(extractor.numberOfViews());
 //        std::vector<uint> photoSet={1,2,3,44,5,46,7,8,9,30,31,12,13,22,51,16,50};
         std::iota(photoSet.begin(),photoSet.end(),1);
