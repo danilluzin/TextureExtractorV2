@@ -1,17 +1,56 @@
 \hypertarget{class_timer}{}\section{Timer Class Reference}
 \label{class_timer}\index{Timer@{Timer}}
+
+
+{\ttfamily \#include $<$Timer.\+hpp$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_timer_a3a8b5272198d029779dc9302a54305a8}{}void {\bfseries start} ()\label{class_timer_a3a8b5272198d029779dc9302a54305a8}
-
+void \hyperlink{class_timer_a3a8b5272198d029779dc9302a54305a8}{start} ()
 \item 
-\hypertarget{class_timer_aa7dd6187a7dec39be17dfb4f6184db16}{}std\+::string {\bfseries stop\+Get\+Results} ()\label{class_timer_aa7dd6187a7dec39be17dfb4f6184db16}
-
+std\+::string \hyperlink{class_timer_aa7dd6187a7dec39be17dfb4f6184db16}{stop\+Get\+Results} ()
 \item 
-\hypertarget{class_timer_a573a098aacebc4be22ce73bd42725e17}{}std\+::string {\bfseries stop\+Get\+Results} (const std\+::string \&message\+Prefix)\label{class_timer_a573a098aacebc4be22ce73bd42725e17}
-
+std\+::string \hyperlink{class_timer_a573a098aacebc4be22ce73bd42725e17}{stop\+Get\+Results} (const std\+::string \&message\+Prefix)
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_timer}{Timer} class keeps track of Wall and C\+P\+U time 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_timer_a3a8b5272198d029779dc9302a54305a8}{}\index{Timer@{Timer}!start@{start}}
+\index{start@{start}!Timer@{Timer}}
+\subsubsection[{start()}]{\setlength{\rightskip}{0pt plus 5cm}void Timer\+::start (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_timer_a3a8b5272198d029779dc9302a54305a8}
+Starts a timer by saving current timestamp \hypertarget{class_timer_aa7dd6187a7dec39be17dfb4f6184db16}{}\index{Timer@{Timer}!stop\+Get\+Results@{stop\+Get\+Results}}
+\index{stop\+Get\+Results@{stop\+Get\+Results}!Timer@{Timer}}
+\subsubsection[{stop\+Get\+Results()}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Timer\+::stop\+Get\+Results (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_timer_aa7dd6187a7dec39be17dfb4f6184db16}
+Stops the timer and calculates elapsed time \begin{DoxyReturn}{Returns}
+Strign containing the timer output 
+\end{DoxyReturn}
+\hypertarget{class_timer_a573a098aacebc4be22ce73bd42725e17}{}\index{Timer@{Timer}!stop\+Get\+Results@{stop\+Get\+Results}}
+\index{stop\+Get\+Results@{stop\+Get\+Results}!Timer@{Timer}}
+\subsubsection[{stop\+Get\+Results(const std\+::string \&message\+Prefix)}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Timer\+::stop\+Get\+Results (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{message\+Prefix}
+\end{DoxyParamCaption}
+)}\label{class_timer_a573a098aacebc4be22ce73bd42725e17}
+Stops timer and calculates elapsed time 
+\begin{DoxyParams}{Parameters}
+{\em message\+Prefix} & string to add before the output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Strign containing the timer output with prefix before it 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

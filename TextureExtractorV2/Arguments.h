@@ -14,13 +14,19 @@
 #include "Utils.h"
 #include<fstream>
 #include<iostream>
-
+/**
+ * Structure that manages all the argument checking and reading.
+ */
 struct Arguments{
-    
+    /** Output file texture width */
     int textureWidth;
+    /** Output file texture height  */
     int textureHeight;
     
+    /** number of working threads used during data cost extraction*/
     int threadCount;
+    
+    /** size of the minimal node. Used for constructing Bounding Volume Hierrachy */
     int BVHMinNode;
 
     std::string objFilePath ;

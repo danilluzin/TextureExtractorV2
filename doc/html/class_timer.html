@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>My Project: Timer Class Reference</title>
+<title>Texture Extraction from Photographs: Timer Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Texture Extraction from Photographs
    </div>
   </td>
  </tr>
@@ -89,19 +89,76 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Timer Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_timer_8hpp_source.html">Timer.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3a8b5272198d029779dc9302a54305a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a8b5272198d029779dc9302a54305a8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>start</b> ()</td></tr>
+<tr class="memitem:a3a8b5272198d029779dc9302a54305a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timer.html#a3a8b5272198d029779dc9302a54305a8">start</a> ()</td></tr>
 <tr class="separator:a3a8b5272198d029779dc9302a54305a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7dd6187a7dec39be17dfb4f6184db16"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7dd6187a7dec39be17dfb4f6184db16"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>stopGetResults</b> ()</td></tr>
+<tr class="memitem:aa7dd6187a7dec39be17dfb4f6184db16"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timer.html#aa7dd6187a7dec39be17dfb4f6184db16">stopGetResults</a> ()</td></tr>
 <tr class="separator:aa7dd6187a7dec39be17dfb4f6184db16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a573a098aacebc4be22ce73bd42725e17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a573a098aacebc4be22ce73bd42725e17"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>stopGetResults</b> (const std::string &amp;messagePrefix)</td></tr>
+<tr class="memitem:a573a098aacebc4be22ce73bd42725e17"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timer.html#a573a098aacebc4be22ce73bd42725e17">stopGetResults</a> (const std::string &amp;messagePrefix)</td></tr>
 <tr class="separator:a573a098aacebc4be22ce73bd42725e17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_timer.html">Timer</a> class keeps track of Wall and CPU time </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a3a8b5272198d029779dc9302a54305a8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Timer::start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Starts a timer by saving current timestamp </p>
+
+</div>
+</div>
+<a class="anchor" id="aa7dd6187a7dec39be17dfb4f6184db16"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Timer::stopGetResults </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Stops the timer and calculates elapsed time </p><dl class="section return"><dt>Returns</dt><dd>Strign containing the timer output </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a573a098aacebc4be22ce73bd42725e17"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Timer::stopGetResults </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>messagePrefix</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Stops timer and calculates elapsed time </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">messagePrefix</td><td>string to add before the output </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Strign containing the timer output with prefix before it </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>TextureExtractorV2/<a class="el" href="_timer_8hpp_source.html">Timer.hpp</a></li>
 <li>TextureExtractorV2/Timer.cpp</li>

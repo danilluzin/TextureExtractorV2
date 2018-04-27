@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>My Project: TextureExtractorV2/Timer.hpp Source File</title>
+<title>Texture Extraction from Photographs: TextureExtractorV2/Timer.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Texture Extraction from Photographs
    </div>
   </td>
  </tr>
@@ -103,23 +103,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;chrono&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;ctime&gt;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_timer.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_timer.html">Timer</a>{</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> start();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    std::string stopGetResults();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::string stopGetResults(<span class="keyword">const</span> std::string &amp; messagePrefix);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    std::clock_t CPUstart;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    std::chrono::time_point&lt;std::chrono::high_resolution_clock&gt; WallStart;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;};</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* Timer_hpp */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="class_timer_html"><div class="ttname"><a href="class_timer.html">Timer</a></div><div class="ttdef"><b>Definition:</b> Timer.hpp:17</div></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_timer.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_timer.html">Timer</a>{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_timer.html#a3a8b5272198d029779dc9302a54305a8">start</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    std::string <a class="code" href="class_timer.html#aa7dd6187a7dec39be17dfb4f6184db16">stopGetResults</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    std::string <a class="code" href="class_timer.html#aa7dd6187a7dec39be17dfb4f6184db16">stopGetResults</a>(<span class="keyword">const</span> std::string &amp; messagePrefix);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::clock_t CPUstart;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    std::chrono::time_point&lt;std::chrono::high_resolution_clock&gt; WallStart;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;};</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* Timer_hpp */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="class_timer_html"><div class="ttname"><a href="class_timer.html">Timer</a></div><div class="ttdef"><b>Definition:</b> Timer.hpp:20</div></div>
+<div class="ttc" id="class_timer_html_aa7dd6187a7dec39be17dfb4f6184db16"><div class="ttname"><a href="class_timer.html#aa7dd6187a7dec39be17dfb4f6184db16">Timer::stopGetResults</a></div><div class="ttdeci">std::string stopGetResults()</div><div class="ttdef"><b>Definition:</b> Timer.cpp:19</div></div>
+<div class="ttc" id="class_timer_html_a3a8b5272198d029779dc9302a54305a8"><div class="ttname"><a href="class_timer.html#a3a8b5272198d029779dc9302a54305a8">Timer::start</a></div><div class="ttdeci">void start()</div><div class="ttdef"><b>Definition:</b> Timer.cpp:13</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
