@@ -16,27 +16,17 @@
 #include <sstream>
 #include <iomanip>
 
+/** is output verbose*/
 extern bool verbose;
+
+/** winite space pad size */
 extern int pad;
 
-
-
-class Coord{
-public:
-    int x;
-    int y;
-    Coord(int x,int y):x(x),y(y){}
-    bool operator < (const Coord & other) const{
-       return x<other.x?true:y<other.y;
-    }
-    Coord operator + (const Coord & other) const{
-        return Coord(x+other.x, y+other.y);
-    }
-    
-};
-
-static const Coord dir[8] = {{0,-1},{1,-1},{1,0},{1,1},{0,1},{-1,1},{-1,0},{-1,-1}};
-
+/**
+ *  Fits percent putput to a certain string length
+ * @param p string size
+ * @return foramated percent string
+ */
 inline std::string fitPercent(float p){
     std::stringstream ss;
     ss.precision(2);
@@ -44,6 +34,11 @@ inline std::string fitPercent(float p){
     return ss.str();
 }
 
+/**
+ * Pads a string with ceratain number of whitespaces
+ * @param c padd size
+ * @return string
+ */
 inline std::string s(int c){
     std::string str;
     str.insert(0, c,' ');
@@ -51,31 +46,56 @@ inline std::string s(int c){
 }
 
 
+/**
+ * Outputs the normal  text to console in formated way
+ * @param text text to putput
+ */
 inline void print(const std::string & text){
     if(verbose)
         std::cout <<s(pad)<< text << COLOR_RESET;
 }
 
+/**
+ * Write over the existing text on console
+ * @param text text to putput
+ */
 inline void printOver(const std::string & text){
     if(verbose)
         std::cout << "\r"<< s(pad) << text << COLOR_RESET << std::flush;
 }
 
+/**
+ * Outputs the error text to console in formated way
+ * @param text text to putput
+ */
 inline void printError(const std::string & text){
     std::cout << COLOR_RED << s(pad) << text << COLOR_RESET;
 }
 
+/**
+ * Outputs the warning text to console in formated way
+ * @param text text to putput
+ */
 inline void printWarning(const std::string & text){
     std::cout << COLOR_YELLOW << s(pad) << text << COLOR_RESET;
 }
 
+/**
+ * Outputs the bold text to console in formated way
+ * @param text text to putput
+ */
 inline void printBold(const std::string & text){
     if(verbose)
         std::cout << s(pad) << text;
-//    std::cout << bold_on << text << bold_off;
+//        std::cout << bold_on << text << bold_off;
 }
 
 
+/**
+ * Prses string containing float
+ * @param txt input string with float number
+ * @return parsed float
+ */
 inline float parseFloat(std::string txt){
     if(txt.size()<=0)
         return -1;
@@ -83,6 +103,11 @@ inline float parseFloat(std::string txt){
 }
 
 
+/**
+ * Prses string containing int
+ * @param txt input string with int number
+ * @return parsed float
+ */
 inline int parseInt(std::string txt){
     if(txt.size()<=0)
         return 0;
@@ -90,6 +115,11 @@ inline int parseInt(std::string txt){
 }
 
 
+/**
+ * Splits a string
+ * @param delim a delimiter used for splitting a string
+ * @return vector of tokens
+ */
 inline std::vector<std::string> splitString(const std::string &s, char delim){
     std::vector<std::string> elems;
     
@@ -113,6 +143,11 @@ inline std::vector<std::string> splitString(const std::string &s, char delim){
     return elems;
 }
 
+/**
+ * Splits a string a parses floats
+ * @param line input string
+ * @return vector of floats
+ */
 inline std::vector<float> splitFloatLine(const std::string & line){
     std::vector<std::string> stringTokens;
     std::vector<float> floatTokens;
@@ -123,6 +158,11 @@ inline std::vector<float> splitFloatLine(const std::string & line){
     return floatTokens;
 }
 
+/**
+ * Splits a string a parses int
+ * @param line input string
+ * @return vector of ints
+ */
 inline std::vector<int> splitIntLine(const std::string & line){
     std::vector<std::string> stringTokens;
     std::vector<int> intTokens;
@@ -133,7 +173,9 @@ inline std::vector<int> splitIntLine(const std::string & line){
     return intTokens;
 }
 
-
+/**
+ * DEBUG: prints out a matrix
+ */
 inline void printMatrix(const glm::mat4 & m){
     for(int y=0;y<4;y++){
         for(int x=0;x<4; x++){
@@ -143,6 +185,10 @@ inline void printMatrix(const glm::mat4 & m){
     }
 }
 
+/**
+ * Clamps RGB into a vlid range 1 - 0
+ * @param color input color
+ */
 inline void clampRGBA(glm::vec4 & color){
     if(color.r < 0)
         color.r = 0;

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gradient',['Gradient',['../class_gradient.html#a4fd340dfd44bc432746d239cb809a0ee',1,'Gradient']]]
+  ['appendix',['appendix',['../struct_arguments.html#a693a6a2a4334f5e34b3eb5ed6a555b28',1,'Arguments']]]
 ];
