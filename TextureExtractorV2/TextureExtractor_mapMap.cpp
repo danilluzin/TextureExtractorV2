@@ -85,6 +85,9 @@ bool TextureExtractor::mapMapGetLabeling(){
         std::cout << "\r\t" << time_ms / 1000 << "\t" << objective << std::flush;
     };
     
+    auto nodisplay = [](const mapmap::luint_t time_ms,
+                      const mapmap::_iv_st<cost_t, simd_w> objective) {};
+    
     print("Data loaded into the mapMap solver.\n");
     
     mapmap::mapMAP<cost_t, simd_w, unary_t, pairwise_t> solver;
@@ -92,7 +95,11 @@ bool TextureExtractor::mapMapGetLabeling(){
     solver.set_label_set(&label_set);
     solver.set_unaries(&unaries);
     solver.set_pairwise(&pairwise);
-    solver.set_logging_callback(display);
+    
+    if(verbose)
+        solver.set_logging_callback(display);
+    else
+        solver.set_logging_callback(nodisplay);
     solver.set_termination_criterion(&terminate);
     
     print("Optimizing:\n\tTime[s]\tEnergy\n");

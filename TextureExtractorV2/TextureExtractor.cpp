@@ -247,7 +247,7 @@ bool TextureExtractor::readDataCostsFromFile(){
     std::ifstream file;
     file.open(arguments.dataCostsFilePath.c_str());
     if(!file.is_open()){
-        printError("Unable to open data costs file: " + arguments.labelingFilePath+"\n");
+        printError("Unable to open data costs file: " + arguments.dataCostsFilePath+"\n");
         return false;
     }
     

@@ -17,6 +17,7 @@
 /**
  * Structure that manages all the argument checking and reading.
  */
+
 struct Arguments{
     /** Output file texture width */
     int textureWidth;
@@ -80,18 +81,18 @@ struct Arguments{
         print("Config loaded from " + filename +". Parsing :\n");
         //basics
         objFilePath = reader.Get("basics", "objFilePath", "UNKNOWN");
-        if(objFilePath == "UNKNOWN"){
+        if(objFilePath == "UNKNOWN"||objFilePath == ""){
             printError("ERROR: objFilePath is required in the .ini file\n");
             return false;
         }
         cameraListFilePath = reader.Get("basics", "cameraListFilePath", "UNKNOWN");
-        if(cameraListFilePath == "UNKNOWN"){
+        if(cameraListFilePath == "UNKNOWN"||cameraListFilePath == ""){
             printError("ERROR: cameraListFilePath is required in the .ini file\n");
             return false;
         }
         
         cameraInfoPath = reader.Get("basics", "cameraInfoPath", "UNKNOWN");
-        if(cameraInfoPath == "UNKNOWN"){
+        if(cameraInfoPath == "UNKNOWN"||cameraInfoPath == ""){
             printError("ERROR: cameraInfoPath is required in the .ini file\n");
             return false;
         }
@@ -119,44 +120,38 @@ struct Arguments{
         }
         
 
+        projectName = reader.Get("optional", "projectName", "projectName");
+        addProjectNameToFiles = reader.GetBoolean("optional", "addProjectNameToFiles", false);
+        
         getLabelingFromFile = reader.GetBoolean("basics", "getLabelingFromFile", false);
         if(getLabelingFromFile == true){
             labelingFilePath = reader.Get("optional", "labelingFilePath", "UNKNOWN");
-            if(labelingFilePath == "UNKNOWN"){
-            printError("ERROR: getLabelingFromFile was set to TRUE, but the labelingFilePath was not provided the .ini file\n");
-                return false;
+            if(labelingFilePath == "UNKNOWN" || labelingFilePath == ""){
+                labelingFilePath = genDeaultLabelingPath();
+            printWarning("WARNING: getLabelingFromFile was set to TRUE, but the labelingFilePath was not provided the .ini file\n Defaulting to \""+labelingFilePath+"\"\n ");
             }
         }
         
         writeLabelingToFile = reader.GetBoolean("basics", "writeLabelingToFile", false);
-        if(writeLabelingToFile == true){
-            newLabelingFilePath = reader.Get("optional", "newLabelingFilePath", "UNKNOWN");
-            if(newLabelingFilePath == "UNKNOWN"){
-                printWarning("WARNING: writeLabelingToFile was set to TRUE, but newLabelingFilePath was not provided in the .ini file. Defaulting to \"new_labeling.txt\"\n");
-                newLabelingFilePath = "new_labeling.txt";
-            }
-        }
+        newLabelingFilePath = genDeaultLabelingPath();
         
         
         getDataCostsFromFile = reader.GetBoolean("basics", "getDataCostsFromFile", false);
         if(getDataCostsFromFile == true){
             dataCostsFilePath = reader.Get("optional", "dataCostsFilePath", "UNKNOWN");
-            if(dataCostsFilePath == "UNKNOWN"){
-                printError("ERROR: getDataCostsFromFile was set to TRUE, but the dataCostsFilePath was not provided the .ini file\n");
-                return false;
+            if(dataCostsFilePath == "UNKNOWN" || dataCostsFilePath == ""){
+                dataCostsFilePath = genDeaultDataCostPath();
+                printWarning("WARNING: getDataCostsFromFile was set to TRUE, but the dataCostsFilePath was not provided the .ini file\n Defaulting to \""+dataCostsFilePath+"\"\n ");
             }
         }
         
         writeDataCostsToFile = reader.GetBoolean("basics", "writeDataCostsToFile", false);
-        if(writeDataCostsToFile == true){
-            newDataCostsFilePath = reader.Get("optional", "newDataCostsFilePath", "UNKNOWN");
-            if(newDataCostsFilePath == "UNKNOWN"){
-                printWarning("WARNING: writeDataCostsToFile was set to TRUE, but newDataCostsFilePath was not provided in the .ini file. Defaulting to \"new_datacosts.txt\"\n");
-                newDataCostsFilePath = "new_datacosts.txt";
-            }
-        }
+        newDataCostsFilePath = genDeaultDataCostPath();
         
-        verbose = reader.GetBoolean("basic", "verbose", true);
+        verbose = reader.GetBoolean("basics", "verbose", true);
+        if(!verbose){
+            std::cout<<"Parsed\nVerbose = FALSE. Only warning and errors will be displayed\n";
+        }
 
         BVHMinNode = (int)reader.GetInteger("perfomance","BVHMinNode",200);
         threadCount = (int)reader.GetInteger("basics", "threadCount", 1);
@@ -167,13 +162,12 @@ struct Arguments{
         
         
         imageFormat = reader.Get("basics", "imageFormat", "UNKNOWN");
-        if(imageFormat == "UNKNOWN"){
+        if(imageFormat == "UNKNOWN"||imageFormat == ""){
             printWarning("WARNING: imageFormat was not specified. Defaulting to png\n");
             imageFormat = "png";
         }
         
-        projectName = reader.Get("optional", "projectName", "projectName");
-        addProjectNameToFiles = reader.GetBoolean("optional", "addProjectNameToFiles", false);
+        
         
         doGloabalAdjustment = reader.GetBoolean("optional", "doGloabalAdjustment", true);
         doSeamLeveling = reader.GetBoolean("optional", "doSeamLeveling", true);
@@ -245,6 +239,14 @@ struct Arguments{
     
     std::string genGlobalTexturePath(std::string objName){
         return newTextureFolderPath + "/" + appendix() + objName + "_global." + imageFormat;
+    }
+    
+    std::string genDeaultDataCostPath(){
+        return newTextureFolderPath + "/" + appendix() + "datacosts.txt";
+    }
+    
+    std::string genDeaultLabelingPath(){
+        return newTextureFolderPath + "/" + appendix() + "labeling.txt";
     }
     
     bool generateIni(){

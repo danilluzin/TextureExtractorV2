@@ -16,7 +16,7 @@
 #include <sstream>
 #include <iomanip>
 
-static bool verbose = true;
+extern bool verbose;
 extern int pad;
 
 

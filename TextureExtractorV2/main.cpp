@@ -34,6 +34,7 @@ bool loadLabelsFromFile(TextureExtractor & extractor);
 
 Arguments arguments;
 int pad = 0;
+bool verbose = true;
 
 bool checkFlags(const char * argv[]);
 
