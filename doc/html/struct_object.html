@@ -89,22 +89,75 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Object Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aeeac86f3158968433d8484fb43dc9727"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeeac86f3158968433d8484fb43dc9727"></a>
-<a class="el" href="struct_bounding_box.html">BoundingBox</a>&#160;</td><td class="memItemRight" valign="bottom"><b>boundingBox</b></td></tr>
+<tr class="memitem:aeeac86f3158968433d8484fb43dc9727"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_bounding_box.html">BoundingBox</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_object.html#aeeac86f3158968433d8484fb43dc9727">boundingBox</a></td></tr>
 <tr class="separator:aeeac86f3158968433d8484fb43dc9727"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24457e0a387492c80594aec7681a2277"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24457e0a387492c80594aec7681a2277"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+<tr class="memitem:a24457e0a387492c80594aec7681a2277"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_object.html#a24457e0a387492c80594aec7681a2277">name</a></td></tr>
 <tr class="separator:a24457e0a387492c80594aec7681a2277"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a7a34b417ea8969e1407e6962c671eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a7a34b417ea8969e1407e6962c671eb"></a>
-std::vector&lt; uint &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>triangles</b></td></tr>
+<tr class="memitem:a4a7a34b417ea8969e1407e6962c671eb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_object.html#a4a7a34b417ea8969e1407e6962c671eb">triangles</a></td></tr>
 <tr class="separator:a4a7a34b417ea8969e1407e6962c671eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a484e6471a6620c2dd98aa3db6ab7a9f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a484e6471a6620c2dd98aa3db6ab7a9f5"></a>
-<a class="el" href="struct_partition_node.html">PartitionNode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>partitionRoot</b></td></tr>
+<tr class="memitem:a484e6471a6620c2dd98aa3db6ab7a9f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_partition_node.html">PartitionNode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_object.html#a484e6471a6620c2dd98aa3db6ab7a9f5">partitionRoot</a></td></tr>
 <tr class="separator:a484e6471a6620c2dd98aa3db6ab7a9f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Structure that represents the mesh object </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="aeeac86f3158968433d8484fb43dc9727"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_bounding_box.html">BoundingBox</a> Object::boundingBox</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>bounding box of the object </p>
+
+</div>
+</div>
+<a class="anchor" id="a24457e0a387492c80594aec7681a2277"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Object::name</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>name of the object </p>
+
+</div>
+</div>
+<a class="anchor" id="a484e6471a6620c2dd98aa3db6ab7a9f5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_partition_node.html">PartitionNode</a> Object::partitionRoot</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>BVH root for the object </p>
+
+</div>
+</div>
+<a class="anchor" id="a4a7a34b417ea8969e1407e6962c671eb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;uint&gt; Object::triangles</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>set of triangle that belong to the mesh. Referenced by ID </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>TextureExtractorV2/<a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a></li>
 </ul>

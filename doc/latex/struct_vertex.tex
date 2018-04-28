@@ -1,19 +1,19 @@
 \hypertarget{struct_vertex}{}\section{Vertex Struct Reference}
 \label{struct_vertex}\index{Vertex@{Vertex}}
+
+
+{\ttfamily \#include $<$Mesh.\+hpp$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{struct_vertex_a314b0e4370b7b33efdaa4bf492b91021}{}{\bfseries Vertex} (glm\+::vec4 coord=glm\+::vec4(0, 0, 0, 0))\label{struct_vertex_a314b0e4370b7b33efdaa4bf492b91021}
-
+\hyperlink{struct_vertex_a314b0e4370b7b33efdaa4bf492b91021}{Vertex} (glm\+::vec4 \hyperlink{struct_vertex_aabc10e3b8e0171bcbe77b014944271b3}{coord}=glm\+::vec4(0, 0, 0, 0))
 \item 
-\hypertarget{struct_vertex_a2c558c054a0a2c970588c063073803a0}{}{\bfseries Vertex} (float x, float y, float z)\label{struct_vertex_a2c558c054a0a2c970588c063073803a0}
-
+\hyperlink{struct_vertex_a2c558c054a0a2c970588c063073803a0}{Vertex} (float x, float y, float z)
 \item 
-\hypertarget{struct_vertex_a7b6c5132e8fd35a45481d8ba1e96d981}{}\hyperlink{struct_vertex}{Vertex} {\bfseries operator$\ast$} (const glm\+::mat4 \&matrix)\label{struct_vertex_a7b6c5132e8fd35a45481d8ba1e96d981}
-
+\hyperlink{struct_vertex}{Vertex} \hyperlink{struct_vertex_a7b6c5132e8fd35a45481d8ba1e96d981}{operator$\ast$} (const glm\+::mat4 \&matrix)
 \item 
-\hypertarget{struct_vertex_ae3ede62e3d8f7614bead7becbeed065e}{}\hyperlink{struct_vertex}{Vertex} {\bfseries lerp} (const \hyperlink{struct_vertex}{Vertex} \&other, float ammount)\label{struct_vertex_ae3ede62e3d8f7614bead7becbeed065e}
-
+\hyperlink{struct_vertex}{Vertex} \hyperlink{struct_vertex_ae3ede62e3d8f7614bead7becbeed065e}{lerp} (const \hyperlink{struct_vertex}{Vertex} \&other, float ammount)
 \item 
 \hypertarget{struct_vertex_a5aeac850629b2391834b1ea862cd3165}{}float {\bfseries x} () const \label{struct_vertex_a5aeac850629b2391834b1ea862cd3165}
 
@@ -27,22 +27,115 @@
 \hypertarget{struct_vertex_a3b549b8c60d7530358e941a390196c54}{}float {\bfseries w} () const \label{struct_vertex_a3b549b8c60d7530358e941a390196c54}
 
 \item 
-\hypertarget{struct_vertex_a9859cbbdd117fb2b59f56966f8a93e6e}{}float {\bfseries get} (int component)\label{struct_vertex_a9859cbbdd117fb2b59f56966f8a93e6e}
-
+float \hyperlink{struct_vertex_a9859cbbdd117fb2b59f56966f8a93e6e}{get} (int component)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{struct_vertex_aabc10e3b8e0171bcbe77b014944271b3}{}glm\+::vec4 {\bfseries coord}\label{struct_vertex_aabc10e3b8e0171bcbe77b014944271b3}
-
+glm\+::vec4 \hyperlink{struct_vertex_aabc10e3b8e0171bcbe77b014944271b3}{coord}
 \item 
-\hypertarget{struct_vertex_a8214ff52fee03a5524ce58c3810a1be9}{}glm\+::vec2 {\bfseries tex\+Coord}\label{struct_vertex_a8214ff52fee03a5524ce58c3810a1be9}
-
+glm\+::vec2 \hyperlink{struct_vertex_a8214ff52fee03a5524ce58c3810a1be9}{tex\+Coord}
 \item 
-\hypertarget{struct_vertex_aee423a6a530f42da4d6a9b306fc348e7}{}uint {\bfseries id}\label{struct_vertex_aee423a6a530f42da4d6a9b306fc348e7}
-
+uint \hyperlink{struct_vertex_aee423a6a530f42da4d6a9b306fc348e7}{id}
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+\hyperlink{struct_vertex}{Vertex} class. Hold coordinates postion and texture coordinates 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{struct_vertex_a314b0e4370b7b33efdaa4bf492b91021}{}\index{Vertex@{Vertex}!Vertex@{Vertex}}
+\index{Vertex@{Vertex}!Vertex@{Vertex}}
+\subsubsection[{Vertex(glm\+::vec4 coord=glm\+::vec4(0, 0, 0, 0))}]{\setlength{\rightskip}{0pt plus 5cm}Vertex\+::\+Vertex (
+\begin{DoxyParamCaption}
+\item[{glm\+::vec4}]{coord = {\ttfamily glm\+:\+:vec4(0,0,0,0)}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{struct_vertex_a314b0e4370b7b33efdaa4bf492b91021}
+Constructs a new vertex using existing coords 
+\begin{DoxyParams}{Parameters}
+{\em coord} & new vertex coordinate \\
+\hline
+\end{DoxyParams}
+\hypertarget{struct_vertex_a2c558c054a0a2c970588c063073803a0}{}\index{Vertex@{Vertex}!Vertex@{Vertex}}
+\index{Vertex@{Vertex}!Vertex@{Vertex}}
+\subsubsection[{Vertex(float x, float y, float z)}]{\setlength{\rightskip}{0pt plus 5cm}Vertex\+::\+Vertex (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{float}]{z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{struct_vertex_a2c558c054a0a2c970588c063073803a0}
+Constructs a new vertex using existing coords 
+\begin{DoxyParams}{Parameters}
+{\em x} & x postion of new vertex coordinate \\
+\hline
+{\em y} & y postion of new vertex coordinate \\
+\hline
+{\em z} & z postion of new vertex coordinate \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{struct_vertex_a9859cbbdd117fb2b59f56966f8a93e6e}{}\index{Vertex@{Vertex}!get@{get}}
+\index{get@{get}!Vertex@{Vertex}}
+\subsubsection[{get(int component)}]{\setlength{\rightskip}{0pt plus 5cm}float Vertex\+::get (
+\begin{DoxyParamCaption}
+\item[{int}]{component}
+\end{DoxyParamCaption}
+)}\label{struct_vertex_a9859cbbdd117fb2b59f56966f8a93e6e}
+Returns x,y,z or w component for the component number 
+\begin{DoxyParams}{Parameters}
+{\em component} & component number. 0 \+: x, 1 \+: y, 2 \+: z, 3 \+: w \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+x, y, z or w component 
+\end{DoxyReturn}
+\hypertarget{struct_vertex_ae3ede62e3d8f7614bead7becbeed065e}{}\index{Vertex@{Vertex}!lerp@{lerp}}
+\index{lerp@{lerp}!Vertex@{Vertex}}
+\subsubsection[{lerp(const Vertex \&other, float ammount)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vertex} Vertex\+::lerp (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vertex} \&}]{other, }
+\item[{float}]{ammount}
+\end{DoxyParamCaption}
+)}\label{struct_vertex_ae3ede62e3d8f7614bead7becbeed065e}
+Calculates new vertex as linear interpolation of current and other one. Both position and texture coordinate get interpolated. 
+\begin{DoxyParams}{Parameters}
+{\em other} & other vertex \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ammount lerp factor 
+\end{DoxyReturn}
+\hypertarget{struct_vertex_a7b6c5132e8fd35a45481d8ba1e96d981}{}\index{Vertex@{Vertex}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Vertex@{Vertex}}
+\subsubsection[{operator$\ast$(const glm\+::mat4 \&matrix)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vertex} Vertex\+::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const glm\+::mat4 \&}]{matrix}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{struct_vertex_a7b6c5132e8fd35a45481d8ba1e96d981}
+Traditional matrix x vertex multiplication 
+\begin{DoxyParams}{Parameters}
+{\em matrix} & matrix to multiply with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+resulting vertex of multiplying matrix$\ast$coord 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_vertex_aabc10e3b8e0171bcbe77b014944271b3}{}\index{Vertex@{Vertex}!coord@{coord}}
+\index{coord@{coord}!Vertex@{Vertex}}
+\subsubsection[{coord}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec4 Vertex\+::coord}\label{struct_vertex_aabc10e3b8e0171bcbe77b014944271b3}
+\hyperlink{class_mesh}{Mesh} 3\+D coordinate of the vertex \hypertarget{struct_vertex_aee423a6a530f42da4d6a9b306fc348e7}{}\index{Vertex@{Vertex}!id@{id}}
+\index{id@{id}!Vertex@{Vertex}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}uint Vertex\+::id}\label{struct_vertex_aee423a6a530f42da4d6a9b306fc348e7}
+I\+D of the vertex. Uniq in the mesh \hypertarget{struct_vertex_a8214ff52fee03a5524ce58c3810a1be9}{}\index{Vertex@{Vertex}!tex\+Coord@{tex\+Coord}}
+\index{tex\+Coord@{tex\+Coord}!Vertex@{Vertex}}
+\subsubsection[{tex\+Coord}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec2 Vertex\+::tex\+Coord}\label{struct_vertex_a8214ff52fee03a5524ce58c3810a1be9}
+Texture coordinate of the vertex 
 
 The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

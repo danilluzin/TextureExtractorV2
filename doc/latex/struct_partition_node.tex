@@ -1,36 +1,69 @@
 \hypertarget{struct_partition_node}{}\section{Partition\+Node Struct Reference}
 \label{struct_partition_node}\index{Partition\+Node@{Partition\+Node}}
+
+
+{\ttfamily \#include $<$Mesh.\+hpp$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{struct_partition_node_aaababc44867907150c7371d071e7ec8d}{}void {\bfseries add\+Triangle} (\hyperlink{struct_triangle}{Triangle} \&triangle)\label{struct_partition_node_aaababc44867907150c7371d071e7ec8d}
-
+void \hyperlink{struct_partition_node_aaababc44867907150c7371d071e7ec8d}{add\+Triangle} (\hyperlink{struct_triangle}{Triangle} \&triangle)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{struct_partition_node_a82bfd35cfcfc913ab41b2cb8c3c2f499}{}\hyperlink{struct_partition_node}{Partition\+Node} $\ast$ {\bfseries left\+Node} = nullptr\label{struct_partition_node_a82bfd35cfcfc913ab41b2cb8c3c2f499}
-
+\hyperlink{struct_partition_node}{Partition\+Node} $\ast$ \hyperlink{struct_partition_node_a82bfd35cfcfc913ab41b2cb8c3c2f499}{left\+Node} = nullptr
 \item 
-\hypertarget{struct_partition_node_a673d8267a9eb0a5c77bdfc48b00f1e16}{}\hyperlink{struct_partition_node}{Partition\+Node} $\ast$ {\bfseries right\+Node} = nullptr\label{struct_partition_node_a673d8267a9eb0a5c77bdfc48b00f1e16}
-
+\hyperlink{struct_partition_node}{Partition\+Node} $\ast$ \hyperlink{struct_partition_node_a673d8267a9eb0a5c77bdfc48b00f1e16}{right\+Node} = nullptr
 \item 
-\hypertarget{struct_partition_node_a4d66482e5a4c91717fd0d935557ceb14}{}\hyperlink{struct_partition_node}{Partition\+Node} $\ast$ {\bfseries parent} = nullptr\label{struct_partition_node_a4d66482e5a4c91717fd0d935557ceb14}
-
+\hyperlink{struct_partition_node}{Partition\+Node} $\ast$ \hyperlink{struct_partition_node_a4d66482e5a4c91717fd0d935557ceb14}{parent} = nullptr
 \item 
-\hypertarget{struct_partition_node_a45bf7beca48bcb4533d7f7d21e0df440}{}std\+::vector$<$ uint $>$ {\bfseries triangles}\label{struct_partition_node_a45bf7beca48bcb4533d7f7d21e0df440}
-
+std\+::vector$<$ uint $>$ \hyperlink{struct_partition_node_a45bf7beca48bcb4533d7f7d21e0df440}{triangles}
 \item 
-\hypertarget{struct_partition_node_a7f1efc38b6bbdf4cc2f8e36574bbf276}{}\hyperlink{struct_bounding_box}{Bounding\+Box} {\bfseries bounding\+Box}\label{struct_partition_node_a7f1efc38b6bbdf4cc2f8e36574bbf276}
-
+\hyperlink{struct_bounding_box}{Bounding\+Box} \hyperlink{struct_partition_node_a7f1efc38b6bbdf4cc2f8e36574bbf276}{bounding\+Box}
 \item 
-\hypertarget{struct_partition_node_aa1c74a380fa906533ad5e7649293e711}{}float {\bfseries separator}\label{struct_partition_node_aa1c74a380fa906533ad5e7649293e711}
-
+float \hyperlink{struct_partition_node_aa1c74a380fa906533ad5e7649293e711}{separator}
 \item 
-\hypertarget{struct_partition_node_a5e861a43672acf654394a15b012df231}{}Direction {\bfseries direction} = N\+O\+N\+E\label{struct_partition_node_a5e861a43672acf654394a15b012df231}
-
+Direction \hyperlink{struct_partition_node_a5e861a43672acf654394a15b012df231}{direction} = N\+O\+N\+E
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Bounding volume hierarhy node, contains list of triangles that belong to a node and a bounding box 
+
+\subsection{Member Function Documentation}
+\hypertarget{struct_partition_node_aaababc44867907150c7371d071e7ec8d}{}\index{Partition\+Node@{Partition\+Node}!add\+Triangle@{add\+Triangle}}
+\index{add\+Triangle@{add\+Triangle}!Partition\+Node@{Partition\+Node}}
+\subsubsection[{add\+Triangle(\+Triangle \&triangle)}]{\setlength{\rightskip}{0pt plus 5cm}void Partition\+Node\+::add\+Triangle (
+\begin{DoxyParamCaption}
+\item[{{\bf Triangle} \&}]{triangle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{struct_partition_node_aaababc44867907150c7371d071e7ec8d}
+Adds triangle to a node. Updates bounding box as well. 
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_partition_node_a7f1efc38b6bbdf4cc2f8e36574bbf276}{}\index{Partition\+Node@{Partition\+Node}!bounding\+Box@{bounding\+Box}}
+\index{bounding\+Box@{bounding\+Box}!Partition\+Node@{Partition\+Node}}
+\subsubsection[{bounding\+Box}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Bounding\+Box} Partition\+Node\+::bounding\+Box}\label{struct_partition_node_a7f1efc38b6bbdf4cc2f8e36574bbf276}
+Bounding box of the current node \hypertarget{struct_partition_node_a5e861a43672acf654394a15b012df231}{}\index{Partition\+Node@{Partition\+Node}!direction@{direction}}
+\index{direction@{direction}!Partition\+Node@{Partition\+Node}}
+\subsubsection[{direction}]{\setlength{\rightskip}{0pt plus 5cm}Direction Partition\+Node\+::direction = N\+O\+N\+E}\label{struct_partition_node_a5e861a43672acf654394a15b012df231}
+Direction of the bounding box separation \hypertarget{struct_partition_node_a82bfd35cfcfc913ab41b2cb8c3c2f499}{}\index{Partition\+Node@{Partition\+Node}!left\+Node@{left\+Node}}
+\index{left\+Node@{left\+Node}!Partition\+Node@{Partition\+Node}}
+\subsubsection[{left\+Node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Partition\+Node}$\ast$ Partition\+Node\+::left\+Node = nullptr}\label{struct_partition_node_a82bfd35cfcfc913ab41b2cb8c3c2f499}
+left child node of the current node \hypertarget{struct_partition_node_a4d66482e5a4c91717fd0d935557ceb14}{}\index{Partition\+Node@{Partition\+Node}!parent@{parent}}
+\index{parent@{parent}!Partition\+Node@{Partition\+Node}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Partition\+Node}$\ast$ Partition\+Node\+::parent = nullptr}\label{struct_partition_node_a4d66482e5a4c91717fd0d935557ceb14}
+parent node of the current node \hypertarget{struct_partition_node_a673d8267a9eb0a5c77bdfc48b00f1e16}{}\index{Partition\+Node@{Partition\+Node}!right\+Node@{right\+Node}}
+\index{right\+Node@{right\+Node}!Partition\+Node@{Partition\+Node}}
+\subsubsection[{right\+Node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Partition\+Node}$\ast$ Partition\+Node\+::right\+Node = nullptr}\label{struct_partition_node_a673d8267a9eb0a5c77bdfc48b00f1e16}
+right child node of the current node \hypertarget{struct_partition_node_aa1c74a380fa906533ad5e7649293e711}{}\index{Partition\+Node@{Partition\+Node}!separator@{separator}}
+\index{separator@{separator}!Partition\+Node@{Partition\+Node}}
+\subsubsection[{separator}]{\setlength{\rightskip}{0pt plus 5cm}float Partition\+Node\+::separator}\label{struct_partition_node_aa1c74a380fa906533ad5e7649293e711}
+Delta separator of the current node. Determines how triangles are separated into child nodes \hypertarget{struct_partition_node_a45bf7beca48bcb4533d7f7d21e0df440}{}\index{Partition\+Node@{Partition\+Node}!triangles@{triangles}}
+\index{triangles@{triangles}!Partition\+Node@{Partition\+Node}}
+\subsubsection[{triangles}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$uint$>$ Partition\+Node\+::triangles}\label{struct_partition_node_a45bf7beca48bcb4533d7f7d21e0df440}
+set of triangles that belong to the current node. Referenced by the I\+D 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

@@ -1,33 +1,55 @@
 \hypertarget{struct_triangle}{}\section{Triangle Struct Reference}
 \label{struct_triangle}\index{Triangle@{Triangle}}
+
+
+{\ttfamily \#include $<$Mesh.\+hpp$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{struct_triangle_a88209808e641989a51c9f5e23b8857f5}{}{\bfseries Triangle} (const uint verticies\mbox{[}3\mbox{]})\label{struct_triangle_a88209808e641989a51c9f5e23b8857f5}
+\hypertarget{struct_triangle_a88209808e641989a51c9f5e23b8857f5}{}{\bfseries Triangle} (const uint \hyperlink{struct_triangle_ae6371f947daaa0debff04c10b6fadf74}{verticies}\mbox{[}3\mbox{]})\label{struct_triangle_a88209808e641989a51c9f5e23b8857f5}
 
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{struct_triangle_ae6371f947daaa0debff04c10b6fadf74}{}uint {\bfseries verticies} \mbox{[}3\mbox{]}\label{struct_triangle_ae6371f947daaa0debff04c10b6fadf74}
-
+uint \hyperlink{struct_triangle_ae6371f947daaa0debff04c10b6fadf74}{verticies} \mbox{[}3\mbox{]}
 \item 
-\hypertarget{struct_triangle_a2d3dc46484a1d1cc2802caaaa4a5f1cf}{}std\+::map$<$ uint, uint $>$ {\bfseries tex\+Coords}\label{struct_triangle_a2d3dc46484a1d1cc2802caaaa4a5f1cf}
-
+std\+::map$<$ uint, uint $>$ \hyperlink{struct_triangle_a2d3dc46484a1d1cc2802caaaa4a5f1cf}{tex\+Coords}
 \item 
-\hypertarget{struct_triangle_a9e82ef210ec3746af058c3b4793bd34d}{}std\+::map$<$ uint, uint $>$ {\bfseries normal\+Vecs}\label{struct_triangle_a9e82ef210ec3746af058c3b4793bd34d}
-
+std\+::map$<$ uint, uint $>$ \hyperlink{struct_triangle_a9e82ef210ec3746af058c3b4793bd34d}{normal\+Vecs}
 \item 
-\hypertarget{struct_triangle_a2b02bfd83feba5fe297836b900a62c92}{}uint {\bfseries id}\label{struct_triangle_a2b02bfd83feba5fe297836b900a62c92}
-
+uint \hyperlink{struct_triangle_a2b02bfd83feba5fe297836b900a62c92}{id}
 \item 
-\hypertarget{struct_triangle_a18682ece909b0d90107ac391f37f5cd4}{}uint {\bfseries view\+Id} = 0\label{struct_triangle_a18682ece909b0d90107ac391f37f5cd4}
-
+uint \hyperlink{struct_triangle_a18682ece909b0d90107ac391f37f5cd4}{view\+Id} = 0
 \item 
-\hypertarget{struct_triangle_a980bbf270a13c5ac9112e6e8c8c2ea89}{}\hyperlink{struct_bounding_box}{Bounding\+Box} {\bfseries bounding\+Box}\label{struct_triangle_a980bbf270a13c5ac9112e6e8c8c2ea89}
-
+\hyperlink{struct_bounding_box}{Bounding\+Box} \hyperlink{struct_triangle_a980bbf270a13c5ac9112e6e8c8c2ea89}{bounding\+Box}
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Structure describing basic triangle 
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_triangle_a980bbf270a13c5ac9112e6e8c8c2ea89}{}\index{Triangle@{Triangle}!bounding\+Box@{bounding\+Box}}
+\index{bounding\+Box@{bounding\+Box}!Triangle@{Triangle}}
+\subsubsection[{bounding\+Box}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Bounding\+Box} Triangle\+::bounding\+Box}\label{struct_triangle_a980bbf270a13c5ac9112e6e8c8c2ea89}
+Bounding box of the triangle \hypertarget{struct_triangle_a2b02bfd83feba5fe297836b900a62c92}{}\index{Triangle@{Triangle}!id@{id}}
+\index{id@{id}!Triangle@{Triangle}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}uint Triangle\+::id}\label{struct_triangle_a2b02bfd83feba5fe297836b900a62c92}
+I\+D of a triangle \hypertarget{struct_triangle_a9e82ef210ec3746af058c3b4793bd34d}{}\index{Triangle@{Triangle}!normal\+Vecs@{normal\+Vecs}}
+\index{normal\+Vecs@{normal\+Vecs}!Triangle@{Triangle}}
+\subsubsection[{normal\+Vecs}]{\setlength{\rightskip}{0pt plus 5cm}std\+::map$<$uint,uint$>$ Triangle\+::normal\+Vecs}\label{struct_triangle_a9e82ef210ec3746af058c3b4793bd34d}
+set of normals assigned to each verte in a triangle (not used in the tool) \hypertarget{struct_triangle_a2d3dc46484a1d1cc2802caaaa4a5f1cf}{}\index{Triangle@{Triangle}!tex\+Coords@{tex\+Coords}}
+\index{tex\+Coords@{tex\+Coords}!Triangle@{Triangle}}
+\subsubsection[{tex\+Coords}]{\setlength{\rightskip}{0pt plus 5cm}std\+::map$<$uint,uint$>$ Triangle\+::tex\+Coords}\label{struct_triangle_a2d3dc46484a1d1cc2802caaaa4a5f1cf}
+set of texture coordinates assigned to each verte in a triangle \hypertarget{struct_triangle_ae6371f947daaa0debff04c10b6fadf74}{}\index{Triangle@{Triangle}!verticies@{verticies}}
+\index{verticies@{verticies}!Triangle@{Triangle}}
+\subsubsection[{verticies}]{\setlength{\rightskip}{0pt plus 5cm}uint Triangle\+::verticies\mbox{[}3\mbox{]}}\label{struct_triangle_ae6371f947daaa0debff04c10b6fadf74}
+set of three verticies \hypertarget{struct_triangle_a18682ece909b0d90107ac391f37f5cd4}{}\index{Triangle@{Triangle}!view\+Id@{view\+Id}}
+\index{view\+Id@{view\+Id}!Triangle@{Triangle}}
+\subsubsection[{view\+Id}]{\setlength{\rightskip}{0pt plus 5cm}uint Triangle\+::view\+Id = 0}\label{struct_triangle_a18682ece909b0d90107ac391f37f5cd4}
+I\+D of a view assigned to a polygon 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

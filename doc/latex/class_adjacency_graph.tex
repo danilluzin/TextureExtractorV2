@@ -1,18 +1,47 @@
 \hypertarget{class_adjacency_graph}{}\section{Adjacency\+Graph Class Reference}
 \label{class_adjacency_graph}\index{Adjacency\+Graph@{Adjacency\+Graph}}
+
+
+{\ttfamily \#include $<$Mesh.\+hpp$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_adjacency_graph_a24a7cc8e5f62cc94872e04cfa10b70dd}{}void {\bfseries add\+Node} (uint face\+Id, const std\+::set$<$ uint $>$ \&neighbours)\label{class_adjacency_graph_a24a7cc8e5f62cc94872e04cfa10b70dd}
-
+void \hyperlink{class_adjacency_graph_a24a7cc8e5f62cc94872e04cfa10b70dd}{add\+Node} (uint face\+Id, const std\+::set$<$ uint $>$ \&neighbours)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_adjacency_graph_ad3e7a730db698841d4230030898f4291}{}std\+::map$<$ uint, Node $>$ {\bfseries nodes}\label{class_adjacency_graph_ad3e7a730db698841d4230030898f4291}
-
+std\+::map$<$ uint, Node $>$ \hyperlink{class_adjacency_graph_ad3e7a730db698841d4230030898f4291}{nodes}
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Class representing polygon adjacency in the mesh. Polygons are considered adjacent if they share one common edge. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_adjacency_graph_a24a7cc8e5f62cc94872e04cfa10b70dd}{}\index{Adjacency\+Graph@{Adjacency\+Graph}!add\+Node@{add\+Node}}
+\index{add\+Node@{add\+Node}!Adjacency\+Graph@{Adjacency\+Graph}}
+\subsubsection[{add\+Node(uint face\+Id, const std\+::set$<$ uint $>$ \&neighbours)}]{\setlength{\rightskip}{0pt plus 5cm}void Adjacency\+Graph\+::add\+Node (
+\begin{DoxyParamCaption}
+\item[{uint}]{face\+Id, }
+\item[{const std\+::set$<$ uint $>$ \&}]{neighbours}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_adjacency_graph_a24a7cc8e5f62cc94872e04cfa10b70dd}
+Add a new node to a graph 
+\begin{DoxyParams}{Parameters}
+{\em face\+Id} & I\+D of new node and face \\
+\hline
+{\em neighbours} & neighbours of the new node \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_adjacency_graph_ad3e7a730db698841d4230030898f4291}{}\index{Adjacency\+Graph@{Adjacency\+Graph}!nodes@{nodes}}
+\index{nodes@{nodes}!Adjacency\+Graph@{Adjacency\+Graph}}
+\subsubsection[{nodes}]{\setlength{\rightskip}{0pt plus 5cm}std\+::map$<$uint,Node$>$ Adjacency\+Graph\+::nodes}\label{class_adjacency_graph_ad3e7a730db698841d4230030898f4291}
+Collection of all nodes referenced by their I\+D. 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

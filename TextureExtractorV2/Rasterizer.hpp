@@ -18,7 +18,9 @@
 #include "RenderContext.h"
 #include <unordered_set>
 
-
+/**
+ * DEBUG class. Not used for the main function of the tool
+ */
 class Rasterizer{
     
     const Bitmap * texture;

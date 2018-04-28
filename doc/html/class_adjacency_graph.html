@@ -91,19 +91,77 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">AdjacencyGraph Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a24a7cc8e5f62cc94872e04cfa10b70dd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24a7cc8e5f62cc94872e04cfa10b70dd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addNode</b> (uint faceId, const std::set&lt; uint &gt; &amp;neighbours)</td></tr>
+<tr class="memitem:a24a7cc8e5f62cc94872e04cfa10b70dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adjacency_graph.html#a24a7cc8e5f62cc94872e04cfa10b70dd">addNode</a> (uint faceId, const std::set&lt; uint &gt; &amp;neighbours)</td></tr>
 <tr class="separator:a24a7cc8e5f62cc94872e04cfa10b70dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ad3e7a730db698841d4230030898f4291"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3e7a730db698841d4230030898f4291"></a>
-std::map&lt; uint, Node &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>nodes</b></td></tr>
+<tr class="memitem:ad3e7a730db698841d4230030898f4291"><td class="memItemLeft" align="right" valign="top">std::map&lt; uint, Node &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adjacency_graph.html#ad3e7a730db698841d4230030898f4291">nodes</a></td></tr>
 <tr class="separator:ad3e7a730db698841d4230030898f4291"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class representing polygon adjacency in the mesh. Polygons are considered adjacent if they share one common edge. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a24a7cc8e5f62cc94872e04cfa10b70dd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AdjacencyGraph::addNode </td>
+          <td>(</td>
+          <td class="paramtype">uint&#160;</td>
+          <td class="paramname"><em>faceId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::set&lt; uint &gt; &amp;&#160;</td>
+          <td class="paramname"><em>neighbours</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Add a new node to a graph </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">faceId</td><td>ID of new node and face </td></tr>
+    <tr><td class="paramname">neighbours</td><td>neighbours of the new node </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ad3e7a730db698841d4230030898f4291"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;uint,Node&gt; AdjacencyGraph::nodes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Collection of all nodes referenced by their ID. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>TextureExtractorV2/<a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a></li>
 </ul>

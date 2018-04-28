@@ -29,7 +29,6 @@ void Transformation::setAspectRatio(int width, int height){
 
 void Transformation::setCamera (const Camera & camera){
     this->camera = camera;
-    cameraIsSet = true;
 }
 
 void Transformation::setScreenTransform(int halfHeight, int halfWidth){

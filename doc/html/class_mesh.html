@@ -90,40 +90,167 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Mesh Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad93d51d3938b1fe01816746f7d6a121f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad93d51d3938b1fe01816746f7d6a121f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> (const std::string &amp;filename)</td></tr>
+<tr class="memitem:ad93d51d3938b1fe01816746f7d6a121f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh.html#ad93d51d3938b1fe01816746f7d6a121f">initialize</a> (const std::string &amp;filename)</td></tr>
 <tr class="separator:ad93d51d3938b1fe01816746f7d6a121f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa92d27cfbbb7b2ae11d94ded72de982"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa92d27cfbbb7b2ae11d94ded72de982"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isValidFaceId</b> (int id)</td></tr>
+<tr class="memitem:aaa92d27cfbbb7b2ae11d94ded72de982"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh.html#aaa92d27cfbbb7b2ae11d94ded72de982">isValidFaceId</a> (int id)</td></tr>
 <tr class="separator:aaa92d27cfbbb7b2ae11d94ded72de982"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a2cef656e11f17c6974a418c4fa0755fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2cef656e11f17c6974a418c4fa0755fe"></a>
-std::map&lt; uint, <a class="el" href="struct_vertex.html">Vertex</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>verticies</b></td></tr>
+<tr class="memitem:a2cef656e11f17c6974a418c4fa0755fe"><td class="memItemLeft" align="right" valign="top">std::map&lt; uint, <a class="el" href="struct_vertex.html">Vertex</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh.html#a2cef656e11f17c6974a418c4fa0755fe">verticies</a></td></tr>
 <tr class="separator:a2cef656e11f17c6974a418c4fa0755fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a615f86622e292b9bfa581cfad823b375"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a615f86622e292b9bfa581cfad823b375"></a>
-std::map&lt; uint, <a class="el" href="struct_tex_coord.html">TexCoord</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>texCoords</b></td></tr>
+<tr class="memitem:a615f86622e292b9bfa581cfad823b375"><td class="memItemLeft" align="right" valign="top">std::map&lt; uint, <a class="el" href="struct_tex_coord.html">TexCoord</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh.html#a615f86622e292b9bfa581cfad823b375">texCoords</a></td></tr>
 <tr class="separator:a615f86622e292b9bfa581cfad823b375"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe59cf4410182ce7c42447b635c745e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe59cf4410182ce7c42447b635c745e1"></a>
-std::map&lt; uint, <a class="el" href="struct_normal.html">Normal</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>normals</b></td></tr>
+<tr class="memitem:afe59cf4410182ce7c42447b635c745e1"><td class="memItemLeft" align="right" valign="top">std::map&lt; uint, <a class="el" href="struct_normal.html">Normal</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh.html#afe59cf4410182ce7c42447b635c745e1">normals</a></td></tr>
 <tr class="separator:afe59cf4410182ce7c42447b635c745e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6afb31bd01dac6b21a548341d389b421"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6afb31bd01dac6b21a548341d389b421"></a>
-std::map&lt; uint, <a class="el" href="struct_triangle.html">Triangle</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>triangles</b></td></tr>
+<tr class="memitem:a6afb31bd01dac6b21a548341d389b421"><td class="memItemLeft" align="right" valign="top">std::map&lt; uint, <a class="el" href="struct_triangle.html">Triangle</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh.html#a6afb31bd01dac6b21a548341d389b421">triangles</a></td></tr>
 <tr class="separator:a6afb31bd01dac6b21a548341d389b421"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ad3c61ae2ecabc596a9d9cd01f29252"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ad3c61ae2ecabc596a9d9cd01f29252"></a>
-std::map&lt; uint, std::set&lt; uint &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>facesVertexBelongsTo</b></td></tr>
+<tr class="memitem:a5ad3c61ae2ecabc596a9d9cd01f29252"><td class="memItemLeft" align="right" valign="top">std::map&lt; uint, std::set&lt; uint &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh.html#a5ad3c61ae2ecabc596a9d9cd01f29252">facesVertexBelongsTo</a></td></tr>
 <tr class="separator:a5ad3c61ae2ecabc596a9d9cd01f29252"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad221985419bdc4e3f30396073e7aa107"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad221985419bdc4e3f30396073e7aa107"></a>
-std::vector&lt; <a class="el" href="struct_object.html">Object</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>objects</b></td></tr>
+<tr class="memitem:ad221985419bdc4e3f30396073e7aa107"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_object.html">Object</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh.html#ad221985419bdc4e3f30396073e7aa107">objects</a></td></tr>
 <tr class="separator:ad221985419bdc4e3f30396073e7aa107"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7867e8a9f5b51b153a13d4e302578a1f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7867e8a9f5b51b153a13d4e302578a1f"></a>
-<a class="el" href="class_adjacency_graph.html">AdjacencyGraph</a>&#160;</td><td class="memItemRight" valign="bottom"><b>adjacencyGraph</b></td></tr>
+<tr class="memitem:a7867e8a9f5b51b153a13d4e302578a1f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_adjacency_graph.html">AdjacencyGraph</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh.html#a7867e8a9f5b51b153a13d4e302578a1f">adjacencyGraph</a></td></tr>
 <tr class="separator:a7867e8a9f5b51b153a13d4e302578a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Main mesh class. Manages all element dictionaries </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ad93d51d3938b1fe01816746f7d6a121f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mesh::initialize </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Reads and initializes the mesh from the file. Starts face adjacentcy graph </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>path to OBJ file </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aaa92d27cfbbb7b2ae11d94ded72de982"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mesh::isValidFaceId </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Checks if ID is a valid face ID </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a7867e8a9f5b51b153a13d4e302578a1f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_adjacency_graph.html">AdjacencyGraph</a> Mesh::adjacencyGraph</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="struct_triangle.html">Triangle</a> adjacency graph for the mesh </p>
+
+</div>
+</div>
+<a class="anchor" id="a5ad3c61ae2ecabc596a9d9cd01f29252"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;uint,std::set&lt;uint&gt; &gt; Mesh::facesVertexBelongsTo</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>For each vertex we store a set of triangles that it belongs to </p>
+
+</div>
+</div>
+<a class="anchor" id="afe59cf4410182ce7c42447b635c745e1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;uint, <a class="el" href="struct_normal.html">Normal</a>&gt; Mesh::normals</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Dictionary of the normals </p>
+
+</div>
+</div>
+<a class="anchor" id="ad221985419bdc4e3f30396073e7aa107"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="struct_object.html">Object</a>&gt; Mesh::objects</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Collection of the objects in the mesh </p>
+
+</div>
+</div>
+<a class="anchor" id="a615f86622e292b9bfa581cfad823b375"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;uint, <a class="el" href="struct_tex_coord.html">TexCoord</a>&gt; Mesh::texCoords</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Dictionary of texture verticies </p>
+
+</div>
+</div>
+<a class="anchor" id="a6afb31bd01dac6b21a548341d389b421"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;uint,<a class="el" href="struct_triangle.html">Triangle</a>&gt; Mesh::triangles</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Dictionary of the trinagles </p>
+
+</div>
+</div>
+<a class="anchor" id="a2cef656e11f17c6974a418c4fa0755fe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;uint, <a class="el" href="struct_vertex.html">Vertex</a>&gt; Mesh::verticies</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Dictionary of verticies </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>TextureExtractorV2/<a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a></li>
 <li>TextureExtractorV2/Mesh.cpp</li>

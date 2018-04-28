@@ -1,24 +1,75 @@
 \hypertarget{struct_bounding_box}{}\section{Bounding\+Box Struct Reference}
 \label{struct_bounding_box}\index{Bounding\+Box@{Bounding\+Box}}
+
+
+{\ttfamily \#include $<$Mesh.\+hpp$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{struct_bounding_box_af49243215eee1a4a355262d0b948505d}{}void {\bfseries add\+Vertex} (const \hyperlink{struct_vertex}{Vertex} \&v)\label{struct_bounding_box_af49243215eee1a4a355262d0b948505d}
-
+\hyperlink{struct_bounding_box_a6e401c4da5839950f1f30c8b8c4d1208}{Bounding\+Box} ()
 \item 
-\hypertarget{struct_bounding_box_ad0e27df4662e1023c3e015898e126465}{}void {\bfseries add\+Bounding\+Box} (const \hyperlink{struct_bounding_box}{Bounding\+Box} \&bounding\+Box)\label{struct_bounding_box_ad0e27df4662e1023c3e015898e126465}
-
+void \hyperlink{struct_bounding_box_af49243215eee1a4a355262d0b948505d}{add\+Vertex} (const \hyperlink{struct_vertex}{Vertex} \&v)
+\item 
+void \hyperlink{struct_bounding_box_ad0e27df4662e1023c3e015898e126465}{add\+Bounding\+Box} (const \hyperlink{struct_bounding_box}{Bounding\+Box} \&bounding\+Box)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{struct_bounding_box_af0404f650a91d7c3212a2bd9db9ada56}{}glm\+::vec4 {\bfseries min\+Vec}\label{struct_bounding_box_af0404f650a91d7c3212a2bd9db9ada56}
-
+glm\+::vec4 \hyperlink{struct_bounding_box_af0404f650a91d7c3212a2bd9db9ada56}{min\+Vec}
 \item 
-\hypertarget{struct_bounding_box_a45c73eef0083449f657b8e25247123fd}{}glm\+::vec4 {\bfseries max\+Vec}\label{struct_bounding_box_a45c73eef0083449f657b8e25247123fd}
-
+glm\+::vec4 \hyperlink{struct_bounding_box_a45c73eef0083449f657b8e25247123fd}{max\+Vec}
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Structure for describing Bounding boxes 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{struct_bounding_box_a6e401c4da5839950f1f30c8b8c4d1208}{}\index{Bounding\+Box@{Bounding\+Box}!Bounding\+Box@{Bounding\+Box}}
+\index{Bounding\+Box@{Bounding\+Box}!Bounding\+Box@{Bounding\+Box}}
+\subsubsection[{Bounding\+Box()}]{\setlength{\rightskip}{0pt plus 5cm}Bounding\+Box\+::\+Bounding\+Box (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{struct_bounding_box_a6e401c4da5839950f1f30c8b8c4d1208}
+Constructor. Creates the biggest boundig box possible. 
+
+\subsection{Member Function Documentation}
+\hypertarget{struct_bounding_box_ad0e27df4662e1023c3e015898e126465}{}\index{Bounding\+Box@{Bounding\+Box}!add\+Bounding\+Box@{add\+Bounding\+Box}}
+\index{add\+Bounding\+Box@{add\+Bounding\+Box}!Bounding\+Box@{Bounding\+Box}}
+\subsubsection[{add\+Bounding\+Box(const Bounding\+Box \&bounding\+Box)}]{\setlength{\rightskip}{0pt plus 5cm}void Bounding\+Box\+::add\+Bounding\+Box (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bounding\+Box} \&}]{bounding\+Box}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{struct_bounding_box_ad0e27df4662e1023c3e015898e126465}
+Adds one bounding box to another. Destination box gets expanded if needed 
+\begin{DoxyParams}{Parameters}
+{\em bounding\+Box} & box to add \\
+\hline
+\end{DoxyParams}
+\hypertarget{struct_bounding_box_af49243215eee1a4a355262d0b948505d}{}\index{Bounding\+Box@{Bounding\+Box}!add\+Vertex@{add\+Vertex}}
+\index{add\+Vertex@{add\+Vertex}!Bounding\+Box@{Bounding\+Box}}
+\subsubsection[{add\+Vertex(const Vertex \&v)}]{\setlength{\rightskip}{0pt plus 5cm}void Bounding\+Box\+::add\+Vertex (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vertex} \&}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{struct_bounding_box_af49243215eee1a4a355262d0b948505d}
+Adds a new vertex to existing bounding box. Box is expanded if necessary. 
+\begin{DoxyParams}{Parameters}
+{\em v} & vertex to add \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_bounding_box_a45c73eef0083449f657b8e25247123fd}{}\index{Bounding\+Box@{Bounding\+Box}!max\+Vec@{max\+Vec}}
+\index{max\+Vec@{max\+Vec}!Bounding\+Box@{Bounding\+Box}}
+\subsubsection[{max\+Vec}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec4 Bounding\+Box\+::max\+Vec}\label{struct_bounding_box_a45c73eef0083449f657b8e25247123fd}
+collection of maximal position values of the box max\+Vec = (x\+\_\+max, y\+\_\+max, z\+\_\+max, w\+\_\+max) \hypertarget{struct_bounding_box_af0404f650a91d7c3212a2bd9db9ada56}{}\index{Bounding\+Box@{Bounding\+Box}!min\+Vec@{min\+Vec}}
+\index{min\+Vec@{min\+Vec}!Bounding\+Box@{Bounding\+Box}}
+\subsubsection[{min\+Vec}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec4 Bounding\+Box\+::min\+Vec}\label{struct_bounding_box_af0404f650a91d7c3212a2bd9db9ada56}
+collection of minimal position values of the box min\+Vec = (x\+\_\+min, y\+\_\+min, z\+\_\+min, w\+\_\+min) 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
