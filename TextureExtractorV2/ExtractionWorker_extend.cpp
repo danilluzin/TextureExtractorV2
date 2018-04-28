@@ -108,7 +108,8 @@ void ExtractionWorker::extendTriangle(Triangle triangle){
 
 
 //func pointer
-void ExtractionWorker::fillBetweenEdges(TextureEdge left, TextureEdge right, bool leftIsSample){
+void ExtractionWorker::
+fillBetweenEdges(TextureEdge left, TextureEdge right, bool leftIsSample){
     int yStart = left.yStart;
     int yEnd   = left.yEnd;
     for(int j = yStart; j< yEnd; j++){

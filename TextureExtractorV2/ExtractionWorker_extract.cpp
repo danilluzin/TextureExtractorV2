@@ -126,7 +126,7 @@ void ExtractionWorker::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex max
     int yEnd   = topToMiddle.yEnd;
     
     for(int j = yStart; j< yEnd; j++){
-        drawScanLine(*left,*right,j,gradient,triangle.id);
+        drawScanLine(*left,*right,j);
         left->Step();
         right->Step();
     }
@@ -141,7 +141,7 @@ void ExtractionWorker::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex max
     yEnd   =  middleToBottom.yEnd;
     
     for(int j = yStart; j<yEnd; j++){
-        drawScanLine(*left,*right,j,gradient,triangle.id);
+        drawScanLine(*left,*right,j);
         left->Step();
         right->Step();
     }
@@ -149,7 +149,7 @@ void ExtractionWorker::fillTriangle(Vertex minYVert, Vertex midYVert, Vertex max
 }
 
 
-void ExtractionWorker::drawScanLine(TextureEdge left, TextureEdge right, int y, TextureGradient & gradient, uint id){
+void ExtractionWorker::drawScanLine(TextureEdge left, TextureEdge right, int y){
     int xMin = (int)floor(left.currentX);
     int xMax = (int)ceil(right.currentX);
     float xPrestep = xMin - left.currentX;

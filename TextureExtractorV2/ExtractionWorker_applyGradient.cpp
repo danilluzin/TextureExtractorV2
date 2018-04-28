@@ -76,7 +76,7 @@ void ExtractionWorker::fillTriangleGradient(Vertex minYVert, Vertex midYVert, Ve
     int yEnd   = topToMiddle.yEnd;
 
     for(int j = yStart; j< yEnd; j++){
-        addGradientLine(*left,*right,j,gradient,triangle.id);
+        addGradientLine(*left,*right,j,gradient);
         left->Step();
         right->Step();
     }
@@ -91,14 +91,14 @@ void ExtractionWorker::fillTriangleGradient(Vertex minYVert, Vertex midYVert, Ve
     yEnd   =  middleToBottom.yEnd;
 
     for(int j = yStart; j<yEnd; j++){
-         addGradientLine(*left,*right,j,gradient,triangle.id);
+         addGradientLine(*left,*right,j,gradient);
         left->Step();
         right->Step();
     }
 }
 
 
-void ExtractionWorker::addGradientLine(TextureEdge left, TextureEdge right, int y, TextureGradient & gradient, uint id){
+void ExtractionWorker::addGradientLine(TextureEdge left, TextureEdge right, int y, TextureGradient & gradient){
     int xMin = (int)floor(left.currentX);
     int xMax = (int)ceil(right.currentX);
     float xPrestep = xMin - left.currentX;

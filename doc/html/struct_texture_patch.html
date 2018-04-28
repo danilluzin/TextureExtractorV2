@@ -89,28 +89,105 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">TexturePatch Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_texture_patch_8hpp_source.html">TexturePatch.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a6508eab52b765ffa3f5b185956334f47"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6508eab52b765ffa3f5b185956334f47"></a>
-std::set&lt; uint &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>myTriangles</b></td></tr>
+<tr class="memitem:a6508eab52b765ffa3f5b185956334f47"><td class="memItemLeft" align="right" valign="top">std::set&lt; uint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture_patch.html#a6508eab52b765ffa3f5b185956334f47">myTriangles</a></td></tr>
 <tr class="separator:a6508eab52b765ffa3f5b185956334f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93366f5b9cc0d02ba08ffb4fba64d977"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93366f5b9cc0d02ba08ffb4fba64d977"></a>
-std::vector&lt; <a class="el" href="struct_edge_vertex.html">EdgeVertex</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>edgeVerticies</b></td></tr>
+<tr class="memitem:a93366f5b9cc0d02ba08ffb4fba64d977"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_edge_vertex.html">EdgeVertex</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture_patch.html#a93366f5b9cc0d02ba08ffb4fba64d977">edgeVerticies</a></td></tr>
 <tr class="separator:a93366f5b9cc0d02ba08ffb4fba64d977"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a002b3455ab2599b42b78c34c1d887f94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a002b3455ab2599b42b78c34c1d887f94"></a>
-std::set&lt; uint &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>neighbourTriangles</b></td></tr>
+<tr class="memitem:a002b3455ab2599b42b78c34c1d887f94"><td class="memItemLeft" align="right" valign="top">std::set&lt; uint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture_patch.html#a002b3455ab2599b42b78c34c1d887f94">neighbourTriangles</a></td></tr>
 <tr class="separator:a002b3455ab2599b42b78c34c1d887f94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a359bb72c7d9793ff22e9d6272b016521"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a359bb72c7d9793ff22e9d6272b016521"></a>
-uint&#160;</td><td class="memItemRight" valign="bottom"><b>patchID</b></td></tr>
+<tr class="memitem:a359bb72c7d9793ff22e9d6272b016521"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture_patch.html#a359bb72c7d9793ff22e9d6272b016521">patchID</a></td></tr>
 <tr class="separator:a359bb72c7d9793ff22e9d6272b016521"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97acb0ad9531af6cc0c366640d3575e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97acb0ad9531af6cc0c366640d3575e1"></a>
-uint&#160;</td><td class="memItemRight" valign="bottom"><b>viewID</b></td></tr>
+<tr class="memitem:a97acb0ad9531af6cc0c366640d3575e1"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture_patch.html#a97acb0ad9531af6cc0c366640d3575e1">viewID</a></td></tr>
 <tr class="separator:a97acb0ad9531af6cc0c366640d3575e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1285c94f40ae56464f33eaf69fb93617"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1285c94f40ae56464f33eaf69fb93617"></a>
-glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><b>meanColorDiff</b></td></tr>
+<tr class="memitem:a1285c94f40ae56464f33eaf69fb93617"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture_patch.html#a1285c94f40ae56464f33eaf69fb93617">meanColorDiff</a></td></tr>
 <tr class="separator:a1285c94f40ae56464f33eaf69fb93617"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Sructure that defines texture patch set. All all the adjacent texture polyogns that are assigned the same labeling </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a93366f5b9cc0d02ba08ffb4fba64d977"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="struct_edge_vertex.html">EdgeVertex</a>&gt; TexturePatch::edgeVerticies</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>set of vertex samples on the edge of the set </p>
+
+</div>
+</div>
+<a class="anchor" id="a1285c94f40ae56464f33eaf69fb93617"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec4 TexturePatch::meanColorDiff</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Mean color differene calculated using edge samples </p>
+
+</div>
+</div>
+<a class="anchor" id="a6508eab52b765ffa3f5b185956334f47"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::set&lt;uint&gt; TexturePatch::myTriangles</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>set of triangle ids that belong to a set </p>
+
+</div>
+</div>
+<a class="anchor" id="a002b3455ab2599b42b78c34c1d887f94"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::set&lt;uint&gt; TexturePatch::neighbourTriangles</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>set of neighbouring triangles that are adjacent to our set but are assigned a different source image </p>
+
+</div>
+</div>
+<a class="anchor" id="a359bb72c7d9793ff22e9d6272b016521"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint TexturePatch::patchID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ID of a patch set </p>
+
+</div>
+</div>
+<a class="anchor" id="a97acb0ad9531af6cc0c366640d3575e1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint TexturePatch::viewID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ID of a view assignment common to a set </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>TextureExtractorV2/<a class="el" href="_texture_patch_8hpp_source.html">TexturePatch.hpp</a></li>
 </ul>

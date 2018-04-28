@@ -1,29 +1,134 @@
 \hypertarget{class_extraction_worker}{}\section{Extraction\+Worker Class Reference}
 \label{class_extraction_worker}\index{Extraction\+Worker@{Extraction\+Worker}}
+
+
+{\ttfamily \#include $<$Extraction\+Worker.\+hpp$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{class_extraction_worker_a5cb5231da6a9c3568c1cbdeaa90a30e2}{}{\bfseries Extraction\+Worker} (const \hyperlink{class_mesh}{Mesh} $\ast$mesh)\label{class_extraction_worker_a5cb5231da6a9c3568c1cbdeaa90a30e2}
 
 \item 
-\hypertarget{class_extraction_worker_ad649a3ebbc506e55d5b003381b07ba06}{}void {\bfseries extract} (\hyperlink{struct_triangle}{Triangle} face, \hyperlink{class_bitmap}{Bitmap} \&tex, \hyperlink{class_view}{View} \&view)\label{class_extraction_worker_ad649a3ebbc506e55d5b003381b07ba06}
-
+void \hyperlink{class_extraction_worker_ad649a3ebbc506e55d5b003381b07ba06}{extract} (\hyperlink{struct_triangle}{Triangle} face, \hyperlink{class_bitmap}{Bitmap} \&tex, \hyperlink{class_view}{View} \&view)
 \item 
-\hypertarget{class_extraction_worker_a24312158a7768088b96dd722414786ae}{}void {\bfseries extend} (\hyperlink{struct_triangle}{Triangle} face, \hyperlink{class_bitmap}{Bitmap} \&tex)\label{class_extraction_worker_a24312158a7768088b96dd722414786ae}
-
+void \hyperlink{class_extraction_worker_a24312158a7768088b96dd722414786ae}{extend} (\hyperlink{struct_triangle}{Triangle} face, \hyperlink{class_bitmap}{Bitmap} \&tex)
 \item 
-\hypertarget{class_extraction_worker_ac956797cff498d82f040d3884be2144d}{}void {\bfseries apply\+Gradient} (\hyperlink{struct_triangle}{Triangle} face, \hyperlink{class_bitmap}{Bitmap} \&src, \hyperlink{class_bitmap}{Bitmap} \&dst, glm\+::vec4 color\mbox{[}3\mbox{]}, \hyperlink{class_bitmap}{Bitmap} \&leveling\+Texture)\label{class_extraction_worker_ac956797cff498d82f040d3884be2144d}
-
+void \hyperlink{class_extraction_worker_ac956797cff498d82f040d3884be2144d}{apply\+Gradient} (\hyperlink{struct_triangle}{Triangle} face, \hyperlink{class_bitmap}{Bitmap} \&src, \hyperlink{class_bitmap}{Bitmap} \&dst, glm\+::vec4 color\mbox{[}3\mbox{]}, \hyperlink{class_bitmap}{Bitmap} \&leveling\+Texture)
 \item 
-\hypertarget{class_extraction_worker_a3ae8fdacd8e2a0b44873c36b6e3756e5}{}void {\bfseries set\+Mask} (\hyperlink{class_bitmap}{Bitmap} $\ast$m)\label{class_extraction_worker_a3ae8fdacd8e2a0b44873c36b6e3756e5}
-
+void \hyperlink{class_extraction_worker_a3ae8fdacd8e2a0b44873c36b6e3756e5}{set\+Mask} (\hyperlink{class_bitmap}{Bitmap} $\ast$m)
 \item 
-\hypertarget{class_extraction_worker_a0bfb06fd0caed6ec032416e8d928fbe8}{}void {\bfseries set\+Mesh} (const \hyperlink{class_mesh}{Mesh} $\ast$m)\label{class_extraction_worker_a0bfb06fd0caed6ec032416e8d928fbe8}
-
+void \hyperlink{class_extraction_worker_a0bfb06fd0caed6ec032416e8d928fbe8}{set\+Mesh} (const \hyperlink{class_mesh}{Mesh} $\ast$m)
 \item 
-\hypertarget{class_extraction_worker_a25d7438c2adfc4e4e4076954516a4f43}{}void {\bfseries fill\+Texture\+Triangle} (\hyperlink{struct_triangle}{Triangle} face, glm\+::vec4 color, \hyperlink{class_bitmap}{Bitmap} \&destination)\label{class_extraction_worker_a25d7438c2adfc4e4e4076954516a4f43}
-
+void \hyperlink{class_extraction_worker_a25d7438c2adfc4e4e4076954516a4f43}{fill\+Texture\+Triangle} (\hyperlink{struct_triangle}{Triangle} face, glm\+::vec4 color, \hyperlink{class_bitmap}{Bitmap} \&destination)
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Worker class. Extracts texture information from a photographs. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_extraction_worker_ac956797cff498d82f040d3884be2144d}{}\index{Extraction\+Worker@{Extraction\+Worker}!apply\+Gradient@{apply\+Gradient}}
+\index{apply\+Gradient@{apply\+Gradient}!Extraction\+Worker@{Extraction\+Worker}}
+\subsubsection[{apply\+Gradient(\+Triangle face, Bitmap \&src, Bitmap \&dst, glm\+::vec4 color[3], Bitmap \&leveling\+Texture)}]{\setlength{\rightskip}{0pt plus 5cm}void Extraction\+Worker\+::apply\+Gradient (
+\begin{DoxyParamCaption}
+\item[{{\bf Triangle}}]{face, }
+\item[{{\bf Bitmap} \&}]{src, }
+\item[{{\bf Bitmap} \&}]{dst, }
+\item[{glm\+::vec4}]{color\mbox{[}3\mbox{]}, }
+\item[{{\bf Bitmap} \&}]{leveling\+Texture}
+\end{DoxyParamCaption}
+)}\label{class_extraction_worker_ac956797cff498d82f040d3884be2144d}
+Applies a gradient to a texture triangle 
+\begin{DoxyParams}{Parameters}
+{\em face} & target triangle \\
+\hline
+{\em dst} & output texture \\
+\hline
+{\em src} & texture for initial sampling \\
+\hline
+{\em color} & set of color adjustment gradients for every vertex. \\
+\hline
+{\em output} & leveling texture \\
+\hline
+{\em view} & source view \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_extraction_worker_a24312158a7768088b96dd722414786ae}{}\index{Extraction\+Worker@{Extraction\+Worker}!extend@{extend}}
+\index{extend@{extend}!Extraction\+Worker@{Extraction\+Worker}}
+\subsubsection[{extend(\+Triangle face, Bitmap \&tex)}]{\setlength{\rightskip}{0pt plus 5cm}void Extraction\+Worker\+::extend (
+\begin{DoxyParamCaption}
+\item[{{\bf Triangle}}]{face, }
+\item[{{\bf Bitmap} \&}]{tex}
+\end{DoxyParamCaption}
+)}\label{class_extraction_worker_a24312158a7768088b96dd722414786ae}
+Starts an extension on a texture triangle 
+\begin{DoxyParams}{Parameters}
+{\em face} & target triangle \\
+\hline
+{\em tex} & output texture \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_extraction_worker_ad649a3ebbc506e55d5b003381b07ba06}{}\index{Extraction\+Worker@{Extraction\+Worker}!extract@{extract}}
+\index{extract@{extract}!Extraction\+Worker@{Extraction\+Worker}}
+\subsubsection[{extract(\+Triangle face, Bitmap \&tex, View \&view)}]{\setlength{\rightskip}{0pt plus 5cm}void Extraction\+Worker\+::extract (
+\begin{DoxyParamCaption}
+\item[{{\bf Triangle}}]{face, }
+\item[{{\bf Bitmap} \&}]{tex, }
+\item[{{\bf View} \&}]{view}
+\end{DoxyParamCaption}
+)}\label{class_extraction_worker_ad649a3ebbc506e55d5b003381b07ba06}
+Starts an extraction process for one trinagle 
+\begin{DoxyParams}{Parameters}
+{\em face} & target triangle \\
+\hline
+{\em tex} & output texture \\
+\hline
+{\em view} & source view \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_extraction_worker_a25d7438c2adfc4e4e4076954516a4f43}{}\index{Extraction\+Worker@{Extraction\+Worker}!fill\+Texture\+Triangle@{fill\+Texture\+Triangle}}
+\index{fill\+Texture\+Triangle@{fill\+Texture\+Triangle}!Extraction\+Worker@{Extraction\+Worker}}
+\subsubsection[{fill\+Texture\+Triangle(\+Triangle face, glm\+::vec4 color, Bitmap \&destination)}]{\setlength{\rightskip}{0pt plus 5cm}void Extraction\+Worker\+::fill\+Texture\+Triangle (
+\begin{DoxyParamCaption}
+\item[{{\bf Triangle}}]{face, }
+\item[{glm\+::vec4}]{color, }
+\item[{{\bf Bitmap} \&}]{destination}
+\end{DoxyParamCaption}
+)}\label{class_extraction_worker_a25d7438c2adfc4e4e4076954516a4f43}
+Fills a texture triangle with solid color 
+\begin{DoxyParams}{Parameters}
+{\em face} & target triangle \\
+\hline
+{\em destination} & output texture \\
+\hline
+{\em color} & a color to applye \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_extraction_worker_a3ae8fdacd8e2a0b44873c36b6e3756e5}{}\index{Extraction\+Worker@{Extraction\+Worker}!set\+Mask@{set\+Mask}}
+\index{set\+Mask@{set\+Mask}!Extraction\+Worker@{Extraction\+Worker}}
+\subsubsection[{set\+Mask(\+Bitmap $\ast$m)}]{\setlength{\rightskip}{0pt plus 5cm}void Extraction\+Worker\+::set\+Mask (
+\begin{DoxyParamCaption}
+\item[{{\bf Bitmap} $\ast$}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_extraction_worker_a3ae8fdacd8e2a0b44873c36b6e3756e5}
+Sets a new bloking mask 
+\begin{DoxyParams}{Parameters}
+{\em m} & new mask \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_extraction_worker_a0bfb06fd0caed6ec032416e8d928fbe8}{}\index{Extraction\+Worker@{Extraction\+Worker}!set\+Mesh@{set\+Mesh}}
+\index{set\+Mesh@{set\+Mesh}!Extraction\+Worker@{Extraction\+Worker}}
+\subsubsection[{set\+Mesh(const Mesh $\ast$m)}]{\setlength{\rightskip}{0pt plus 5cm}void Extraction\+Worker\+::set\+Mesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf Mesh} $\ast$}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_extraction_worker_a0bfb06fd0caed6ec032416e8d928fbe8}
+Sets a working mesh 
+\begin{DoxyParams}{Parameters}
+{\em m} & a mesh \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

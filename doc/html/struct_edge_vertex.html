@@ -89,19 +89,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">EdgeVertex Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_texture_patch_8hpp_source.html">TexturePatch.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a8439c6928189921562f355db598fcf01"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8439c6928189921562f355db598fcf01"></a>
-uint&#160;</td><td class="memItemRight" valign="bottom"><b>commonVertex</b></td></tr>
+<tr class="memitem:a8439c6928189921562f355db598fcf01"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_edge_vertex.html#a8439c6928189921562f355db598fcf01">commonVertex</a></td></tr>
 <tr class="separator:a8439c6928189921562f355db598fcf01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0383800c9299c747dc5ddbf4b397806d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0383800c9299c747dc5ddbf4b397806d"></a>
-uint&#160;</td><td class="memItemRight" valign="bottom"><b>neighbourID</b></td></tr>
+<tr class="memitem:a0383800c9299c747dc5ddbf4b397806d"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_edge_vertex.html#a0383800c9299c747dc5ddbf4b397806d">neighbourID</a></td></tr>
 <tr class="separator:a0383800c9299c747dc5ddbf4b397806d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c1790b8527e54c9eca13038c5351032"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c1790b8527e54c9eca13038c5351032"></a>
-glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><b>colorDiff</b></td></tr>
+<tr class="memitem:a7c1790b8527e54c9eca13038c5351032"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_edge_vertex.html#a7c1790b8527e54c9eca13038c5351032">colorDiff</a></td></tr>
 <tr class="separator:a7c1790b8527e54c9eca13038c5351032"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Sructure that is used for constructing texture patch sets. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a7c1790b8527e54c9eca13038c5351032"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec4 EdgeVertex::colorDiff</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>difference in color on a common vertex </p>
+
+</div>
+</div>
+<a class="anchor" id="a8439c6928189921562f355db598fcf01"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint EdgeVertex::commonVertex</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="struct_vertex.html">Vertex</a> that is shared between one polygon and a neigbouring polygon </p>
+
+</div>
+</div>
+<a class="anchor" id="a0383800c9299c747dc5ddbf4b397806d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint EdgeVertex::neighbourID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ID of a neighbouring triangle </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>TextureExtractorV2/<a class="el" href="_texture_patch_8hpp_source.html">TexturePatch.hpp</a></li>
 </ul>

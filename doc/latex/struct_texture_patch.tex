@@ -1,27 +1,49 @@
 \hypertarget{struct_texture_patch}{}\section{Texture\+Patch Struct Reference}
 \label{struct_texture_patch}\index{Texture\+Patch@{Texture\+Patch}}
+
+
+{\ttfamily \#include $<$Texture\+Patch.\+hpp$>$}
+
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{struct_texture_patch_a6508eab52b765ffa3f5b185956334f47}{}std\+::set$<$ uint $>$ {\bfseries my\+Triangles}\label{struct_texture_patch_a6508eab52b765ffa3f5b185956334f47}
-
+std\+::set$<$ uint $>$ \hyperlink{struct_texture_patch_a6508eab52b765ffa3f5b185956334f47}{my\+Triangles}
 \item 
-\hypertarget{struct_texture_patch_a93366f5b9cc0d02ba08ffb4fba64d977}{}std\+::vector$<$ \hyperlink{struct_edge_vertex}{Edge\+Vertex} $>$ {\bfseries edge\+Verticies}\label{struct_texture_patch_a93366f5b9cc0d02ba08ffb4fba64d977}
-
+std\+::vector$<$ \hyperlink{struct_edge_vertex}{Edge\+Vertex} $>$ \hyperlink{struct_texture_patch_a93366f5b9cc0d02ba08ffb4fba64d977}{edge\+Verticies}
 \item 
-\hypertarget{struct_texture_patch_a002b3455ab2599b42b78c34c1d887f94}{}std\+::set$<$ uint $>$ {\bfseries neighbour\+Triangles}\label{struct_texture_patch_a002b3455ab2599b42b78c34c1d887f94}
-
+std\+::set$<$ uint $>$ \hyperlink{struct_texture_patch_a002b3455ab2599b42b78c34c1d887f94}{neighbour\+Triangles}
 \item 
-\hypertarget{struct_texture_patch_a359bb72c7d9793ff22e9d6272b016521}{}uint {\bfseries patch\+I\+D}\label{struct_texture_patch_a359bb72c7d9793ff22e9d6272b016521}
-
+uint \hyperlink{struct_texture_patch_a359bb72c7d9793ff22e9d6272b016521}{patch\+I\+D}
 \item 
-\hypertarget{struct_texture_patch_a97acb0ad9531af6cc0c366640d3575e1}{}uint {\bfseries view\+I\+D}\label{struct_texture_patch_a97acb0ad9531af6cc0c366640d3575e1}
-
+uint \hyperlink{struct_texture_patch_a97acb0ad9531af6cc0c366640d3575e1}{view\+I\+D}
 \item 
-\hypertarget{struct_texture_patch_a1285c94f40ae56464f33eaf69fb93617}{}glm\+::vec4 {\bfseries mean\+Color\+Diff}\label{struct_texture_patch_a1285c94f40ae56464f33eaf69fb93617}
-
+glm\+::vec4 \hyperlink{struct_texture_patch_a1285c94f40ae56464f33eaf69fb93617}{mean\+Color\+Diff}
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Sructure that defines texture patch set. All all the adjacent texture polyogns that are assigned the same labeling 
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_texture_patch_a93366f5b9cc0d02ba08ffb4fba64d977}{}\index{Texture\+Patch@{Texture\+Patch}!edge\+Verticies@{edge\+Verticies}}
+\index{edge\+Verticies@{edge\+Verticies}!Texture\+Patch@{Texture\+Patch}}
+\subsubsection[{edge\+Verticies}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<${\bf Edge\+Vertex}$>$ Texture\+Patch\+::edge\+Verticies}\label{struct_texture_patch_a93366f5b9cc0d02ba08ffb4fba64d977}
+set of vertex samples on the edge of the set \hypertarget{struct_texture_patch_a1285c94f40ae56464f33eaf69fb93617}{}\index{Texture\+Patch@{Texture\+Patch}!mean\+Color\+Diff@{mean\+Color\+Diff}}
+\index{mean\+Color\+Diff@{mean\+Color\+Diff}!Texture\+Patch@{Texture\+Patch}}
+\subsubsection[{mean\+Color\+Diff}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec4 Texture\+Patch\+::mean\+Color\+Diff}\label{struct_texture_patch_a1285c94f40ae56464f33eaf69fb93617}
+Mean color differene calculated using edge samples \hypertarget{struct_texture_patch_a6508eab52b765ffa3f5b185956334f47}{}\index{Texture\+Patch@{Texture\+Patch}!my\+Triangles@{my\+Triangles}}
+\index{my\+Triangles@{my\+Triangles}!Texture\+Patch@{Texture\+Patch}}
+\subsubsection[{my\+Triangles}]{\setlength{\rightskip}{0pt plus 5cm}std\+::set$<$uint$>$ Texture\+Patch\+::my\+Triangles}\label{struct_texture_patch_a6508eab52b765ffa3f5b185956334f47}
+set of triangle ids that belong to a set \hypertarget{struct_texture_patch_a002b3455ab2599b42b78c34c1d887f94}{}\index{Texture\+Patch@{Texture\+Patch}!neighbour\+Triangles@{neighbour\+Triangles}}
+\index{neighbour\+Triangles@{neighbour\+Triangles}!Texture\+Patch@{Texture\+Patch}}
+\subsubsection[{neighbour\+Triangles}]{\setlength{\rightskip}{0pt plus 5cm}std\+::set$<$uint$>$ Texture\+Patch\+::neighbour\+Triangles}\label{struct_texture_patch_a002b3455ab2599b42b78c34c1d887f94}
+set of neighbouring triangles that are adjacent to our set but are assigned a different source image \hypertarget{struct_texture_patch_a359bb72c7d9793ff22e9d6272b016521}{}\index{Texture\+Patch@{Texture\+Patch}!patch\+I\+D@{patch\+I\+D}}
+\index{patch\+I\+D@{patch\+I\+D}!Texture\+Patch@{Texture\+Patch}}
+\subsubsection[{patch\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}uint Texture\+Patch\+::patch\+I\+D}\label{struct_texture_patch_a359bb72c7d9793ff22e9d6272b016521}
+I\+D of a patch set \hypertarget{struct_texture_patch_a97acb0ad9531af6cc0c366640d3575e1}{}\index{Texture\+Patch@{Texture\+Patch}!view\+I\+D@{view\+I\+D}}
+\index{view\+I\+D@{view\+I\+D}!Texture\+Patch@{Texture\+Patch}}
+\subsubsection[{view\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}uint Texture\+Patch\+::view\+I\+D}\label{struct_texture_patch_a97acb0ad9531af6cc0c366640d3575e1}
+I\+D of a view assignment common to a set 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

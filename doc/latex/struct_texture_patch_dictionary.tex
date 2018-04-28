@@ -1,21 +1,47 @@
 \hypertarget{struct_texture_patch_dictionary}{}\section{Texture\+Patch\+Dictionary Struct Reference}
 \label{struct_texture_patch_dictionary}\index{Texture\+Patch\+Dictionary@{Texture\+Patch\+Dictionary}}
+
+
+{\ttfamily \#include $<$Texture\+Patch.\+hpp$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{struct_texture_patch_dictionary_aba62d1d0383da168f7bdef1050970a92}{}uint {\bfseries gen\+New\+Patch} ()\label{struct_texture_patch_dictionary_aba62d1d0383da168f7bdef1050970a92}
-
+uint \hyperlink{struct_texture_patch_dictionary_aba62d1d0383da168f7bdef1050970a92}{gen\+New\+Patch} ()
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{struct_texture_patch_dictionary_a188d2b68586a902ef8c969458e9001c6}{}std\+::map$<$ uint, uint $>$ {\bfseries triangle\+Membership}\label{struct_texture_patch_dictionary_a188d2b68586a902ef8c969458e9001c6}
-
+std\+::map$<$ uint, uint $>$ \hyperlink{struct_texture_patch_dictionary_a188d2b68586a902ef8c969458e9001c6}{triangle\+Membership}
 \item 
-\hypertarget{struct_texture_patch_dictionary_a21c6633d4831bd84be792b45020f3805}{}std\+::map$<$ uint, \hyperlink{struct_texture_patch}{Texture\+Patch} $>$ {\bfseries patches}\label{struct_texture_patch_dictionary_a21c6633d4831bd84be792b45020f3805}
-
+std\+::map$<$ uint, \hyperlink{struct_texture_patch}{Texture\+Patch} $>$ \hyperlink{struct_texture_patch_dictionary_a21c6633d4831bd84be792b45020f3805}{patches}
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Structure that holds information of patch membership in a set 
+
+\subsection{Member Function Documentation}
+\hypertarget{struct_texture_patch_dictionary_aba62d1d0383da168f7bdef1050970a92}{}\index{Texture\+Patch\+Dictionary@{Texture\+Patch\+Dictionary}!gen\+New\+Patch@{gen\+New\+Patch}}
+\index{gen\+New\+Patch@{gen\+New\+Patch}!Texture\+Patch\+Dictionary@{Texture\+Patch\+Dictionary}}
+\subsubsection[{gen\+New\+Patch()}]{\setlength{\rightskip}{0pt plus 5cm}uint Texture\+Patch\+Dictionary\+::gen\+New\+Patch (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{struct_texture_patch_dictionary_aba62d1d0383da168f7bdef1050970a92}
+Generates a new patch set and returns its newly generated I\+D \begin{DoxyReturn}{Returns}
+new I\+D of a set 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_texture_patch_dictionary_a21c6633d4831bd84be792b45020f3805}{}\index{Texture\+Patch\+Dictionary@{Texture\+Patch\+Dictionary}!patches@{patches}}
+\index{patches@{patches}!Texture\+Patch\+Dictionary@{Texture\+Patch\+Dictionary}}
+\subsubsection[{patches}]{\setlength{\rightskip}{0pt plus 5cm}std\+::map$<$uint,{\bf Texture\+Patch}$>$ Texture\+Patch\+Dictionary\+::patches}\label{struct_texture_patch_dictionary_a21c6633d4831bd84be792b45020f3805}
+Collection of all texture patch sets(name is missleadnig Texture\+Patch is refers as texture patch set in a B\+P) \hypertarget{struct_texture_patch_dictionary_a188d2b68586a902ef8c969458e9001c6}{}\index{Texture\+Patch\+Dictionary@{Texture\+Patch\+Dictionary}!triangle\+Membership@{triangle\+Membership}}
+\index{triangle\+Membership@{triangle\+Membership}!Texture\+Patch\+Dictionary@{Texture\+Patch\+Dictionary}}
+\subsubsection[{triangle\+Membership}]{\setlength{\rightskip}{0pt plus 5cm}std\+::map$<$uint,uint$>$ Texture\+Patch\+Dictionary\+::triangle\+Membership}\label{struct_texture_patch_dictionary_a188d2b68586a902ef8c969458e9001c6}
+Dictionary of patch membership in a set 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

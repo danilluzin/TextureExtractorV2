@@ -90,22 +90,75 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">TexturePatchDictionary Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_texture_patch_8hpp_source.html">TexturePatch.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aba62d1d0383da168f7bdef1050970a92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba62d1d0383da168f7bdef1050970a92"></a>
-uint&#160;</td><td class="memItemRight" valign="bottom"><b>genNewPatch</b> ()</td></tr>
+<tr class="memitem:aba62d1d0383da168f7bdef1050970a92"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture_patch_dictionary.html#aba62d1d0383da168f7bdef1050970a92">genNewPatch</a> ()</td></tr>
 <tr class="separator:aba62d1d0383da168f7bdef1050970a92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a188d2b68586a902ef8c969458e9001c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a188d2b68586a902ef8c969458e9001c6"></a>
-std::map&lt; uint, uint &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>triangleMembership</b></td></tr>
+<tr class="memitem:a188d2b68586a902ef8c969458e9001c6"><td class="memItemLeft" align="right" valign="top">std::map&lt; uint, uint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture_patch_dictionary.html#a188d2b68586a902ef8c969458e9001c6">triangleMembership</a></td></tr>
 <tr class="separator:a188d2b68586a902ef8c969458e9001c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21c6633d4831bd84be792b45020f3805"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a21c6633d4831bd84be792b45020f3805"></a>
-std::map&lt; uint, <a class="el" href="struct_texture_patch.html">TexturePatch</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>patches</b></td></tr>
+<tr class="memitem:a21c6633d4831bd84be792b45020f3805"><td class="memItemLeft" align="right" valign="top">std::map&lt; uint, <a class="el" href="struct_texture_patch.html">TexturePatch</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_texture_patch_dictionary.html#a21c6633d4831bd84be792b45020f3805">patches</a></td></tr>
 <tr class="separator:a21c6633d4831bd84be792b45020f3805"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Structure that holds information of patch membership in a set </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aba62d1d0383da168f7bdef1050970a92"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint TexturePatchDictionary::genNewPatch </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Generates a new patch set and returns its newly generated ID </p><dl class="section return"><dt>Returns</dt><dd>new ID of a set </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a21c6633d4831bd84be792b45020f3805"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;uint,<a class="el" href="struct_texture_patch.html">TexturePatch</a>&gt; TexturePatchDictionary::patches</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Collection of all texture patch sets(name is missleadnig TexturePatch is refers as texture patch set in a BP) </p>
+
+</div>
+</div>
+<a class="anchor" id="a188d2b68586a902ef8c969458e9001c6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;uint,uint&gt; TexturePatchDictionary::triangleMembership</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Dictionary of patch membership in a set </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>TextureExtractorV2/<a class="el" href="_texture_patch_8hpp_source.html">TexturePatch.hpp</a></li>
 </ul>

@@ -67,7 +67,7 @@ public:
     bool calculateDataCosts();
     
     /**
-     * Start labeling process
+     * Starts a labeling process
      */
     bool selectViews();
     

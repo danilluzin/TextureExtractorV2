@@ -89,31 +89,258 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">ExtractionWorker Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_extraction_worker_8hpp_source.html">ExtractionWorker.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5cb5231da6a9c3568c1cbdeaa90a30e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5cb5231da6a9c3568c1cbdeaa90a30e2"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>ExtractionWorker</b> (const <a class="el" href="class_mesh.html">Mesh</a> *mesh)</td></tr>
 <tr class="separator:a5cb5231da6a9c3568c1cbdeaa90a30e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad649a3ebbc506e55d5b003381b07ba06"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad649a3ebbc506e55d5b003381b07ba06"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>extract</b> (<a class="el" href="struct_triangle.html">Triangle</a> face, <a class="el" href="class_bitmap.html">Bitmap</a> &amp;tex, <a class="el" href="class_view.html">View</a> &amp;view)</td></tr>
+<tr class="memitem:ad649a3ebbc506e55d5b003381b07ba06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_extraction_worker.html#ad649a3ebbc506e55d5b003381b07ba06">extract</a> (<a class="el" href="struct_triangle.html">Triangle</a> face, <a class="el" href="class_bitmap.html">Bitmap</a> &amp;tex, <a class="el" href="class_view.html">View</a> &amp;view)</td></tr>
 <tr class="separator:ad649a3ebbc506e55d5b003381b07ba06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24312158a7768088b96dd722414786ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24312158a7768088b96dd722414786ae"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>extend</b> (<a class="el" href="struct_triangle.html">Triangle</a> face, <a class="el" href="class_bitmap.html">Bitmap</a> &amp;tex)</td></tr>
+<tr class="memitem:a24312158a7768088b96dd722414786ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_extraction_worker.html#a24312158a7768088b96dd722414786ae">extend</a> (<a class="el" href="struct_triangle.html">Triangle</a> face, <a class="el" href="class_bitmap.html">Bitmap</a> &amp;tex)</td></tr>
 <tr class="separator:a24312158a7768088b96dd722414786ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac956797cff498d82f040d3884be2144d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac956797cff498d82f040d3884be2144d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>applyGradient</b> (<a class="el" href="struct_triangle.html">Triangle</a> face, <a class="el" href="class_bitmap.html">Bitmap</a> &amp;src, <a class="el" href="class_bitmap.html">Bitmap</a> &amp;dst, glm::vec4 color[3], <a class="el" href="class_bitmap.html">Bitmap</a> &amp;levelingTexture)</td></tr>
+<tr class="memitem:ac956797cff498d82f040d3884be2144d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_extraction_worker.html#ac956797cff498d82f040d3884be2144d">applyGradient</a> (<a class="el" href="struct_triangle.html">Triangle</a> face, <a class="el" href="class_bitmap.html">Bitmap</a> &amp;src, <a class="el" href="class_bitmap.html">Bitmap</a> &amp;dst, glm::vec4 color[3], <a class="el" href="class_bitmap.html">Bitmap</a> &amp;levelingTexture)</td></tr>
 <tr class="separator:ac956797cff498d82f040d3884be2144d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ae8fdacd8e2a0b44873c36b6e3756e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ae8fdacd8e2a0b44873c36b6e3756e5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setMask</b> (<a class="el" href="class_bitmap.html">Bitmap</a> *m)</td></tr>
+<tr class="memitem:a3ae8fdacd8e2a0b44873c36b6e3756e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_extraction_worker.html#a3ae8fdacd8e2a0b44873c36b6e3756e5">setMask</a> (<a class="el" href="class_bitmap.html">Bitmap</a> *m)</td></tr>
 <tr class="separator:a3ae8fdacd8e2a0b44873c36b6e3756e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bfb06fd0caed6ec032416e8d928fbe8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0bfb06fd0caed6ec032416e8d928fbe8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setMesh</b> (const <a class="el" href="class_mesh.html">Mesh</a> *m)</td></tr>
+<tr class="memitem:a0bfb06fd0caed6ec032416e8d928fbe8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_extraction_worker.html#a0bfb06fd0caed6ec032416e8d928fbe8">setMesh</a> (const <a class="el" href="class_mesh.html">Mesh</a> *m)</td></tr>
 <tr class="separator:a0bfb06fd0caed6ec032416e8d928fbe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25d7438c2adfc4e4e4076954516a4f43"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25d7438c2adfc4e4e4076954516a4f43"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>fillTextureTriangle</b> (<a class="el" href="struct_triangle.html">Triangle</a> face, glm::vec4 color, <a class="el" href="class_bitmap.html">Bitmap</a> &amp;destination)</td></tr>
+<tr class="memitem:a25d7438c2adfc4e4e4076954516a4f43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_extraction_worker.html#a25d7438c2adfc4e4e4076954516a4f43">fillTextureTriangle</a> (<a class="el" href="struct_triangle.html">Triangle</a> face, glm::vec4 color, <a class="el" href="class_bitmap.html">Bitmap</a> &amp;destination)</td></tr>
 <tr class="separator:a25d7438c2adfc4e4e4076954516a4f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Worker class. Extracts texture information from a photographs. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ac956797cff498d82f040d3884be2144d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ExtractionWorker::applyGradient </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_triangle.html">Triangle</a>&#160;</td>
+          <td class="paramname"><em>face</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_bitmap.html">Bitmap</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_bitmap.html">Bitmap</a> &amp;&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec4&#160;</td>
+          <td class="paramname"><em>color</em>[3], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_bitmap.html">Bitmap</a> &amp;&#160;</td>
+          <td class="paramname"><em>levelingTexture</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Applies a gradient to a texture triangle </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">face</td><td>target triangle </td></tr>
+    <tr><td class="paramname">dst</td><td>output texture </td></tr>
+    <tr><td class="paramname">src</td><td>texture for initial sampling </td></tr>
+    <tr><td class="paramname">color</td><td>set of color adjustment gradients for every vertex. </td></tr>
+    <tr><td class="paramname">output</td><td>leveling texture </td></tr>
+    <tr><td class="paramname">view</td><td>source view </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a24312158a7768088b96dd722414786ae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ExtractionWorker::extend </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_triangle.html">Triangle</a>&#160;</td>
+          <td class="paramname"><em>face</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_bitmap.html">Bitmap</a> &amp;&#160;</td>
+          <td class="paramname"><em>tex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Starts an extension on a texture triangle </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">face</td><td>target triangle </td></tr>
+    <tr><td class="paramname">tex</td><td>output texture </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad649a3ebbc506e55d5b003381b07ba06"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ExtractionWorker::extract </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_triangle.html">Triangle</a>&#160;</td>
+          <td class="paramname"><em>face</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_bitmap.html">Bitmap</a> &amp;&#160;</td>
+          <td class="paramname"><em>tex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_view.html">View</a> &amp;&#160;</td>
+          <td class="paramname"><em>view</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Starts an extraction process for one trinagle </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">face</td><td>target triangle </td></tr>
+    <tr><td class="paramname">tex</td><td>output texture </td></tr>
+    <tr><td class="paramname">view</td><td>source view </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a25d7438c2adfc4e4e4076954516a4f43"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ExtractionWorker::fillTextureTriangle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_triangle.html">Triangle</a>&#160;</td>
+          <td class="paramname"><em>face</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec4&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_bitmap.html">Bitmap</a> &amp;&#160;</td>
+          <td class="paramname"><em>destination</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Fills a texture triangle with solid color </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">face</td><td>target triangle </td></tr>
+    <tr><td class="paramname">destination</td><td>output texture </td></tr>
+    <tr><td class="paramname">color</td><td>a color to applye </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a3ae8fdacd8e2a0b44873c36b6e3756e5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ExtractionWorker::setMask </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_bitmap.html">Bitmap</a> *&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets a new bloking mask </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>new mask </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0bfb06fd0caed6ec032416e8d928fbe8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ExtractionWorker::setMesh </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_mesh.html">Mesh</a> *&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets a working mesh </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>a mesh </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>TextureExtractorV2/<a class="el" href="_extraction_worker_8hpp_source.html">ExtractionWorker.hpp</a></li>
 <li>TextureExtractorV2/ExtractionWorker_applyGradient.cpp</li>
