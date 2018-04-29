@@ -32,13 +32,13 @@
  
  You can generate example .INI file using the following command:
  \code{.cpp}
- .\tex_extractor -genIni
+ ./tex_extractor -genIni
  \endcode
  The complete explanation of .INI file can be found in the user manual.
  
  A tool can then be used as following:
  \code{.cpp}
- .\tex_extractor \path\to\config.ini
+ ./tex_extractor path/to/config.ini
  \endcode
  
  \section sec_i Instalation
