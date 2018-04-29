@@ -43,12 +43,14 @@ You can try to run an example dataset demo provided in this repository:
 ./tex_extractor example/demo.ini
 ```
 It will output final textures into an `example\result` folder. It may take several minutes to complete, depending on you system.
+
+
 NOTE: You may need to flip final textures vertically (y = -1) depending on what rendering software you use.
 
 ## Repository structure
 - `manual.pdf`: a user manual. Includes explanation of INI config file.
 - `renders` : folder that contains some render results using textures our tool is capable of generating.
-- `doc` folder with Doxygen code documentation.
-- `example` folder with demo example dataset.
-- `CmakeLists.txt` main Cmake file.
-- `BP_Luzin_Danil_2018.pdf` Bachelors thesis text.
+- `doc`: folder with Doxygen code documentation.
+- `example`: folder with demo example dataset.
+- `CmakeLists.txt`: main Cmake file.
+- `BP_Luzin_Danil_2018.pdf`: Bachelors thesis text.
