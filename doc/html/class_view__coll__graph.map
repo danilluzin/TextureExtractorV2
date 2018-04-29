@@ -1,0 +1,4 @@
+<map id="View" name="View">
+<area shape="rect" id="node2" href="$class_camera.html" title="{Camera\n|+ fov\l+ zNear\l+ zFar\l+ perspective\l+ focalLength\l+ rotationMatrix\l+ translation\l|+ Camera()\l+ getViewProjection()\l}" alt="" coords="5,25,154,192"/>
+<area shape="rect" id="node3" href="$class_bitmap.html" title="{Bitmap\n||+ operator=()\l+ Bitmap()\l+ Bitmap()\l+ Bitmap()\l+ Bitmap()\l+ toSobel()\l+ toHSV()\l+ at()\l+ putPixel()\l+ save()\l+ clear()\l}" alt="" coords="178,5,277,212"/>
+</map>

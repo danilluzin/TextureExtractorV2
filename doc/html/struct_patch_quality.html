@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -62,10 +70,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('struct_patch_quality.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,7 +103,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -90,40 +112,138 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">PatchQuality Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_patch_quality_8h_source.html">PatchQuality.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for PatchQuality:</div>
+<div class="dyncontent">
+<div class="center"><img src="struct_patch_quality__coll__graph.png" border="0" usemap="#_patch_quality_coll__map" alt="Collaboration graph"/></div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a330d17106af0e6f3d484c7777201c6f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a330d17106af0e6f3d484c7777201c6f8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>calcQuality</b> ()</td></tr>
+<tr class="memitem:a330d17106af0e6f3d484c7777201c6f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_patch_quality.html#a330d17106af0e6f3d484c7777201c6f8">calcQuality</a> ()</td></tr>
 <tr class="separator:a330d17106af0e6f3d484c7777201c6f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a3c8d512ff345ceef200c3f7c71e7ac38"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c8d512ff345ceef200c3f7c71e7ac38"></a>
-uint&#160;</td><td class="memItemRight" valign="bottom"><b>sampleCount</b> = 0</td></tr>
+<tr class="memitem:a3c8d512ff345ceef200c3f7c71e7ac38"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_patch_quality.html#a3c8d512ff345ceef200c3f7c71e7ac38">sampleCount</a> = 0</td></tr>
 <tr class="separator:a3c8d512ff345ceef200c3f7c71e7ac38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf9ac6ee8def50e84e0e68c4a9078fc2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf9ac6ee8def50e84e0e68c4a9078fc2"></a>
-uint&#160;</td><td class="memItemRight" valign="bottom"><b>potentialSampleCount</b> = 0</td></tr>
+<tr class="memitem:adf9ac6ee8def50e84e0e68c4a9078fc2"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_patch_quality.html#adf9ac6ee8def50e84e0e68c4a9078fc2">potentialSampleCount</a> = 0</td></tr>
 <tr class="separator:adf9ac6ee8def50e84e0e68c4a9078fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc1d602a83896430d93d887c14239cbc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc1d602a83896430d93d887c14239cbc"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>gradientMagnitudeSum</b> = 0</td></tr>
+<tr class="memitem:abc1d602a83896430d93d887c14239cbc"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_patch_quality.html#abc1d602a83896430d93d887c14239cbc">gradientMagnitudeSum</a> = 0</td></tr>
 <tr class="separator:abc1d602a83896430d93d887c14239cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96523c3184058de7a735c46baff38a35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96523c3184058de7a735c46baff38a35"></a>
-glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><b>colorSum</b></td></tr>
+<tr class="memitem:a96523c3184058de7a735c46baff38a35"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_patch_quality.html#a96523c3184058de7a735c46baff38a35">colorSum</a></td></tr>
 <tr class="separator:a96523c3184058de7a735c46baff38a35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfe27ea5bb26348daaad5445958aff92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abfe27ea5bb26348daaad5445958aff92"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>quality</b></td></tr>
+<tr class="memitem:abfe27ea5bb26348daaad5445958aff92"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_patch_quality.html#abfe27ea5bb26348daaad5445958aff92">quality</a></td></tr>
 <tr class="separator:abfe27ea5bb26348daaad5445958aff92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Structure that hold all the information that we gather during the data cost calculation step. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a330d17106af0e6f3d484c7777201c6f8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PatchQuality::calcQuality </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Calculates and sets the quality. If the sample count is 0 (i.e polygon was invisible then quality is 0) </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a96523c3184058de7a735c46baff38a35"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec4 PatchQuality::colorSum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>a color sum, sampled from the original source image. Same decrease/increase principle is applied to this variable as well. Used for the color consistency check </p>
+
+</div>
+</div>
+<a class="anchor" id="abc1d602a83896430d93d887c14239cbc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PatchQuality::gradientMagnitudeSum = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>a total color sum of samples taken from the source modified by Sobel operator. In the same fashion as sampleCount gets decreased if sample is later determined to belong to other triangle </p>
+
+</div>
+</div>
+<a class="anchor" id="adf9ac6ee8def50e84e0e68c4a9078fc2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint PatchQuality::potentialSampleCount = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>a number of pixels a triangle could have, po- tentially, had from a view regardless of occlusion (only gets incremented). If a strict occlusion is picked in the configuration then view-triangle pair gets discarded if a sampleCount ̸= potentialSampleCount. </p>
+
+</div>
+</div>
+<a class="anchor" id="abfe27ea5bb26348daaad5445958aff92"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PatchQuality::quality</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>calculated patch aulaity </p>
+
+</div>
+</div>
+<a class="anchor" id="a3c8d512ff345ceef200c3f7c71e7ac38"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint PatchQuality::sampleCount = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>a number of pixels that were sampled for this triangle during the rasterization phase. It gets increased every time a pixel is sampled, it gets decreased if that pixel is later determined to belong to another triangle (due to occlusion) </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>TextureExtractorV2/<a class="el" href="_patch_quality_8h_source.html">PatchQuality.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="struct_patch_quality.html">PatchQuality</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

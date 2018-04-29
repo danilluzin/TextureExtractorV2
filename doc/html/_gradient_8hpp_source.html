@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -61,8 +69,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_gradient_8hpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -77,17 +101,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_3b6e71e20b94598e8e41069cf8fc92e1.html">TextureExtractorV2</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Gradient.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<a href="_gradient_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">//  Gradient.hpp</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//  TextureExtractor</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//</span></div>
@@ -99,44 +118,63 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define Gradient_hpp</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;glm/glm.hpp&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;Mesh.hpp&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_mesh_8hpp.html">Mesh.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_gradient.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_gradient.html">Gradient</a> {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    glm::vec4 colorXStep;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    glm::vec4 colorYStep;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    glm::vec4 color [3];</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    glm::vec2 texCoords [3];</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">float</span> texCoordXXStep;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">float</span> texCoordXYStep;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">float</span> texCoordYXStep;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">float</span> texCoordYYStep;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">float</span> oneOverZ [3];</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    glm::vec2 oneOverZStep;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_gradient.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_gradient.html">Gradient</a> {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_gradient.html#a0451719335035c075a67204cdb80252f">   22</a></span>&#160;    glm::vec4 <a class="code" href="class_gradient.html#a0451719335035c075a67204cdb80252f">colorXStep</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_gradient.html#a3ac810ca548605633dd2497d9376e583">   24</a></span>&#160;    glm::vec4 <a class="code" href="class_gradient.html#a3ac810ca548605633dd2497d9376e583">colorYStep</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="class_gradient.html#a71c3ddc8c7826a17338723232d9bc7ea">   27</a></span>&#160;    glm::vec4 <a class="code" href="class_gradient.html#a71c3ddc8c7826a17338723232d9bc7ea">color</a> [3];</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_gradient.html#ae71837d2a5b35d006054d5d474eddb1a">   30</a></span>&#160;    glm::vec2 <a class="code" href="class_gradient.html#ae71837d2a5b35d006054d5d474eddb1a">texCoords</a> [3];</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">float</span> depth [3];</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    glm::vec2 depthStep;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_gradient.html#a4fd340dfd44bc432746d239cb809a0ee">Gradient</a>(<a class="code" href="struct_vertex.html">Vertex</a> minYVert, <a class="code" href="struct_vertex.html">Vertex</a> midYVert, <a class="code" href="struct_vertex.html">Vertex</a> maxYVert) ;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* Gradient_hpp */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_gradient.html#a624a5bc1117ef0ff5586505bd7414b00">   33</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_gradient.html#a624a5bc1117ef0ff5586505bd7414b00">texCoordXXStep</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_gradient.html#a8afadd4049d8b9eb22cbc400e70560aa">   35</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_gradient.html#a8afadd4049d8b9eb22cbc400e70560aa">texCoordXYStep</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="class_gradient.html#a81d975aa437d9aa2d4f4902073c1f529">   37</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_gradient.html#a81d975aa437d9aa2d4f4902073c1f529">texCoordYXStep</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_gradient.html#a7d935258d173da77270987a4c95f3462">   39</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_gradient.html#a7d935258d173da77270987a4c95f3462">texCoordYYStep</a>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="class_gradient.html#aab07e150dbcc6550c252b66180ceceb2">   42</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_gradient.html#aab07e150dbcc6550c252b66180ceceb2">oneOverZ</a> [3];</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_gradient.html#aa3bc11489f5f615cafc9dc8c8c180145">   44</a></span>&#160;    glm::vec2 <a class="code" href="class_gradient.html#aa3bc11489f5f615cafc9dc8c8c180145">oneOverZStep</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="class_gradient.html#ac0077f281e1539333e984574e8f728a3">   47</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_gradient.html#ac0077f281e1539333e984574e8f728a3">depth</a> [3];</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="class_gradient.html#a45a2e551be6a31ce12fdc3c39191914f">   50</a></span>&#160;    glm::vec2 <a class="code" href="class_gradient.html#a45a2e551be6a31ce12fdc3c39191914f">depthStep</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="class_gradient.html#a4fd340dfd44bc432746d239cb809a0ee">Gradient</a>(<a class="code" href="struct_vertex.html">Vertex</a> minYVert, <a class="code" href="struct_vertex.html">Vertex</a> midYVert, <a class="code" href="struct_vertex.html">Vertex</a> maxYVert) ;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* Gradient_hpp */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="class_gradient_html_a81d975aa437d9aa2d4f4902073c1f529"><div class="ttname"><a href="class_gradient.html#a81d975aa437d9aa2d4f4902073c1f529">Gradient::texCoordYXStep</a></div><div class="ttdeci">float texCoordYXStep</div><div class="ttdef"><b>Definition:</b> Gradient.hpp:37</div></div>
 <div class="ttc" id="class_gradient_html_a4fd340dfd44bc432746d239cb809a0ee"><div class="ttname"><a href="class_gradient.html#a4fd340dfd44bc432746d239cb809a0ee">Gradient::Gradient</a></div><div class="ttdeci">Gradient(Vertex minYVert, Vertex midYVert, Vertex maxYVert)</div><div class="ttdef"><b>Definition:</b> Gradient.cpp:11</div></div>
+<div class="ttc" id="class_gradient_html_a8afadd4049d8b9eb22cbc400e70560aa"><div class="ttname"><a href="class_gradient.html#a8afadd4049d8b9eb22cbc400e70560aa">Gradient::texCoordXYStep</a></div><div class="ttdeci">float texCoordXYStep</div><div class="ttdef"><b>Definition:</b> Gradient.hpp:35</div></div>
+<div class="ttc" id="class_gradient_html_a45a2e551be6a31ce12fdc3c39191914f"><div class="ttname"><a href="class_gradient.html#a45a2e551be6a31ce12fdc3c39191914f">Gradient::depthStep</a></div><div class="ttdeci">glm::vec2 depthStep</div><div class="ttdef"><b>Definition:</b> Gradient.hpp:50</div></div>
+<div class="ttc" id="class_gradient_html_a3ac810ca548605633dd2497d9376e583"><div class="ttname"><a href="class_gradient.html#a3ac810ca548605633dd2497d9376e583">Gradient::colorYStep</a></div><div class="ttdeci">glm::vec4 colorYStep</div><div class="ttdef"><b>Definition:</b> Gradient.hpp:24</div></div>
 <div class="ttc" id="struct_vertex_html"><div class="ttname"><a href="struct_vertex.html">Vertex</a></div><div class="ttdef"><b>Definition:</b> Mesh.hpp:22</div></div>
-<div class="ttc" id="class_gradient_html"><div class="ttname"><a href="class_gradient.html">Gradient</a></div><div class="ttdef"><b>Definition:</b> Gradient.hpp:16</div></div>
+<div class="ttc" id="class_gradient_html_ac0077f281e1539333e984574e8f728a3"><div class="ttname"><a href="class_gradient.html#ac0077f281e1539333e984574e8f728a3">Gradient::depth</a></div><div class="ttdeci">float depth[3]</div><div class="ttdef"><b>Definition:</b> Gradient.hpp:47</div></div>
+<div class="ttc" id="class_gradient_html_aa3bc11489f5f615cafc9dc8c8c180145"><div class="ttname"><a href="class_gradient.html#aa3bc11489f5f615cafc9dc8c8c180145">Gradient::oneOverZStep</a></div><div class="ttdeci">glm::vec2 oneOverZStep</div><div class="ttdef"><b>Definition:</b> Gradient.hpp:44</div></div>
+<div class="ttc" id="class_gradient_html"><div class="ttname"><a href="class_gradient.html">Gradient</a></div><div class="ttdef"><b>Definition:</b> Gradient.hpp:18</div></div>
+<div class="ttc" id="class_gradient_html_aab07e150dbcc6550c252b66180ceceb2"><div class="ttname"><a href="class_gradient.html#aab07e150dbcc6550c252b66180ceceb2">Gradient::oneOverZ</a></div><div class="ttdeci">float oneOverZ[3]</div><div class="ttdef"><b>Definition:</b> Gradient.hpp:42</div></div>
+<div class="ttc" id="class_gradient_html_a71c3ddc8c7826a17338723232d9bc7ea"><div class="ttname"><a href="class_gradient.html#a71c3ddc8c7826a17338723232d9bc7ea">Gradient::color</a></div><div class="ttdeci">glm::vec4 color[3]</div><div class="ttdef"><b>Definition:</b> Gradient.hpp:27</div></div>
+<div class="ttc" id="class_gradient_html_a7d935258d173da77270987a4c95f3462"><div class="ttname"><a href="class_gradient.html#a7d935258d173da77270987a4c95f3462">Gradient::texCoordYYStep</a></div><div class="ttdeci">float texCoordYYStep</div><div class="ttdef"><b>Definition:</b> Gradient.hpp:39</div></div>
+<div class="ttc" id="class_gradient_html_a624a5bc1117ef0ff5586505bd7414b00"><div class="ttname"><a href="class_gradient.html#a624a5bc1117ef0ff5586505bd7414b00">Gradient::texCoordXXStep</a></div><div class="ttdeci">float texCoordXXStep</div><div class="ttdef"><b>Definition:</b> Gradient.hpp:33</div></div>
+<div class="ttc" id="class_gradient_html_ae71837d2a5b35d006054d5d474eddb1a"><div class="ttname"><a href="class_gradient.html#ae71837d2a5b35d006054d5d474eddb1a">Gradient::texCoords</a></div><div class="ttdeci">glm::vec2 texCoords[3]</div><div class="ttdef"><b>Definition:</b> Gradient.hpp:30</div></div>
+<div class="ttc" id="_mesh_8hpp_html"><div class="ttname"><a href="_mesh_8hpp.html">Mesh.hpp</a></div></div>
+<div class="ttc" id="class_gradient_html_a0451719335035c075a67204cdb80252f"><div class="ttname"><a href="class_gradient.html#a0451719335035c075a67204cdb80252f">Gradient::colorXStep</a></div><div class="ttdeci">glm::vec4 colorXStep</div><div class="ttdef"><b>Definition:</b> Gradient.hpp:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_3b6e71e20b94598e8e41069cf8fc92e1.html">TextureExtractorV2</a></li><li class="navelem"><a class="el" href="_gradient_8hpp.html">Gradient.hpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

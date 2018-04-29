@@ -1,6 +1,22 @@
 var searchData=
 [
-  ['edge',['Edge',['../class_edge.html',1,'']]],
-  ['edgevertex',['EdgeVertex',['../struct_edge_vertex.html',1,'']]],
-  ['extractionworker',['ExtractionWorker',['../class_extraction_worker.html',1,'']]]
+  ['datacostextractionmanager',['DataCostExtractionManager',['../class_data_cost_extraction_manager.html',1,'DataCostExtractionManager'],['../class_data_cost_extraction_manager.html#a90368fe041fe99c6ee45531ca69ae036',1,'DataCostExtractionManager::DataCostExtractionManager()']]],
+  ['datacostextractionmanager_2ecpp',['DataCostExtractionManager.cpp',['../_data_cost_extraction_manager_8cpp.html',1,'']]],
+  ['datacostextractionmanager_2ehpp',['DataCostExtractionManager.hpp',['../_data_cost_extraction_manager_8hpp.html',1,'']]],
+  ['datacosts',['dataCosts',['../class_data_cost_extraction_manager.html#aab34038a5dd8e8e24a44fe102e722cca',1,'DataCostExtractionManager']]],
+  ['datacostsextractor',['DataCostsExtractor',['../class_data_costs_extractor.html',1,'DataCostsExtractor'],['../class_data_costs_extractor.html#a43e088a660a4c58abe525cae2fb6925b',1,'DataCostsExtractor::DataCostsExtractor()']]],
+  ['datacostsextractor_2ecpp',['DataCostsExtractor.cpp',['../_data_costs_extractor_8cpp.html',1,'']]],
+  ['datacostsextractor_2ehpp',['DataCostsExtractor.hpp',['../_data_costs_extractor_8hpp.html',1,'']]],
+  ['datacostsfilepath',['dataCostsFilePath',['../struct_arguments.html#aaa04b2622a7712dd05c28101c149b116',1,'Arguments']]],
+  ['depth',['depth',['../class_edge.html#a997c97e02df725e1397a5e2fe4c573f3',1,'Edge::depth()'],['../class_gradient.html#ac0077f281e1539333e984574e8f728a3',1,'Gradient::depth()']]],
+  ['depthstep',['depthStep',['../class_edge.html#ae85a7f75238e8212db2f1fc90729afcd',1,'Edge::depthStep()'],['../class_gradient.html#a45a2e551be6a31ce12fdc3c39191914f',1,'Gradient::depthStep()']]],
+  ['direction',['direction',['../struct_partition_node.html#a5e861a43672acf654394a15b012df231',1,'PartitionNode::direction()'],['../_mesh_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aa',1,'Direction():&#160;Mesh.hpp']]],
+  ['docolorconsistency',['doColorConsistency',['../struct_arguments.html#aba3898efc576d5bd85f4f89e7b0b79a6',1,'Arguments']]],
+  ['dogloabaladjustment',['doGloabalAdjustment',['../struct_arguments.html#a35c85467eaefb45dd9c5573c5697d0be',1,'Arguments']]],
+  ['doperspectivedevide',['doPerspectiveDevide',['../class_transformation.html#a9bb89f79245297795c78f62ca6b29efd',1,'Transformation']]],
+  ['doseamleveling',['doSeamLeveling',['../struct_arguments.html#a37157aeefb4bab06270e0787c0bac2cb',1,'Arguments']]],
+  ['dotextureextension',['doTextureExtension',['../struct_arguments.html#aa8074aacbc6ee3f99effd5b7613905e5',1,'Arguments']]],
+  ['dowork',['doWork',['../class_data_cost_extraction_manager.html#a078e39ed154e6337584a2506a87c35e7',1,'DataCostExtractionManager']]],
+  ['drawmesh',['drawMesh',['../class_rasterizer.html#ab2d26833e9b47e3e1a1b9e94a77d0a18',1,'Rasterizer']]],
+  ['drawtriangle',['drawTriangle',['../class_rasterizer.html#a3be827df6aeec982f2a1e5106ee6e99b',1,'Rasterizer']]]
 ];

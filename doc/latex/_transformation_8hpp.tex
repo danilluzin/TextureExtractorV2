@@ -1,0 +1,46 @@
+\hypertarget{_transformation_8hpp}{}\section{Texture\+Extractor\+V2/\+Transformation.hpp File Reference}
+\label{_transformation_8hpp}\index{Texture\+Extractor\+V2/\+Transformation.\+hpp@{Texture\+Extractor\+V2/\+Transformation.\+hpp}}
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$cmath$>$}\\*
+{\ttfamily \#include $<$glm/glm.\+hpp$>$}\\*
+{\ttfamily \#include $<$glm/gtx/transform.\+hpp$>$}\\*
+{\ttfamily \#include \char`\"{}Mesh.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Camera.\+hpp\char`\"{}}\\*
+Include dependency graph for Transformation.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_transformation_8hpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_transformation}{Transformation}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{_transformation_8hpp_aa7d2fb19b307b641eaa7c81d2da46267}{is\+Inside\+View\+Frustrum} (const \hyperlink{struct_bounding_box}{Bounding\+Box} \&bounding\+Box, const \hyperlink{class_transformation}{Transformation} \&transformation)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{_transformation_8hpp_aa7d2fb19b307b641eaa7c81d2da46267}{}\index{Transformation.\+hpp@{Transformation.\+hpp}!is\+Inside\+View\+Frustrum@{is\+Inside\+View\+Frustrum}}
+\index{is\+Inside\+View\+Frustrum@{is\+Inside\+View\+Frustrum}!Transformation.\+hpp@{Transformation.\+hpp}}
+\subsubsection[{is\+Inside\+View\+Frustrum(const Bounding\+Box \&bounding\+Box, const Transformation \&transformation)}]{\setlength{\rightskip}{0pt plus 5cm}bool is\+Inside\+View\+Frustrum (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bounding\+Box} \&}]{bounding\+Box, }
+\item[{const {\bf Transformation} \&}]{transformation}
+\end{DoxyParamCaption}
+)}\label{_transformation_8hpp_aa7d2fb19b307b641eaa7c81d2da46267}
+Checks if a bounding box is in the frustum o a particular view, given a transformation that represent that view. 
+\begin{DoxyParams}{Parameters}
+{\em bounding\+Box} & box to check \\
+\hline
+{\em transformation} & transformation to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if is insize, flase othervise 
+\end{DoxyReturn}

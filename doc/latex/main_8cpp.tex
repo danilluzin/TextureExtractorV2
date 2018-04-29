@@ -1,0 +1,146 @@
+\hypertarget{main_8cpp}{}\section{Texture\+Extractor\+V2/main.cpp File Reference}
+\label{main_8cpp}\index{Texture\+Extractor\+V2/main.\+cpp@{Texture\+Extractor\+V2/main.\+cpp}}
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include \char`\"{}Timer.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Mesh.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Texture\+Extractor.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Utils.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$numeric$>$}\\*
+{\ttfamily \#include \char`\"{}Arguments.\+h\char`\"{}}\\*
+Include dependency graph for main.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{main_8cpp_a53275bc1c47923688926105afa160f1f}{prepare\+Mesh} (\hyperlink{class_mesh}{Mesh} \&mesh, const std\+::string \&obj\+File\+Path)
+\item 
+bool \hyperlink{main_8cpp_aa339d954c67ac0b569cc01ba81527693}{prepare\+Config} (int argc, const char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+bool \hyperlink{main_8cpp_ac281d93b9d227891f5a701e08b6e0766}{prepare\+Views} (\hyperlink{class_texture_extractor}{Texture\+Extractor} \&extractor)
+\item 
+bool \hyperlink{main_8cpp_aa0e25e5ae6d6fa9c32f5f5db12a9c96e}{perform\+View\+Selection} (\hyperlink{class_texture_extractor}{Texture\+Extractor} \&extractor)
+\item 
+bool \hyperlink{main_8cpp_a16a2e83aab8adad0c1c03cd80fbd4c44}{calculate\+Data\+Costs} (\hyperlink{class_texture_extractor}{Texture\+Extractor} \&extractor)
+\item 
+bool \hyperlink{main_8cpp_a745400634b64bab50a882452258e70b3}{generate\+Texture} (\hyperlink{class_texture_extractor}{Texture\+Extractor} \&extractor)
+\item 
+void \hyperlink{main_8cpp_acf13ecaf6218f98071da5e801f4d1f37}{\+\_\+render\+Views\+With\+Texture} (\hyperlink{class_texture_extractor}{Texture\+Extractor} \&extractor)
+\item 
+bool \hyperlink{main_8cpp_ada397c0443746ee62c5042da6993f09c}{calc\+Data\+Costs\+And\+Get\+Lebeling} (\hyperlink{class_texture_extractor}{Texture\+Extractor} \&extractor)
+\item 
+bool \hyperlink{main_8cpp_a2a09aa369a1a9136796a7c713747d93c}{load\+Labels\+From\+File} (\hyperlink{class_texture_extractor}{Texture\+Extractor} \&extractor)
+\item 
+bool \hyperlink{main_8cpp_ad015d1005e0e5f66287b32e9d6b95652}{check\+Flags} (const char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+int \hyperlink{main_8cpp_ac0f2228420376f4db7e1274f2b41667c}{main} (int argc, const char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_arguments}{Arguments} \hyperlink{main_8cpp_ada59c388a54132792188bb23541d03c1}{arguments}
+\item 
+int \hyperlink{main_8cpp_af1d40a330bc745f51d8b079c9dc473ff}{pad} = 0
+\item 
+bool \hyperlink{main_8cpp_ab3f078684998b83967d507d0f453f454}{verbose} = true
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{main_8cpp_acf13ecaf6218f98071da5e801f4d1f37}{}\index{main.\+cpp@{main.\+cpp}!\+\_\+render\+Views\+With\+Texture@{\+\_\+render\+Views\+With\+Texture}}
+\index{\+\_\+render\+Views\+With\+Texture@{\+\_\+render\+Views\+With\+Texture}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{\+\_\+render\+Views\+With\+Texture(\+Texture\+Extractor \&extractor)}]{\setlength{\rightskip}{0pt plus 5cm}void \+\_\+render\+Views\+With\+Texture (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture\+Extractor} \&}]{extractor}
+\end{DoxyParamCaption}
+)}\label{main_8cpp_acf13ecaf6218f98071da5e801f4d1f37}
+\hypertarget{main_8cpp_ada397c0443746ee62c5042da6993f09c}{}\index{main.\+cpp@{main.\+cpp}!calc\+Data\+Costs\+And\+Get\+Lebeling@{calc\+Data\+Costs\+And\+Get\+Lebeling}}
+\index{calc\+Data\+Costs\+And\+Get\+Lebeling@{calc\+Data\+Costs\+And\+Get\+Lebeling}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{calc\+Data\+Costs\+And\+Get\+Lebeling(\+Texture\+Extractor \&extractor)}]{\setlength{\rightskip}{0pt plus 5cm}bool calc\+Data\+Costs\+And\+Get\+Lebeling (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture\+Extractor} \&}]{extractor}
+\end{DoxyParamCaption}
+)}\label{main_8cpp_ada397c0443746ee62c5042da6993f09c}
+\hypertarget{main_8cpp_a16a2e83aab8adad0c1c03cd80fbd4c44}{}\index{main.\+cpp@{main.\+cpp}!calculate\+Data\+Costs@{calculate\+Data\+Costs}}
+\index{calculate\+Data\+Costs@{calculate\+Data\+Costs}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{calculate\+Data\+Costs(\+Texture\+Extractor \&extractor)}]{\setlength{\rightskip}{0pt plus 5cm}bool calculate\+Data\+Costs (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture\+Extractor} \&}]{extractor}
+\end{DoxyParamCaption}
+)}\label{main_8cpp_a16a2e83aab8adad0c1c03cd80fbd4c44}
+\hypertarget{main_8cpp_ad015d1005e0e5f66287b32e9d6b95652}{}\index{main.\+cpp@{main.\+cpp}!check\+Flags@{check\+Flags}}
+\index{check\+Flags@{check\+Flags}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{check\+Flags(const char $\ast$argv[])}]{\setlength{\rightskip}{0pt plus 5cm}bool check\+Flags (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{main_8cpp_ad015d1005e0e5f66287b32e9d6b95652}
+\hypertarget{main_8cpp_a745400634b64bab50a882452258e70b3}{}\index{main.\+cpp@{main.\+cpp}!generate\+Texture@{generate\+Texture}}
+\index{generate\+Texture@{generate\+Texture}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{generate\+Texture(\+Texture\+Extractor \&extractor)}]{\setlength{\rightskip}{0pt plus 5cm}bool generate\+Texture (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture\+Extractor} \&}]{extractor}
+\end{DoxyParamCaption}
+)}\label{main_8cpp_a745400634b64bab50a882452258e70b3}
+\hypertarget{main_8cpp_a2a09aa369a1a9136796a7c713747d93c}{}\index{main.\+cpp@{main.\+cpp}!load\+Labels\+From\+File@{load\+Labels\+From\+File}}
+\index{load\+Labels\+From\+File@{load\+Labels\+From\+File}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{load\+Labels\+From\+File(\+Texture\+Extractor \&extractor)}]{\setlength{\rightskip}{0pt plus 5cm}bool load\+Labels\+From\+File (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture\+Extractor} \&}]{extractor}
+\end{DoxyParamCaption}
+)}\label{main_8cpp_a2a09aa369a1a9136796a7c713747d93c}
+\hypertarget{main_8cpp_ac0f2228420376f4db7e1274f2b41667c}{}\index{main.\+cpp@{main.\+cpp}!main@{main}}
+\index{main@{main}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{main(int argc, const char $\ast$argv[])}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{const char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{main_8cpp_ac0f2228420376f4db7e1274f2b41667c}
+\hypertarget{main_8cpp_aa0e25e5ae6d6fa9c32f5f5db12a9c96e}{}\index{main.\+cpp@{main.\+cpp}!perform\+View\+Selection@{perform\+View\+Selection}}
+\index{perform\+View\+Selection@{perform\+View\+Selection}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{perform\+View\+Selection(\+Texture\+Extractor \&extractor)}]{\setlength{\rightskip}{0pt plus 5cm}bool perform\+View\+Selection (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture\+Extractor} \&}]{extractor}
+\end{DoxyParamCaption}
+)}\label{main_8cpp_aa0e25e5ae6d6fa9c32f5f5db12a9c96e}
+\hypertarget{main_8cpp_aa339d954c67ac0b569cc01ba81527693}{}\index{main.\+cpp@{main.\+cpp}!prepare\+Config@{prepare\+Config}}
+\index{prepare\+Config@{prepare\+Config}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{prepare\+Config(int argc, const char $\ast$argv[])}]{\setlength{\rightskip}{0pt plus 5cm}bool prepare\+Config (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{const char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{main_8cpp_aa339d954c67ac0b569cc01ba81527693}
+\hypertarget{main_8cpp_a53275bc1c47923688926105afa160f1f}{}\index{main.\+cpp@{main.\+cpp}!prepare\+Mesh@{prepare\+Mesh}}
+\index{prepare\+Mesh@{prepare\+Mesh}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{prepare\+Mesh(\+Mesh \&mesh, const std\+::string \&obj\+File\+Path)}]{\setlength{\rightskip}{0pt plus 5cm}bool prepare\+Mesh (
+\begin{DoxyParamCaption}
+\item[{{\bf Mesh} \&}]{mesh, }
+\item[{const std\+::string \&}]{obj\+File\+Path}
+\end{DoxyParamCaption}
+)}\label{main_8cpp_a53275bc1c47923688926105afa160f1f}
+\hypertarget{main_8cpp_ac281d93b9d227891f5a701e08b6e0766}{}\index{main.\+cpp@{main.\+cpp}!prepare\+Views@{prepare\+Views}}
+\index{prepare\+Views@{prepare\+Views}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{prepare\+Views(\+Texture\+Extractor \&extractor)}]{\setlength{\rightskip}{0pt plus 5cm}bool prepare\+Views (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture\+Extractor} \&}]{extractor}
+\end{DoxyParamCaption}
+)}\label{main_8cpp_ac281d93b9d227891f5a701e08b6e0766}
+
+
+\subsection{Variable Documentation}
+\hypertarget{main_8cpp_ada59c388a54132792188bb23541d03c1}{}\index{main.\+cpp@{main.\+cpp}!arguments@{arguments}}
+\index{arguments@{arguments}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{arguments}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Arguments} arguments}\label{main_8cpp_ada59c388a54132792188bb23541d03c1}
+\hypertarget{main_8cpp_af1d40a330bc745f51d8b079c9dc473ff}{}\index{main.\+cpp@{main.\+cpp}!pad@{pad}}
+\index{pad@{pad}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{pad}]{\setlength{\rightskip}{0pt plus 5cm}int pad = 0}\label{main_8cpp_af1d40a330bc745f51d8b079c9dc473ff}
+winite space pad size \hypertarget{main_8cpp_ab3f078684998b83967d507d0f453f454}{}\index{main.\+cpp@{main.\+cpp}!verbose@{verbose}}
+\index{verbose@{verbose}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{verbose}]{\setlength{\rightskip}{0pt plus 5cm}bool verbose = true}\label{main_8cpp_ab3f078684998b83967d507d0f453f454}
+is output verbose 

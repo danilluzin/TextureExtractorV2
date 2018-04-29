@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -61,8 +69,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_bitmap_8hpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -77,17 +101,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_3b6e71e20b94598e8e41069cf8fc92e1.html">TextureExtractorV2</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Bitmap.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<a href="_bitmap_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">//  Bitmap.hpp</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//  TextureExtractor</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//</span></div>
@@ -101,82 +120,97 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;glm/glm.hpp&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;RenderContext.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_render_context_8h.html">RenderContext.h</a>&quot;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;opencv2/opencv.hpp&gt;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_bitmap.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_bitmap.html">Bitmap</a> : <span class="keyword">public</span> <a class="code" href="class_render_context.html">RenderContext</a>{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    cv::Mat image;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_bitmap.html">Bitmap</a> &amp; operator = (<span class="keyword">const</span> <a class="code" href="class_bitmap.html">Bitmap</a> &amp; other){</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">if</span> (<span class="keyword">this</span> != &amp;other) { <span class="comment">// self-assignment check expected</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            width = other.width;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            height = other.height;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            image = other.image.clone();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        }</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_bitmap.html">Bitmap</a>(<span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height) : <a class="code" href="class_render_context.html">RenderContext</a>(width,height){</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        image = cv::Mat(height, width, CV_8UC3);</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_bitmap.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_bitmap.html">Bitmap</a> : <span class="keyword">public</span> <a class="code" href="class_render_context.html">RenderContext</a>{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    cv::Mat image;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_bitmap.html#a7a1a9969ca533d4adebe7c44a26ee092">   28</a></span>&#160;    <a class="code" href="class_bitmap.html">Bitmap</a> &amp; <a class="code" href="class_bitmap.html#a7a1a9969ca533d4adebe7c44a26ee092">operator = </a>(<span class="keyword">const</span> <a class="code" href="class_bitmap.html">Bitmap</a> &amp; other){</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">if</span> (<span class="keyword">this</span> != &amp;other) { <span class="comment">// self-assignment check expected</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="class_render_context.html#a8009663c022d4a60d8a4dbfdb4183f46">width</a> = other.<a class="code" href="class_render_context.html#a8009663c022d4a60d8a4dbfdb4183f46">width</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <a class="code" href="class_render_context.html#a194a36ce3d85ae9ef5b40396e1e2d950">height</a> = other.<a class="code" href="class_render_context.html#a194a36ce3d85ae9ef5b40396e1e2d950">height</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            image = other.image.clone();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_bitmap.html">Bitmap</a>():<a class="code" href="class_render_context.html">RenderContext</a>(0,0){};</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_bitmap.html">Bitmap</a>(<span class="keyword">const</span> std::string &amp; filename);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_bitmap.html">Bitmap</a>(<span class="keyword">const</span> cv::Mat &amp; img);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_bitmap.html">Bitmap</a> toSobel() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_bitmap.html">Bitmap</a> toHSV() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    glm::vec4 at(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y)<span class="keyword"> const</span>{</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">if</span>(x&lt;0||x&gt;=width||y&lt;0||y&gt;=height){</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keywordflow">return</span> glm::vec4(0,0,0,1);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">int</span> channels = image.channels();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">if</span>(channels == 1){</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            uchar val =  image.at&lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>&gt;(y,x);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">return</span> glm::vec4((<span class="keywordtype">float</span>)val/255,(<span class="keywordtype">float</span>)val/255,(<span class="keywordtype">float</span>)val/255,1);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            cv::Vec3b vec = image.at&lt;cv::Vec3b&gt;(y,x);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">return</span> glm::vec4((<span class="keywordtype">float</span>)vec[2]/255,(<span class="keywordtype">float</span>)vec[1]/255,(<span class="keywordtype">float</span>)vec[0]/255,1);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> putPixel(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, glm::vec4 color){</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">if</span>(x&lt;0 || x&gt;=width || y&lt;0 || y&gt;=height )</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">//        imageData[y * width + x] = color;</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        cv::Vec3b vec = image.at&lt;cv::Vec3b&gt;(y,x);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        image.at&lt;cv::Vec3b&gt;(y,x)[0] = color[2]*255;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        image.at&lt;cv::Vec3b&gt;(y,x)[1] = color[1]*255;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        image.at&lt;cv::Vec3b&gt;(y,x)[2] = color[0]*255;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        vec = image.at&lt;cv::Vec3b&gt;(y,x);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> save(std::string destFilename);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> clear(glm::vec4 color);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* Bitmap_hpp */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="class_render_context_html"><div class="ttname"><a href="class_render_context.html">RenderContext</a></div><div class="ttdef"><b>Definition:</b> RenderContext.h:15</div></div>
-<div class="ttc" id="class_bitmap_html"><div class="ttname"><a href="class_bitmap.html">Bitmap</a></div><div class="ttdef"><b>Definition:</b> Bitmap.hpp:20</div></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="class_bitmap.html#a40526748415c8bbc58a8510d636c20f4">   42</a></span>&#160;    <a class="code" href="class_bitmap.html#a40526748415c8bbc58a8510d636c20f4">Bitmap</a>(<span class="keywordtype">int</span> <a class="code" href="class_render_context.html#a8009663c022d4a60d8a4dbfdb4183f46">width</a>, <span class="keywordtype">int</span> <a class="code" href="class_render_context.html#a194a36ce3d85ae9ef5b40396e1e2d950">height</a>) : <a class="code" href="class_render_context.html">RenderContext</a>(width,height){</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        image = cv::Mat(height, width, CV_8UC3);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="class_bitmap.html#aa6ef6d8c0b66664350ef4dd062db3aec">   46</a></span>&#160;    <a class="code" href="class_bitmap.html#aa6ef6d8c0b66664350ef4dd062db3aec">Bitmap</a>():<a class="code" href="class_render_context.html">RenderContext</a>(0,0){};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_bitmap.html#aa6ef6d8c0b66664350ef4dd062db3aec">Bitmap</a>(<span class="keyword">const</span> std::string &amp; filename);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="class_bitmap.html#aa6ef6d8c0b66664350ef4dd062db3aec">Bitmap</a>(<span class="keyword">const</span> cv::Mat &amp; img);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="class_bitmap.html">Bitmap</a> <a class="code" href="class_bitmap.html#a99d5b69de318e80c9af1f660f46c00c4">toSobel</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="class_bitmap.html">Bitmap</a> <a class="code" href="class_bitmap.html#a80c5adbea91bb7311008dab576dc82c6">toHSV</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="class_bitmap.html#af5c0948748aa68b2737871d20201c2e5">   73</a></span>&#160;    glm::vec4 <a class="code" href="class_bitmap.html#af5c0948748aa68b2737871d20201c2e5">at</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y)<span class="keyword"> const</span>{</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">if</span>(x&lt;0||x&gt;=<a class="code" href="class_render_context.html#a8009663c022d4a60d8a4dbfdb4183f46">width</a>||y&lt;0||y&gt;=<a class="code" href="class_render_context.html#a194a36ce3d85ae9ef5b40396e1e2d950">height</a>){</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">return</span> glm::vec4(0,0,0,1);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordtype">int</span> channels = image.channels();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">if</span>(channels == 1){</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            uchar val =  image.at&lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>&gt;(y,x);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="keywordflow">return</span> glm::vec4((<span class="keywordtype">float</span>)val/255,(<span class="keywordtype">float</span>)val/255,(<span class="keywordtype">float</span>)val/255,1);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            cv::Vec3b vec = image.at&lt;cv::Vec3b&gt;(y,x);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordflow">return</span> glm::vec4((<span class="keywordtype">float</span>)vec[2]/255,(<span class="keywordtype">float</span>)vec[1]/255,(<span class="keywordtype">float</span>)vec[0]/255,1);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="class_bitmap.html#a6f880db00f7d05e6284005a6553aa17c">   92</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_bitmap.html#a6f880db00f7d05e6284005a6553aa17c">putPixel</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, glm::vec4 color){</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">if</span>(x&lt;0 || x&gt;=<a class="code" href="class_render_context.html#a8009663c022d4a60d8a4dbfdb4183f46">width</a> || y&lt;0 || y&gt;=<a class="code" href="class_render_context.html#a194a36ce3d85ae9ef5b40396e1e2d950">height</a> )</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">//        imageData[y * width + x] = color;</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        cv::Vec3b vec = image.at&lt;cv::Vec3b&gt;(y,x);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        image.at&lt;cv::Vec3b&gt;(y,x)[0] = color[2]*255;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        image.at&lt;cv::Vec3b&gt;(y,x)[1] = color[1]*255;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        image.at&lt;cv::Vec3b&gt;(y,x)[2] = color[0]*255;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        vec = image.at&lt;cv::Vec3b&gt;(y,x);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_bitmap.html#a9ca33640e5554ee36b435fa789260903">save</a>(std::string destFilename);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_bitmap.html#a409022ea446f41edcce42c076dff1608">clear</a>(glm::vec4 color);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;};</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* Bitmap_hpp */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="class_render_context_html_a8009663c022d4a60d8a4dbfdb4183f46"><div class="ttname"><a href="class_render_context.html#a8009663c022d4a60d8a4dbfdb4183f46">RenderContext::width</a></div><div class="ttdeci">int width</div><div class="ttdef"><b>Definition:</b> RenderContext.h:27</div></div>
+<div class="ttc" id="class_bitmap_html_aa6ef6d8c0b66664350ef4dd062db3aec"><div class="ttname"><a href="class_bitmap.html#aa6ef6d8c0b66664350ef4dd062db3aec">Bitmap::Bitmap</a></div><div class="ttdeci">Bitmap()</div><div class="ttdef"><b>Definition:</b> Bitmap.hpp:46</div></div>
+<div class="ttc" id="class_bitmap_html_a9ca33640e5554ee36b435fa789260903"><div class="ttname"><a href="class_bitmap.html#a9ca33640e5554ee36b435fa789260903">Bitmap::save</a></div><div class="ttdeci">void save(std::string destFilename)</div><div class="ttdef"><b>Definition:</b> Bitmap.cpp:70</div></div>
+<div class="ttc" id="class_bitmap_html_a7a1a9969ca533d4adebe7c44a26ee092"><div class="ttname"><a href="class_bitmap.html#a7a1a9969ca533d4adebe7c44a26ee092">Bitmap::operator=</a></div><div class="ttdeci">Bitmap &amp; operator=(const Bitmap &amp;other)</div><div class="ttdef"><b>Definition:</b> Bitmap.hpp:28</div></div>
+<div class="ttc" id="class_bitmap_html_a6f880db00f7d05e6284005a6553aa17c"><div class="ttname"><a href="class_bitmap.html#a6f880db00f7d05e6284005a6553aa17c">Bitmap::putPixel</a></div><div class="ttdeci">void putPixel(int x, int y, glm::vec4 color)</div><div class="ttdef"><b>Definition:</b> Bitmap.hpp:92</div></div>
+<div class="ttc" id="class_render_context_html_a194a36ce3d85ae9ef5b40396e1e2d950"><div class="ttname"><a href="class_render_context.html#a194a36ce3d85ae9ef5b40396e1e2d950">RenderContext::height</a></div><div class="ttdeci">int height</div><div class="ttdef"><b>Definition:</b> RenderContext.h:27</div></div>
+<div class="ttc" id="class_bitmap_html_af5c0948748aa68b2737871d20201c2e5"><div class="ttname"><a href="class_bitmap.html#af5c0948748aa68b2737871d20201c2e5">Bitmap::at</a></div><div class="ttdeci">glm::vec4 at(int x, int y) const </div><div class="ttdef"><b>Definition:</b> Bitmap.hpp:73</div></div>
+<div class="ttc" id="_render_context_8h_html"><div class="ttname"><a href="_render_context_8h.html">RenderContext.h</a></div></div>
+<div class="ttc" id="class_bitmap_html_a40526748415c8bbc58a8510d636c20f4"><div class="ttname"><a href="class_bitmap.html#a40526748415c8bbc58a8510d636c20f4">Bitmap::Bitmap</a></div><div class="ttdeci">Bitmap(int width, int height)</div><div class="ttdef"><b>Definition:</b> Bitmap.hpp:42</div></div>
+<div class="ttc" id="class_render_context_html"><div class="ttname"><a href="class_render_context.html">RenderContext</a></div><div class="ttdef"><b>Definition:</b> RenderContext.h:17</div></div>
+<div class="ttc" id="class_bitmap_html_a409022ea446f41edcce42c076dff1608"><div class="ttname"><a href="class_bitmap.html#a409022ea446f41edcce42c076dff1608">Bitmap::clear</a></div><div class="ttdeci">void clear(glm::vec4 color)</div><div class="ttdef"><b>Definition:</b> Bitmap.cpp:17</div></div>
+<div class="ttc" id="class_bitmap_html"><div class="ttname"><a href="class_bitmap.html">Bitmap</a></div><div class="ttdef"><b>Definition:</b> Bitmap.hpp:22</div></div>
+<div class="ttc" id="class_bitmap_html_a99d5b69de318e80c9af1f660f46c00c4"><div class="ttname"><a href="class_bitmap.html#a99d5b69de318e80c9af1f660f46c00c4">Bitmap::toSobel</a></div><div class="ttdeci">Bitmap toSobel() const </div><div class="ttdef"><b>Definition:</b> Bitmap.cpp:43</div></div>
+<div class="ttc" id="class_bitmap_html_a80c5adbea91bb7311008dab576dc82c6"><div class="ttname"><a href="class_bitmap.html#a80c5adbea91bb7311008dab576dc82c6">Bitmap::toHSV</a></div><div class="ttdeci">Bitmap toHSV() const </div><div class="ttdef"><b>Definition:</b> Bitmap.cpp:63</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_3b6e71e20b94598e8e41069cf8fc92e1.html">TextureExtractorV2</a></li><li class="navelem"><a class="el" href="_bitmap_8hpp.html">Bitmap.hpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

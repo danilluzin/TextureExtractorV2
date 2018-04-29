@@ -1,0 +1,47 @@
+\hypertarget{_transformation_8cpp}{}\section{Texture\+Extractor\+V2/\+Transformation.cpp File Reference}
+\label{_transformation_8cpp}\index{Texture\+Extractor\+V2/\+Transformation.\+cpp@{Texture\+Extractor\+V2/\+Transformation.\+cpp}}
+{\ttfamily \#include \char`\"{}Transformation.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Utils.\+h\char`\"{}}\\*
+Include dependency graph for Transformation.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{_transformation_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{_transformation_8cpp_a260b094ce1f05910ad66e54d821610ba}{component\+Fits\+W} (int component, const \hyperlink{struct_vertex}{Vertex} \&v)
+\item 
+bool \hyperlink{_transformation_8cpp_aa7d2fb19b307b641eaa7c81d2da46267}{is\+Inside\+View\+Frustrum} (const \hyperlink{struct_bounding_box}{Bounding\+Box} \&bounding\+Box, const \hyperlink{class_transformation}{Transformation} \&transformation)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{_transformation_8cpp_a260b094ce1f05910ad66e54d821610ba}{}\index{Transformation.\+cpp@{Transformation.\+cpp}!component\+Fits\+W@{component\+Fits\+W}}
+\index{component\+Fits\+W@{component\+Fits\+W}!Transformation.\+cpp@{Transformation.\+cpp}}
+\subsubsection[{component\+Fits\+W(int component, const Vertex \&v)}]{\setlength{\rightskip}{0pt plus 5cm}bool component\+Fits\+W (
+\begin{DoxyParamCaption}
+\item[{int}]{component, }
+\item[{const {\bf Vertex} \&}]{v}
+\end{DoxyParamCaption}
+)}\label{_transformation_8cpp_a260b094ce1f05910ad66e54d821610ba}
+\hypertarget{_transformation_8cpp_aa7d2fb19b307b641eaa7c81d2da46267}{}\index{Transformation.\+cpp@{Transformation.\+cpp}!is\+Inside\+View\+Frustrum@{is\+Inside\+View\+Frustrum}}
+\index{is\+Inside\+View\+Frustrum@{is\+Inside\+View\+Frustrum}!Transformation.\+cpp@{Transformation.\+cpp}}
+\subsubsection[{is\+Inside\+View\+Frustrum(const Bounding\+Box \&bounding\+Box, const Transformation \&transformation)}]{\setlength{\rightskip}{0pt plus 5cm}bool is\+Inside\+View\+Frustrum (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bounding\+Box} \&}]{bounding\+Box, }
+\item[{const {\bf Transformation} \&}]{transformation}
+\end{DoxyParamCaption}
+)}\label{_transformation_8cpp_aa7d2fb19b307b641eaa7c81d2da46267}
+Checks if a bounding box is in the frustum o a particular view, given a transformation that represent that view. 
+\begin{DoxyParams}{Parameters}
+{\em bounding\+Box} & box to check \\
+\hline
+{\em transformation} & transformation to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if is insize, flase othervise 
+\end{DoxyReturn}

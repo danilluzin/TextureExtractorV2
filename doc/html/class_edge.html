@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -62,10 +70,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_edge.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,7 +103,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -90,65 +112,277 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Edge Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_edge_8hpp_source.html">Edge.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for Edge:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_edge__coll__graph.png" border="0" usemap="#_edge_coll__map" alt="Collaboration graph"/></div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a97a820beb3ce7430825616b227189845"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97a820beb3ce7430825616b227189845"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Edge</b> (<a class="el" href="struct_vertex.html">Vertex</a> start, <a class="el" href="struct_vertex.html">Vertex</a> end, <a class="el" href="class_gradient.html">Gradient</a> gradient, int minYVertIndex)</td></tr>
+<tr class="memitem:a97a820beb3ce7430825616b227189845"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#a97a820beb3ce7430825616b227189845">Edge</a> (<a class="el" href="struct_vertex.html">Vertex</a> start, <a class="el" href="struct_vertex.html">Vertex</a> end, <a class="el" href="class_gradient.html">Gradient</a> gradient, int minYVertIndex)</td></tr>
 <tr class="separator:a97a820beb3ce7430825616b227189845"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee421bbd01b0ac8006e91e76589e84fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee421bbd01b0ac8006e91e76589e84fb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Step</b> ()</td></tr>
+<tr class="memitem:aee421bbd01b0ac8006e91e76589e84fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#aee421bbd01b0ac8006e91e76589e84fb">Step</a> ()</td></tr>
 <tr class="separator:aee421bbd01b0ac8006e91e76589e84fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a23bac6cf22ad265c83e42219b548f199"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23bac6cf22ad265c83e42219b548f199"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>currentX</b></td></tr>
+<tr class="memitem:a23bac6cf22ad265c83e42219b548f199"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#a23bac6cf22ad265c83e42219b548f199">currentX</a></td></tr>
 <tr class="separator:a23bac6cf22ad265c83e42219b548f199"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56c4a79ba0032fb252f68d30a7374f53"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56c4a79ba0032fb252f68d30a7374f53"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>xStep</b></td></tr>
+<tr class="memitem:a56c4a79ba0032fb252f68d30a7374f53"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#a56c4a79ba0032fb252f68d30a7374f53">xStep</a></td></tr>
 <tr class="separator:a56c4a79ba0032fb252f68d30a7374f53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a647499228d18f2e4955d1ebe98221e08"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a647499228d18f2e4955d1ebe98221e08"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>yStart</b></td></tr>
+<tr class="memitem:a647499228d18f2e4955d1ebe98221e08"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#a647499228d18f2e4955d1ebe98221e08">yStart</a></td></tr>
 <tr class="separator:a647499228d18f2e4955d1ebe98221e08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a588e6a6d5a5caf93d541dc0db2d9103f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a588e6a6d5a5caf93d541dc0db2d9103f"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>yEnd</b></td></tr>
+<tr class="memitem:a588e6a6d5a5caf93d541dc0db2d9103f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#a588e6a6d5a5caf93d541dc0db2d9103f">yEnd</a></td></tr>
 <tr class="separator:a588e6a6d5a5caf93d541dc0db2d9103f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7584501b6ec92a63e26dbbb2cfec8329"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7584501b6ec92a63e26dbbb2cfec8329"></a>
-glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><b>color</b></td></tr>
+<tr class="memitem:a7584501b6ec92a63e26dbbb2cfec8329"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#a7584501b6ec92a63e26dbbb2cfec8329">color</a></td></tr>
 <tr class="separator:a7584501b6ec92a63e26dbbb2cfec8329"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab62623a8423d759cc44d45131f74ac6c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab62623a8423d759cc44d45131f74ac6c"></a>
-glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><b>colorStep</b></td></tr>
+<tr class="memitem:ab62623a8423d759cc44d45131f74ac6c"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#ab62623a8423d759cc44d45131f74ac6c">colorStep</a></td></tr>
 <tr class="separator:ab62623a8423d759cc44d45131f74ac6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a183c69d2816a58570695cde3c3e73a8d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a183c69d2816a58570695cde3c3e73a8d"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>oneOverZ</b></td></tr>
+<tr class="memitem:a183c69d2816a58570695cde3c3e73a8d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#a183c69d2816a58570695cde3c3e73a8d">oneOverZ</a></td></tr>
 <tr class="separator:a183c69d2816a58570695cde3c3e73a8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adee1d668c241bfc0dbad1637b07f2893"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adee1d668c241bfc0dbad1637b07f2893"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>oneOverZStep</b></td></tr>
+<tr class="memitem:adee1d668c241bfc0dbad1637b07f2893"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#adee1d668c241bfc0dbad1637b07f2893">oneOverZStep</a></td></tr>
 <tr class="separator:adee1d668c241bfc0dbad1637b07f2893"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a997c97e02df725e1397a5e2fe4c573f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a997c97e02df725e1397a5e2fe4c573f3"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>depth</b></td></tr>
+<tr class="memitem:a997c97e02df725e1397a5e2fe4c573f3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#a997c97e02df725e1397a5e2fe4c573f3">depth</a></td></tr>
 <tr class="separator:a997c97e02df725e1397a5e2fe4c573f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae85a7f75238e8212db2f1fc90729afcd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae85a7f75238e8212db2f1fc90729afcd"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>depthStep</b></td></tr>
+<tr class="memitem:ae85a7f75238e8212db2f1fc90729afcd"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#ae85a7f75238e8212db2f1fc90729afcd">depthStep</a></td></tr>
 <tr class="separator:ae85a7f75238e8212db2f1fc90729afcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac60ac724a2206426daeefa8781f1bef8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac60ac724a2206426daeefa8781f1bef8"></a>
-glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><b>texCoord</b></td></tr>
+<tr class="memitem:ac60ac724a2206426daeefa8781f1bef8"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#ac60ac724a2206426daeefa8781f1bef8">texCoord</a></td></tr>
 <tr class="separator:ac60ac724a2206426daeefa8781f1bef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab18d6715948ccf609e0b40f48349b533"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab18d6715948ccf609e0b40f48349b533"></a>
-glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><b>texCoordStep</b></td></tr>
+<tr class="memitem:ab18d6715948ccf609e0b40f48349b533"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#ab18d6715948ccf609e0b40f48349b533">texCoordStep</a></td></tr>
 <tr class="separator:ab18d6715948ccf609e0b40f48349b533"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class used for rasterization. Defines a polygon edge. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a97a820beb3ce7430825616b227189845"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Edge::Edge </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vertex.html">Vertex</a>&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vertex.html">Vertex</a>&#160;</td>
+          <td class="paramname"><em>end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_gradient.html">Gradient</a>&#160;</td>
+          <td class="paramname"><em>gradient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minYVertIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aee421bbd01b0ac8006e91e76589e84fb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Edge::Step </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Steps all the values on the edge. Gets called when we move down the edge </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a7584501b6ec92a63e26dbbb2cfec8329"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec4 Edge::color</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Current step color value </p>
+
+</div>
+</div>
+<a class="anchor" id="ab62623a8423d759cc44d45131f74ac6c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec4 Edge::colorStep</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Color step value. Gets added to color as we move down the edge </p>
+
+</div>
+</div>
+<a class="anchor" id="a23bac6cf22ad265c83e42219b548f199"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Edge::currentX</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Current x value fo the edge step position </p>
+
+</div>
+</div>
+<a class="anchor" id="a997c97e02df725e1397a5e2fe4c573f3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Edge::depth</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Current depth value. Gets added to the depth as we move down the edge </p>
+
+</div>
+</div>
+<a class="anchor" id="ae85a7f75238e8212db2f1fc90729afcd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Edge::depthStep</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Depth step value. Gets added to depth as we move down the edge </p>
+
+</div>
+</div>
+<a class="anchor" id="a183c69d2816a58570695cde3c3e73a8d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Edge::oneOverZ</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Current one over z (1/z) value </p>
+
+</div>
+</div>
+<a class="anchor" id="adee1d668c241bfc0dbad1637b07f2893"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Edge::oneOverZStep</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>One over z (1/z) step </p>
+
+</div>
+</div>
+<a class="anchor" id="ac60ac724a2206426daeefa8781f1bef8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec2 Edge::texCoord</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Current texture coordinate value. Gets added to the texture coordinate as we move down the edge </p>
+
+</div>
+</div>
+<a class="anchor" id="ab18d6715948ccf609e0b40f48349b533"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec2 Edge::texCoordStep</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Texture coordinate step value. Gets added to texture coordinate as we move down the edge </p>
+
+</div>
+</div>
+<a class="anchor" id="a56c4a79ba0032fb252f68d30a7374f53"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Edge::xStep</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Step of x value as we move down the edge </p>
+
+</div>
+</div>
+<a class="anchor" id="a588e6a6d5a5caf93d541dc0db2d9103f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Edge::yEnd</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Y value at the end of the edge </p>
+
+</div>
+</div>
+<a class="anchor" id="a647499228d18f2e4955d1ebe98221e08"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Edge::yStart</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Y value at the start of the edge </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>TextureExtractorV2/<a class="el" href="_edge_8hpp_source.html">Edge.hpp</a></li>
-<li>TextureExtractorV2/Edge.cpp</li>
+<li>TextureExtractorV2/<a class="el" href="_edge_8cpp.html">Edge.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_edge.html">Edge</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

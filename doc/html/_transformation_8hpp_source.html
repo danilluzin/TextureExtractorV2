@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -61,8 +69,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_transformation_8hpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -77,17 +101,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_3b6e71e20b94598e8e41069cf8fc92e1.html">TextureExtractorV2</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Transformation.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<a href="_transformation_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">//  Transformation.hpp</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//  TextureExtractor</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//</span></div>
@@ -102,57 +121,73 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;glm/glm.hpp&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;glm/gtx/transform.hpp&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;Mesh.hpp&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;Camera.hpp&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_mesh_8hpp.html">Mesh.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_camera_8hpp.html">Camera.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_transformation.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_transformation.html">Transformation</a>{</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    glm::mat4 screenSpaceTransform;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">bool</span> cameraIsSet = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_camera.html">Camera</a> camera;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_transformation.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_transformation.html">Transformation</a>{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    glm::mat4 screenSpaceTransform;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    glm::vec3 pos, rot, scale;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_transformation.html">Transformation</a>(<span class="keyword">const</span> glm::vec3 &amp; pos = glm::vec3(),</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                   <span class="keyword">const</span> glm::vec3 &amp; rot = glm::vec3(),</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                   <span class="keyword">const</span> glm::vec3 &amp; scale = glm::vec3(1.0,1.0,1.0));</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_camera.html">Camera</a> camera;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_transformation.html#abaca94f82d6d4c1515c133e638624724">   33</a></span>&#160;    glm::vec3 <a class="code" href="class_transformation.html#aeaf15f9849ac1a0dc2b5f7a7da12e0ed">pos</a>, <a class="code" href="class_transformation.html#a4d41188f5f002453bb288c32452c79d2">rot</a>, <a class="code" href="class_transformation.html#abaca94f82d6d4c1515c133e638624724">scale</a>;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> setAspectRatio(<span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> setCamera (<span class="keyword">const</span> <a class="code" href="class_camera.html">Camera</a> &amp; camera);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_transformation.html#a9e066efd2a4d28a13d1bdb54de254bec">Transformation</a>(<span class="keyword">const</span> glm::vec3 &amp; pos = glm::vec3(),</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                   <span class="keyword">const</span> glm::vec3 &amp; rot = glm::vec3(),</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                   <span class="keyword">const</span> glm::vec3 &amp; scale = glm::vec3(1.0,1.0,1.0));</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> setScreenTransform(<span class="keywordtype">int</span> halfHeight, <span class="keywordtype">int</span> halfWidth);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="struct_vertex.html">Vertex</a> doPerspectiveDevide(<span class="keyword">const</span> <a class="code" href="struct_vertex.html">Vertex</a> &amp; coord) <span class="keyword">const</span> ;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    glm::mat4 getModelMatrix() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    glm::mat4 getScreenTransform() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    glm::mat4 getViewProjection() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">bool</span> isInsideViewFrustrum (<span class="keyword">const</span> <a class="code" href="struct_bounding_box.html">BoundingBox</a> &amp; boundingBox, <span class="keyword">const</span> <a class="code" href="class_transformation.html">Transformation</a> &amp; transformation);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* Transformation_hpp */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="class_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdef"><b>Definition:</b> Camera.hpp:18</div></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_transformation.html#aba67dba23c6180e047f8172c461a7554">setAspectRatio</a>(<span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_transformation.html#a93295202dbfbb2b450d5bd893ee3237b">setCamera</a> (<span class="keyword">const</span> <a class="code" href="class_camera.html">Camera</a> &amp; camera);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_transformation.html#ae2dcb616a0231a331ed97a9ef5704849">setScreenTransform</a>(<span class="keywordtype">int</span> halfHeight, <span class="keywordtype">int</span> halfWidth);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="struct_vertex.html">Vertex</a> <a class="code" href="class_transformation.html#a9bb89f79245297795c78f62ca6b29efd">doPerspectiveDevide</a>(<span class="keyword">const</span> <a class="code" href="struct_vertex.html">Vertex</a> &amp; coord) <span class="keyword">const</span> ;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    glm::mat4 <a class="code" href="class_transformation.html#a0a6033abab9c32b487c90b95fd1a2df3">getModelMatrix</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    glm::mat4 <a class="code" href="class_transformation.html#a4d2b0cd9862c2b0485740a896617c867">getScreenTransform</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    glm::mat4 <a class="code" href="class_transformation.html#a5f57370067951aecad8b40bec887c2ef">getViewProjection</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;};</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="_transformation_8hpp.html#aa7d2fb19b307b641eaa7c81d2da46267">isInsideViewFrustrum</a> (<span class="keyword">const</span> <a class="code" href="struct_bounding_box.html">BoundingBox</a> &amp; boundingBox, <span class="keyword">const</span> <a class="code" href="class_transformation.html">Transformation</a> &amp; transformation);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* Transformation_hpp */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="class_transformation_html_ae2dcb616a0231a331ed97a9ef5704849"><div class="ttname"><a href="class_transformation.html#ae2dcb616a0231a331ed97a9ef5704849">Transformation::setScreenTransform</a></div><div class="ttdeci">void setScreenTransform(int halfHeight, int halfWidth)</div><div class="ttdef"><b>Definition:</b> Transformation.cpp:34</div></div>
+<div class="ttc" id="class_transformation_html_a4d41188f5f002453bb288c32452c79d2"><div class="ttname"><a href="class_transformation.html#a4d41188f5f002453bb288c32452c79d2">Transformation::rot</a></div><div class="ttdeci">glm::vec3 rot</div><div class="ttdef"><b>Definition:</b> Transformation.hpp:33</div></div>
+<div class="ttc" id="class_transformation_html_aeaf15f9849ac1a0dc2b5f7a7da12e0ed"><div class="ttname"><a href="class_transformation.html#aeaf15f9849ac1a0dc2b5f7a7da12e0ed">Transformation::pos</a></div><div class="ttdeci">glm::vec3 pos</div><div class="ttdef"><b>Definition:</b> Transformation.hpp:33</div></div>
+<div class="ttc" id="_transformation_8hpp_html_aa7d2fb19b307b641eaa7c81d2da46267"><div class="ttname"><a href="_transformation_8hpp.html#aa7d2fb19b307b641eaa7c81d2da46267">isInsideViewFrustrum</a></div><div class="ttdeci">bool isInsideViewFrustrum(const BoundingBox &amp;boundingBox, const Transformation &amp;transformation)</div><div class="ttdef"><b>Definition:</b> Transformation.cpp:98</div></div>
+<div class="ttc" id="class_transformation_html_a93295202dbfbb2b450d5bd893ee3237b"><div class="ttname"><a href="class_transformation.html#a93295202dbfbb2b450d5bd893ee3237b">Transformation::setCamera</a></div><div class="ttdeci">void setCamera(const Camera &amp;camera)</div><div class="ttdef"><b>Definition:</b> Transformation.cpp:30</div></div>
+<div class="ttc" id="class_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdef"><b>Definition:</b> Camera.hpp:21</div></div>
 <div class="ttc" id="struct_bounding_box_html"><div class="ttname"><a href="struct_bounding_box.html">BoundingBox</a></div><div class="ttdef"><b>Definition:</b> Mesh.hpp:82</div></div>
-<div class="ttc" id="class_transformation_html"><div class="ttname"><a href="class_transformation.html">Transformation</a></div><div class="ttdef"><b>Definition:</b> Transformation.hpp:19</div></div>
+<div class="ttc" id="class_transformation_html_a0a6033abab9c32b487c90b95fd1a2df3"><div class="ttname"><a href="class_transformation.html#a0a6033abab9c32b487c90b95fd1a2df3">Transformation::getModelMatrix</a></div><div class="ttdeci">glm::mat4 getModelMatrix() const </div><div class="ttdef"><b>Definition:</b> Transformation.cpp:61</div></div>
+<div class="ttc" id="class_transformation_html"><div class="ttname"><a href="class_transformation.html">Transformation</a></div><div class="ttdef"><b>Definition:</b> Transformation.hpp:22</div></div>
+<div class="ttc" id="class_transformation_html_a4d2b0cd9862c2b0485740a896617c867"><div class="ttname"><a href="class_transformation.html#a4d2b0cd9862c2b0485740a896617c867">Transformation::getScreenTransform</a></div><div class="ttdeci">glm::mat4 getScreenTransform() const </div><div class="ttdef"><b>Definition:</b> Transformation.cpp:52</div></div>
+<div class="ttc" id="class_transformation_html_a9bb89f79245297795c78f62ca6b29efd"><div class="ttname"><a href="class_transformation.html#a9bb89f79245297795c78f62ca6b29efd">Transformation::doPerspectiveDevide</a></div><div class="ttdeci">Vertex doPerspectiveDevide(const Vertex &amp;coord) const </div><div class="ttdef"><b>Definition:</b> Transformation.cpp:42</div></div>
+<div class="ttc" id="class_transformation_html_abaca94f82d6d4c1515c133e638624724"><div class="ttname"><a href="class_transformation.html#abaca94f82d6d4c1515c133e638624724">Transformation::scale</a></div><div class="ttdeci">glm::vec3 scale</div><div class="ttdef"><b>Definition:</b> Transformation.hpp:33</div></div>
 <div class="ttc" id="struct_vertex_html"><div class="ttname"><a href="struct_vertex.html">Vertex</a></div><div class="ttdef"><b>Definition:</b> Mesh.hpp:22</div></div>
+<div class="ttc" id="class_transformation_html_aba67dba23c6180e047f8172c461a7554"><div class="ttname"><a href="class_transformation.html#aba67dba23c6180e047f8172c461a7554">Transformation::setAspectRatio</a></div><div class="ttdeci">void setAspectRatio(int width, int height)</div><div class="ttdef"><b>Definition:</b> Transformation.cpp:24</div></div>
+<div class="ttc" id="_mesh_8hpp_html"><div class="ttname"><a href="_mesh_8hpp.html">Mesh.hpp</a></div></div>
+<div class="ttc" id="class_transformation_html_a9e066efd2a4d28a13d1bdb54de254bec"><div class="ttname"><a href="class_transformation.html#a9e066efd2a4d28a13d1bdb54de254bec">Transformation::Transformation</a></div><div class="ttdeci">Transformation(const glm::vec3 &amp;pos=glm::vec3(), const glm::vec3 &amp;rot=glm::vec3(), const glm::vec3 &amp;scale=glm::vec3(1.0, 1.0, 1.0))</div><div class="ttdef"><b>Definition:</b> Transformation.cpp:11</div></div>
+<div class="ttc" id="class_transformation_html_a5f57370067951aecad8b40bec887c2ef"><div class="ttname"><a href="class_transformation.html#a5f57370067951aecad8b40bec887c2ef">Transformation::getViewProjection</a></div><div class="ttdeci">glm::mat4 getViewProjection() const </div><div class="ttdef"><b>Definition:</b> Transformation.cpp:56</div></div>
+<div class="ttc" id="_camera_8hpp_html"><div class="ttname"><a href="_camera_8hpp.html">Camera.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_3b6e71e20b94598e8e41069cf8fc92e1.html">TextureExtractorV2</a></li><li class="navelem"><a class="el" href="_transformation_8hpp.html">Transformation.hpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

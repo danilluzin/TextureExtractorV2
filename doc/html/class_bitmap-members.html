@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -62,10 +70,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_bitmap.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,7 +103,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Bitmap Member List</div>  </div>
@@ -89,26 +111,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="class_bitmap.html">Bitmap</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>at</b>(int x, int y) const  (defined in <a class="el" href="class_bitmap.html">Bitmap</a>)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>Bitmap</b>(int width, int height) (defined in <a class="el" href="class_bitmap.html">Bitmap</a>)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Bitmap</b>() (defined in <a class="el" href="class_bitmap.html">Bitmap</a>)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>Bitmap</b>(const std::string &amp;filename) (defined in <a class="el" href="class_bitmap.html">Bitmap</a>)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Bitmap</b>(const cv::Mat &amp;img) (defined in <a class="el" href="class_bitmap.html">Bitmap</a>)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>clear</b>(glm::vec4 color) (defined in <a class="el" href="class_bitmap.html">Bitmap</a>)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>height</b> (defined in <a class="el" href="class_render_context.html">RenderContext</a>)</td><td class="entry"><a class="el" href="class_render_context.html">RenderContext</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>operator=</b>(const Bitmap &amp;other) (defined in <a class="el" href="class_bitmap.html">Bitmap</a>)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>putPixel</b>(int x, int y, glm::vec4 color) (defined in <a class="el" href="class_bitmap.html">Bitmap</a>)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>RenderContext</b>(int width, int height) (defined in <a class="el" href="class_render_context.html">RenderContext</a>)</td><td class="entry"><a class="el" href="class_render_context.html">RenderContext</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>save</b>(std::string destFilename) (defined in <a class="el" href="class_bitmap.html">Bitmap</a>)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>toHSV</b>() const  (defined in <a class="el" href="class_bitmap.html">Bitmap</a>)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>toSobel</b>() const  (defined in <a class="el" href="class_bitmap.html">Bitmap</a>)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>width</b> (defined in <a class="el" href="class_render_context.html">RenderContext</a>)</td><td class="entry"><a class="el" href="class_render_context.html">RenderContext</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_bitmap.html#af5c0948748aa68b2737871d20201c2e5">at</a>(int x, int y) const </td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_bitmap.html#a40526748415c8bbc58a8510d636c20f4">Bitmap</a>(int width, int height)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_bitmap.html#aa6ef6d8c0b66664350ef4dd062db3aec">Bitmap</a>()</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_bitmap.html#a5a26ccbab9af0b40421eacc21e75536d">Bitmap</a>(const std::string &amp;filename)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_bitmap.html#a5614426bc7923697c1d1f35e04a37c3c">Bitmap</a>(const cv::Mat &amp;img)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_bitmap.html#a409022ea446f41edcce42c076dff1608">clear</a>(glm::vec4 color)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_render_context.html#a194a36ce3d85ae9ef5b40396e1e2d950">height</a></td><td class="entry"><a class="el" href="class_render_context.html">RenderContext</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_bitmap.html#a7a1a9969ca533d4adebe7c44a26ee092">operator=</a>(const Bitmap &amp;other)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_bitmap.html#a6f880db00f7d05e6284005a6553aa17c">putPixel</a>(int x, int y, glm::vec4 color)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_render_context.html#aff0b414b1aa39e7c5ca4ed5cadf20721">RenderContext</a>(int width, int height)</td><td class="entry"><a class="el" href="class_render_context.html">RenderContext</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_bitmap.html#a9ca33640e5554ee36b435fa789260903">save</a>(std::string destFilename)</td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_bitmap.html#a80c5adbea91bb7311008dab576dc82c6">toHSV</a>() const </td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_bitmap.html#a99d5b69de318e80c9af1f660f46c00c4">toSobel</a>() const </td><td class="entry"><a class="el" href="class_bitmap.html">Bitmap</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_render_context.html#a8009663c022d4a60d8a4dbfdb4183f46">width</a></td><td class="entry"><a class="el" href="class_render_context.html">RenderContext</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

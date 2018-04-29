@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -62,10 +70,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_transformation.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,7 +103,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -90,56 +112,289 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Transformation Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_transformation_8hpp_source.html">Transformation.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for Transformation:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_transformation__coll__graph.png" border="0" usemap="#_transformation_coll__map" alt="Collaboration graph"/></div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9e066efd2a4d28a13d1bdb54de254bec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e066efd2a4d28a13d1bdb54de254bec"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Transformation</b> (const glm::vec3 &amp;pos=glm::vec3(), const glm::vec3 &amp;rot=glm::vec3(), const glm::vec3 &amp;scale=glm::vec3(1.0, 1.0, 1.0))</td></tr>
+<tr class="memitem:a9e066efd2a4d28a13d1bdb54de254bec"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformation.html#a9e066efd2a4d28a13d1bdb54de254bec">Transformation</a> (const glm::vec3 &amp;<a class="el" href="class_transformation.html#aeaf15f9849ac1a0dc2b5f7a7da12e0ed">pos</a>=glm::vec3(), const glm::vec3 &amp;<a class="el" href="class_transformation.html#a4d41188f5f002453bb288c32452c79d2">rot</a>=glm::vec3(), const glm::vec3 &amp;<a class="el" href="class_transformation.html#abaca94f82d6d4c1515c133e638624724">scale</a>=glm::vec3(1.0, 1.0, 1.0))</td></tr>
 <tr class="separator:a9e066efd2a4d28a13d1bdb54de254bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba67dba23c6180e047f8172c461a7554"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba67dba23c6180e047f8172c461a7554"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setAspectRatio</b> (int width, int height)</td></tr>
+<tr class="memitem:aba67dba23c6180e047f8172c461a7554"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformation.html#aba67dba23c6180e047f8172c461a7554">setAspectRatio</a> (int width, int height)</td></tr>
 <tr class="separator:aba67dba23c6180e047f8172c461a7554"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93295202dbfbb2b450d5bd893ee3237b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93295202dbfbb2b450d5bd893ee3237b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setCamera</b> (const <a class="el" href="class_camera.html">Camera</a> &amp;camera)</td></tr>
+<tr class="memitem:a93295202dbfbb2b450d5bd893ee3237b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformation.html#a93295202dbfbb2b450d5bd893ee3237b">setCamera</a> (const <a class="el" href="class_camera.html">Camera</a> &amp;camera)</td></tr>
 <tr class="separator:a93295202dbfbb2b450d5bd893ee3237b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2dcb616a0231a331ed97a9ef5704849"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2dcb616a0231a331ed97a9ef5704849"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setScreenTransform</b> (int halfHeight, int halfWidth)</td></tr>
+<tr class="memitem:ae2dcb616a0231a331ed97a9ef5704849"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformation.html#ae2dcb616a0231a331ed97a9ef5704849">setScreenTransform</a> (int halfHeight, int halfWidth)</td></tr>
 <tr class="separator:ae2dcb616a0231a331ed97a9ef5704849"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bb89f79245297795c78f62ca6b29efd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9bb89f79245297795c78f62ca6b29efd"></a>
-<a class="el" href="struct_vertex.html">Vertex</a>&#160;</td><td class="memItemRight" valign="bottom"><b>doPerspectiveDevide</b> (const <a class="el" href="struct_vertex.html">Vertex</a> &amp;coord) const </td></tr>
+<tr class="memitem:a9bb89f79245297795c78f62ca6b29efd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vertex.html">Vertex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformation.html#a9bb89f79245297795c78f62ca6b29efd">doPerspectiveDevide</a> (const <a class="el" href="struct_vertex.html">Vertex</a> &amp;coord) const </td></tr>
 <tr class="separator:a9bb89f79245297795c78f62ca6b29efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a6033abab9c32b487c90b95fd1a2df3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a6033abab9c32b487c90b95fd1a2df3"></a>
-glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><b>getModelMatrix</b> () const </td></tr>
+<tr class="memitem:a0a6033abab9c32b487c90b95fd1a2df3"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformation.html#a0a6033abab9c32b487c90b95fd1a2df3">getModelMatrix</a> () const </td></tr>
 <tr class="separator:a0a6033abab9c32b487c90b95fd1a2df3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d2b0cd9862c2b0485740a896617c867"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d2b0cd9862c2b0485740a896617c867"></a>
-glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><b>getScreenTransform</b> () const </td></tr>
+<tr class="memitem:a4d2b0cd9862c2b0485740a896617c867"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformation.html#a4d2b0cd9862c2b0485740a896617c867">getScreenTransform</a> () const </td></tr>
 <tr class="separator:a4d2b0cd9862c2b0485740a896617c867"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f57370067951aecad8b40bec887c2ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f57370067951aecad8b40bec887c2ef"></a>
-glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><b>getViewProjection</b> () const </td></tr>
+<tr class="memitem:a5f57370067951aecad8b40bec887c2ef"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformation.html#a5f57370067951aecad8b40bec887c2ef">getViewProjection</a> () const </td></tr>
 <tr class="separator:a5f57370067951aecad8b40bec887c2ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aeaf15f9849ac1a0dc2b5f7a7da12e0ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeaf15f9849ac1a0dc2b5f7a7da12e0ed"></a>
-glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>pos</b></td></tr>
+<tr class="memitem:aeaf15f9849ac1a0dc2b5f7a7da12e0ed"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformation.html#aeaf15f9849ac1a0dc2b5f7a7da12e0ed">pos</a></td></tr>
 <tr class="separator:aeaf15f9849ac1a0dc2b5f7a7da12e0ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d41188f5f002453bb288c32452c79d2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d41188f5f002453bb288c32452c79d2"></a>
-glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>rot</b></td></tr>
+<tr class="memitem:a4d41188f5f002453bb288c32452c79d2"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformation.html#a4d41188f5f002453bb288c32452c79d2">rot</a></td></tr>
 <tr class="separator:a4d41188f5f002453bb288c32452c79d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abaca94f82d6d4c1515c133e638624724"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abaca94f82d6d4c1515c133e638624724"></a>
-glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><b>scale</b></td></tr>
+<tr class="memitem:abaca94f82d6d4c1515c133e638624724"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transformation.html#abaca94f82d6d4c1515c133e638624724">scale</a></td></tr>
 <tr class="separator:abaca94f82d6d4c1515c133e638624724"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class that holds matrix transformation information for the photographs </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a9e066efd2a4d28a13d1bdb54de254bec"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Transformation::Transformation </td>
+          <td>(</td>
+          <td class="paramtype">const glm::vec3 &amp;&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>glm::vec3()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const glm::vec3 &amp;&#160;</td>
+          <td class="paramname"><em>rot</em> = <code>glm::vec3()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const glm::vec3 &amp;&#160;</td>
+          <td class="paramname"><em>scale</em> = <code>glm::vec3(1.0,1.0,1.0)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a9bb89f79245297795c78f62ca6b29efd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_vertex.html">Vertex</a> Transformation::doPerspectiveDevide </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_vertex.html">Vertex</a> &amp;&#160;</td>
+          <td class="paramname"><em>coord</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Performs a perspective devide by w </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coord</td><td>a source coord. Stays unchanged </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>vertex after the devision. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0a6033abab9c32b487c90b95fd1a2df3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::mat4 Transformation::getModelMatrix </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>a model matrix. Constatn in our implementation. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4d2b0cd9862c2b0485740a896617c867"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::mat4 Transformation::getScreenTransform </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>screen space transform matrix. Based on the shape and size of the photo </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5f57370067951aecad8b40bec887c2ef"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::mat4 Transformation::getViewProjection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>view projection matrix. Based on the camera parameters. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aba67dba23c6180e047f8172c461a7554"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Transformation::setAspectRatio </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Changes aspect ratio, updates perspective matrix </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>width of the image </td></tr>
+    <tr><td class="paramname">height</td><td>height of the image </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a93295202dbfbb2b450d5bd893ee3237b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Transformation::setCamera </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_camera.html">Camera</a> &amp;&#160;</td>
+          <td class="paramname"><em>camera</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets a camera representation </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">camera</td><td>a new camera </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae2dcb616a0231a331ed97a9ef5704849"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Transformation::setScreenTransform </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>halfHeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>halfWidth</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Seta a new screen space transform. Used for recreating an image. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">halfHeight</td><td>half of a target image height </td></tr>
+    <tr><td class="paramname">halfWidth</td><td>half of a target image width </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="aeaf15f9849ac1a0dc2b5f7a7da12e0ed"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec3 Transformation::pos</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Position, Rotation, Scale vectors. Are constant for our implemenation </p>
+
+</div>
+</div>
+<a class="anchor" id="a4d41188f5f002453bb288c32452c79d2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec3 Transformation::rot</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abaca94f82d6d4c1515c133e638624724"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec3 Transformation::scale</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>TextureExtractorV2/<a class="el" href="_transformation_8hpp_source.html">Transformation.hpp</a></li>
-<li>TextureExtractorV2/Transformation.cpp</li>
+<li>TextureExtractorV2/<a class="el" href="_transformation_8cpp.html">Transformation.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_transformation.html">Transformation</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

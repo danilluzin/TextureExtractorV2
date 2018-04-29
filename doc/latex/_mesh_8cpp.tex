@@ -1,0 +1,54 @@
+\hypertarget{_mesh_8cpp}{}\section{Texture\+Extractor\+V2/\+Mesh.cpp File Reference}
+\label{_mesh_8cpp}\index{Texture\+Extractor\+V2/\+Mesh.\+cpp@{Texture\+Extractor\+V2/\+Mesh.\+cpp}}
+{\ttfamily \#include \char`\"{}Mesh.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Utils.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Arguments.\+h\char`\"{}}\\*
+Include dependency graph for Mesh.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{_mesh_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aa}{Direction} \hyperlink{_mesh_8cpp_ac3bbbb77062e0b4f00c539f6f2ba1425}{get\+Optimal\+Separation} (const \hyperlink{struct_bounding_box}{Bounding\+Box} \&boundin\+Box)
+\item 
+\hyperlink{struct_vertex}{Vertex} \hyperlink{_mesh_8cpp_a1a13ce8c7dc46f41214b2294ee6b3d70}{operator$\ast$} (const glm\+::mat4 \&matrix, const \hyperlink{struct_vertex}{Vertex} \&vertex)
+\item 
+bool \hyperlink{_mesh_8cpp_ac821843a39dc256ca1a854357112a7cd}{is\+Inside\+View\+Frustrum} (const \hyperlink{struct_vertex}{Vertex} \&v)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{_mesh_8cpp_ac3bbbb77062e0b4f00c539f6f2ba1425}{}\index{Mesh.\+cpp@{Mesh.\+cpp}!get\+Optimal\+Separation@{get\+Optimal\+Separation}}
+\index{get\+Optimal\+Separation@{get\+Optimal\+Separation}!Mesh.\+cpp@{Mesh.\+cpp}}
+\subsubsection[{get\+Optimal\+Separation(const Bounding\+Box \&boundin\+Box)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Direction} get\+Optimal\+Separation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bounding\+Box} \&}]{boundin\+Box}
+\end{DoxyParamCaption}
+)}\label{_mesh_8cpp_ac3bbbb77062e0b4f00c539f6f2ba1425}
+\hypertarget{_mesh_8cpp_ac821843a39dc256ca1a854357112a7cd}{}\index{Mesh.\+cpp@{Mesh.\+cpp}!is\+Inside\+View\+Frustrum@{is\+Inside\+View\+Frustrum}}
+\index{is\+Inside\+View\+Frustrum@{is\+Inside\+View\+Frustrum}!Mesh.\+cpp@{Mesh.\+cpp}}
+\subsubsection[{is\+Inside\+View\+Frustrum(const Vertex \&v)}]{\setlength{\rightskip}{0pt plus 5cm}bool is\+Inside\+View\+Frustrum (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vertex} \&}]{v}
+\end{DoxyParamCaption}
+)}\label{_mesh_8cpp_ac821843a39dc256ca1a854357112a7cd}
+\hyperlink{class_view}{View} frustum check in clipping space. Checks agains the w \hypertarget{_mesh_8cpp_a1a13ce8c7dc46f41214b2294ee6b3d70}{}\index{Mesh.\+cpp@{Mesh.\+cpp}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Mesh.\+cpp@{Mesh.\+cpp}}
+\subsubsection[{operator$\ast$(const glm\+::mat4 \&matrix, const Vertex \&vertex)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vertex} operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const glm\+::mat4 \&}]{matrix, }
+\item[{const {\bf Vertex} \&}]{vertex}
+\end{DoxyParamCaption}
+)}\label{_mesh_8cpp_a1a13ce8c7dc46f41214b2294ee6b3d70}
+Traditional matrix x vertex multiplication 
+\begin{DoxyParams}{Parameters}
+{\em matrix} & matrix to multiply with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+resulting vertex of multiplying matrix$\ast$coord 
+\end{DoxyReturn}

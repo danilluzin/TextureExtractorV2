@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -62,10 +70,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_texture_gradient.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,7 +103,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -90,59 +112,262 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">TextureGradient Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_texture_gradient_8hpp_source.html">TextureGradient.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for TextureGradient:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_texture_gradient__coll__graph.png" border="0" usemap="#_texture_gradient_coll__map" alt="Collaboration graph"/></div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac52b7944976524744bcc35ec9918b09c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac52b7944976524744bcc35ec9918b09c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>TextureGradient</b> (<a class="el" href="struct_vertex.html">Vertex</a> minYVert, <a class="el" href="struct_vertex.html">Vertex</a> midYVert, <a class="el" href="struct_vertex.html">Vertex</a> maxYVert)</td></tr>
+<tr class="memitem:ac52b7944976524744bcc35ec9918b09c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_gradient.html#ac52b7944976524744bcc35ec9918b09c">TextureGradient</a> (<a class="el" href="struct_vertex.html">Vertex</a> minYVert, <a class="el" href="struct_vertex.html">Vertex</a> midYVert, <a class="el" href="struct_vertex.html">Vertex</a> maxYVert)</td></tr>
 <tr class="separator:ac52b7944976524744bcc35ec9918b09c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1aac43bd7935b57410122be0affa0896"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1aac43bd7935b57410122be0affa0896"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>TextureGradient</b> (<a class="el" href="struct_vertex.html">Vertex</a> minYVert, <a class="el" href="struct_vertex.html">Vertex</a> midYVert, <a class="el" href="struct_vertex.html">Vertex</a> maxYVert, glm::vec4 color[3])</td></tr>
+<tr class="memitem:a1aac43bd7935b57410122be0affa0896"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_gradient.html#a1aac43bd7935b57410122be0affa0896">TextureGradient</a> (<a class="el" href="struct_vertex.html">Vertex</a> minYVert, <a class="el" href="struct_vertex.html">Vertex</a> midYVert, <a class="el" href="struct_vertex.html">Vertex</a> maxYVert, glm::vec4 <a class="el" href="class_texture_gradient.html#aad5614bae7a7361a1b82b69d9b082ea6">color</a>[3])</td></tr>
 <tr class="separator:a1aac43bd7935b57410122be0affa0896"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a34bee5b4f0894efeec794704d3fd2cec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34bee5b4f0894efeec794704d3fd2cec"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>photoCoordXXStep</b></td></tr>
+<tr class="memitem:a34bee5b4f0894efeec794704d3fd2cec"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_gradient.html#a34bee5b4f0894efeec794704d3fd2cec">photoCoordXXStep</a></td></tr>
 <tr class="separator:a34bee5b4f0894efeec794704d3fd2cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad667fab8a0c76c19fdb5d27510b5a9ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad667fab8a0c76c19fdb5d27510b5a9ba"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>photoCoordXYStep</b></td></tr>
+<tr class="memitem:ad667fab8a0c76c19fdb5d27510b5a9ba"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_gradient.html#ad667fab8a0c76c19fdb5d27510b5a9ba">photoCoordXYStep</a></td></tr>
 <tr class="separator:ad667fab8a0c76c19fdb5d27510b5a9ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af13ceccfc1629d08233d025c1d060992"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af13ceccfc1629d08233d025c1d060992"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>photoCoordYXStep</b></td></tr>
+<tr class="memitem:af13ceccfc1629d08233d025c1d060992"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_gradient.html#af13ceccfc1629d08233d025c1d060992">photoCoordYXStep</a></td></tr>
 <tr class="separator:af13ceccfc1629d08233d025c1d060992"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12b19a4e9245a4c71f9bb1c36f40f94d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a12b19a4e9245a4c71f9bb1c36f40f94d"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>photoCoordYYStep</b></td></tr>
+<tr class="memitem:a12b19a4e9245a4c71f9bb1c36f40f94d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_gradient.html#a12b19a4e9245a4c71f9bb1c36f40f94d">photoCoordYYStep</a></td></tr>
 <tr class="separator:a12b19a4e9245a4c71f9bb1c36f40f94d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a504ba2546491bbe0eb80c9e496020aff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a504ba2546491bbe0eb80c9e496020aff"></a>
-glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><b>oneOverZStep</b></td></tr>
+<tr class="memitem:a504ba2546491bbe0eb80c9e496020aff"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_gradient.html#a504ba2546491bbe0eb80c9e496020aff">oneOverZStep</a></td></tr>
 <tr class="separator:a504ba2546491bbe0eb80c9e496020aff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a864076b3aeea93295c0f3d262ede9fac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a864076b3aeea93295c0f3d262ede9fac"></a>
-glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><b>photoCoords</b> [3]</td></tr>
+<tr class="memitem:a864076b3aeea93295c0f3d262ede9fac"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_gradient.html#a864076b3aeea93295c0f3d262ede9fac">photoCoords</a> [3]</td></tr>
 <tr class="separator:a864076b3aeea93295c0f3d262ede9fac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3a61d0f068bf9e1716d4a6043fb39c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac3a61d0f068bf9e1716d4a6043fb39c3"></a>
-glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><b>colorXStep</b></td></tr>
+<tr class="memitem:ac3a61d0f068bf9e1716d4a6043fb39c3"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_gradient.html#ac3a61d0f068bf9e1716d4a6043fb39c3">colorXStep</a></td></tr>
 <tr class="separator:ac3a61d0f068bf9e1716d4a6043fb39c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac34b317ff76b5493b159b3491df26839"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac34b317ff76b5493b159b3491df26839"></a>
-glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><b>colorYStep</b></td></tr>
+<tr class="memitem:ac34b317ff76b5493b159b3491df26839"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_gradient.html#ac34b317ff76b5493b159b3491df26839">colorYStep</a></td></tr>
 <tr class="separator:ac34b317ff76b5493b159b3491df26839"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad5614bae7a7361a1b82b69d9b082ea6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aad5614bae7a7361a1b82b69d9b082ea6"></a>
-glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><b>color</b> [3]</td></tr>
+<tr class="memitem:aad5614bae7a7361a1b82b69d9b082ea6"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_gradient.html#aad5614bae7a7361a1b82b69d9b082ea6">color</a> [3]</td></tr>
 <tr class="separator:aad5614bae7a7361a1b82b69d9b082ea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7d99a3ca4515f65a8afeb5139cd2d8e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af7d99a3ca4515f65a8afeb5139cd2d8e"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>oneOverZ</b> [3]</td></tr>
+<tr class="memitem:af7d99a3ca4515f65a8afeb5139cd2d8e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_gradient.html#af7d99a3ca4515f65a8afeb5139cd2d8e">oneOverZ</a> [3]</td></tr>
 <tr class="separator:af7d99a3ca4515f65a8afeb5139cd2d8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ac52b7944976524744bcc35ec9918b09c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TextureGradient::TextureGradient </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vertex.html">Vertex</a>&#160;</td>
+          <td class="paramname"><em>minYVert</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vertex.html">Vertex</a>&#160;</td>
+          <td class="paramname"><em>midYVert</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vertex.html">Vertex</a>&#160;</td>
+          <td class="paramname"><em>maxYVert</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets up a gradient. Uses three verticies to acalculate steppin values. </p>
+
+</div>
+</div>
+<a class="anchor" id="a1aac43bd7935b57410122be0affa0896"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TextureGradient::TextureGradient </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vertex.html">Vertex</a>&#160;</td>
+          <td class="paramname"><em>minYVert</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vertex.html">Vertex</a>&#160;</td>
+          <td class="paramname"><em>midYVert</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vertex.html">Vertex</a>&#160;</td>
+          <td class="paramname"><em>maxYVert</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec4&#160;</td>
+          <td class="paramname"><em>color</em>[3]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets up a gradient. Uses three verticies to acalculate steppin values. Adds color gradient as well </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="aad5614bae7a7361a1b82b69d9b082ea6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec4 TextureGradient::color[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Color adjustemnt values at the verticies that make up gradient </p>
+
+</div>
+</div>
+<a class="anchor" id="ac3a61d0f068bf9e1716d4a6043fb39c3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec4 TextureGradient::colorXStep</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Color step as we move in the x direction </p>
+
+</div>
+</div>
+<a class="anchor" id="ac34b317ff76b5493b159b3491df26839"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec4 TextureGradient::colorYStep</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Color step as we move in the y direction </p>
+
+</div>
+</div>
+<a class="anchor" id="af7d99a3ca4515f65a8afeb5139cd2d8e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TextureGradient::oneOverZ[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>One overZ step </p>
+
+</div>
+</div>
+<a class="anchor" id="a504ba2546491bbe0eb80c9e496020aff"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec2 TextureGradient::oneOverZStep</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>One overZ step </p>
+
+</div>
+</div>
+<a class="anchor" id="a864076b3aeea93295c0f3d262ede9fac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec4 TextureGradient::photoCoords[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Photo coordinates at the texture verticies that make up gradient </p>
+
+</div>
+</div>
+<a class="anchor" id="a34bee5b4f0894efeec794704d3fd2cec"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TextureGradient::photoCoordXXStep</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Photo coordinate x step as we move in the x direction on a texture </p>
+
+</div>
+</div>
+<a class="anchor" id="ad667fab8a0c76c19fdb5d27510b5a9ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TextureGradient::photoCoordXYStep</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Photo coordinate x step as we move in the y direction on a texture </p>
+
+</div>
+</div>
+<a class="anchor" id="af13ceccfc1629d08233d025c1d060992"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TextureGradient::photoCoordYXStep</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Photo coordinate y step as we move in the x direction on a texture </p>
+
+</div>
+</div>
+<a class="anchor" id="a12b19a4e9245a4c71f9bb1c36f40f94d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TextureGradient::photoCoordYYStep</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Photo coordinate y step as we move in the y direction on a texture </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>TextureExtractorV2/<a class="el" href="_texture_gradient_8hpp_source.html">TextureGradient.hpp</a></li>
-<li>TextureExtractorV2/TextureGradient.cpp</li>
+<li>TextureExtractorV2/<a class="el" href="_texture_gradient_8cpp.html">TextureGradient.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_texture_gradient.html">TextureGradient</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

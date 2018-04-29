@@ -1,0 +1,20 @@
+<map id="TextureExtractorV2/Utils.h" name="TextureExtractorV2/Utils.h">
+<area shape="rect" id="node2" href="$_arguments_8h.html" title="TextureExtractorV2\l/Arguments.h" alt="" coords="291,99,426,137"/>
+<area shape="rect" id="node3" href="$_data_costs_extractor_8cpp.html" title="TextureExtractorV2\l/DataCostsExtractor.cpp" alt="" coords="564,192,729,231"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="TextureExtractorV2\l/main.cpp" alt="" coords="87,279,222,317"/>
+<area shape="rect" id="node6" href="$_texture_extractor_8cpp.html" title="TextureExtractorV2\l/TextureExtractor.cpp" alt="" coords="863,279,1009,317"/>
+<area shape="rect" id="node8" href="$_mesh_8cpp.html" title="TextureExtractorV2\l/Mesh.cpp" alt="" coords="25,192,159,231"/>
+<area shape="rect" id="node9" href="$_rasterizer_8cpp.html" title="TextureExtractorV2\l/Rasterizer.cpp" alt="" coords="406,192,541,231"/>
+<area shape="rect" id="node10" href="$_camera_8cpp.html" title="TextureExtractorV2\l/Camera.cpp" alt="" coords="837,99,971,137"/>
+<area shape="rect" id="node11" href="$_data_costs_extractor_8hpp.html" title="TextureExtractorV2\l/DataCostsExtractor.hpp" alt="" coords="646,99,812,137"/>
+<area shape="rect" id="node14" href="$_extraction_worker__apply_gradient_8cpp.html" title="TextureExtractorV2\l/ExtractionWorker_applyGradient.cpp" alt="" coords="1047,99,1289,137"/>
+<area shape="rect" id="node15" href="$_extraction_worker__common_code_8cpp.html" title="TextureExtractorV2\l/ExtractionWorker_commonCode.cpp" alt="" coords="1313,99,1556,137"/>
+<area shape="rect" id="node16" href="$_extraction_worker__extend_8cpp.html" title="TextureExtractorV2\l/ExtractionWorker_extend.cpp" alt="" coords="1580,99,1780,137"/>
+<area shape="rect" id="node17" href="$_extraction_worker__extract_8cpp.html" title="TextureExtractorV2\l/ExtractionWorker_extract.cpp" alt="" coords="1804,99,2004,137"/>
+<area shape="rect" id="node18" href="$_extraction_worker__fill_texture_triangle_color_8cpp.html" title="TextureExtractorV2\l/ExtractionWorker_fillTexture\lTriangleColor.cpp" alt="" coords="2027,92,2218,144"/>
+<area shape="rect" id="node19" href="$_transformation_8cpp.html" title="TextureExtractorV2\l/Transformation.cpp" alt="" coords="2242,99,2382,137"/>
+<area shape="rect" id="node4" href="$_texture_extractor_8hpp.html" title="TextureExtractorV2\l/TextureExtractor.hpp" alt="" coords="234,192,382,231"/>
+<area shape="rect" id="node7" href="$_texture_extractor__map_map_8cpp.html" title="TextureExtractorV2\l/TextureExtractor_mapMap.cpp" alt="" coords="246,279,453,317"/>
+<area shape="rect" id="node12" href="$_data_cost_extraction_manager_8hpp.html" title="TextureExtractorV2\l/DataCostExtractionManager.hpp" alt="" coords="754,192,972,231"/>
+<area shape="rect" id="node13" href="$_data_cost_extraction_manager_8cpp.html" title="TextureExtractorV2\l/DataCostExtractionManager.cpp" alt="" coords="622,279,839,317"/>
+</map>

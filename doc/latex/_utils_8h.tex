@@ -1,0 +1,260 @@
+\hypertarget{_utils_8h}{}\section{Texture\+Extractor\+V2/\+Utils.h File Reference}
+\label{_utils_8h}\index{Texture\+Extractor\+V2/\+Utils.\+h@{Texture\+Extractor\+V2/\+Utils.\+h}}
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$glm/glm.\+hpp$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include \char`\"{}Misc.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$sstream$>$}\\*
+{\ttfamily \#include $<$iomanip$>$}\\*
+Include dependency graph for Utils.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_utils_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{_utils_8h_aa448a874bf67c6342676cfda92d41d0b}{fit\+Percent} (float p)
+\item 
+std\+::string \hyperlink{_utils_8h_a159145db43ce3cdae02d2e36e03fcd5b}{s} (int c)
+\item 
+void \hyperlink{_utils_8h_a2b2c2efbe1f07ccf2d143c5ea1aa4e00}{print} (const std\+::string \&text)
+\item 
+void \hyperlink{_utils_8h_a37eada943a19389351caade42ff81b1b}{print\+Over} (const std\+::string \&text)
+\item 
+void \hyperlink{_utils_8h_a540c21af675327a40c7361de70aca6b1}{print\+Error} (const std\+::string \&text)
+\item 
+void \hyperlink{_utils_8h_ab3e44d7564c9ee36caecf2646dd8913c}{print\+Warning} (const std\+::string \&text)
+\item 
+void \hyperlink{_utils_8h_ac157cec140c72bb39cf5890b33f5ba87}{print\+Bold} (const std\+::string \&text)
+\item 
+float \hyperlink{_utils_8h_a130573a82b1c39ebdda8d2e79a0f15c6}{parse\+Float} (std\+::string txt)
+\item 
+int \hyperlink{_utils_8h_a78295d60d0dfceb47cef5e1bc83757eb}{parse\+Int} (std\+::string txt)
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{_utils_8h_ae5e9791355689f2ac0ee5de42b8fe0a7}{split\+String} (const std\+::string \&\hyperlink{_utils_8h_a159145db43ce3cdae02d2e36e03fcd5b}{s}, char delim)
+\item 
+std\+::vector$<$ float $>$ \hyperlink{_utils_8h_a8a563c9f93381adf5703d6ac2f922e86}{split\+Float\+Line} (const std\+::string \&line)
+\item 
+std\+::vector$<$ int $>$ \hyperlink{_utils_8h_a26afcb039308ceb9cca9f2e147f58736}{split\+Int\+Line} (const std\+::string \&line)
+\item 
+void \hyperlink{_utils_8h_ad600a35d5d9e5a52ec293805cc160c30}{print\+Matrix} (const glm\+::mat4 \&m)
+\item 
+void \hyperlink{_utils_8h_a81f6fc31571b720067cfd47f08e08d2f}{clamp\+R\+G\+B\+A} (glm\+::vec4 \&color)
+\item 
+void \hyperlink{_utils_8h_a6596d29fe94da4a1068d1301824cf94a}{adj\+Pad} (int t)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{_utils_8h_ab3f078684998b83967d507d0f453f454}{verbose}
+\item 
+int \hyperlink{_utils_8h_af1d40a330bc745f51d8b079c9dc473ff}{pad}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{_utils_8h_a6596d29fe94da4a1068d1301824cf94a}{}\index{Utils.\+h@{Utils.\+h}!adj\+Pad@{adj\+Pad}}
+\index{adj\+Pad@{adj\+Pad}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{adj\+Pad(int t)}]{\setlength{\rightskip}{0pt plus 5cm}void adj\+Pad (
+\begin{DoxyParamCaption}
+\item[{int}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{_utils_8h_a6596d29fe94da4a1068d1301824cf94a}
+\hypertarget{_utils_8h_a81f6fc31571b720067cfd47f08e08d2f}{}\index{Utils.\+h@{Utils.\+h}!clamp\+R\+G\+B\+A@{clamp\+R\+G\+B\+A}}
+\index{clamp\+R\+G\+B\+A@{clamp\+R\+G\+B\+A}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{clamp\+R\+G\+B\+A(glm\+::vec4 \&color)}]{\setlength{\rightskip}{0pt plus 5cm}void clamp\+R\+G\+B\+A (
+\begin{DoxyParamCaption}
+\item[{glm\+::vec4 \&}]{color}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{_utils_8h_a81f6fc31571b720067cfd47f08e08d2f}
+Clamps R\+G\+B into a vlid range 1 -\/ 0 
+\begin{DoxyParams}{Parameters}
+{\em color} & input color \\
+\hline
+\end{DoxyParams}
+\hypertarget{_utils_8h_aa448a874bf67c6342676cfda92d41d0b}{}\index{Utils.\+h@{Utils.\+h}!fit\+Percent@{fit\+Percent}}
+\index{fit\+Percent@{fit\+Percent}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{fit\+Percent(float p)}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string fit\+Percent (
+\begin{DoxyParamCaption}
+\item[{float}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{_utils_8h_aa448a874bf67c6342676cfda92d41d0b}
+Fits percent putput to a certain string length 
+\begin{DoxyParams}{Parameters}
+{\em p} & string size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+foramated percent string 
+\end{DoxyReturn}
+\hypertarget{_utils_8h_a130573a82b1c39ebdda8d2e79a0f15c6}{}\index{Utils.\+h@{Utils.\+h}!parse\+Float@{parse\+Float}}
+\index{parse\+Float@{parse\+Float}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{parse\+Float(std\+::string txt)}]{\setlength{\rightskip}{0pt plus 5cm}float parse\+Float (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{txt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{_utils_8h_a130573a82b1c39ebdda8d2e79a0f15c6}
+Prses string containing float 
+\begin{DoxyParams}{Parameters}
+{\em txt} & input string with float number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+parsed float 
+\end{DoxyReturn}
+\hypertarget{_utils_8h_a78295d60d0dfceb47cef5e1bc83757eb}{}\index{Utils.\+h@{Utils.\+h}!parse\+Int@{parse\+Int}}
+\index{parse\+Int@{parse\+Int}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{parse\+Int(std\+::string txt)}]{\setlength{\rightskip}{0pt plus 5cm}int parse\+Int (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{txt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{_utils_8h_a78295d60d0dfceb47cef5e1bc83757eb}
+Prses string containing int 
+\begin{DoxyParams}{Parameters}
+{\em txt} & input string with int number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+parsed float 
+\end{DoxyReturn}
+\hypertarget{_utils_8h_a2b2c2efbe1f07ccf2d143c5ea1aa4e00}{}\index{Utils.\+h@{Utils.\+h}!print@{print}}
+\index{print@{print}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{print(const std\+::string \&text)}]{\setlength{\rightskip}{0pt plus 5cm}void print (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{_utils_8h_a2b2c2efbe1f07ccf2d143c5ea1aa4e00}
+Outputs the normal text to console in formated way 
+\begin{DoxyParams}{Parameters}
+{\em text} & text to putput \\
+\hline
+\end{DoxyParams}
+\hypertarget{_utils_8h_ac157cec140c72bb39cf5890b33f5ba87}{}\index{Utils.\+h@{Utils.\+h}!print\+Bold@{print\+Bold}}
+\index{print\+Bold@{print\+Bold}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{print\+Bold(const std\+::string \&text)}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Bold (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{_utils_8h_ac157cec140c72bb39cf5890b33f5ba87}
+Outputs the bold text to console in formated way 
+\begin{DoxyParams}{Parameters}
+{\em text} & text to putput \\
+\hline
+\end{DoxyParams}
+\hypertarget{_utils_8h_a540c21af675327a40c7361de70aca6b1}{}\index{Utils.\+h@{Utils.\+h}!print\+Error@{print\+Error}}
+\index{print\+Error@{print\+Error}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{print\+Error(const std\+::string \&text)}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Error (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{_utils_8h_a540c21af675327a40c7361de70aca6b1}
+Outputs the error text to console in formated way 
+\begin{DoxyParams}{Parameters}
+{\em text} & text to putput \\
+\hline
+\end{DoxyParams}
+\hypertarget{_utils_8h_ad600a35d5d9e5a52ec293805cc160c30}{}\index{Utils.\+h@{Utils.\+h}!print\+Matrix@{print\+Matrix}}
+\index{print\+Matrix@{print\+Matrix}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{print\+Matrix(const glm\+::mat4 \&m)}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Matrix (
+\begin{DoxyParamCaption}
+\item[{const glm\+::mat4 \&}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{_utils_8h_ad600a35d5d9e5a52ec293805cc160c30}
+D\+E\+B\+U\+G\+: prints out a matrix \hypertarget{_utils_8h_a37eada943a19389351caade42ff81b1b}{}\index{Utils.\+h@{Utils.\+h}!print\+Over@{print\+Over}}
+\index{print\+Over@{print\+Over}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{print\+Over(const std\+::string \&text)}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Over (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{_utils_8h_a37eada943a19389351caade42ff81b1b}
+Write over the existing text on console 
+\begin{DoxyParams}{Parameters}
+{\em text} & text to putput \\
+\hline
+\end{DoxyParams}
+\hypertarget{_utils_8h_ab3e44d7564c9ee36caecf2646dd8913c}{}\index{Utils.\+h@{Utils.\+h}!print\+Warning@{print\+Warning}}
+\index{print\+Warning@{print\+Warning}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{print\+Warning(const std\+::string \&text)}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Warning (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{_utils_8h_ab3e44d7564c9ee36caecf2646dd8913c}
+Outputs the warning text to console in formated way 
+\begin{DoxyParams}{Parameters}
+{\em text} & text to putput \\
+\hline
+\end{DoxyParams}
+\hypertarget{_utils_8h_a159145db43ce3cdae02d2e36e03fcd5b}{}\index{Utils.\+h@{Utils.\+h}!s@{s}}
+\index{s@{s}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{s(int c)}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string s (
+\begin{DoxyParamCaption}
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{_utils_8h_a159145db43ce3cdae02d2e36e03fcd5b}
+Pads a string with ceratain number of whitespaces 
+\begin{DoxyParams}{Parameters}
+{\em c} & padd size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{_utils_8h_a8a563c9f93381adf5703d6ac2f922e86}{}\index{Utils.\+h@{Utils.\+h}!split\+Float\+Line@{split\+Float\+Line}}
+\index{split\+Float\+Line@{split\+Float\+Line}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{split\+Float\+Line(const std\+::string \&line)}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$float$>$ split\+Float\+Line (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{line}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{_utils_8h_a8a563c9f93381adf5703d6ac2f922e86}
+Splits a string a parses floats 
+\begin{DoxyParams}{Parameters}
+{\em line} & input string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of floats 
+\end{DoxyReturn}
+\hypertarget{_utils_8h_a26afcb039308ceb9cca9f2e147f58736}{}\index{Utils.\+h@{Utils.\+h}!split\+Int\+Line@{split\+Int\+Line}}
+\index{split\+Int\+Line@{split\+Int\+Line}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{split\+Int\+Line(const std\+::string \&line)}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$int$>$ split\+Int\+Line (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{line}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{_utils_8h_a26afcb039308ceb9cca9f2e147f58736}
+Splits a string a parses int 
+\begin{DoxyParams}{Parameters}
+{\em line} & input string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of ints 
+\end{DoxyReturn}
+\hypertarget{_utils_8h_ae5e9791355689f2ac0ee5de42b8fe0a7}{}\index{Utils.\+h@{Utils.\+h}!split\+String@{split\+String}}
+\index{split\+String@{split\+String}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{split\+String(const std\+::string \&s, char delim)}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$std\+::string$>$ split\+String (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{s, }
+\item[{char}]{delim}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{_utils_8h_ae5e9791355689f2ac0ee5de42b8fe0a7}
+Splits a string 
+\begin{DoxyParams}{Parameters}
+{\em delim} & a delimiter used for splitting a string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of tokens 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\hypertarget{_utils_8h_af1d40a330bc745f51d8b079c9dc473ff}{}\index{Utils.\+h@{Utils.\+h}!pad@{pad}}
+\index{pad@{pad}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{pad}]{\setlength{\rightskip}{0pt plus 5cm}int pad}\label{_utils_8h_af1d40a330bc745f51d8b079c9dc473ff}
+winite space pad size \hypertarget{_utils_8h_ab3f078684998b83967d507d0f453f454}{}\index{Utils.\+h@{Utils.\+h}!verbose@{verbose}}
+\index{verbose@{verbose}!Utils.\+h@{Utils.\+h}}
+\subsubsection[{verbose}]{\setlength{\rightskip}{0pt plus 5cm}bool verbose}\label{_utils_8h_ab3f078684998b83967d507d0f453f454}
+is output verbose 

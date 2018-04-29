@@ -1,0 +1,32 @@
+\hypertarget{index_intro_sec}{}\section{Introduction}\label{index_intro_sec}
+This is the code documentation for a texture reconstruction tool.
+
+Tool generates texture images for 3\+D models using camera information from reconstruction tools and source images.
+
+Supported reconstruction tools\+:
+\begin{DoxyItemize}
+\item Visual S\+F\+M
+\item Bundler S\+F\+M
+\item 3\+D laser scanning software developed in the C\+T\+U F\+E\+E Department of Computer Graphics and Interaction
+\end{DoxyItemize}\hypertarget{index_sec_u}{}\section{Usage}\label{index_sec_u}
+Configuration of the tool is handled using .I\+N\+I files.
+
+You can generate example .I\+N\+I file using the following command\+: 
+\begin{DoxyCode}
+.\(\backslash\)tex\_extractor -genIni
+\end{DoxyCode}
+ The complete explanation of .I\+N\+I file can be found in the user manual.
+
+A tool can then be used as following\+: 
+\begin{DoxyCode}
+.\(\backslash\)tex\_extractor \(\backslash\)path\(\backslash\)to\(\backslash\)config.ini
+\end{DoxyCode}
+ \hypertarget{index_sec_i}{}\section{Instalation}\label{index_sec_i}
+A tool can be build using C\+Make.
+
+Required libraries are
+\begin{DoxyItemize}
+\item Open\+C\+V \href{https://opencv.org}{\tt https\+://opencv.\+org}
+\item G\+L\+M \href{https://glm.g-truc.net/0.9.8/index.html}{\tt https\+://glm.\+g-\/truc.\+net/0.\+9.\+8/index.\+html}
+\item T\+B\+B \href{https://www.threadingbuildingblocks.org}{\tt https\+://www.\+threadingbuildingblocks.\+org} 
+\end{DoxyItemize}

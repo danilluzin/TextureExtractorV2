@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -61,8 +69,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_arguments_8h_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -77,17 +101,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_3b6e71e20b94598e8e41069cf8fc92e1.html">TextureExtractorV2</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Arguments.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<a href="_arguments_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">//  Arguments.h</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//  TextureExtractorV2</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//</span></div>
@@ -100,7 +119,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;INIReader.h&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;Utils.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_utils_8h.html">Utils.h</a>&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include&lt;fstream&gt;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include&lt;iostream&gt;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="struct_arguments.html">   21</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_arguments.html">Arguments</a>{</div>
@@ -153,50 +172,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    </div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
 <div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="struct_arguments.html#adb3df83131fa2be8783755b93c28c3de">  109</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct_arguments.html#adb3df83131fa2be8783755b93c28c3de">initializeConfig</a>(std::string filename){</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <a class="code" href="class_i_n_i_reader.html">INIReader</a> reader(filename);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        INIReader reader(filename);</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        </div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">if</span> (reader.ParseError() &lt; 0) {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            printError(<span class="stringliteral">&quot;ERROR: Can&#39;t load config file: &quot;</span>+filename+<span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            <a class="code" href="_utils_8h.html#a540c21af675327a40c7361de70aca6b1">printError</a>(<span class="stringliteral">&quot;ERROR: Can&#39;t load config file: &quot;</span>+filename+<span class="stringliteral">&quot;\n&quot;</span>);</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        }</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        print(<span class="stringliteral">&quot;Config loaded from &quot;</span> + filename +<span class="stringliteral">&quot;. Parsing :\n&quot;</span>);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <a class="code" href="_utils_8h.html#a2b2c2efbe1f07ccf2d143c5ea1aa4e00">print</a>(<span class="stringliteral">&quot;Config loaded from &quot;</span> + filename +<span class="stringliteral">&quot;. Parsing :\n&quot;</span>);</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="comment">//basics</span></div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        objFilePath = reader.Get(<span class="stringliteral">&quot;basics&quot;</span>, <span class="stringliteral">&quot;objFilePath&quot;</span>, <span class="stringliteral">&quot;UNKNOWN&quot;</span>);</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">if</span>(objFilePath == <span class="stringliteral">&quot;UNKNOWN&quot;</span>||objFilePath == <span class="stringliteral">&quot;&quot;</span>){</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            printError(<span class="stringliteral">&quot;ERROR: objFilePath is required in the .ini file\n&quot;</span>);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            <a class="code" href="_utils_8h.html#a540c21af675327a40c7361de70aca6b1">printError</a>(<span class="stringliteral">&quot;ERROR: objFilePath is required in the .ini file\n&quot;</span>);</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        }</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        cameraListFilePath = reader.Get(<span class="stringliteral">&quot;basics&quot;</span>, <span class="stringliteral">&quot;cameraListFilePath&quot;</span>, <span class="stringliteral">&quot;UNKNOWN&quot;</span>);</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="keywordflow">if</span>(cameraListFilePath == <span class="stringliteral">&quot;UNKNOWN&quot;</span>||cameraListFilePath == <span class="stringliteral">&quot;&quot;</span>){</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            printError(<span class="stringliteral">&quot;ERROR: cameraListFilePath is required in the .ini file\n&quot;</span>);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            <a class="code" href="_utils_8h.html#a540c21af675327a40c7361de70aca6b1">printError</a>(<span class="stringliteral">&quot;ERROR: cameraListFilePath is required in the .ini file\n&quot;</span>);</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        }</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        </div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        cameraInfoPath = reader.Get(<span class="stringliteral">&quot;basics&quot;</span>, <span class="stringliteral">&quot;cameraInfoPath&quot;</span>, <span class="stringliteral">&quot;UNKNOWN&quot;</span>);</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">if</span>(cameraInfoPath == <span class="stringliteral">&quot;UNKNOWN&quot;</span>||cameraInfoPath == <span class="stringliteral">&quot;&quot;</span>){</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            printError(<span class="stringliteral">&quot;ERROR: cameraInfoPath is required in the .ini file\n&quot;</span>);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            <a class="code" href="_utils_8h.html#a540c21af675327a40c7361de70aca6b1">printError</a>(<span class="stringliteral">&quot;ERROR: cameraInfoPath is required in the .ini file\n&quot;</span>);</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        }</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        </div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        photoFolderPath = reader.Get(<span class="stringliteral">&quot;basics&quot;</span>, <span class="stringliteral">&quot;photoFolderPath&quot;</span>, <span class="stringliteral">&quot;UNKNOWN&quot;</span>);</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordflow">if</span>(photoFolderPath == <span class="stringliteral">&quot;UNKNOWN&quot;</span>){</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            printError(<span class="stringliteral">&quot;ERROR: photoFolderPath is required in the .ini file\n&quot;</span>);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            <a class="code" href="_utils_8h.html#a540c21af675327a40c7361de70aca6b1">printError</a>(<span class="stringliteral">&quot;ERROR: photoFolderPath is required in the .ini file\n&quot;</span>);</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        }</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        </div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        newTextureFolderPath = reader.Get(<span class="stringliteral">&quot;basics&quot;</span>, <span class="stringliteral">&quot;newTextureFolderPath&quot;</span>, <span class="stringliteral">&quot;UNKNOWN&quot;</span>);</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordflow">if</span>(photoFolderPath == <span class="stringliteral">&quot;UNKNOWN&quot;</span>){</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            printError(<span class="stringliteral">&quot;ERROR: newTextureFolderPath is required in the .ini file\n&quot;</span>);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            <a class="code" href="_utils_8h.html#a540c21af675327a40c7361de70aca6b1">printError</a>(<span class="stringliteral">&quot;ERROR: newTextureFolderPath is required in the .ini file\n&quot;</span>);</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        }</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        textureHeight = (int)reader.GetInteger(<span class="stringliteral">&quot;basics&quot;</span>, <span class="stringliteral">&quot;textureHeight&quot;</span>, -1);</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="keywordflow">if</span>(textureHeight == -1){</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            printWarning(<span class="stringliteral">&quot;WARNING: no textureHeight provided in the .ini file. Defaulting to 1000\n&quot;</span>);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            <a class="code" href="_utils_8h.html#ab3e44d7564c9ee36caecf2646dd8913c">printWarning</a>(<span class="stringliteral">&quot;WARNING: no textureHeight provided in the .ini file. Defaulting to 1000\n&quot;</span>);</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            textureHeight = 1000;</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        }</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        textureWidth = (int)reader.GetInteger(<span class="stringliteral">&quot;basics&quot;</span>, <span class="stringliteral">&quot;textureWidth&quot;</span>, -1);</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordflow">if</span>(textureWidth == -1){</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            printWarning(<span class="stringliteral">&quot;WARNING: no textureWidth provided in the .ini file. Defaulting to 1000\n&quot;</span>);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            <a class="code" href="_utils_8h.html#ab3e44d7564c9ee36caecf2646dd8913c">printWarning</a>(<span class="stringliteral">&quot;WARNING: no textureWidth provided in the .ini file. Defaulting to 1000\n&quot;</span>);</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            textureWidth = 1000;</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        }</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        </div>
@@ -209,7 +228,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            labelingFilePath = reader.Get(<span class="stringliteral">&quot;optional&quot;</span>, <span class="stringliteral">&quot;labelingFilePath&quot;</span>, <span class="stringliteral">&quot;UNKNOWN&quot;</span>);</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <span class="keywordflow">if</span>(labelingFilePath == <span class="stringliteral">&quot;UNKNOWN&quot;</span> || labelingFilePath == <span class="stringliteral">&quot;&quot;</span>){</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                labelingFilePath = <a class="code" href="struct_arguments.html#ad99ef1f1635874fd7dcac5b3a48dabec">genDeaultLabelingPath</a>();</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            printWarning(<span class="stringliteral">&quot;WARNING: getLabelingFromFile was set to TRUE, but the labelingFilePath was not provided the .ini file\n Defaulting to \&quot;&quot;</span>+labelingFilePath+<span class="stringliteral">&quot;\&quot;\n &quot;</span>);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            <a class="code" href="_utils_8h.html#ab3e44d7564c9ee36caecf2646dd8913c">printWarning</a>(<span class="stringliteral">&quot;WARNING: getLabelingFromFile was set to TRUE, but the labelingFilePath was not provided the .ini file\n Defaulting to \&quot;&quot;</span>+labelingFilePath+<span class="stringliteral">&quot;\&quot;\n &quot;</span>);</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            }</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        }</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        </div>
@@ -222,29 +241,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            dataCostsFilePath = reader.Get(<span class="stringliteral">&quot;optional&quot;</span>, <span class="stringliteral">&quot;dataCostsFilePath&quot;</span>, <span class="stringliteral">&quot;UNKNOWN&quot;</span>);</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            <span class="keywordflow">if</span>(dataCostsFilePath == <span class="stringliteral">&quot;UNKNOWN&quot;</span> || dataCostsFilePath == <span class="stringliteral">&quot;&quot;</span>){</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                dataCostsFilePath = <a class="code" href="struct_arguments.html#a3f54b425cb0c05cda997be2f690040a4">genDeaultDataCostPath</a>();</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                printWarning(<span class="stringliteral">&quot;WARNING: getDataCostsFromFile was set to TRUE, but the dataCostsFilePath was not provided the .ini file\n Defaulting to \&quot;&quot;</span>+dataCostsFilePath+<span class="stringliteral">&quot;\&quot;\n &quot;</span>);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                <a class="code" href="_utils_8h.html#ab3e44d7564c9ee36caecf2646dd8913c">printWarning</a>(<span class="stringliteral">&quot;WARNING: getDataCostsFromFile was set to TRUE, but the dataCostsFilePath was not provided the .ini file\n Defaulting to \&quot;&quot;</span>+dataCostsFilePath+<span class="stringliteral">&quot;\&quot;\n &quot;</span>);</div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            }</div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        }</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        </div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        writeDataCostsToFile = reader.GetBoolean(<span class="stringliteral">&quot;basics&quot;</span>, <span class="stringliteral">&quot;writeDataCostsToFile&quot;</span>, <span class="keyword">false</span>);</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        newDataCostsFilePath = <a class="code" href="struct_arguments.html#a3f54b425cb0c05cda997be2f690040a4">genDeaultDataCostPath</a>();</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        </div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        verbose = reader.GetBoolean(<span class="stringliteral">&quot;basics&quot;</span>, <span class="stringliteral">&quot;verbose&quot;</span>, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="keywordflow">if</span>(!verbose){</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <a class="code" href="main_8cpp.html#ab3f078684998b83967d507d0f453f454">verbose</a> = reader.GetBoolean(<span class="stringliteral">&quot;basics&quot;</span>, <span class="stringliteral">&quot;verbose&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="main_8cpp.html#ab3f078684998b83967d507d0f453f454">verbose</a>){</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            std::cout&lt;&lt;<span class="stringliteral">&quot;Parsed\nVerbose = FALSE. Only warning and errors will be displayed\n&quot;</span>;</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        }</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        BVHMinNode = (int)reader.GetInteger(<span class="stringliteral">&quot;perfomance&quot;</span>,<span class="stringliteral">&quot;BVHMinNode&quot;</span>,200);</div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        threadCount = (int)reader.GetInteger(<span class="stringliteral">&quot;basics&quot;</span>, <span class="stringliteral">&quot;threadCount&quot;</span>, 1);</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordflow">if</span>(threadCount &lt; 1){</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            printWarning(<span class="stringliteral">&quot;WARNING: Invalid number of working threads(threadCount). Defaulting to 1\n&quot;</span>);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            <a class="code" href="_utils_8h.html#ab3e44d7564c9ee36caecf2646dd8913c">printWarning</a>(<span class="stringliteral">&quot;WARNING: Invalid number of working threads(threadCount). Defaulting to 1\n&quot;</span>);</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            threadCount = 1;</div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        }</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        </div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        </div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        imageFormat = reader.Get(<span class="stringliteral">&quot;basics&quot;</span>, <span class="stringliteral">&quot;imageFormat&quot;</span>, <span class="stringliteral">&quot;UNKNOWN&quot;</span>);</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        <span class="keywordflow">if</span>(imageFormat == <span class="stringliteral">&quot;UNKNOWN&quot;</span>||imageFormat == <span class="stringliteral">&quot;&quot;</span>){</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            printWarning(<span class="stringliteral">&quot;WARNING: imageFormat was not specified. Defaulting to png\n&quot;</span>);</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            <a class="code" href="_utils_8h.html#ab3e44d7564c9ee36caecf2646dd8913c">printWarning</a>(<span class="stringliteral">&quot;WARNING: imageFormat was not specified. Defaulting to png\n&quot;</span>);</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            imageFormat = <span class="stringliteral">&quot;png&quot;</span>;</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        }</div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        </div>
@@ -258,7 +277,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        <span class="keywordflow">if</span>(doColorConsistency == <span class="keyword">true</span>){</div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            colorConsistencyThreshold = reader.GetReal(<span class="stringliteral">&quot;optional&quot;</span>, <span class="stringliteral">&quot;colorConsistencyThreshold&quot;</span>, -1.0);</div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            <span class="keywordflow">if</span>(colorConsistencyThreshold==-1.0){</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                printWarning(<span class="stringliteral">&quot;WARNING: Valid colorConsistencyThreshold was not specified. Defaulting to 0.5\n&quot;</span>);</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                <a class="code" href="_utils_8h.html#ab3e44d7564c9ee36caecf2646dd8913c">printWarning</a>(<span class="stringliteral">&quot;WARNING: Valid colorConsistencyThreshold was not specified. Defaulting to 0.5\n&quot;</span>);</div>
 <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                colorConsistencyThreshold = 0.5;</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            }</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        }</div>
@@ -280,7 +299,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <span class="keywordflow">if</span>(_justRender || _renderInTheEnd){</div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            resultRenderFolder = reader.Get(<span class="stringliteral">&quot;debug&quot;</span>, <span class="stringliteral">&quot;resultRenderFolder&quot;</span>, <span class="stringliteral">&quot;UNKNOWN&quot;</span>);</div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            <span class="keywordflow">if</span>(resultRenderFolder == <span class="stringliteral">&quot;UNKNOWN&quot;</span>){</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                printError(<span class="stringliteral">&quot;ERROR: justRender or renderInTheEnd was set to TRUE, but the resultRenderFolder was not provided the .ini file\n&quot;</span>);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                <a class="code" href="_utils_8h.html#a540c21af675327a40c7361de70aca6b1">printError</a>(<span class="stringliteral">&quot;ERROR: justRender or renderInTheEnd was set to TRUE, but the resultRenderFolder was not provided the .ini file\n&quot;</span>);</div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            }</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        }</div>
@@ -334,12 +353,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        std::ofstream iniFile;</div>
 <div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        iniFile.open (iniExampleFilename);</div>
 <div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;        <span class="keywordflow">if</span>(!iniFile.is_open()){</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            printError(<span class="stringliteral">&quot;Error openning file to write exampleIni!\n&quot;</span>);</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            <a class="code" href="_utils_8h.html#a540c21af675327a40c7361de70aca6b1">printError</a>(<span class="stringliteral">&quot;Error openning file to write exampleIni!\n&quot;</span>);</div>
 <div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;        }</div>
 <div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        iniFile &lt;&lt; exampleIni;</div>
 <div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        <span class="keywordflow">if</span>(!iniFile.good()){</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;            printError(<span class="stringliteral">&quot;Error occured when writing exampleIni!\n&quot;</span>);</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;            <a class="code" href="_utils_8h.html#a540c21af675327a40c7361de70aca6b1">printError</a>(<span class="stringliteral">&quot;Error occured when writing exampleIni!\n&quot;</span>);</div>
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        }</div>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        iniFile.close();</div>
@@ -348,7 +367,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    </div>
 <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;};</div>
 <div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;<span class="keyword">extern</span> <a class="code" href="struct_arguments.html">Arguments</a> arguments;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;<span class="keyword">extern</span> <a class="code" href="struct_arguments.html">Arguments</a> <a class="code" href="_arguments_8h.html#ada59c388a54132792188bb23541d03c1">arguments</a>;</div>
 <div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
 <div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
 <div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* Arguments_h */</span><span class="preprocessor"></span></div>
@@ -364,7 +383,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="struct_arguments_html_ad99ef1f1635874fd7dcac5b3a48dabec"><div class="ttname"><a href="struct_arguments.html#ad99ef1f1635874fd7dcac5b3a48dabec">Arguments::genDeaultLabelingPath</a></div><div class="ttdeci">std::string genDeaultLabelingPath()</div><div class="ttdef"><b>Definition:</b> Arguments.h:323</div></div>
 <div class="ttc" id="struct_arguments_html_a784aabe9dd9bbeb828d1ad845b72887c"><div class="ttname"><a href="struct_arguments.html#a784aabe9dd9bbeb828d1ad845b72887c">Arguments::photoFolderPath</a></div><div class="ttdeci">std::string photoFolderPath</div><div class="ttdef"><b>Definition:</b> Arguments.h:42</div></div>
 <div class="ttc" id="struct_arguments_html_aa8074aacbc6ee3f99effd5b7613905e5"><div class="ttname"><a href="struct_arguments.html#aa8074aacbc6ee3f99effd5b7613905e5">Arguments::doTextureExtension</a></div><div class="ttdeci">bool doTextureExtension</div><div class="ttdef"><b>Definition:</b> Arguments.h:74</div></div>
+<div class="ttc" id="_utils_8h_html_a540c21af675327a40c7361de70aca6b1"><div class="ttname"><a href="_utils_8h.html#a540c21af675327a40c7361de70aca6b1">printError</a></div><div class="ttdeci">void printError(const std::string &amp;text)</div><div class="ttdef"><b>Definition:</b> Utils.h:71</div></div>
 <div class="ttc" id="struct_arguments_html_acc8d0c6a9477669bee3d9fe79e0b6d6c"><div class="ttname"><a href="struct_arguments.html#acc8d0c6a9477669bee3d9fe79e0b6d6c">Arguments::genMaskTexturePath</a></div><div class="ttdeci">std::string genMaskTexturePath(std::string objName)</div><div class="ttdef"><b>Definition:</b> Arguments.h:271</div></div>
+<div class="ttc" id="_utils_8h_html"><div class="ttname"><a href="_utils_8h.html">Utils.h</a></div></div>
 <div class="ttc" id="struct_arguments_html_a36e514162f0dca494ae8b558016fba23"><div class="ttname"><a href="struct_arguments.html#a36e514162f0dca494ae8b558016fba23">Arguments::getDataCostsFromFile</a></div><div class="ttdeci">bool getDataCostsFromFile</div><div class="ttdef"><b>Definition:</b> Arguments.h:65</div></div>
 <div class="ttc" id="struct_arguments_html_a1efe0a7268bb4ab28a51566a13c5f36b"><div class="ttname"><a href="struct_arguments.html#a1efe0a7268bb4ab28a51566a13c5f36b">Arguments::cameraInfoPath</a></div><div class="ttdeci">std::string cameraInfoPath</div><div class="ttdef"><b>Definition:</b> Arguments.h:38</div></div>
 <div class="ttc" id="struct_arguments_html_a5ce8b0bed244a327b762f2bb1630708b"><div class="ttname"><a href="struct_arguments.html#a5ce8b0bed244a327b762f2bb1630708b">Arguments::projectName</a></div><div class="ttdeci">std::string projectName</div><div class="ttdef"><b>Definition:</b> Arguments.h:53</div></div>
@@ -375,6 +396,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="struct_arguments_html_a033abba738ba0403e87f883cc203d618"><div class="ttname"><a href="struct_arguments.html#a033abba738ba0403e87f883cc203d618">Arguments::cameraListFilePath</a></div><div class="ttdeci">std::string cameraListFilePath</div><div class="ttdef"><b>Definition:</b> Arguments.h:36</div></div>
 <div class="ttc" id="struct_arguments_html_ab0a6f926571b9ebd895f84af4214880b"><div class="ttname"><a href="struct_arguments.html#ab0a6f926571b9ebd895f84af4214880b">Arguments::strictOclusionCheck</a></div><div class="ttdeci">bool strictOclusionCheck</div><div class="ttdef"><b>Definition:</b> Arguments.h:93</div></div>
 <div class="ttc" id="struct_arguments_html_a427521a6262f69340de5f09fdb3292d0"><div class="ttname"><a href="struct_arguments.html#a427521a6262f69340de5f09fdb3292d0">Arguments::colorConsistencyThreshold</a></div><div class="ttdeci">float colorConsistencyThreshold</div><div class="ttdef"><b>Definition:</b> Arguments.h:79</div></div>
+<div class="ttc" id="_utils_8h_html_ab3e44d7564c9ee36caecf2646dd8913c"><div class="ttname"><a href="_utils_8h.html#ab3e44d7564c9ee36caecf2646dd8913c">printWarning</a></div><div class="ttdeci">void printWarning(const std::string &amp;text)</div><div class="ttdef"><b>Definition:</b> Utils.h:79</div></div>
 <div class="ttc" id="struct_arguments_html_a693a6a2a4334f5e34b3eb5ed6a555b28"><div class="ttname"><a href="struct_arguments.html#a693a6a2a4334f5e34b3eb5ed6a555b28">Arguments::appendix</a></div><div class="ttdeci">std::string appendix()</div><div class="ttdef"><b>Definition:</b> Arguments.h:250</div></div>
 <div class="ttc" id="struct_arguments_html_ac2161fcafef758c6418e6d7113fedee2"><div class="ttname"><a href="struct_arguments.html#ac2161fcafef758c6418e6d7113fedee2">Arguments::genLebelingTexturePath</a></div><div class="ttdeci">std::string genLebelingTexturePath(std::string objName)</div><div class="ttdef"><b>Definition:</b> Arguments.h:289</div></div>
 <div class="ttc" id="struct_arguments_html_a3cb31e33468d5ac33e53a155da84b3d2"><div class="ttname"><a href="struct_arguments.html#a3cb31e33468d5ac33e53a155da84b3d2">Arguments::genLevelingTexture</a></div><div class="ttdeci">bool genLevelingTexture</div><div class="ttdef"><b>Definition:</b> Arguments.h:84</div></div>
@@ -386,25 +408,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="struct_arguments_html_af256b45e3009486a4ea5066f8b7a080f"><div class="ttname"><a href="struct_arguments.html#af256b45e3009486a4ea5066f8b7a080f">Arguments::genRawTexturePath</a></div><div class="ttdeci">std::string genRawTexturePath(std::string objName)</div><div class="ttdef"><b>Definition:</b> Arguments.h:280</div></div>
 <div class="ttc" id="struct_arguments_html_acba64f044d4603abac85ba2cf1b50b75"><div class="ttname"><a href="struct_arguments.html#acba64f044d4603abac85ba2cf1b50b75">Arguments::textureHeight</a></div><div class="ttdeci">int textureHeight</div><div class="ttdef"><b>Definition:</b> Arguments.h:25</div></div>
 <div class="ttc" id="struct_arguments_html_ac81dde9796306362b5c06f2d62a901ea"><div class="ttname"><a href="struct_arguments.html#ac81dde9796306362b5c06f2d62a901ea">Arguments::writeLabelingToFile</a></div><div class="ttdeci">bool writeLabelingToFile</div><div class="ttdef"><b>Definition:</b> Arguments.h:63</div></div>
+<div class="ttc" id="_arguments_8h_html_ada59c388a54132792188bb23541d03c1"><div class="ttname"><a href="_arguments_8h.html#ada59c388a54132792188bb23541d03c1">arguments</a></div><div class="ttdeci">Arguments arguments</div><div class="ttdef"><b>Definition:</b> main.cpp:70</div></div>
 <div class="ttc" id="struct_arguments_html_aacc8cf735f8d2793e4fbd81d05f22918"><div class="ttname"><a href="struct_arguments.html#aacc8cf735f8d2793e4fbd81d05f22918">Arguments::newTextureFolderPath</a></div><div class="ttdeci">std::string newTextureFolderPath</div><div class="ttdef"><b>Definition:</b> Arguments.h:40</div></div>
 <div class="ttc" id="struct_arguments_html_a5438dd5f419d88e72ba7dad3e7343229"><div class="ttname"><a href="struct_arguments.html#a5438dd5f419d88e72ba7dad3e7343229">Arguments::addProjectNameToFiles</a></div><div class="ttdeci">bool addProjectNameToFiles</div><div class="ttdef"><b>Definition:</b> Arguments.h:96</div></div>
 <div class="ttc" id="struct_arguments_html_ae1b263850d63b7595ba4e6fd0ae525b3"><div class="ttname"><a href="struct_arguments.html#ae1b263850d63b7595ba4e6fd0ae525b3">Arguments::newDataCostsFilePath</a></div><div class="ttdeci">std::string newDataCostsFilePath</div><div class="ttdef"><b>Definition:</b> Arguments.h:50</div></div>
 <div class="ttc" id="struct_arguments_html_ad2a5a8782138866eacf646d57b7ea531"><div class="ttname"><a href="struct_arguments.html#ad2a5a8782138866eacf646d57b7ea531">Arguments::getLabelingFromFile</a></div><div class="ttdeci">bool getLabelingFromFile</div><div class="ttdef"><b>Definition:</b> Arguments.h:61</div></div>
 <div class="ttc" id="struct_arguments_html_a35c85467eaefb45dd9c5573c5697d0be"><div class="ttname"><a href="struct_arguments.html#a35c85467eaefb45dd9c5573c5697d0be">Arguments::doGloabalAdjustment</a></div><div class="ttdeci">bool doGloabalAdjustment</div><div class="ttdef"><b>Definition:</b> Arguments.h:70</div></div>
 <div class="ttc" id="struct_arguments_html_a425be50cc8828826b939677321ae98dc"><div class="ttname"><a href="struct_arguments.html#a425be50cc8828826b939677321ae98dc">Arguments::_justRender</a></div><div class="ttdeci">bool _justRender</div><div class="ttdef"><b>Definition:</b> Arguments.h:99</div></div>
-<div class="ttc" id="class_i_n_i_reader_html"><div class="ttname"><a href="class_i_n_i_reader.html">INIReader</a></div><div class="ttdef"><b>Definition:</b> INIReader.h:312</div></div>
 <div class="ttc" id="struct_arguments_html_afe5ecd92c78f3f5a6b751139ec50ee6f"><div class="ttname"><a href="struct_arguments.html#afe5ecd92c78f3f5a6b751139ec50ee6f">Arguments::genRawTexture</a></div><div class="ttdeci">bool genRawTexture</div><div class="ttdef"><b>Definition:</b> Arguments.h:90</div></div>
 <div class="ttc" id="struct_arguments_html_a5615cc24abc162c63ef3aedc135b0db4"><div class="ttname"><a href="struct_arguments.html#a5615cc24abc162c63ef3aedc135b0db4">Arguments::objFilePath</a></div><div class="ttdeci">std::string objFilePath</div><div class="ttdef"><b>Definition:</b> Arguments.h:34</div></div>
 <div class="ttc" id="struct_arguments_html_ab6012180dadee8fff0a7271aafd96089"><div class="ttname"><a href="struct_arguments.html#ab6012180dadee8fff0a7271aafd96089">Arguments::genGlobalTexturePath</a></div><div class="ttdeci">std::string genGlobalTexturePath(std::string objName)</div><div class="ttdef"><b>Definition:</b> Arguments.h:307</div></div>
 <div class="ttc" id="struct_arguments_html_a6db8fa82b73c39649ab151ef63085f0f"><div class="ttname"><a href="struct_arguments.html#a6db8fa82b73c39649ab151ef63085f0f">Arguments::generateIni</a></div><div class="ttdeci">bool generateIni()</div><div class="ttdef"><b>Definition:</b> Arguments.h:331</div></div>
 <div class="ttc" id="struct_arguments_html"><div class="ttname"><a href="struct_arguments.html">Arguments</a></div><div class="ttdef"><b>Definition:</b> Arguments.h:21</div></div>
 <div class="ttc" id="struct_arguments_html_acada25027fb72d5a7d8440b62653af2f"><div class="ttname"><a href="struct_arguments.html#acada25027fb72d5a7d8440b62653af2f">Arguments::genMaskTexture</a></div><div class="ttdeci">bool genMaskTexture</div><div class="ttdef"><b>Definition:</b> Arguments.h:86</div></div>
+<div class="ttc" id="main_8cpp_html_ab3f078684998b83967d507d0f453f454"><div class="ttname"><a href="main_8cpp.html#ab3f078684998b83967d507d0f453f454">verbose</a></div><div class="ttdeci">bool verbose</div><div class="ttdef"><b>Definition:</b> main.cpp:72</div></div>
+<div class="ttc" id="_utils_8h_html_a2b2c2efbe1f07ccf2d143c5ea1aa4e00"><div class="ttname"><a href="_utils_8h.html#a2b2c2efbe1f07ccf2d143c5ea1aa4e00">print</a></div><div class="ttdeci">void print(const std::string &amp;text)</div><div class="ttdef"><b>Definition:</b> Utils.h:53</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_3b6e71e20b94598e8e41069cf8fc92e1.html">TextureExtractorV2</a></li><li class="navelem"><a class="el" href="_arguments_8h.html">Arguments.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

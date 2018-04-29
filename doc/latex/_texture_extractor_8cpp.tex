@@ -1,0 +1,55 @@
+\hypertarget{_texture_extractor_8cpp}{}\section{Texture\+Extractor\+V2/\+Texture\+Extractor.cpp File Reference}
+\label{_texture_extractor_8cpp}\index{Texture\+Extractor\+V2/\+Texture\+Extractor.\+cpp@{Texture\+Extractor\+V2/\+Texture\+Extractor.\+cpp}}
+{\ttfamily \#include \char`\"{}Texture\+Extractor.\+hpp\char`\"{}}\\*
+{\ttfamily \#include $<$glm/ext.\+hpp$>$}\\*
+{\ttfamily \#include \char`\"{}Rasterizer.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Utils.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include \char`\"{}stb/stb\+\_\+image.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Extraction\+Worker.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Data\+Cost\+Extraction\+Manager.\+hpp\char`\"{}}\\*
+{\ttfamily \#include $<$numeric$>$}\\*
+{\ttfamily \#include $<$thread$>$}\\*
+{\ttfamily \#include $<$mutex$>$}\\*
+{\ttfamily \#include $<$algorithm$>$}\\*
+{\ttfamily \#include $<$cstdlib$>$}\\*
+Include dependency graph for Texture\+Extractor.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_texture_extractor_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{_texture_extractor_8cpp_a5500ce264e0acf5d4fef2b98f18574c1}{window\+Render} (\hyperlink{class_mesh}{Mesh} mesh)
+\item 
+double \hyperlink{_texture_extractor_8cpp_a11d6d2df878622b2695d86f2351bbde5}{vec\+Sum} (glm\+::vec4 v)
+\item 
+double \hyperlink{_texture_extractor_8cpp_a18d5296283eafb335ff2d948c4377da9}{calc\+Quality} (\hyperlink{struct_patch_quality}{Patch\+Quality} \&patch\+Quality)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{_texture_extractor_8cpp_a18d5296283eafb335ff2d948c4377da9}{}\index{Texture\+Extractor.\+cpp@{Texture\+Extractor.\+cpp}!calc\+Quality@{calc\+Quality}}
+\index{calc\+Quality@{calc\+Quality}!Texture\+Extractor.\+cpp@{Texture\+Extractor.\+cpp}}
+\subsubsection[{calc\+Quality(\+Patch\+Quality \&patch\+Quality)}]{\setlength{\rightskip}{0pt plus 5cm}double calc\+Quality (
+\begin{DoxyParamCaption}
+\item[{{\bf Patch\+Quality} \&}]{patch\+Quality}
+\end{DoxyParamCaption}
+)}\label{_texture_extractor_8cpp_a18d5296283eafb335ff2d948c4377da9}
+\hypertarget{_texture_extractor_8cpp_a11d6d2df878622b2695d86f2351bbde5}{}\index{Texture\+Extractor.\+cpp@{Texture\+Extractor.\+cpp}!vec\+Sum@{vec\+Sum}}
+\index{vec\+Sum@{vec\+Sum}!Texture\+Extractor.\+cpp@{Texture\+Extractor.\+cpp}}
+\subsubsection[{vec\+Sum(glm\+::vec4 v)}]{\setlength{\rightskip}{0pt plus 5cm}double vec\+Sum (
+\begin{DoxyParamCaption}
+\item[{glm\+::vec4}]{v}
+\end{DoxyParamCaption}
+)}\label{_texture_extractor_8cpp_a11d6d2df878622b2695d86f2351bbde5}
+\hypertarget{_texture_extractor_8cpp_a5500ce264e0acf5d4fef2b98f18574c1}{}\index{Texture\+Extractor.\+cpp@{Texture\+Extractor.\+cpp}!window\+Render@{window\+Render}}
+\index{window\+Render@{window\+Render}!Texture\+Extractor.\+cpp@{Texture\+Extractor.\+cpp}}
+\subsubsection[{window\+Render(\+Mesh mesh)}]{\setlength{\rightskip}{0pt plus 5cm}void window\+Render (
+\begin{DoxyParamCaption}
+\item[{{\bf Mesh}}]{mesh}
+\end{DoxyParamCaption}
+)}\label{_texture_extractor_8cpp_a5500ce264e0acf5d4fef2b98f18574c1}

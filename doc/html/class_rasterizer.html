@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -62,10 +70,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_rasterizer.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,7 +103,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -90,62 +112,358 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Rasterizer Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_rasterizer_8hpp_source.html">Rasterizer.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for Rasterizer:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_rasterizer__coll__graph.png" border="0" usemap="#_rasterizer_coll__map" alt="Collaboration graph"/></div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:accac2d0878675f9fe01ae2fedd30f84f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="accac2d0878675f9fe01ae2fedd30f84f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setRenderContext</b> (<a class="el" href="class_render_context.html">RenderContext</a> *rc)</td></tr>
+<tr class="memitem:accac2d0878675f9fe01ae2fedd30f84f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rasterizer.html#accac2d0878675f9fe01ae2fedd30f84f">setRenderContext</a> (<a class="el" href="class_render_context.html">RenderContext</a> *rc)</td></tr>
 <tr class="separator:accac2d0878675f9fe01ae2fedd30f84f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a401966b0d0572d8c944e6b319515ac5e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a401966b0d0572d8c944e6b319515ac5e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTexture</b> (const <a class="el" href="class_bitmap.html">Bitmap</a> &amp;txr)</td></tr>
+<tr class="memitem:a401966b0d0572d8c944e6b319515ac5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rasterizer.html#a401966b0d0572d8c944e6b319515ac5e">setTexture</a> (const <a class="el" href="class_bitmap.html">Bitmap</a> &amp;txr)</td></tr>
 <tr class="separator:a401966b0d0572d8c944e6b319515ac5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e43391ca21604f52d4baabc44b34933"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e43391ca21604f52d4baabc44b34933"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>bindMesh</b> (const <a class="el" href="class_mesh.html">Mesh</a> &amp;m)</td></tr>
+<tr class="memitem:a4e43391ca21604f52d4baabc44b34933"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rasterizer.html#a4e43391ca21604f52d4baabc44b34933">bindMesh</a> (const <a class="el" href="class_mesh.html">Mesh</a> &amp;m)</td></tr>
 <tr class="separator:a4e43391ca21604f52d4baabc44b34933"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2eec0e17ef479f0e0af5640d6786e077"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2eec0e17ef479f0e0af5640d6786e077"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Rasterizer</b> (int width, int height)</td></tr>
+<tr class="memitem:a2eec0e17ef479f0e0af5640d6786e077"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rasterizer.html#a2eec0e17ef479f0e0af5640d6786e077">Rasterizer</a> (int width, int height)</td></tr>
 <tr class="separator:a2eec0e17ef479f0e0af5640d6786e077"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39a7b6f424f2bc8e7111892cbf387509"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39a7b6f424f2bc8e7111892cbf387509"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>rasterizeTriangle</b> (<a class="el" href="struct_vertex.html">Vertex</a> minYVert, <a class="el" href="struct_vertex.html">Vertex</a> midYVert, <a class="el" href="struct_vertex.html">Vertex</a> maxYVert, const <a class="el" href="struct_triangle.html">Triangle</a> &amp;triangle)</td></tr>
+<tr class="memitem:a39a7b6f424f2bc8e7111892cbf387509"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rasterizer.html#a39a7b6f424f2bc8e7111892cbf387509">rasterizeTriangle</a> (<a class="el" href="struct_vertex.html">Vertex</a> minYVert, <a class="el" href="struct_vertex.html">Vertex</a> midYVert, <a class="el" href="struct_vertex.html">Vertex</a> maxYVert, const <a class="el" href="struct_triangle.html">Triangle</a> &amp;triangle)</td></tr>
 <tr class="separator:a39a7b6f424f2bc8e7111892cbf387509"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3be827df6aeec982f2a1e5106ee6e99b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3be827df6aeec982f2a1e5106ee6e99b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>drawTriangle</b> (const <a class="el" href="struct_triangle.html">Triangle</a> &amp;triangle)</td></tr>
+<tr class="memitem:a3be827df6aeec982f2a1e5106ee6e99b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rasterizer.html#a3be827df6aeec982f2a1e5106ee6e99b">drawTriangle</a> (const <a class="el" href="struct_triangle.html">Triangle</a> &amp;triangle)</td></tr>
 <tr class="separator:a3be827df6aeec982f2a1e5106ee6e99b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2d26833e9b47e3e1a1b9e94a77d0a18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2d26833e9b47e3e1a1b9e94a77d0a18"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>drawMesh</b> ()</td></tr>
+<tr class="memitem:ab2d26833e9b47e3e1a1b9e94a77d0a18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rasterizer.html#ab2d26833e9b47e3e1a1b9e94a77d0a18">drawMesh</a> ()</td></tr>
 <tr class="separator:ab2d26833e9b47e3e1a1b9e94a77d0a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcecbd138ae8c58d583037467f77ea35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adcecbd138ae8c58d583037467f77ea35"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>fillTriangle</b> (<a class="el" href="struct_vertex.html">Vertex</a> minYVert, <a class="el" href="struct_vertex.html">Vertex</a> midYVert, <a class="el" href="struct_vertex.html">Vertex</a> maxYVert, bool handedness, uint id)</td></tr>
+<tr class="memitem:adcecbd138ae8c58d583037467f77ea35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rasterizer.html#adcecbd138ae8c58d583037467f77ea35">fillTriangle</a> (<a class="el" href="struct_vertex.html">Vertex</a> minYVert, <a class="el" href="struct_vertex.html">Vertex</a> midYVert, <a class="el" href="struct_vertex.html">Vertex</a> maxYVert, bool handedness, uint id)</td></tr>
 <tr class="separator:adcecbd138ae8c58d583037467f77ea35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad18b358f6db3c9d0304feb402d37689e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad18b358f6db3c9d0304feb402d37689e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTransformation</b> (<a class="el" href="class_transformation.html">Transformation</a> transformation)</td></tr>
+<tr class="memitem:ad18b358f6db3c9d0304feb402d37689e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rasterizer.html#ad18b358f6db3c9d0304feb402d37689e">setTransformation</a> (<a class="el" href="class_transformation.html">Transformation</a> transformation)</td></tr>
 <tr class="separator:ad18b358f6db3c9d0304feb402d37689e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32023cfe311be2b5118912364a1d2219"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32023cfe311be2b5118912364a1d2219"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clearBuffer</b> ()</td></tr>
+<tr class="memitem:a32023cfe311be2b5118912364a1d2219"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rasterizer.html#a32023cfe311be2b5118912364a1d2219">clearBuffer</a> ()</td></tr>
 <tr class="separator:a32023cfe311be2b5118912364a1d2219"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53689efa323cb4c5a9df0d4e5b19008f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a53689efa323cb4c5a9df0d4e5b19008f"></a>
-std::unordered_set&lt; uint &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getVisibleFaces</b> () const </td></tr>
+<tr class="memitem:a53689efa323cb4c5a9df0d4e5b19008f"><td class="memItemLeft" align="right" valign="top">std::unordered_set&lt; uint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rasterizer.html#a53689efa323cb4c5a9df0d4e5b19008f">getVisibleFaces</a> () const </td></tr>
 <tr class="separator:a53689efa323cb4c5a9df0d4e5b19008f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75040e8d77887db53f23f3fccf9eace7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a75040e8d77887db53f23f3fccf9eace7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>_getDepthBitmap</b> (<a class="el" href="class_bitmap.html">Bitmap</a> &amp;bitmap)</td></tr>
+<tr class="memitem:a75040e8d77887db53f23f3fccf9eace7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rasterizer.html#a75040e8d77887db53f23f3fccf9eace7">_getDepthBitmap</a> (<a class="el" href="class_bitmap.html">Bitmap</a> &amp;bitmap)</td></tr>
 <tr class="separator:a75040e8d77887db53f23f3fccf9eace7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a8c5ae8edeb03c773a841eef9207bef4d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c5ae8edeb03c773a841eef9207bef4d"></a>
-std::vector&lt; std::pair&lt; uint, float &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>scoreTable</b></td></tr>
+<tr class="memitem:a8c5ae8edeb03c773a841eef9207bef4d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; uint, float &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rasterizer.html#a8c5ae8edeb03c773a841eef9207bef4d">scoreTable</a></td></tr>
 <tr class="separator:a8c5ae8edeb03c773a841eef9207bef4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>DEBUG class. Not used for the main function of the tool </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a2eec0e17ef479f0e0af5640d6786e077"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Rasterizer::Rasterizer </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a75040e8d77887db53f23f3fccf9eace7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Rasterizer::_getDepthBitmap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_bitmap.html">Bitmap</a> &amp;&#160;</td>
+          <td class="paramname"><em>bitmap</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4e43391ca21604f52d4baabc44b34933"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Rasterizer::bindMesh </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_mesh.html">Mesh</a> &amp;&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a32023cfe311be2b5118912364a1d2219"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Rasterizer::clearBuffer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab2d26833e9b47e3e1a1b9e94a77d0a18"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Rasterizer::drawMesh </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3be827df6aeec982f2a1e5106ee6e99b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Rasterizer::drawTriangle </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_triangle.html">Triangle</a> &amp;&#160;</td>
+          <td class="paramname"><em>triangle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="adcecbd138ae8c58d583037467f77ea35"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Rasterizer::fillTriangle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vertex.html">Vertex</a>&#160;</td>
+          <td class="paramname"><em>minYVert</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vertex.html">Vertex</a>&#160;</td>
+          <td class="paramname"><em>midYVert</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vertex.html">Vertex</a>&#160;</td>
+          <td class="paramname"><em>maxYVert</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>handedness</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a53689efa323cb4c5a9df0d4e5b19008f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_set&lt;uint&gt; Rasterizer::getVisibleFaces </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a39a7b6f424f2bc8e7111892cbf387509"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Rasterizer::rasterizeTriangle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vertex.html">Vertex</a>&#160;</td>
+          <td class="paramname"><em>minYVert</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vertex.html">Vertex</a>&#160;</td>
+          <td class="paramname"><em>midYVert</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vertex.html">Vertex</a>&#160;</td>
+          <td class="paramname"><em>maxYVert</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_triangle.html">Triangle</a> &amp;&#160;</td>
+          <td class="paramname"><em>triangle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="accac2d0878675f9fe01ae2fedd30f84f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Rasterizer::setRenderContext </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_render_context.html">RenderContext</a> *&#160;</td>
+          <td class="paramname"><em>rc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a401966b0d0572d8c944e6b319515ac5e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Rasterizer::setTexture </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_bitmap.html">Bitmap</a> &amp;&#160;</td>
+          <td class="paramname"><em>txr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad18b358f6db3c9d0304feb402d37689e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Rasterizer::setTransformation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_transformation.html">Transformation</a>&#160;</td>
+          <td class="paramname"><em>transformation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a8c5ae8edeb03c773a841eef9207bef4d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::pair&lt;uint,float&gt; &gt; Rasterizer::scoreTable</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>TextureExtractorV2/<a class="el" href="_rasterizer_8hpp_source.html">Rasterizer.hpp</a></li>
-<li>TextureExtractorV2/Rasterizer.cpp</li>
+<li>TextureExtractorV2/<a class="el" href="_rasterizer_8cpp.html">Rasterizer.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_rasterizer.html">Rasterizer</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

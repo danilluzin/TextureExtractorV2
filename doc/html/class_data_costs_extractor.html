@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -62,10 +70,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_data_costs_extractor.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,7 +103,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -89,26 +111,96 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">DataCostsExtractor Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_data_costs_extractor_8hpp_source.html">DataCostsExtractor.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for DataCostsExtractor:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_data_costs_extractor__coll__graph.png" border="0" usemap="#_data_costs_extractor_coll__map" alt="Collaboration graph"/></div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a43e088a660a4c58abe525cae2fb6925b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43e088a660a4c58abe525cae2fb6925b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DataCostsExtractor</b> (const <a class="el" href="class_mesh.html">Mesh</a> &amp;mesh, <a class="el" href="class_view.html">View</a> &amp;view)</td></tr>
+<tr class="memitem:a43e088a660a4c58abe525cae2fb6925b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_costs_extractor.html#a43e088a660a4c58abe525cae2fb6925b">DataCostsExtractor</a> (const <a class="el" href="class_mesh.html">Mesh</a> &amp;mesh, <a class="el" href="class_view.html">View</a> &amp;view)</td></tr>
 <tr class="separator:a43e088a660a4c58abe525cae2fb6925b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c072ab9a7ceb6e3c6742c9991923b00"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c072ab9a7ceb6e3c6742c9991923b00"></a>
-std::map&lt; uint, <a class="el" href="struct_patch_quality.html">PatchQuality</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>calculateCosts</b> ()</td></tr>
+<tr class="memitem:a7c072ab9a7ceb6e3c6742c9991923b00"><td class="memItemLeft" align="right" valign="top">std::map&lt; uint, <a class="el" href="struct_patch_quality.html">PatchQuality</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_costs_extractor.html#a7c072ab9a7ceb6e3c6742c9991923b00">calculateCosts</a> ()</td></tr>
 <tr class="separator:a7c072ab9a7ceb6e3c6742c9991923b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fe7362a1fb391a1f4544b1a3c7d02f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_costs_extractor.html#a4fe7362a1fb391a1f4544b1a3c7d02f7">~DataCostsExtractor</a> ()</td></tr>
+<tr class="separator:a4fe7362a1fb391a1f4544b1a3c7d02f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a43e088a660a4c58abe525cae2fb6925b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DataCostsExtractor::DataCostsExtractor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_mesh.html">Mesh</a> &amp;&#160;</td>
+          <td class="paramname"><em>mesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_view.html">View</a> &amp;&#160;</td>
+          <td class="paramname"><em>view</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4fe7362a1fb391a1f4544b1a3c7d02f7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DataCostsExtractor::~DataCostsExtractor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a7c072ab9a7ceb6e3c6742c9991923b00"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt; uint, <a class="el" href="struct_patch_quality.html">PatchQuality</a> &gt; DataCostsExtractor::calculateCosts </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>starts data costs calculation for the set source image. Start at the root of the BVH. </p><dl class="section return"><dt>Returns</dt><dd>list of patch quality information for all the polygons that were visisble. Gets later merged into the main ledger. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>TextureExtractorV2/<a class="el" href="_data_costs_extractor_8hpp_source.html">DataCostsExtractor.hpp</a></li>
-<li>TextureExtractorV2/DataCostsExtractor.cpp</li>
+<li>TextureExtractorV2/<a class="el" href="_data_costs_extractor_8cpp.html">DataCostsExtractor.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_data_costs_extractor.html">DataCostsExtractor</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

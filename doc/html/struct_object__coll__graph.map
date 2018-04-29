@@ -1,0 +1,4 @@
+<map id="Object" name="Object">
+<area shape="rect" id="node2" href="$struct_bounding_box.html" title="{BoundingBox\n|+ minVec\l+ maxVec\l|+ BoundingBox()\l+ addVertex()\l+ addBoundingBox()\l}" alt="" coords="5,5,149,119"/>
+<area shape="rect" id="node3" href="$struct_partition_node.html" title="{PartitionNode\n|+ triangles\l+ separator\l+ direction\l|+ addTriangle()\l}" alt="" coords="169,180,281,280"/>
+</map>

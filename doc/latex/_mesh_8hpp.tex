@@ -1,0 +1,97 @@
+\hypertarget{_mesh_8hpp}{}\section{Texture\+Extractor\+V2/\+Mesh.hpp File Reference}
+\label{_mesh_8hpp}\index{Texture\+Extractor\+V2/\+Mesh.\+hpp@{Texture\+Extractor\+V2/\+Mesh.\+hpp}}
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$glm/glm.\+hpp$>$}\\*
+{\ttfamily \#include $<$map$>$}\\*
+{\ttfamily \#include $<$set$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+Include dependency graph for Mesh.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_mesh_8hpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_vertex}{Vertex}
+\item 
+struct \hyperlink{struct_bounding_box}{Bounding\+Box}
+\item 
+struct \hyperlink{struct_triangle}{Triangle}
+\item 
+struct \hyperlink{struct_tex_coord}{Tex\+Coord}
+\item 
+struct \hyperlink{struct_normal}{Normal}
+\item 
+class \hyperlink{class_adjacency_graph}{Adjacency\+Graph}
+\item 
+struct \hyperlink{struct_partition_node}{Partition\+Node}
+\item 
+struct \hyperlink{struct_object}{Object}
+\item 
+class \hyperlink{class_mesh}{Mesh}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aa}{Direction} \{ \hyperlink{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aaa58833a3110c570fb05130d40c365d1e4}{X}, 
+\hyperlink{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aaa5596231eabd6cf29050967d5ac83ad84}{Y}, 
+\hyperlink{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aaaa70478ce277ffc322f8e1e3418e07355}{Z}, 
+\hyperlink{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aaac157bdf0b85a40d2619cbc8bc1ae5fe2}{N\+O\+N\+E}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_vertex}{Vertex} \hyperlink{_mesh_8hpp_a1a13ce8c7dc46f41214b2294ee6b3d70}{operator$\ast$} (const glm\+::mat4 \&matrix, const \hyperlink{struct_vertex}{Vertex} \&vertex)
+\item 
+bool \hyperlink{_mesh_8hpp_ac821843a39dc256ca1a854357112a7cd}{is\+Inside\+View\+Frustrum} (const \hyperlink{struct_vertex}{Vertex} \&v)
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aa}{}\index{Mesh.\+hpp@{Mesh.\+hpp}!Direction@{Direction}}
+\index{Direction@{Direction}!Mesh.\+hpp@{Mesh.\+hpp}}
+\subsubsection[{Direction}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Direction}}\label{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aa}
+Direction enum. Used to identify the axis of bounding box separation. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{X@{X}!Mesh.\+hpp@{Mesh.\+hpp}}\index{Mesh.\+hpp@{Mesh.\+hpp}!X@{X}}\item[{\em 
+\hypertarget{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aaa58833a3110c570fb05130d40c365d1e4}{}X\label{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aaa58833a3110c570fb05130d40c365d1e4}
+}]\index{Y@{Y}!Mesh.\+hpp@{Mesh.\+hpp}}\index{Mesh.\+hpp@{Mesh.\+hpp}!Y@{Y}}\item[{\em 
+\hypertarget{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aaa5596231eabd6cf29050967d5ac83ad84}{}Y\label{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aaa5596231eabd6cf29050967d5ac83ad84}
+}]\index{Z@{Z}!Mesh.\+hpp@{Mesh.\+hpp}}\index{Mesh.\+hpp@{Mesh.\+hpp}!Z@{Z}}\item[{\em 
+\hypertarget{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aaaa70478ce277ffc322f8e1e3418e07355}{}Z\label{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aaaa70478ce277ffc322f8e1e3418e07355}
+}]\index{N\+O\+N\+E@{N\+O\+N\+E}!Mesh.\+hpp@{Mesh.\+hpp}}\index{Mesh.\+hpp@{Mesh.\+hpp}!N\+O\+N\+E@{N\+O\+N\+E}}\item[{\em 
+\hypertarget{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aaac157bdf0b85a40d2619cbc8bc1ae5fe2}{}N\+O\+N\+E\label{_mesh_8hpp_a224b9163917ac32fc95a60d8c1eec3aaac157bdf0b85a40d2619cbc8bc1ae5fe2}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{_mesh_8hpp_ac821843a39dc256ca1a854357112a7cd}{}\index{Mesh.\+hpp@{Mesh.\+hpp}!is\+Inside\+View\+Frustrum@{is\+Inside\+View\+Frustrum}}
+\index{is\+Inside\+View\+Frustrum@{is\+Inside\+View\+Frustrum}!Mesh.\+hpp@{Mesh.\+hpp}}
+\subsubsection[{is\+Inside\+View\+Frustrum(const Vertex \&v)}]{\setlength{\rightskip}{0pt plus 5cm}bool is\+Inside\+View\+Frustrum (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vertex} \&}]{v}
+\end{DoxyParamCaption}
+)}\label{_mesh_8hpp_ac821843a39dc256ca1a854357112a7cd}
+\hyperlink{class_view}{View} frustum check in clipping space. Checks agains the w \hypertarget{_mesh_8hpp_a1a13ce8c7dc46f41214b2294ee6b3d70}{}\index{Mesh.\+hpp@{Mesh.\+hpp}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Mesh.\+hpp@{Mesh.\+hpp}}
+\subsubsection[{operator$\ast$(const glm\+::mat4 \&matrix, const Vertex \&vertex)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vertex} operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const glm\+::mat4 \&}]{matrix, }
+\item[{const {\bf Vertex} \&}]{vertex}
+\end{DoxyParamCaption}
+)}\label{_mesh_8hpp_a1a13ce8c7dc46f41214b2294ee6b3d70}
+Traditional matrix x vertex multiplication 
+\begin{DoxyParams}{Parameters}
+{\em matrix} & matrix to multiply with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+resulting vertex of multiplying matrix$\ast$coord 
+\end{DoxyReturn}
