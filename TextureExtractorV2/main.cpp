@@ -50,28 +50,58 @@
  - TBB https://www.threadingbuildingblocks.org
  */
 
+/**
+ * Prepare a mesh from obj file. Starts and stops a timer.
+ */
 bool prepareMesh(Mesh & mesh,const std::string & objFilePath);
 
+/**
+ * Reads and parses the .INI config from file.
+ */
 bool prepareConfig(int argc, const char * argv[]);
 
+/**
+ * Wrapper function. Starts the timer ask extractor to prepare views
+ */
 bool prepareViews( TextureExtractor & extractor);
 
+/**
+ * Wrapper function. Starts the timer ask extractor to perform view selection
+ */
 bool performViewSelection(TextureExtractor & extractor);
 
+/**
+ * Wrapper function. Starts the timer ask extractor to calculate data costs
+ */
 bool calculateDataCosts(TextureExtractor & extractor);
 
+/**
+ * Wrapper function. Starts the timer ask extractor to generate textures
+ */
 bool generateTexture(TextureExtractor & extractor);
 
+/**
+ * Wrapper DEBUG function. Starts the timer ask extractor to render views with texture
+ */
 void _renderViewsWithTexture(TextureExtractor & extractor);
 
+/**
+ * Wrapper function. Starts the timer ask extractor to calculate data costs and get labeling
+ */
 bool calcDataCostsAndGetLebeling(TextureExtractor & extractor);
 
+/**
+ * Wrapper function. Starts the timer ask extractor to load Labels from file
+ */
 bool loadLabelsFromFile(TextureExtractor & extractor);
 
 Arguments arguments;
 int pad = 0;
 bool verbose = true;
 
+/**
+ * Checks command line flags.
+ */
 bool checkFlags(const char * argv[]);
 
 int main(int argc, const char * argv[]) {
@@ -150,30 +180,6 @@ int main(int argc, const char * argv[]) {
         _renderViewsWithTexture(extractor);
 
 }
-
-void _renderViewsWithTexture(TextureExtractor & extractor){
-    {
-        Bitmap depth;
-        Bitmap bitmap;
-//        std::vector<uint> photoSet={};
-        //            std::vector<uint> photoSet={28,27};
-//        std::cout<<"depth\n";
-//        extractor.renderViewAndDepth(bitmap, depth, 27);
-//    depth.save("working_resources/slany/derived1/slany_d_27.png");
-//        std::cout<<"done\n";
-        
-        std::vector<uint> photoSet(extractor.numberOfViews());
-//        std::vector<uint> photoSet={1,2,3,44,5,46,7,8,9,30,31,12,13,22,51,16,50};
-        std::iota(photoSet.begin(),photoSet.end(),1);
-        for(int t=0;t<photoSet.size();t++){
-            std::cout<<"\rRasterizing photos %"<<(100*((float)t/photoSet.size()))<<"     "<<std::flush;
-            extractor.renderView(bitmap, photoSet[t]);
-            bitmap.save(arguments.resultRenderFolder+"/"+arguments.projectName+"_" + std::to_string(photoSet[t]) + ".png");
-        }
-        std::cout<<"\rRasterizing photos %100      \n";
-    }
-}
-
 
 bool prepareConfig(int argc, const char * argv[]){
     if(argc < 2){
@@ -333,5 +339,31 @@ bool checkFlags(const char * argv[]){
     return true;
 }
 
+
+//// DEBUG ////
+
+
+void _renderViewsWithTexture(TextureExtractor & extractor){
+    {
+        Bitmap depth;
+        Bitmap bitmap;
+        //        std::vector<uint> photoSet={};
+        //            std::vector<uint> photoSet={28,27};
+        //        std::cout<<"depth\n";
+        //        extractor.renderViewAndDepth(bitmap, depth, 27);
+        //    depth.save("working_resources/slany/derived1/slany_d_27.png");
+        //        std::cout<<"done\n";
+        
+        std::vector<uint> photoSet(extractor.numberOfViews());
+        //        std::vector<uint> photoSet={1,2,3,44,5,46,7,8,9,30,31,12,13,22,51,16,50};
+        std::iota(photoSet.begin(),photoSet.end(),1);
+        for(int t=0;t<photoSet.size();t++){
+            std::cout<<"\rRasterizing photos %"<<(100*((float)t/photoSet.size()))<<"     "<<std::flush;
+            extractor.renderView(bitmap, photoSet[t]);
+            bitmap.save(arguments.resultRenderFolder+"/"+arguments.projectName+"_" + std::to_string(photoSet[t]) + ".png");
+        }
+        std::cout<<"\rRasterizing photos %100      \n";
+    }
+}
 
 
