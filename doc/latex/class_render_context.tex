@@ -1,34 +1,112 @@
 \hypertarget{class_render_context}{}\section{Render\+Context Class Reference}
 \label{class_render_context}\index{Render\+Context@{Render\+Context}}
-Inheritance diagram for Render\+Context\+:\begin{figure}[H]
+
+
+{\ttfamily \#include $<$Render\+Context.\+h$>$}
+
+
+
+Inheritance diagram for Render\+Context\+:\nopagebreak
+\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{class_render_context}
+\includegraphics[width=179pt]{class_render_context__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Render\+Context\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=179pt]{class_render_context__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_render_context_aff0b414b1aa39e7c5ca4ed5cadf20721}{}{\bfseries Render\+Context} (int width, int height)\label{class_render_context_aff0b414b1aa39e7c5ca4ed5cadf20721}
-
+\hyperlink{class_render_context_aff0b414b1aa39e7c5ca4ed5cadf20721}{Render\+Context} (int \hyperlink{class_render_context_a8009663c022d4a60d8a4dbfdb4183f46}{width}, int \hyperlink{class_render_context_a194a36ce3d85ae9ef5b40396e1e2d950}{height})
 \item 
-\hypertarget{class_render_context_a722f7e593dc2c480ad5a2a448196c2dc}{}virtual void {\bfseries put\+Pixel} (int x, int y, glm\+::vec4 color)=0\label{class_render_context_a722f7e593dc2c480ad5a2a448196c2dc}
-
+virtual void \hyperlink{class_render_context_a722f7e593dc2c480ad5a2a448196c2dc}{put\+Pixel} (int x, int y, glm\+::vec4 color)=0
 \item 
-\hypertarget{class_render_context_a9c6a34962ba769bacbb054ea435dfce8}{}virtual void {\bfseries clear} (glm\+::vec4 color)=0\label{class_render_context_a9c6a34962ba769bacbb054ea435dfce8}
-
+virtual void \hyperlink{class_render_context_a9c6a34962ba769bacbb054ea435dfce8}{clear} (glm\+::vec4 color)=0
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_render_context_a8009663c022d4a60d8a4dbfdb4183f46}{}int {\bfseries width}\label{class_render_context_a8009663c022d4a60d8a4dbfdb4183f46}
-
+int \hyperlink{class_render_context_a8009663c022d4a60d8a4dbfdb4183f46}{width}
 \item 
-\hypertarget{class_render_context_a194a36ce3d85ae9ef5b40396e1e2d950}{}int {\bfseries height}\label{class_render_context_a194a36ce3d85ae9ef5b40396e1e2d950}
-
+int \hyperlink{class_render_context_a194a36ce3d85ae9ef5b40396e1e2d950}{height}
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that is common for every render context. Was useful when i had output to the screen. Tight now only render context is a \hyperlink{class_bitmap}{Bitmap} 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_render_context_aff0b414b1aa39e7c5ca4ed5cadf20721}{}\index{Render\+Context@{Render\+Context}!Render\+Context@{Render\+Context}}
+\index{Render\+Context@{Render\+Context}!Render\+Context@{Render\+Context}}
+\subsubsection[{Render\+Context(int width, int height)}]{\setlength{\rightskip}{0pt plus 5cm}Render\+Context\+::\+Render\+Context (
+\begin{DoxyParamCaption}
+\item[{int}]{width, }
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_render_context_aff0b414b1aa39e7c5ca4ed5cadf20721}
+Iniitialize new render context 
+\begin{DoxyParams}{Parameters}
+{\em width} & new context width \\
+\hline
+{\em height} & new context height \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_render_context_a9c6a34962ba769bacbb054ea435dfce8}{}\index{Render\+Context@{Render\+Context}!clear@{clear}}
+\index{clear@{clear}!Render\+Context@{Render\+Context}}
+\subsubsection[{clear(glm\+::vec4 color)=0}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Render\+Context\+::clear (
+\begin{DoxyParamCaption}
+\item[{glm\+::vec4}]{color}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_render_context_a9c6a34962ba769bacbb054ea435dfce8}
+Abstract method. Fill whole imagwith solid color 
+\begin{DoxyParams}{Parameters}
+{\em color} & color to use for filling \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_bitmap_a409022ea446f41edcce42c076dff1608}{Bitmap}.
+
+\hypertarget{class_render_context_a722f7e593dc2c480ad5a2a448196c2dc}{}\index{Render\+Context@{Render\+Context}!put\+Pixel@{put\+Pixel}}
+\index{put\+Pixel@{put\+Pixel}!Render\+Context@{Render\+Context}}
+\subsubsection[{put\+Pixel(int x, int y, glm\+::vec4 color)=0}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Render\+Context\+::put\+Pixel (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{glm\+::vec4}]{color}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_render_context_a722f7e593dc2c480ad5a2a448196c2dc}
+Abstract method. Puts pixel of certain color into a render context 
+\begin{DoxyParams}[1]{Parameters}
+$<$ & {\em name\+::$>$} & $<$\#description\#$>$ \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_bitmap_a6f880db00f7d05e6284005a6553aa17c}{Bitmap}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_render_context_a194a36ce3d85ae9ef5b40396e1e2d950}{}\index{Render\+Context@{Render\+Context}!height@{height}}
+\index{height@{height}!Render\+Context@{Render\+Context}}
+\subsubsection[{height}]{\setlength{\rightskip}{0pt plus 5cm}int Render\+Context\+::height}\label{class_render_context_a194a36ce3d85ae9ef5b40396e1e2d950}
+\hypertarget{class_render_context_a8009663c022d4a60d8a4dbfdb4183f46}{}\index{Render\+Context@{Render\+Context}!width@{width}}
+\index{width@{width}!Render\+Context@{Render\+Context}}
+\subsubsection[{width}]{\setlength{\rightskip}{0pt plus 5cm}int Render\+Context\+::width}\label{class_render_context_a8009663c022d4a60d8a4dbfdb4183f46}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Texture\+Extractor\+V2/Render\+Context.\+h\end{DoxyCompactItemize}
+Texture\+Extractor\+V2/\hyperlink{_render_context_8h}{Render\+Context.\+h}\end{DoxyCompactItemize}

@@ -1,47 +1,95 @@
 \hypertarget{class_camera}{}\section{Camera Class Reference}
 \label{class_camera}\index{Camera@{Camera}}
+
+
+{\ttfamily \#include $<$Camera.\+hpp$>$}
+
+
+
+Collaboration diagram for Camera\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=191pt]{class_camera__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_camera_a95833a5b98d52d4be7b7267c8c8490fe}{}glm\+::mat4 {\bfseries get\+View\+Projection} () const \label{class_camera_a95833a5b98d52d4be7b7267c8c8490fe}
-
+\hyperlink{class_camera_a01f94c3543f56ede7af49dc778f19331}{Camera} ()
+\item 
+glm\+::mat4 \hyperlink{class_camera_a95833a5b98d52d4be7b7267c8c8490fe}{get\+View\+Projection} () const 
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_camera_a04b5db2c530d8630660e8cfb93a4b3b5}{}glm\+::vec3 {\bfseries position}\label{class_camera_a04b5db2c530d8630660e8cfb93a4b3b5}
-
+float \hyperlink{class_camera_aff7393c9cfbccd7e369091f00008da93}{fov}
 \item 
-\hypertarget{class_camera_aa98ee9f3a770f03ebca0cde9f7b8ab50}{}glm\+::vec3 {\bfseries forward}\label{class_camera_aa98ee9f3a770f03ebca0cde9f7b8ab50}
-
+float \hyperlink{class_camera_a1db2166635ff27594eda3a23130b66ac}{z\+Near} = 0.\+01f
 \item 
-\hypertarget{class_camera_a3fe5f351380fb118ffc600591769f049}{}glm\+::vec3 {\bfseries up}\label{class_camera_a3fe5f351380fb118ffc600591769f049}
-
+float \hyperlink{class_camera_a6290469f972a5903c805725db563f41f}{z\+Far} = 1000.\+0f
 \item 
-\hypertarget{class_camera_aff7393c9cfbccd7e369091f00008da93}{}float {\bfseries fov}\label{class_camera_aff7393c9cfbccd7e369091f00008da93}
-
+glm\+::mat4 \hyperlink{class_camera_ac4c1ee3074b5e4b70efec7d3ceb1467f}{perspective}
 \item 
-\hypertarget{class_camera_a1db2166635ff27594eda3a23130b66ac}{}float {\bfseries z\+Near} = 0.\+01f\label{class_camera_a1db2166635ff27594eda3a23130b66ac}
-
+float \hyperlink{class_camera_a0375653f2ef532ac566eba093c2c922d}{focal\+Length}
 \item 
-\hypertarget{class_camera_a6290469f972a5903c805725db563f41f}{}float {\bfseries z\+Far} = 1000.\+0f\label{class_camera_a6290469f972a5903c805725db563f41f}
-
+glm\+::mat4 \hyperlink{class_camera_a0986d4d426737e26178056e3635dc3d8}{rotation\+Matrix}
 \item 
-\hypertarget{class_camera_ac4c1ee3074b5e4b70efec7d3ceb1467f}{}glm\+::mat4 {\bfseries perspective}\label{class_camera_ac4c1ee3074b5e4b70efec7d3ceb1467f}
-
-\item 
-\hypertarget{class_camera_a0375653f2ef532ac566eba093c2c922d}{}float {\bfseries focal\+Length}\label{class_camera_a0375653f2ef532ac566eba093c2c922d}
-
-\item 
-\hypertarget{class_camera_a0986d4d426737e26178056e3635dc3d8}{}glm\+::mat4 {\bfseries rotation\+Matrix}\label{class_camera_a0986d4d426737e26178056e3635dc3d8}
-
-\item 
-\hypertarget{class_camera_ab7dbba19077d1457c557c31a215c2557}{}glm\+::vec3 {\bfseries translation}\label{class_camera_ab7dbba19077d1457c557c31a215c2557}
-
+glm\+::vec3 \hyperlink{class_camera_ab7dbba19077d1457c557c31a215c2557}{translation}
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+Class that hold camera parameters and position for a certain photo 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_camera_a01f94c3543f56ede7af49dc778f19331}{}\index{Camera@{Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!Camera@{Camera}}
+\subsubsection[{Camera()}]{\setlength{\rightskip}{0pt plus 5cm}Camera\+::\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_camera_a01f94c3543f56ede7af49dc778f19331}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_camera_a95833a5b98d52d4be7b7267c8c8490fe}{}\index{Camera@{Camera}!get\+View\+Projection@{get\+View\+Projection}}
+\index{get\+View\+Projection@{get\+View\+Projection}!Camera@{Camera}}
+\subsubsection[{get\+View\+Projection() const }]{\setlength{\rightskip}{0pt plus 5cm}glm\+::mat4 Camera\+::get\+View\+Projection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_camera_a95833a5b98d52d4be7b7267c8c8490fe}
+Calculates a projection matrix \begin{DoxyReturn}{Returns}
+a projection matrix using the bundel matricies and glm perspective 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_camera_a0375653f2ef532ac566eba093c2c922d}{}\index{Camera@{Camera}!focal\+Length@{focal\+Length}}
+\index{focal\+Length@{focal\+Length}!Camera@{Camera}}
+\subsubsection[{focal\+Length}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::focal\+Length}\label{class_camera_a0375653f2ef532ac566eba093c2c922d}
+focal lenght in pixels \hypertarget{class_camera_aff7393c9cfbccd7e369091f00008da93}{}\index{Camera@{Camera}!fov@{fov}}
+\index{fov@{fov}!Camera@{Camera}}
+\subsubsection[{fov}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::fov}\label{class_camera_aff7393c9cfbccd7e369091f00008da93}
+Field of view estimation of the camera \hypertarget{class_camera_ac4c1ee3074b5e4b70efec7d3ceb1467f}{}\index{Camera@{Camera}!perspective@{perspective}}
+\index{perspective@{perspective}!Camera@{Camera}}
+\subsubsection[{perspective}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::mat4 Camera\+::perspective}\label{class_camera_ac4c1ee3074b5e4b70efec7d3ceb1467f}
+Perspective projection matrix \hypertarget{class_camera_a0986d4d426737e26178056e3635dc3d8}{}\index{Camera@{Camera}!rotation\+Matrix@{rotation\+Matrix}}
+\index{rotation\+Matrix@{rotation\+Matrix}!Camera@{Camera}}
+\subsubsection[{rotation\+Matrix}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::mat4 Camera\+::rotation\+Matrix}\label{class_camera_a0986d4d426737e26178056e3635dc3d8}
+\hyperlink{class_camera}{Camera} rotation matrix \hypertarget{class_camera_ab7dbba19077d1457c557c31a215c2557}{}\index{Camera@{Camera}!translation@{translation}}
+\index{translation@{translation}!Camera@{Camera}}
+\subsubsection[{translation}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Camera\+::translation}\label{class_camera_ab7dbba19077d1457c557c31a215c2557}
+Translation vector \hypertarget{class_camera_a6290469f972a5903c805725db563f41f}{}\index{Camera@{Camera}!z\+Far@{z\+Far}}
+\index{z\+Far@{z\+Far}!Camera@{Camera}}
+\subsubsection[{z\+Far}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::z\+Far = 1000.\+0f}\label{class_camera_a6290469f972a5903c805725db563f41f}
+Far clipping plane \hypertarget{class_camera_a1db2166635ff27594eda3a23130b66ac}{}\index{Camera@{Camera}!z\+Near@{z\+Near}}
+\index{z\+Near@{z\+Near}!Camera@{Camera}}
+\subsubsection[{z\+Near}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::z\+Near = 0.\+01f}\label{class_camera_a1db2166635ff27594eda3a23130b66ac}
+Near clipping plane 
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Texture\+Extractor\+V2/Camera.\+hpp\item 
-Texture\+Extractor\+V2/Camera.\+cpp\end{DoxyCompactItemize}
+Texture\+Extractor\+V2/\hyperlink{_camera_8hpp}{Camera.\+hpp}\item 
+Texture\+Extractor\+V2/\hyperlink{_camera_8cpp}{Camera.\+cpp}\end{DoxyCompactItemize}

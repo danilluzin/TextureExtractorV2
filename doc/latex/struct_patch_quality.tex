@@ -1,31 +1,69 @@
 \hypertarget{struct_patch_quality}{}\section{Patch\+Quality Struct Reference}
 \label{struct_patch_quality}\index{Patch\+Quality@{Patch\+Quality}}
+
+
+{\ttfamily \#include $<$Patch\+Quality.\+h$>$}
+
+
+
+Collaboration diagram for Patch\+Quality\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{struct_patch_quality__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{struct_patch_quality_a330d17106af0e6f3d484c7777201c6f8}{}void {\bfseries calc\+Quality} ()\label{struct_patch_quality_a330d17106af0e6f3d484c7777201c6f8}
-
+void \hyperlink{struct_patch_quality_a330d17106af0e6f3d484c7777201c6f8}{calc\+Quality} ()
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{struct_patch_quality_a3c8d512ff345ceef200c3f7c71e7ac38}{}uint {\bfseries sample\+Count} = 0\label{struct_patch_quality_a3c8d512ff345ceef200c3f7c71e7ac38}
-
+uint \hyperlink{struct_patch_quality_a3c8d512ff345ceef200c3f7c71e7ac38}{sample\+Count} = 0
 \item 
-\hypertarget{struct_patch_quality_adf9ac6ee8def50e84e0e68c4a9078fc2}{}uint {\bfseries potential\+Sample\+Count} = 0\label{struct_patch_quality_adf9ac6ee8def50e84e0e68c4a9078fc2}
-
+uint \hyperlink{struct_patch_quality_adf9ac6ee8def50e84e0e68c4a9078fc2}{potential\+Sample\+Count} = 0
 \item 
-\hypertarget{struct_patch_quality_abc1d602a83896430d93d887c14239cbc}{}float {\bfseries gradient\+Magnitude\+Sum} = 0\label{struct_patch_quality_abc1d602a83896430d93d887c14239cbc}
-
+float \hyperlink{struct_patch_quality_abc1d602a83896430d93d887c14239cbc}{gradient\+Magnitude\+Sum} = 0
 \item 
-\hypertarget{struct_patch_quality_a96523c3184058de7a735c46baff38a35}{}glm\+::vec4 {\bfseries color\+Sum}\label{struct_patch_quality_a96523c3184058de7a735c46baff38a35}
-
+glm\+::vec4 \hyperlink{struct_patch_quality_a96523c3184058de7a735c46baff38a35}{color\+Sum}
 \item 
-\hypertarget{struct_patch_quality_abfe27ea5bb26348daaad5445958aff92}{}float {\bfseries quality}\label{struct_patch_quality_abfe27ea5bb26348daaad5445958aff92}
-
+float \hyperlink{struct_patch_quality_abfe27ea5bb26348daaad5445958aff92}{quality}
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+Structure that hold all the information that we gather during the data cost calculation step. 
+
+\subsection{Member Function Documentation}
+\hypertarget{struct_patch_quality_a330d17106af0e6f3d484c7777201c6f8}{}\index{Patch\+Quality@{Patch\+Quality}!calc\+Quality@{calc\+Quality}}
+\index{calc\+Quality@{calc\+Quality}!Patch\+Quality@{Patch\+Quality}}
+\subsubsection[{calc\+Quality()}]{\setlength{\rightskip}{0pt plus 5cm}void Patch\+Quality\+::calc\+Quality (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{struct_patch_quality_a330d17106af0e6f3d484c7777201c6f8}
+Calculates and sets the quality. If the sample count is 0 (i.\+e polygon was invisible then quality is 0) 
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_patch_quality_a96523c3184058de7a735c46baff38a35}{}\index{Patch\+Quality@{Patch\+Quality}!color\+Sum@{color\+Sum}}
+\index{color\+Sum@{color\+Sum}!Patch\+Quality@{Patch\+Quality}}
+\subsubsection[{color\+Sum}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec4 Patch\+Quality\+::color\+Sum}\label{struct_patch_quality_a96523c3184058de7a735c46baff38a35}
+a color sum, sampled from the original source image. Same decrease/increase principle is applied to this variable as well. Used for the color consistency check \hypertarget{struct_patch_quality_abc1d602a83896430d93d887c14239cbc}{}\index{Patch\+Quality@{Patch\+Quality}!gradient\+Magnitude\+Sum@{gradient\+Magnitude\+Sum}}
+\index{gradient\+Magnitude\+Sum@{gradient\+Magnitude\+Sum}!Patch\+Quality@{Patch\+Quality}}
+\subsubsection[{gradient\+Magnitude\+Sum}]{\setlength{\rightskip}{0pt plus 5cm}float Patch\+Quality\+::gradient\+Magnitude\+Sum = 0}\label{struct_patch_quality_abc1d602a83896430d93d887c14239cbc}
+a total color sum of samples taken from the source modified by Sobel operator. In the same fashion as sample\+Count gets decreased if sample is later determined to belong to other triangle \hypertarget{struct_patch_quality_adf9ac6ee8def50e84e0e68c4a9078fc2}{}\index{Patch\+Quality@{Patch\+Quality}!potential\+Sample\+Count@{potential\+Sample\+Count}}
+\index{potential\+Sample\+Count@{potential\+Sample\+Count}!Patch\+Quality@{Patch\+Quality}}
+\subsubsection[{potential\+Sample\+Count}]{\setlength{\rightskip}{0pt plus 5cm}uint Patch\+Quality\+::potential\+Sample\+Count = 0}\label{struct_patch_quality_adf9ac6ee8def50e84e0e68c4a9078fc2}
+a number of pixels a triangle could have, po-\/ tentially, had from a view regardless of occlusion (only gets incremented). If a strict occlusion is picked in the configuration then view-\/triangle pair gets discarded if a sample\+Count ̸= potential\+Sample\+Count. \hypertarget{struct_patch_quality_abfe27ea5bb26348daaad5445958aff92}{}\index{Patch\+Quality@{Patch\+Quality}!quality@{quality}}
+\index{quality@{quality}!Patch\+Quality@{Patch\+Quality}}
+\subsubsection[{quality}]{\setlength{\rightskip}{0pt plus 5cm}float Patch\+Quality\+::quality}\label{struct_patch_quality_abfe27ea5bb26348daaad5445958aff92}
+calculated patch aulaity \hypertarget{struct_patch_quality_a3c8d512ff345ceef200c3f7c71e7ac38}{}\index{Patch\+Quality@{Patch\+Quality}!sample\+Count@{sample\+Count}}
+\index{sample\+Count@{sample\+Count}!Patch\+Quality@{Patch\+Quality}}
+\subsubsection[{sample\+Count}]{\setlength{\rightskip}{0pt plus 5cm}uint Patch\+Quality\+::sample\+Count = 0}\label{struct_patch_quality_a3c8d512ff345ceef200c3f7c71e7ac38}
+a number of pixels that were sampled for this triangle during the rasterization phase. It gets increased every time a pixel is sampled, it gets decreased if that pixel is later determined to belong to another triangle (due to occlusion) 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Texture\+Extractor\+V2/Patch\+Quality.\+h\end{DoxyCompactItemize}
+Texture\+Extractor\+V2/\hyperlink{_patch_quality_8h}{Patch\+Quality.\+h}\end{DoxyCompactItemize}

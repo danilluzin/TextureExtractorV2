@@ -1,41 +1,101 @@
 \hypertarget{class_view}{}\section{View Class Reference}
 \label{class_view}\index{View@{View}}
+
+
+{\ttfamily \#include $<$View.\+hpp$>$}
+
+
+
+Collaboration diagram for View\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{class_view__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_view_a58942806f815fc1f34034c1464aa3d57}{}void {\bfseries load\+Image} ()\label{class_view_a58942806f815fc1f34034c1464aa3d57}
-
+\hyperlink{class_view_a44ad60a768422d3fa8fbd7576950080a}{View} ()
 \item 
-\hypertarget{class_view_aa280b349b020b2fb14863b66d054a1da}{}void {\bfseries release\+Image} ()\label{class_view_aa280b349b020b2fb14863b66d054a1da}
-
+void \hyperlink{class_view_a58942806f815fc1f34034c1464aa3d57}{load\+Image} ()
+\item 
+void \hyperlink{class_view_aa280b349b020b2fb14863b66d054a1da}{release\+Image} ()
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_view_af416d44fcc5e550f9124cb2227b7c971}{}uint {\bfseries id}\label{class_view_af416d44fcc5e550f9124cb2227b7c971}
-
+uint \hyperlink{class_view_af416d44fcc5e550f9124cb2227b7c971}{id}
 \item 
-\hypertarget{class_view_a6694ecbe37c82f827cc5c861ea6544a7}{}\hyperlink{class_bitmap}{Bitmap} $\ast$ {\bfseries source\+Image} = nullptr\label{class_view_a6694ecbe37c82f827cc5c861ea6544a7}
-
+\hyperlink{class_bitmap}{Bitmap} $\ast$ \hyperlink{class_view_a6694ecbe37c82f827cc5c861ea6544a7}{source\+Image} = nullptr
 \item 
-\hypertarget{class_view_aa525308d25faadf5093d8c368290fb71}{}std\+::string {\bfseries file\+Name}\label{class_view_aa525308d25faadf5093d8c368290fb71}
-
+std\+::string \hyperlink{class_view_aa525308d25faadf5093d8c368290fb71}{file\+Name}
 \item 
-\hypertarget{class_view_ad7f28c9ee1645c5ba3e1164a29227bf2}{}\hyperlink{class_camera}{Camera} {\bfseries camera}\label{class_view_ad7f28c9ee1645c5ba3e1164a29227bf2}
-
+\hyperlink{class_camera}{Camera} \hyperlink{class_view_ad7f28c9ee1645c5ba3e1164a29227bf2}{camera}
 \item 
-\hypertarget{class_view_a00c5c1d61a5056a52982e03a6f7f7c70}{}uint {\bfseries photo\+Width}\label{class_view_a00c5c1d61a5056a52982e03a6f7f7c70}
-
+uint \hyperlink{class_view_a00c5c1d61a5056a52982e03a6f7f7c70}{photo\+Width}
 \item 
-\hypertarget{class_view_aa6390d1827dd3b222e0a91891c9ff05b}{}uint {\bfseries photo\+Height}\label{class_view_aa6390d1827dd3b222e0a91891c9ff05b}
-
+uint \hyperlink{class_view_aa6390d1827dd3b222e0a91891c9ff05b}{photo\+Height}
 \item 
-\hypertarget{class_view_a1c2f222c8f6060c2d3ecb7c08808fa91}{}std\+::unordered\+\_\+set$<$ uint $>$ {\bfseries visible\+Faces}\label{class_view_a1c2f222c8f6060c2d3ecb7c08808fa91}
-
+std\+::unordered\+\_\+set$<$ uint $>$ \hyperlink{class_view_a1c2f222c8f6060c2d3ecb7c08808fa91}{visible\+Faces}
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+Class that is used to represent the source image. Hold the information nessecary to recreate and analyse the source image. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_view_a44ad60a768422d3fa8fbd7576950080a}{}\index{View@{View}!View@{View}}
+\index{View@{View}!View@{View}}
+\subsubsection[{View()}]{\setlength{\rightskip}{0pt plus 5cm}View\+::\+View (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_view_a44ad60a768422d3fa8fbd7576950080a}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_view_a58942806f815fc1f34034c1464aa3d57}{}\index{View@{View}!load\+Image@{load\+Image}}
+\index{load\+Image@{load\+Image}!View@{View}}
+\subsubsection[{load\+Image()}]{\setlength{\rightskip}{0pt plus 5cm}void View\+::load\+Image (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_view_a58942806f815fc1f34034c1464aa3d57}
+Loads an image into memory \hypertarget{class_view_aa280b349b020b2fb14863b66d054a1da}{}\index{View@{View}!release\+Image@{release\+Image}}
+\index{release\+Image@{release\+Image}!View@{View}}
+\subsubsection[{release\+Image()}]{\setlength{\rightskip}{0pt plus 5cm}void View\+::release\+Image (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_view_aa280b349b020b2fb14863b66d054a1da}
+Releases the image from the memory 
+
+\subsection{Member Data Documentation}
+\hypertarget{class_view_ad7f28c9ee1645c5ba3e1164a29227bf2}{}\index{View@{View}!camera@{camera}}
+\index{camera@{camera}!View@{View}}
+\subsubsection[{camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} View\+::camera}\label{class_view_ad7f28c9ee1645c5ba3e1164a29227bf2}
+Instance of the camera class that hold camera parameters and position \hypertarget{class_view_aa525308d25faadf5093d8c368290fb71}{}\index{View@{View}!file\+Name@{file\+Name}}
+\index{file\+Name@{file\+Name}!View@{View}}
+\subsubsection[{file\+Name}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string View\+::file\+Name}\label{class_view_aa525308d25faadf5093d8c368290fb71}
+Filename of the source photograph \hypertarget{class_view_af416d44fcc5e550f9124cb2227b7c971}{}\index{View@{View}!id@{id}}
+\index{id@{id}!View@{View}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}uint View\+::id}\label{class_view_af416d44fcc5e550f9124cb2227b7c971}
+I\+D that is assigned to a view. Starts at 1 \hypertarget{class_view_aa6390d1827dd3b222e0a91891c9ff05b}{}\index{View@{View}!photo\+Height@{photo\+Height}}
+\index{photo\+Height@{photo\+Height}!View@{View}}
+\subsubsection[{photo\+Height}]{\setlength{\rightskip}{0pt plus 5cm}uint View\+::photo\+Height}\label{class_view_aa6390d1827dd3b222e0a91891c9ff05b}
+Height of the source photo \hypertarget{class_view_a00c5c1d61a5056a52982e03a6f7f7c70}{}\index{View@{View}!photo\+Width@{photo\+Width}}
+\index{photo\+Width@{photo\+Width}!View@{View}}
+\subsubsection[{photo\+Width}]{\setlength{\rightskip}{0pt plus 5cm}uint View\+::photo\+Width}\label{class_view_a00c5c1d61a5056a52982e03a6f7f7c70}
+Widths of the source photo \hypertarget{class_view_a6694ecbe37c82f827cc5c861ea6544a7}{}\index{View@{View}!source\+Image@{source\+Image}}
+\index{source\+Image@{source\+Image}!View@{View}}
+\subsubsection[{source\+Image}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Bitmap}$\ast$ View\+::source\+Image = nullptr}\label{class_view_a6694ecbe37c82f827cc5c861ea6544a7}
+\hyperlink{class_bitmap}{Bitmap} of the source photograph \hypertarget{class_view_a1c2f222c8f6060c2d3ecb7c08808fa91}{}\index{View@{View}!visible\+Faces@{visible\+Faces}}
+\index{visible\+Faces@{visible\+Faces}!View@{View}}
+\subsubsection[{visible\+Faces}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unordered\+\_\+set$<$uint$>$ View\+::visible\+Faces}\label{class_view_a1c2f222c8f6060c2d3ecb7c08808fa91}
+Set of the faces that are visible from the source photo 
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Texture\+Extractor\+V2/View.\+hpp\item 
-Texture\+Extractor\+V2/View.\+cpp\end{DoxyCompactItemize}
+Texture\+Extractor\+V2/\hyperlink{_view_8hpp}{View.\+hpp}\item 
+Texture\+Extractor\+V2/\hyperlink{_view_8cpp}{View.\+cpp}\end{DoxyCompactItemize}

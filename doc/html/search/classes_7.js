@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mesh',['Mesh',['../class_mesh.html',1,'']]]
+  ['normal',['Normal',['../struct_normal.html',1,'']]]
 ];

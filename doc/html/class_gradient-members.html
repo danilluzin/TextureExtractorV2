@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -62,10 +70,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_gradient.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,7 +103,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Gradient Member List</div>  </div>
@@ -89,25 +111,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="class_gradient.html">Gradient</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>color</b> (defined in <a class="el" href="class_gradient.html">Gradient</a>)</td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>colorXStep</b> (defined in <a class="el" href="class_gradient.html">Gradient</a>)</td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>colorYStep</b> (defined in <a class="el" href="class_gradient.html">Gradient</a>)</td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>depth</b> (defined in <a class="el" href="class_gradient.html">Gradient</a>)</td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>depthStep</b> (defined in <a class="el" href="class_gradient.html">Gradient</a>)</td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_gradient.html#a71c3ddc8c7826a17338723232d9bc7ea">color</a></td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_gradient.html#a0451719335035c075a67204cdb80252f">colorXStep</a></td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_gradient.html#a3ac810ca548605633dd2497d9376e583">colorYStep</a></td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_gradient.html#ac0077f281e1539333e984574e8f728a3">depth</a></td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_gradient.html#a45a2e551be6a31ce12fdc3c39191914f">depthStep</a></td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_gradient.html#a4fd340dfd44bc432746d239cb809a0ee">Gradient</a>(Vertex minYVert, Vertex midYVert, Vertex maxYVert)</td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>oneOverZ</b> (defined in <a class="el" href="class_gradient.html">Gradient</a>)</td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>oneOverZStep</b> (defined in <a class="el" href="class_gradient.html">Gradient</a>)</td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>texCoords</b> (defined in <a class="el" href="class_gradient.html">Gradient</a>)</td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>texCoordXXStep</b> (defined in <a class="el" href="class_gradient.html">Gradient</a>)</td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>texCoordXYStep</b> (defined in <a class="el" href="class_gradient.html">Gradient</a>)</td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>texCoordYXStep</b> (defined in <a class="el" href="class_gradient.html">Gradient</a>)</td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>texCoordYYStep</b> (defined in <a class="el" href="class_gradient.html">Gradient</a>)</td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_gradient.html#aab07e150dbcc6550c252b66180ceceb2">oneOverZ</a></td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_gradient.html#aa3bc11489f5f615cafc9dc8c8c180145">oneOverZStep</a></td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_gradient.html#ae71837d2a5b35d006054d5d474eddb1a">texCoords</a></td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_gradient.html#a624a5bc1117ef0ff5586505bd7414b00">texCoordXXStep</a></td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_gradient.html#a8afadd4049d8b9eb22cbc400e70560aa">texCoordXYStep</a></td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_gradient.html#a81d975aa437d9aa2d4f4902073c1f529">texCoordYXStep</a></td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_gradient.html#a7d935258d173da77270987a4c95f3462">texCoordYYStep</a></td><td class="entry"><a class="el" href="class_gradient.html">Gradient</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

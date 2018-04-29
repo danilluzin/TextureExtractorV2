@@ -1,5 +1,18 @@
 \hypertarget{class_gradient}{}\section{Gradient Class Reference}
 \label{class_gradient}\index{Gradient@{Gradient}}
+
+
+{\ttfamily \#include $<$Gradient.\+hpp$>$}
+
+
+
+Collaboration diagram for Gradient\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=179pt]{class_gradient__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -8,43 +21,34 @@
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_gradient_a0451719335035c075a67204cdb80252f}{}glm\+::vec4 {\bfseries color\+X\+Step}\label{class_gradient_a0451719335035c075a67204cdb80252f}
-
+glm\+::vec4 \hyperlink{class_gradient_a0451719335035c075a67204cdb80252f}{color\+X\+Step}
 \item 
-\hypertarget{class_gradient_a3ac810ca548605633dd2497d9376e583}{}glm\+::vec4 {\bfseries color\+Y\+Step}\label{class_gradient_a3ac810ca548605633dd2497d9376e583}
-
+glm\+::vec4 \hyperlink{class_gradient_a3ac810ca548605633dd2497d9376e583}{color\+Y\+Step}
 \item 
-\hypertarget{class_gradient_a71c3ddc8c7826a17338723232d9bc7ea}{}glm\+::vec4 {\bfseries color} \mbox{[}3\mbox{]}\label{class_gradient_a71c3ddc8c7826a17338723232d9bc7ea}
-
+glm\+::vec4 \hyperlink{class_gradient_a71c3ddc8c7826a17338723232d9bc7ea}{color} \mbox{[}3\mbox{]}
 \item 
-\hypertarget{class_gradient_ae71837d2a5b35d006054d5d474eddb1a}{}glm\+::vec2 {\bfseries tex\+Coords} \mbox{[}3\mbox{]}\label{class_gradient_ae71837d2a5b35d006054d5d474eddb1a}
-
+glm\+::vec2 \hyperlink{class_gradient_ae71837d2a5b35d006054d5d474eddb1a}{tex\+Coords} \mbox{[}3\mbox{]}
 \item 
-\hypertarget{class_gradient_a624a5bc1117ef0ff5586505bd7414b00}{}float {\bfseries tex\+Coord\+X\+X\+Step}\label{class_gradient_a624a5bc1117ef0ff5586505bd7414b00}
-
+float \hyperlink{class_gradient_a624a5bc1117ef0ff5586505bd7414b00}{tex\+Coord\+X\+X\+Step}
 \item 
-\hypertarget{class_gradient_a8afadd4049d8b9eb22cbc400e70560aa}{}float {\bfseries tex\+Coord\+X\+Y\+Step}\label{class_gradient_a8afadd4049d8b9eb22cbc400e70560aa}
-
+float \hyperlink{class_gradient_a8afadd4049d8b9eb22cbc400e70560aa}{tex\+Coord\+X\+Y\+Step}
 \item 
-\hypertarget{class_gradient_a81d975aa437d9aa2d4f4902073c1f529}{}float {\bfseries tex\+Coord\+Y\+X\+Step}\label{class_gradient_a81d975aa437d9aa2d4f4902073c1f529}
-
+float \hyperlink{class_gradient_a81d975aa437d9aa2d4f4902073c1f529}{tex\+Coord\+Y\+X\+Step}
 \item 
-\hypertarget{class_gradient_a7d935258d173da77270987a4c95f3462}{}float {\bfseries tex\+Coord\+Y\+Y\+Step}\label{class_gradient_a7d935258d173da77270987a4c95f3462}
-
+float \hyperlink{class_gradient_a7d935258d173da77270987a4c95f3462}{tex\+Coord\+Y\+Y\+Step}
 \item 
-\hypertarget{class_gradient_aab07e150dbcc6550c252b66180ceceb2}{}float {\bfseries one\+Over\+Z} \mbox{[}3\mbox{]}\label{class_gradient_aab07e150dbcc6550c252b66180ceceb2}
-
+float \hyperlink{class_gradient_aab07e150dbcc6550c252b66180ceceb2}{one\+Over\+Z} \mbox{[}3\mbox{]}
 \item 
-\hypertarget{class_gradient_aa3bc11489f5f615cafc9dc8c8c180145}{}glm\+::vec2 {\bfseries one\+Over\+Z\+Step}\label{class_gradient_aa3bc11489f5f615cafc9dc8c8c180145}
-
+glm\+::vec2 \hyperlink{class_gradient_aa3bc11489f5f615cafc9dc8c8c180145}{one\+Over\+Z\+Step}
 \item 
-\hypertarget{class_gradient_ac0077f281e1539333e984574e8f728a3}{}float {\bfseries depth} \mbox{[}3\mbox{]}\label{class_gradient_ac0077f281e1539333e984574e8f728a3}
-
+float \hyperlink{class_gradient_ac0077f281e1539333e984574e8f728a3}{depth} \mbox{[}3\mbox{]}
 \item 
-\hypertarget{class_gradient_a45a2e551be6a31ce12fdc3c39191914f}{}glm\+::vec2 {\bfseries depth\+Step}\label{class_gradient_a45a2e551be6a31ce12fdc3c39191914f}
-
+glm\+::vec2 \hyperlink{class_gradient_a45a2e551be6a31ce12fdc3c39191914f}{depth\+Step}
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Class that sets up a interpolation gradient 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{class_gradient_a4fd340dfd44bc432746d239cb809a0ee}{}\index{Gradient@{Gradient}!Gradient@{Gradient}}
@@ -56,9 +60,48 @@
 \item[{{\bf Vertex}}]{max\+Y\+Vert}
 \end{DoxyParamCaption}
 )}\label{class_gradient_a4fd340dfd44bc432746d239cb809a0ee}
-depth 
+Sets up a gradient. Uses three verticies to acalculate steppin values. depth 
+
+\subsection{Member Data Documentation}
+\hypertarget{class_gradient_a71c3ddc8c7826a17338723232d9bc7ea}{}\index{Gradient@{Gradient}!color@{color}}
+\index{color@{color}!Gradient@{Gradient}}
+\subsubsection[{color}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec4 Gradient\+::color\mbox{[}3\mbox{]}}\label{class_gradient_a71c3ddc8c7826a17338723232d9bc7ea}
+Color values at the verticies that make up gradient \hypertarget{class_gradient_a0451719335035c075a67204cdb80252f}{}\index{Gradient@{Gradient}!color\+X\+Step@{color\+X\+Step}}
+\index{color\+X\+Step@{color\+X\+Step}!Gradient@{Gradient}}
+\subsubsection[{color\+X\+Step}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec4 Gradient\+::color\+X\+Step}\label{class_gradient_a0451719335035c075a67204cdb80252f}
+Color step as we move in the x direction \hypertarget{class_gradient_a3ac810ca548605633dd2497d9376e583}{}\index{Gradient@{Gradient}!color\+Y\+Step@{color\+Y\+Step}}
+\index{color\+Y\+Step@{color\+Y\+Step}!Gradient@{Gradient}}
+\subsubsection[{color\+Y\+Step}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec4 Gradient\+::color\+Y\+Step}\label{class_gradient_a3ac810ca548605633dd2497d9376e583}
+Color step as we move in the y direction \hypertarget{class_gradient_ac0077f281e1539333e984574e8f728a3}{}\index{Gradient@{Gradient}!depth@{depth}}
+\index{depth@{depth}!Gradient@{Gradient}}
+\subsubsection[{depth}]{\setlength{\rightskip}{0pt plus 5cm}float Gradient\+::depth\mbox{[}3\mbox{]}}\label{class_gradient_ac0077f281e1539333e984574e8f728a3}
+Depth value at the verticies that make up gradient \hypertarget{class_gradient_a45a2e551be6a31ce12fdc3c39191914f}{}\index{Gradient@{Gradient}!depth\+Step@{depth\+Step}}
+\index{depth\+Step@{depth\+Step}!Gradient@{Gradient}}
+\subsubsection[{depth\+Step}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec2 Gradient\+::depth\+Step}\label{class_gradient_a45a2e551be6a31ce12fdc3c39191914f}
+Depth step step \hypertarget{class_gradient_aab07e150dbcc6550c252b66180ceceb2}{}\index{Gradient@{Gradient}!one\+Over\+Z@{one\+Over\+Z}}
+\index{one\+Over\+Z@{one\+Over\+Z}!Gradient@{Gradient}}
+\subsubsection[{one\+Over\+Z}]{\setlength{\rightskip}{0pt plus 5cm}float Gradient\+::one\+Over\+Z\mbox{[}3\mbox{]}}\label{class_gradient_aab07e150dbcc6550c252b66180ceceb2}
+One over z at the verticies that make up gradient \hypertarget{class_gradient_aa3bc11489f5f615cafc9dc8c8c180145}{}\index{Gradient@{Gradient}!one\+Over\+Z\+Step@{one\+Over\+Z\+Step}}
+\index{one\+Over\+Z\+Step@{one\+Over\+Z\+Step}!Gradient@{Gradient}}
+\subsubsection[{one\+Over\+Z\+Step}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec2 Gradient\+::one\+Over\+Z\+Step}\label{class_gradient_aa3bc11489f5f615cafc9dc8c8c180145}
+One over\+Z step \hypertarget{class_gradient_ae71837d2a5b35d006054d5d474eddb1a}{}\index{Gradient@{Gradient}!tex\+Coords@{tex\+Coords}}
+\index{tex\+Coords@{tex\+Coords}!Gradient@{Gradient}}
+\subsubsection[{tex\+Coords}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec2 Gradient\+::tex\+Coords\mbox{[}3\mbox{]}}\label{class_gradient_ae71837d2a5b35d006054d5d474eddb1a}
+Texture coordinates at the verticies that make up gradient \hypertarget{class_gradient_a624a5bc1117ef0ff5586505bd7414b00}{}\index{Gradient@{Gradient}!tex\+Coord\+X\+X\+Step@{tex\+Coord\+X\+X\+Step}}
+\index{tex\+Coord\+X\+X\+Step@{tex\+Coord\+X\+X\+Step}!Gradient@{Gradient}}
+\subsubsection[{tex\+Coord\+X\+X\+Step}]{\setlength{\rightskip}{0pt plus 5cm}float Gradient\+::tex\+Coord\+X\+X\+Step}\label{class_gradient_a624a5bc1117ef0ff5586505bd7414b00}
+Texture coordinate x step as we move in the x direction on a raster \hypertarget{class_gradient_a8afadd4049d8b9eb22cbc400e70560aa}{}\index{Gradient@{Gradient}!tex\+Coord\+X\+Y\+Step@{tex\+Coord\+X\+Y\+Step}}
+\index{tex\+Coord\+X\+Y\+Step@{tex\+Coord\+X\+Y\+Step}!Gradient@{Gradient}}
+\subsubsection[{tex\+Coord\+X\+Y\+Step}]{\setlength{\rightskip}{0pt plus 5cm}float Gradient\+::tex\+Coord\+X\+Y\+Step}\label{class_gradient_a8afadd4049d8b9eb22cbc400e70560aa}
+Texture coordinate x step as we move in the y direction on a raster \hypertarget{class_gradient_a81d975aa437d9aa2d4f4902073c1f529}{}\index{Gradient@{Gradient}!tex\+Coord\+Y\+X\+Step@{tex\+Coord\+Y\+X\+Step}}
+\index{tex\+Coord\+Y\+X\+Step@{tex\+Coord\+Y\+X\+Step}!Gradient@{Gradient}}
+\subsubsection[{tex\+Coord\+Y\+X\+Step}]{\setlength{\rightskip}{0pt plus 5cm}float Gradient\+::tex\+Coord\+Y\+X\+Step}\label{class_gradient_a81d975aa437d9aa2d4f4902073c1f529}
+Texture coordinate y step as we move in the x direction on a raster \hypertarget{class_gradient_a7d935258d173da77270987a4c95f3462}{}\index{Gradient@{Gradient}!tex\+Coord\+Y\+Y\+Step@{tex\+Coord\+Y\+Y\+Step}}
+\index{tex\+Coord\+Y\+Y\+Step@{tex\+Coord\+Y\+Y\+Step}!Gradient@{Gradient}}
+\subsubsection[{tex\+Coord\+Y\+Y\+Step}]{\setlength{\rightskip}{0pt plus 5cm}float Gradient\+::tex\+Coord\+Y\+Y\+Step}\label{class_gradient_a7d935258d173da77270987a4c95f3462}
+Texture coordinate y step as we move in the y direction on a raster 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Texture\+Extractor\+V2/Gradient.\+hpp\item 
-Texture\+Extractor\+V2/Gradient.\+cpp\end{DoxyCompactItemize}
+Texture\+Extractor\+V2/\hyperlink{_gradient_8hpp}{Gradient.\+hpp}\item 
+Texture\+Extractor\+V2/\hyperlink{_gradient_8cpp}{Gradient.\+cpp}\end{DoxyCompactItemize}

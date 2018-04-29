@@ -1,48 +1,186 @@
 \hypertarget{class_bitmap}{}\section{Bitmap Class Reference}
 \label{class_bitmap}\index{Bitmap@{Bitmap}}
-Inheritance diagram for Bitmap\+:\begin{figure}[H]
+
+
+{\ttfamily \#include $<$Bitmap.\+hpp$>$}
+
+
+
+Inheritance diagram for Bitmap\+:\nopagebreak
+\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{class_bitmap}
+\includegraphics[width=179pt]{class_bitmap__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Bitmap\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=179pt]{class_bitmap__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_bitmap_a7a1a9969ca533d4adebe7c44a26ee092}{}\hyperlink{class_bitmap}{Bitmap} \& {\bfseries operator=} (const \hyperlink{class_bitmap}{Bitmap} \&other)\label{class_bitmap_a7a1a9969ca533d4adebe7c44a26ee092}
-
+\hyperlink{class_bitmap}{Bitmap} \& \hyperlink{class_bitmap_a7a1a9969ca533d4adebe7c44a26ee092}{operator=} (const \hyperlink{class_bitmap}{Bitmap} \&other)
 \item 
-\hypertarget{class_bitmap_a40526748415c8bbc58a8510d636c20f4}{}{\bfseries Bitmap} (int width, int height)\label{class_bitmap_a40526748415c8bbc58a8510d636c20f4}
-
+\hyperlink{class_bitmap_a40526748415c8bbc58a8510d636c20f4}{Bitmap} (int \hyperlink{class_render_context_a8009663c022d4a60d8a4dbfdb4183f46}{width}, int \hyperlink{class_render_context_a194a36ce3d85ae9ef5b40396e1e2d950}{height})
 \item 
-\hypertarget{class_bitmap_a5a26ccbab9af0b40421eacc21e75536d}{}{\bfseries Bitmap} (const std\+::string \&filename)\label{class_bitmap_a5a26ccbab9af0b40421eacc21e75536d}
-
+\hyperlink{class_bitmap_aa6ef6d8c0b66664350ef4dd062db3aec}{Bitmap} ()
 \item 
-\hypertarget{class_bitmap_a5614426bc7923697c1d1f35e04a37c3c}{}{\bfseries Bitmap} (const cv\+::\+Mat \&img)\label{class_bitmap_a5614426bc7923697c1d1f35e04a37c3c}
-
+\hyperlink{class_bitmap_a5a26ccbab9af0b40421eacc21e75536d}{Bitmap} (const std\+::string \&filename)
 \item 
-\hypertarget{class_bitmap_a99d5b69de318e80c9af1f660f46c00c4}{}\hyperlink{class_bitmap}{Bitmap} {\bfseries to\+Sobel} () const \label{class_bitmap_a99d5b69de318e80c9af1f660f46c00c4}
-
+\hyperlink{class_bitmap_a5614426bc7923697c1d1f35e04a37c3c}{Bitmap} (const cv\+::\+Mat \&img)
 \item 
-\hypertarget{class_bitmap_a80c5adbea91bb7311008dab576dc82c6}{}\hyperlink{class_bitmap}{Bitmap} {\bfseries to\+H\+S\+V} () const \label{class_bitmap_a80c5adbea91bb7311008dab576dc82c6}
-
+\hyperlink{class_bitmap}{Bitmap} \hyperlink{class_bitmap_a99d5b69de318e80c9af1f660f46c00c4}{to\+Sobel} () const 
 \item 
-\hypertarget{class_bitmap_af5c0948748aa68b2737871d20201c2e5}{}glm\+::vec4 {\bfseries at} (int x, int y) const \label{class_bitmap_af5c0948748aa68b2737871d20201c2e5}
-
+\hyperlink{class_bitmap}{Bitmap} \hyperlink{class_bitmap_a80c5adbea91bb7311008dab576dc82c6}{to\+H\+S\+V} () const 
 \item 
-\hypertarget{class_bitmap_a6f880db00f7d05e6284005a6553aa17c}{}void {\bfseries put\+Pixel} (int x, int y, glm\+::vec4 color)\label{class_bitmap_a6f880db00f7d05e6284005a6553aa17c}
-
+glm\+::vec4 \hyperlink{class_bitmap_af5c0948748aa68b2737871d20201c2e5}{at} (int x, int y) const 
 \item 
-\hypertarget{class_bitmap_a9ca33640e5554ee36b435fa789260903}{}void {\bfseries save} (std\+::string dest\+Filename)\label{class_bitmap_a9ca33640e5554ee36b435fa789260903}
-
+void \hyperlink{class_bitmap_a6f880db00f7d05e6284005a6553aa17c}{put\+Pixel} (int x, int y, glm\+::vec4 color)
 \item 
-\hypertarget{class_bitmap_a409022ea446f41edcce42c076dff1608}{}void {\bfseries clear} (glm\+::vec4 color)\label{class_bitmap_a409022ea446f41edcce42c076dff1608}
-
+void \hyperlink{class_bitmap_a9ca33640e5554ee36b435fa789260903}{save} (std\+::string dest\+Filename)
+\item 
+void \hyperlink{class_bitmap_a409022ea446f41edcce42c076dff1608}{clear} (glm\+::vec4 color)
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
+\subsection{Detailed Description}
+Class that manages all the bitmap operations, including reading from file and sobel ooperator modification. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_bitmap_a40526748415c8bbc58a8510d636c20f4}{}\index{Bitmap@{Bitmap}!Bitmap@{Bitmap}}
+\index{Bitmap@{Bitmap}!Bitmap@{Bitmap}}
+\subsubsection[{Bitmap(int width, int height)}]{\setlength{\rightskip}{0pt plus 5cm}Bitmap\+::\+Bitmap (
+\begin{DoxyParamCaption}
+\item[{int}]{width, }
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_bitmap_a40526748415c8bbc58a8510d636c20f4}
+Create a new image of certain size 
+\begin{DoxyParams}{Parameters}
+{\em width} & new image width \\
+\hline
+{\em height} & new image height \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_bitmap_aa6ef6d8c0b66664350ef4dd062db3aec}{}\index{Bitmap@{Bitmap}!Bitmap@{Bitmap}}
+\index{Bitmap@{Bitmap}!Bitmap@{Bitmap}}
+\subsubsection[{Bitmap()}]{\setlength{\rightskip}{0pt plus 5cm}Bitmap\+::\+Bitmap (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_bitmap_aa6ef6d8c0b66664350ef4dd062db3aec}
+\hypertarget{class_bitmap_a5a26ccbab9af0b40421eacc21e75536d}{}\index{Bitmap@{Bitmap}!Bitmap@{Bitmap}}
+\index{Bitmap@{Bitmap}!Bitmap@{Bitmap}}
+\subsubsection[{Bitmap(const std\+::string \&filename)}]{\setlength{\rightskip}{0pt plus 5cm}Bitmap\+::\+Bitmap (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{filename}
+\end{DoxyParamCaption}
+)}\label{class_bitmap_a5a26ccbab9af0b40421eacc21e75536d}
+Read an image from file 
+\begin{DoxyParams}{Parameters}
+{\em filename} & path to a file \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_bitmap_a5614426bc7923697c1d1f35e04a37c3c}{}\index{Bitmap@{Bitmap}!Bitmap@{Bitmap}}
+\index{Bitmap@{Bitmap}!Bitmap@{Bitmap}}
+\subsubsection[{Bitmap(const cv\+::\+Mat \&img)}]{\setlength{\rightskip}{0pt plus 5cm}Bitmap\+::\+Bitmap (
+\begin{DoxyParamCaption}
+\item[{const cv\+::\+Mat \&}]{img}
+\end{DoxyParamCaption}
+)}\label{class_bitmap_a5614426bc7923697c1d1f35e04a37c3c}
+Create an image from anothe opne\+C\+V image 
+\begin{DoxyParams}{Parameters}
+{\em img} & image file \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_bitmap_af5c0948748aa68b2737871d20201c2e5}{}\index{Bitmap@{Bitmap}!at@{at}}
+\index{at@{at}!Bitmap@{Bitmap}}
+\subsubsection[{at(int x, int y) const }]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec4 Bitmap\+::at (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_bitmap_af5c0948748aa68b2737871d20201c2e5}
+Get a pixel at position x, y \hypertarget{class_bitmap_a409022ea446f41edcce42c076dff1608}{}\index{Bitmap@{Bitmap}!clear@{clear}}
+\index{clear@{clear}!Bitmap@{Bitmap}}
+\subsubsection[{clear(glm\+::vec4 color)}]{\setlength{\rightskip}{0pt plus 5cm}void Bitmap\+::clear (
+\begin{DoxyParamCaption}
+\item[{glm\+::vec4}]{color}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_bitmap_a409022ea446f41edcce42c076dff1608}
+Fill whole imagwith solid color 
+\begin{DoxyParams}{Parameters}
+{\em color} & color to use for filling \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_render_context_a9c6a34962ba769bacbb054ea435dfce8}{Render\+Context}.
+
+\hypertarget{class_bitmap_a7a1a9969ca533d4adebe7c44a26ee092}{}\index{Bitmap@{Bitmap}!operator=@{operator=}}
+\index{operator=@{operator=}!Bitmap@{Bitmap}}
+\subsubsection[{operator=(const Bitmap \&other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Bitmap}\& Bitmap\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bitmap} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_bitmap_a7a1a9969ca533d4adebe7c44a26ee092}
+\hypertarget{class_bitmap_a6f880db00f7d05e6284005a6553aa17c}{}\index{Bitmap@{Bitmap}!put\+Pixel@{put\+Pixel}}
+\index{put\+Pixel@{put\+Pixel}!Bitmap@{Bitmap}}
+\subsubsection[{put\+Pixel(int x, int y, glm\+::vec4 color)}]{\setlength{\rightskip}{0pt plus 5cm}void Bitmap\+::put\+Pixel (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{glm\+::vec4}]{color}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_bitmap_a6f880db00f7d05e6284005a6553aa17c}
+Write color pixel at position x, y 
+\begin{DoxyParams}{Parameters}
+{\em color} & Color to write at position x,y \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_render_context_a722f7e593dc2c480ad5a2a448196c2dc}{Render\+Context}.
+
+\hypertarget{class_bitmap_a9ca33640e5554ee36b435fa789260903}{}\index{Bitmap@{Bitmap}!save@{save}}
+\index{save@{save}!Bitmap@{Bitmap}}
+\subsubsection[{save(std\+::string dest\+Filename)}]{\setlength{\rightskip}{0pt plus 5cm}void Bitmap\+::save (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{dest\+Filename}
+\end{DoxyParamCaption}
+)}\label{class_bitmap_a9ca33640e5554ee36b435fa789260903}
+Save an image into file 
+\begin{DoxyParams}{Parameters}
+{\em dest\+Filename} & fillename for the output image \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_bitmap_a80c5adbea91bb7311008dab576dc82c6}{}\index{Bitmap@{Bitmap}!to\+H\+S\+V@{to\+H\+S\+V}}
+\index{to\+H\+S\+V@{to\+H\+S\+V}!Bitmap@{Bitmap}}
+\subsubsection[{to\+H\+S\+V() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf Bitmap} Bitmap\+::to\+H\+S\+V (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_bitmap_a80c5adbea91bb7311008dab576dc82c6}
+Convert file to H\+S\+V \hypertarget{class_bitmap_a99d5b69de318e80c9af1f660f46c00c4}{}\index{Bitmap@{Bitmap}!to\+Sobel@{to\+Sobel}}
+\index{to\+Sobel@{to\+Sobel}!Bitmap@{Bitmap}}
+\subsubsection[{to\+Sobel() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf Bitmap} Bitmap\+::to\+Sobel (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_bitmap_a99d5b69de318e80c9af1f660f46c00c4}
+Apply a Sobel filter to an image 
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Texture\+Extractor\+V2/Bitmap.\+hpp\item 
-Texture\+Extractor\+V2/Bitmap.\+cpp\end{DoxyCompactItemize}
+Texture\+Extractor\+V2/\hyperlink{_bitmap_8hpp}{Bitmap.\+hpp}\item 
+Texture\+Extractor\+V2/\hyperlink{_bitmap_8cpp}{Bitmap.\+cpp}\end{DoxyCompactItemize}

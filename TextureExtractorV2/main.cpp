@@ -14,6 +14,41 @@
 #include <numeric>
 #include "Arguments.h"
 
+/*! \mainpage
+ *
+ * \section intro_sec Introduction
+ *
+ * This is the code documentation for a texture reconstruction tool.
+ *
+ * Tool generates texture images for 3D models using camera information from reconstruction tools and source images.
+ *
+ * Supported reconstruction tools:
+ *  - Visual SFM
+ *  - Bundler SFM
+ *  - 3D laser scanning software developed in the CTU FEE Department of Computer Graphics and Interaction
+ *
+  * \section sec_u Usage
+ * Configuration of the tool is handled using .INI files.
+ *
+ * You can generate example .INI file using the following command:
+ \code{.cpp}
+ .\tex_extractor -genIni
+ \endcode
+ The complete explanation of .INI file can be found in the user manual.
+ 
+ A tool can then be used as following:
+ \code{.cpp}
+ .\tex_extractor \path\to\config.ini
+ \endcode
+ * \section sec_i Instalation
+ A tool can be build using CMake.
+ 
+ Required libraries are
+ - OpenCV https://opencv.org
+ - GLM https://glm.g-truc.net/0.9.8/index.html
+ - TBB https://www.threadingbuildingblocks.org
+ */
+
 bool prepareMesh(Mesh & mesh,const std::string & objFilePath);
 
 bool prepareConfig(int argc, const char * argv[]);

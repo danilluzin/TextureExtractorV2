@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -62,10 +70,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_extraction_worker.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,7 +103,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">ExtractionWorker Member List</div>  </div>
@@ -92,17 +114,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr class="even"><td class="entry"><a class="el" href="class_extraction_worker.html#ac956797cff498d82f040d3884be2144d">applyGradient</a>(Triangle face, Bitmap &amp;src, Bitmap &amp;dst, glm::vec4 color[3], Bitmap &amp;levelingTexture)</td><td class="entry"><a class="el" href="class_extraction_worker.html">ExtractionWorker</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_extraction_worker.html#a24312158a7768088b96dd722414786ae">extend</a>(Triangle face, Bitmap &amp;tex)</td><td class="entry"><a class="el" href="class_extraction_worker.html">ExtractionWorker</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_extraction_worker.html#ad649a3ebbc506e55d5b003381b07ba06">extract</a>(Triangle face, Bitmap &amp;tex, View &amp;view)</td><td class="entry"><a class="el" href="class_extraction_worker.html">ExtractionWorker</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>ExtractionWorker</b>(const Mesh *mesh) (defined in <a class="el" href="class_extraction_worker.html">ExtractionWorker</a>)</td><td class="entry"><a class="el" href="class_extraction_worker.html">ExtractionWorker</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>ExtractionWorker</b>() (defined in <a class="el" href="class_extraction_worker.html">ExtractionWorker</a>)</td><td class="entry"><a class="el" href="class_extraction_worker.html">ExtractionWorker</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_extraction_worker.html#a5cb5231da6a9c3568c1cbdeaa90a30e2">ExtractionWorker</a>(const Mesh *mesh)</td><td class="entry"><a class="el" href="class_extraction_worker.html">ExtractionWorker</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_extraction_worker.html#a8b90362238d796129d5d41228a0b0a6e">ExtractionWorker</a>()</td><td class="entry"><a class="el" href="class_extraction_worker.html">ExtractionWorker</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_extraction_worker.html#a25d7438c2adfc4e4e4076954516a4f43">fillTextureTriangle</a>(Triangle face, glm::vec4 color, Bitmap &amp;destination)</td><td class="entry"><a class="el" href="class_extraction_worker.html">ExtractionWorker</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_extraction_worker.html#a3ae8fdacd8e2a0b44873c36b6e3756e5">setMask</a>(Bitmap *m)</td><td class="entry"><a class="el" href="class_extraction_worker.html">ExtractionWorker</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_extraction_worker.html#a0bfb06fd0caed6ec032416e8d928fbe8">setMesh</a>(const Mesh *m)</td><td class="entry"><a class="el" href="class_extraction_worker.html">ExtractionWorker</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

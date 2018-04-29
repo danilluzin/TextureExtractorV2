@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -62,10 +70,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_view.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,7 +103,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">View Member List</div>  </div>
@@ -89,22 +111,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="class_view.html">View</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>camera</b> (defined in <a class="el" href="class_view.html">View</a>)</td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>fileName</b> (defined in <a class="el" href="class_view.html">View</a>)</td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>id</b> (defined in <a class="el" href="class_view.html">View</a>)</td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>loadImage</b>() (defined in <a class="el" href="class_view.html">View</a>)</td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>photoHeight</b> (defined in <a class="el" href="class_view.html">View</a>)</td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>photoWidth</b> (defined in <a class="el" href="class_view.html">View</a>)</td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>releaseImage</b>() (defined in <a class="el" href="class_view.html">View</a>)</td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>sourceImage</b> (defined in <a class="el" href="class_view.html">View</a>)</td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>View</b>() (defined in <a class="el" href="class_view.html">View</a>)</td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>visibleFaces</b> (defined in <a class="el" href="class_view.html">View</a>)</td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_view.html#ad7f28c9ee1645c5ba3e1164a29227bf2">camera</a></td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_view.html#aa525308d25faadf5093d8c368290fb71">fileName</a></td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_view.html#af416d44fcc5e550f9124cb2227b7c971">id</a></td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_view.html#a58942806f815fc1f34034c1464aa3d57">loadImage</a>()</td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_view.html#aa6390d1827dd3b222e0a91891c9ff05b">photoHeight</a></td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_view.html#a00c5c1d61a5056a52982e03a6f7f7c70">photoWidth</a></td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_view.html#aa280b349b020b2fb14863b66d054a1da">releaseImage</a>()</td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_view.html#a6694ecbe37c82f827cc5c861ea6544a7">sourceImage</a></td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_view.html#a44ad60a768422d3fa8fbd7576950080a">View</a>()</td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_view.html#a1c2f222c8f6060c2d3ecb7c08808fa91">visibleFaces</a></td><td class="entry"><a class="el" href="class_view.html">View</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

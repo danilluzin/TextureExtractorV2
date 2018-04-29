@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -61,8 +69,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_view_8hpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -77,17 +101,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_3b6e71e20b94598e8e41069cf8fc92e1.html">TextureExtractorV2</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">View.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<a href="_view_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">//  View.hpp</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//  TextureExtractorV2</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//</span></div>
@@ -98,36 +117,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef View_hpp</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define View_hpp</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;Transformation.hpp&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;Bitmap.hpp&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;Camera.hpp&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_transformation_8hpp.html">Transformation.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_bitmap_8hpp.html">Bitmap.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_camera_8hpp.html">Camera.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;unordered_set&gt;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_view.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_view.html">View</a>{</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="class_view.html">View</a>(){};</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    uint id;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_bitmap.html">Bitmap</a> * sourceImage = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    std::string fileName;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_camera.html">Camera</a> camera;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    uint photoWidth;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    uint photoHeight;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    std::unordered_set&lt;uint&gt; visibleFaces;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">void</span> loadImage();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> releaseImage();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;};</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* View_hpp */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="class_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdef"><b>Definition:</b> Camera.hpp:18</div></div>
-<div class="ttc" id="class_view_html"><div class="ttname"><a href="class_view.html">View</a></div><div class="ttdef"><b>Definition:</b> View.hpp:17</div></div>
-<div class="ttc" id="class_bitmap_html"><div class="ttname"><a href="class_bitmap.html">Bitmap</a></div><div class="ttdef"><b>Definition:</b> Bitmap.hpp:20</div></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_view.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_view.html">View</a>{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_view.html#a44ad60a768422d3fa8fbd7576950080a">   22</a></span>&#160;    <a class="code" href="class_view.html#a44ad60a768422d3fa8fbd7576950080a">View</a>(){};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    uint <a class="code" href="class_view.html#af416d44fcc5e550f9124cb2227b7c971">id</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_view.html#a6694ecbe37c82f827cc5c861ea6544a7">   26</a></span>&#160;    <a class="code" href="class_bitmap.html">Bitmap</a> * <a class="code" href="class_view.html#a6694ecbe37c82f827cc5c861ea6544a7">sourceImage</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="class_view.html#aa525308d25faadf5093d8c368290fb71">   29</a></span>&#160;    std::string <a class="code" href="class_view.html#aa525308d25faadf5093d8c368290fb71">fileName</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_view.html#ad7f28c9ee1645c5ba3e1164a29227bf2">   32</a></span>&#160;    <a class="code" href="class_camera.html">Camera</a> <a class="code" href="class_view.html#ad7f28c9ee1645c5ba3e1164a29227bf2">camera</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_view.html#a00c5c1d61a5056a52982e03a6f7f7c70">   35</a></span>&#160;    uint <a class="code" href="class_view.html#a00c5c1d61a5056a52982e03a6f7f7c70">photoWidth</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_view.html#aa6390d1827dd3b222e0a91891c9ff05b">   38</a></span>&#160;    uint <a class="code" href="class_view.html#aa6390d1827dd3b222e0a91891c9ff05b">photoHeight</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_view.html#a1c2f222c8f6060c2d3ecb7c08808fa91">   41</a></span>&#160;    std::unordered_set&lt;uint&gt; <a class="code" href="class_view.html#a1c2f222c8f6060c2d3ecb7c08808fa91">visibleFaces</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_view.html#a58942806f815fc1f34034c1464aa3d57">loadImage</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_view.html#aa280b349b020b2fb14863b66d054a1da">releaseImage</a>();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;};</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* View_hpp */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="class_view_html_af416d44fcc5e550f9124cb2227b7c971"><div class="ttname"><a href="class_view.html#af416d44fcc5e550f9124cb2227b7c971">View::id</a></div><div class="ttdeci">uint id</div><div class="ttdef"><b>Definition:</b> View.hpp:22</div></div>
+<div class="ttc" id="class_view_html_a58942806f815fc1f34034c1464aa3d57"><div class="ttname"><a href="class_view.html#a58942806f815fc1f34034c1464aa3d57">View::loadImage</a></div><div class="ttdeci">void loadImage()</div><div class="ttdef"><b>Definition:</b> View.cpp:10</div></div>
+<div class="ttc" id="class_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdef"><b>Definition:</b> Camera.hpp:21</div></div>
+<div class="ttc" id="_transformation_8hpp_html"><div class="ttname"><a href="_transformation_8hpp.html">Transformation.hpp</a></div></div>
+<div class="ttc" id="class_view_html_a1c2f222c8f6060c2d3ecb7c08808fa91"><div class="ttname"><a href="class_view.html#a1c2f222c8f6060c2d3ecb7c08808fa91">View::visibleFaces</a></div><div class="ttdeci">std::unordered_set&lt; uint &gt; visibleFaces</div><div class="ttdef"><b>Definition:</b> View.hpp:41</div></div>
+<div class="ttc" id="class_view_html_ad7f28c9ee1645c5ba3e1164a29227bf2"><div class="ttname"><a href="class_view.html#ad7f28c9ee1645c5ba3e1164a29227bf2">View::camera</a></div><div class="ttdeci">Camera camera</div><div class="ttdef"><b>Definition:</b> View.hpp:32</div></div>
+<div class="ttc" id="class_view_html_a6694ecbe37c82f827cc5c861ea6544a7"><div class="ttname"><a href="class_view.html#a6694ecbe37c82f827cc5c861ea6544a7">View::sourceImage</a></div><div class="ttdeci">Bitmap * sourceImage</div><div class="ttdef"><b>Definition:</b> View.hpp:26</div></div>
+<div class="ttc" id="class_view_html_a00c5c1d61a5056a52982e03a6f7f7c70"><div class="ttname"><a href="class_view.html#a00c5c1d61a5056a52982e03a6f7f7c70">View::photoWidth</a></div><div class="ttdeci">uint photoWidth</div><div class="ttdef"><b>Definition:</b> View.hpp:35</div></div>
+<div class="ttc" id="class_view_html_aa525308d25faadf5093d8c368290fb71"><div class="ttname"><a href="class_view.html#aa525308d25faadf5093d8c368290fb71">View::fileName</a></div><div class="ttdeci">std::string fileName</div><div class="ttdef"><b>Definition:</b> View.hpp:29</div></div>
+<div class="ttc" id="_bitmap_8hpp_html"><div class="ttname"><a href="_bitmap_8hpp.html">Bitmap.hpp</a></div></div>
+<div class="ttc" id="class_view_html_aa6390d1827dd3b222e0a91891c9ff05b"><div class="ttname"><a href="class_view.html#aa6390d1827dd3b222e0a91891c9ff05b">View::photoHeight</a></div><div class="ttdeci">uint photoHeight</div><div class="ttdef"><b>Definition:</b> View.hpp:38</div></div>
+<div class="ttc" id="class_view_html_a44ad60a768422d3fa8fbd7576950080a"><div class="ttname"><a href="class_view.html#a44ad60a768422d3fa8fbd7576950080a">View::View</a></div><div class="ttdeci">View()</div><div class="ttdef"><b>Definition:</b> View.hpp:22</div></div>
+<div class="ttc" id="class_view_html"><div class="ttname"><a href="class_view.html">View</a></div><div class="ttdef"><b>Definition:</b> View.hpp:20</div></div>
+<div class="ttc" id="class_view_html_aa280b349b020b2fb14863b66d054a1da"><div class="ttname"><a href="class_view.html#aa280b349b020b2fb14863b66d054a1da">View::releaseImage</a></div><div class="ttdeci">void releaseImage()</div><div class="ttdef"><b>Definition:</b> View.cpp:15</div></div>
+<div class="ttc" id="class_bitmap_html"><div class="ttname"><a href="class_bitmap.html">Bitmap</a></div><div class="ttdef"><b>Definition:</b> Bitmap.hpp:22</div></div>
+<div class="ttc" id="_camera_8hpp_html"><div class="ttname"><a href="_camera_8hpp.html">Camera.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_3b6e71e20b94598e8e41069cf8fc92e1.html">TextureExtractorV2</a></li><li class="navelem"><a class="el" href="_view_8hpp.html">View.hpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

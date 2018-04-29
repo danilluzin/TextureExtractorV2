@@ -1,47 +1,166 @@
 \hypertarget{class_transformation}{}\section{Transformation Class Reference}
 \label{class_transformation}\index{Transformation@{Transformation}}
+
+
+{\ttfamily \#include $<$Transformation.\+hpp$>$}
+
+
+
+Collaboration diagram for Transformation\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{class_transformation__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_transformation_a9e066efd2a4d28a13d1bdb54de254bec}{}{\bfseries Transformation} (const glm\+::vec3 \&pos=glm\+::vec3(), const glm\+::vec3 \&rot=glm\+::vec3(), const glm\+::vec3 \&scale=glm\+::vec3(1.\+0, 1.\+0, 1.\+0))\label{class_transformation_a9e066efd2a4d28a13d1bdb54de254bec}
-
+\hyperlink{class_transformation_a9e066efd2a4d28a13d1bdb54de254bec}{Transformation} (const glm\+::vec3 \&\hyperlink{class_transformation_aeaf15f9849ac1a0dc2b5f7a7da12e0ed}{pos}=glm\+::vec3(), const glm\+::vec3 \&\hyperlink{class_transformation_a4d41188f5f002453bb288c32452c79d2}{rot}=glm\+::vec3(), const glm\+::vec3 \&\hyperlink{class_transformation_abaca94f82d6d4c1515c133e638624724}{scale}=glm\+::vec3(1.\+0, 1.\+0, 1.\+0))
 \item 
-\hypertarget{class_transformation_aba67dba23c6180e047f8172c461a7554}{}void {\bfseries set\+Aspect\+Ratio} (int width, int height)\label{class_transformation_aba67dba23c6180e047f8172c461a7554}
-
+void \hyperlink{class_transformation_aba67dba23c6180e047f8172c461a7554}{set\+Aspect\+Ratio} (int width, int height)
 \item 
-\hypertarget{class_transformation_a93295202dbfbb2b450d5bd893ee3237b}{}void {\bfseries set\+Camera} (const \hyperlink{class_camera}{Camera} \&camera)\label{class_transformation_a93295202dbfbb2b450d5bd893ee3237b}
-
+void \hyperlink{class_transformation_a93295202dbfbb2b450d5bd893ee3237b}{set\+Camera} (const \hyperlink{class_camera}{Camera} \&camera)
 \item 
-\hypertarget{class_transformation_ae2dcb616a0231a331ed97a9ef5704849}{}void {\bfseries set\+Screen\+Transform} (int half\+Height, int half\+Width)\label{class_transformation_ae2dcb616a0231a331ed97a9ef5704849}
-
+void \hyperlink{class_transformation_ae2dcb616a0231a331ed97a9ef5704849}{set\+Screen\+Transform} (int half\+Height, int half\+Width)
 \item 
-\hypertarget{class_transformation_a9bb89f79245297795c78f62ca6b29efd}{}\hyperlink{struct_vertex}{Vertex} {\bfseries do\+Perspective\+Devide} (const \hyperlink{struct_vertex}{Vertex} \&coord) const \label{class_transformation_a9bb89f79245297795c78f62ca6b29efd}
-
+\hyperlink{struct_vertex}{Vertex} \hyperlink{class_transformation_a9bb89f79245297795c78f62ca6b29efd}{do\+Perspective\+Devide} (const \hyperlink{struct_vertex}{Vertex} \&coord) const 
 \item 
-\hypertarget{class_transformation_a0a6033abab9c32b487c90b95fd1a2df3}{}glm\+::mat4 {\bfseries get\+Model\+Matrix} () const \label{class_transformation_a0a6033abab9c32b487c90b95fd1a2df3}
-
+glm\+::mat4 \hyperlink{class_transformation_a0a6033abab9c32b487c90b95fd1a2df3}{get\+Model\+Matrix} () const 
 \item 
-\hypertarget{class_transformation_a4d2b0cd9862c2b0485740a896617c867}{}glm\+::mat4 {\bfseries get\+Screen\+Transform} () const \label{class_transformation_a4d2b0cd9862c2b0485740a896617c867}
-
+glm\+::mat4 \hyperlink{class_transformation_a4d2b0cd9862c2b0485740a896617c867}{get\+Screen\+Transform} () const 
 \item 
-\hypertarget{class_transformation_a5f57370067951aecad8b40bec887c2ef}{}glm\+::mat4 {\bfseries get\+View\+Projection} () const \label{class_transformation_a5f57370067951aecad8b40bec887c2ef}
-
+glm\+::mat4 \hyperlink{class_transformation_a5f57370067951aecad8b40bec887c2ef}{get\+View\+Projection} () const 
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_transformation_aeaf15f9849ac1a0dc2b5f7a7da12e0ed}{}glm\+::vec3 {\bfseries pos}\label{class_transformation_aeaf15f9849ac1a0dc2b5f7a7da12e0ed}
-
+glm\+::vec3 \hyperlink{class_transformation_aeaf15f9849ac1a0dc2b5f7a7da12e0ed}{pos}
 \item 
-\hypertarget{class_transformation_a4d41188f5f002453bb288c32452c79d2}{}glm\+::vec3 {\bfseries rot}\label{class_transformation_a4d41188f5f002453bb288c32452c79d2}
-
+glm\+::vec3 \hyperlink{class_transformation_a4d41188f5f002453bb288c32452c79d2}{rot}
 \item 
-\hypertarget{class_transformation_abaca94f82d6d4c1515c133e638624724}{}glm\+::vec3 {\bfseries scale}\label{class_transformation_abaca94f82d6d4c1515c133e638624724}
-
+glm\+::vec3 \hyperlink{class_transformation_abaca94f82d6d4c1515c133e638624724}{scale}
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that holds matrix transformation information for the photographs 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_transformation_a9e066efd2a4d28a13d1bdb54de254bec}{}\index{Transformation@{Transformation}!Transformation@{Transformation}}
+\index{Transformation@{Transformation}!Transformation@{Transformation}}
+\subsubsection[{Transformation(const glm\+::vec3 \&pos=glm\+::vec3(), const glm\+::vec3 \&rot=glm\+::vec3(), const glm\+::vec3 \&scale=glm\+::vec3(1.\+0, 1.\+0, 1.\+0))}]{\setlength{\rightskip}{0pt plus 5cm}Transformation\+::\+Transformation (
+\begin{DoxyParamCaption}
+\item[{const glm\+::vec3 \&}]{pos = {\ttfamily glm\+:\+:vec3()}, }
+\item[{const glm\+::vec3 \&}]{rot = {\ttfamily glm\+:\+:vec3()}, }
+\item[{const glm\+::vec3 \&}]{scale = {\ttfamily glm\+:\+:vec3(1.0,1.0,1.0)}}
+\end{DoxyParamCaption}
+)}\label{class_transformation_a9e066efd2a4d28a13d1bdb54de254bec}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_transformation_a9bb89f79245297795c78f62ca6b29efd}{}\index{Transformation@{Transformation}!do\+Perspective\+Devide@{do\+Perspective\+Devide}}
+\index{do\+Perspective\+Devide@{do\+Perspective\+Devide}!Transformation@{Transformation}}
+\subsubsection[{do\+Perspective\+Devide(const Vertex \&coord) const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vertex} Transformation\+::do\+Perspective\+Devide (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vertex} \&}]{coord}
+\end{DoxyParamCaption}
+) const}\label{class_transformation_a9bb89f79245297795c78f62ca6b29efd}
+Performs a perspective devide by w 
+\begin{DoxyParams}{Parameters}
+{\em coord} & a source coord. Stays unchanged \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vertex after the devision. 
+\end{DoxyReturn}
+\hypertarget{class_transformation_a0a6033abab9c32b487c90b95fd1a2df3}{}\index{Transformation@{Transformation}!get\+Model\+Matrix@{get\+Model\+Matrix}}
+\index{get\+Model\+Matrix@{get\+Model\+Matrix}!Transformation@{Transformation}}
+\subsubsection[{get\+Model\+Matrix() const }]{\setlength{\rightskip}{0pt plus 5cm}glm\+::mat4 Transformation\+::get\+Model\+Matrix (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_transformation_a0a6033abab9c32b487c90b95fd1a2df3}
+\begin{DoxyReturn}{Returns}
+a model matrix. Constatn in our implementation. 
+\end{DoxyReturn}
+\hypertarget{class_transformation_a4d2b0cd9862c2b0485740a896617c867}{}\index{Transformation@{Transformation}!get\+Screen\+Transform@{get\+Screen\+Transform}}
+\index{get\+Screen\+Transform@{get\+Screen\+Transform}!Transformation@{Transformation}}
+\subsubsection[{get\+Screen\+Transform() const }]{\setlength{\rightskip}{0pt plus 5cm}glm\+::mat4 Transformation\+::get\+Screen\+Transform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_transformation_a4d2b0cd9862c2b0485740a896617c867}
+\begin{DoxyReturn}{Returns}
+screen space transform matrix. Based on the shape and size of the photo 
+\end{DoxyReturn}
+\hypertarget{class_transformation_a5f57370067951aecad8b40bec887c2ef}{}\index{Transformation@{Transformation}!get\+View\+Projection@{get\+View\+Projection}}
+\index{get\+View\+Projection@{get\+View\+Projection}!Transformation@{Transformation}}
+\subsubsection[{get\+View\+Projection() const }]{\setlength{\rightskip}{0pt plus 5cm}glm\+::mat4 Transformation\+::get\+View\+Projection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_transformation_a5f57370067951aecad8b40bec887c2ef}
+\begin{DoxyReturn}{Returns}
+view projection matrix. Based on the camera parameters. 
+\end{DoxyReturn}
+\hypertarget{class_transformation_aba67dba23c6180e047f8172c461a7554}{}\index{Transformation@{Transformation}!set\+Aspect\+Ratio@{set\+Aspect\+Ratio}}
+\index{set\+Aspect\+Ratio@{set\+Aspect\+Ratio}!Transformation@{Transformation}}
+\subsubsection[{set\+Aspect\+Ratio(int width, int height)}]{\setlength{\rightskip}{0pt plus 5cm}void Transformation\+::set\+Aspect\+Ratio (
+\begin{DoxyParamCaption}
+\item[{int}]{width, }
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)}\label{class_transformation_aba67dba23c6180e047f8172c461a7554}
+Changes aspect ratio, updates perspective matrix 
+\begin{DoxyParams}{Parameters}
+{\em width} & width of the image \\
+\hline
+{\em height} & height of the image \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_transformation_a93295202dbfbb2b450d5bd893ee3237b}{}\index{Transformation@{Transformation}!set\+Camera@{set\+Camera}}
+\index{set\+Camera@{set\+Camera}!Transformation@{Transformation}}
+\subsubsection[{set\+Camera(const Camera \&camera)}]{\setlength{\rightskip}{0pt plus 5cm}void Transformation\+::set\+Camera (
+\begin{DoxyParamCaption}
+\item[{const {\bf Camera} \&}]{camera}
+\end{DoxyParamCaption}
+)}\label{class_transformation_a93295202dbfbb2b450d5bd893ee3237b}
+Sets a camera representation 
+\begin{DoxyParams}{Parameters}
+{\em camera} & a new camera \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_transformation_ae2dcb616a0231a331ed97a9ef5704849}{}\index{Transformation@{Transformation}!set\+Screen\+Transform@{set\+Screen\+Transform}}
+\index{set\+Screen\+Transform@{set\+Screen\+Transform}!Transformation@{Transformation}}
+\subsubsection[{set\+Screen\+Transform(int half\+Height, int half\+Width)}]{\setlength{\rightskip}{0pt plus 5cm}void Transformation\+::set\+Screen\+Transform (
+\begin{DoxyParamCaption}
+\item[{int}]{half\+Height, }
+\item[{int}]{half\+Width}
+\end{DoxyParamCaption}
+)}\label{class_transformation_ae2dcb616a0231a331ed97a9ef5704849}
+Seta a new screen space transform. Used for recreating an image. 
+\begin{DoxyParams}{Parameters}
+{\em half\+Height} & half of a target image height \\
+\hline
+{\em half\+Width} & half of a target image width \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_transformation_aeaf15f9849ac1a0dc2b5f7a7da12e0ed}{}\index{Transformation@{Transformation}!pos@{pos}}
+\index{pos@{pos}!Transformation@{Transformation}}
+\subsubsection[{pos}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Transformation\+::pos}\label{class_transformation_aeaf15f9849ac1a0dc2b5f7a7da12e0ed}
+Position, Rotation, Scale vectors. Are constant for our implemenation \hypertarget{class_transformation_a4d41188f5f002453bb288c32452c79d2}{}\index{Transformation@{Transformation}!rot@{rot}}
+\index{rot@{rot}!Transformation@{Transformation}}
+\subsubsection[{rot}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Transformation\+::rot}\label{class_transformation_a4d41188f5f002453bb288c32452c79d2}
+\hypertarget{class_transformation_abaca94f82d6d4c1515c133e638624724}{}\index{Transformation@{Transformation}!scale@{scale}}
+\index{scale@{scale}!Transformation@{Transformation}}
+\subsubsection[{scale}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::vec3 Transformation\+::scale}\label{class_transformation_abaca94f82d6d4c1515c133e638624724}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Texture\+Extractor\+V2/Transformation.\+hpp\item 
-Texture\+Extractor\+V2/Transformation.\+cpp\end{DoxyCompactItemize}
+Texture\+Extractor\+V2/\hyperlink{_transformation_8hpp}{Transformation.\+hpp}\item 
+Texture\+Extractor\+V2/\hyperlink{_transformation_8cpp}{Transformation.\+cpp}\end{DoxyCompactItemize}

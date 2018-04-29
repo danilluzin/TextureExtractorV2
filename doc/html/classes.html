@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -62,11 +70,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li class="current"><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classes.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -86,45 +108,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Class Index</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="qindex"><a class="qindex" href="#letter_A">A</a>&#160;|&#160;<a class="qindex" href="#letter_B">B</a>&#160;|&#160;<a class="qindex" href="#letter_C">C</a>&#160;|&#160;<a class="qindex" href="#letter_D">D</a>&#160;|&#160;<a class="qindex" href="#letter_E">E</a>&#160;|&#160;<a class="qindex" href="#letter_G">G</a>&#160;|&#160;<a class="qindex" href="#letter_I">I</a>&#160;|&#160;<a class="qindex" href="#letter_M">M</a>&#160;|&#160;<a class="qindex" href="#letter_N">N</a>&#160;|&#160;<a class="qindex" href="#letter_O">O</a>&#160;|&#160;<a class="qindex" href="#letter_P">P</a>&#160;|&#160;<a class="qindex" href="#letter_R">R</a>&#160;|&#160;<a class="qindex" href="#letter_T">T</a>&#160;|&#160;<a class="qindex" href="#letter_V">V</a></div>
+<div class="qindex"><a class="qindex" href="#letter_A">A</a>&#160;|&#160;<a class="qindex" href="#letter_B">B</a>&#160;|&#160;<a class="qindex" href="#letter_C">C</a>&#160;|&#160;<a class="qindex" href="#letter_D">D</a>&#160;|&#160;<a class="qindex" href="#letter_E">E</a>&#160;|&#160;<a class="qindex" href="#letter_G">G</a>&#160;|&#160;<a class="qindex" href="#letter_M">M</a>&#160;|&#160;<a class="qindex" href="#letter_N">N</a>&#160;|&#160;<a class="qindex" href="#letter_O">O</a>&#160;|&#160;<a class="qindex" href="#letter_P">P</a>&#160;|&#160;<a class="qindex" href="#letter_R">R</a>&#160;|&#160;<a class="qindex" href="#letter_T">T</a>&#160;|&#160;<a class="qindex" href="#letter_V">V</a></div>
 <table style="margin: 10px; white-space: nowrap;" align="center" width="95%" border="0" cellspacing="0" cellpadding="0">
 <tr><td rowspan="2" valign="bottom"><a name="letter_A"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;A&#160;&#160;</div></td></tr></table>
-</td><td valign="top"><a class="el" href="class_data_costs_extractor.html">DataCostsExtractor</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_M"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;M&#160;&#160;</div></td></tr></table>
-</td><td valign="top"><a class="el" href="struct_patch_quality.html">PatchQuality</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_texture_patch_dictionary.html">TexturePatchDictionary</a>&#160;&#160;&#160;</td></tr>
-<tr><td rowspan="2" valign="bottom"><a name="letter_E"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;E&#160;&#160;</div></td></tr></table>
-</td><td rowspan="2" valign="bottom"><a name="letter_R"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;R&#160;&#160;</div></td></tr></table>
-</td><td valign="top"><a class="el" href="class_timer.html">Timer</a>&#160;&#160;&#160;</td></tr>
-<tr><td valign="top"><a class="el" href="class_adjacency_graph.html">AdjacencyGraph</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="class_mesh.html">Mesh</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="class_transformation.html">Transformation</a>&#160;&#160;&#160;</td></tr>
-<tr><td valign="top"><a class="el" href="struct_arguments.html">Arguments</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="class_edge.html">Edge</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_N"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;N&#160;&#160;</div></td></tr></table>
-</td><td valign="top"><a class="el" href="class_rasterizer.html">Rasterizer</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_triangle.html">Triangle</a>&#160;&#160;&#160;</td></tr>
+</td><td rowspan="2" valign="bottom"><a name="letter_D"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;D&#160;&#160;</div></td></tr></table>
+</td><td rowspan="2" valign="bottom"><a name="letter_M"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;M&#160;&#160;</div></td></tr></table>
+</td><td valign="top"><a class="el" href="struct_patch_quality.html">PatchQuality</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_texture_patch.html">TexturePatch</a>&#160;&#160;&#160;</td></tr>
+<tr><td rowspan="2" valign="bottom"><a name="letter_R"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;R&#160;&#160;</div></td></tr></table>
+</td><td valign="top"><a class="el" href="struct_texture_patch_dictionary.html">TexturePatchDictionary</a>&#160;&#160;&#160;</td></tr>
+<tr><td valign="top"><a class="el" href="class_adjacency_graph.html">AdjacencyGraph</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="class_data_cost_extraction_manager.html">DataCostExtractionManager</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="class_mesh.html">Mesh</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="class_timer.html">Timer</a>&#160;&#160;&#160;</td></tr>
+<tr><td valign="top"><a class="el" href="struct_arguments.html">Arguments</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="class_data_costs_extractor.html">DataCostsExtractor</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_N"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;N&#160;&#160;</div></td></tr></table>
+</td><td valign="top"><a class="el" href="class_rasterizer.html">Rasterizer</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="class_transformation.html">Transformation</a>&#160;&#160;&#160;</td></tr>
 <tr><td rowspan="2" valign="bottom"><a name="letter_B"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;B&#160;&#160;</div></td></tr></table>
-</td><td valign="top"><a class="el" href="struct_edge_vertex.html">EdgeVertex</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="class_render_context.html">RenderContext</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_V"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;V&#160;&#160;</div></td></tr></table>
+</td><td rowspan="2" valign="bottom"><a name="letter_E"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;E&#160;&#160;</div></td></tr></table>
+</td><td valign="top"><a class="el" href="class_render_context.html">RenderContext</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_triangle.html">Triangle</a>&#160;&#160;&#160;</td></tr>
+<tr><td valign="top"><a class="el" href="struct_normal.html">Normal</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_T"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;T&#160;&#160;</div></td></tr></table>
+</td><td rowspan="2" valign="bottom"><a name="letter_V"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;V&#160;&#160;</div></td></tr></table>
 </td></tr>
-<tr><td valign="top"><a class="el" href="class_extraction_worker.html">ExtractionWorker</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_normal.html">Normal</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_T"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;T&#160;&#160;</div></td></tr></table>
+<tr><td valign="top"><a class="el" href="class_bitmap.html">Bitmap</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="class_edge.html">Edge</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_O"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;O&#160;&#160;</div></td></tr></table>
 </td></tr>
-<tr><td valign="top"><a class="el" href="class_bitmap.html">Bitmap</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_G"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;G&#160;&#160;</div></td></tr></table>
-</td><td rowspan="2" valign="bottom"><a name="letter_O"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;O&#160;&#160;</div></td></tr></table>
-</td><td valign="top"><a class="el" href="struct_vertex.html">Vertex</a>&#160;&#160;&#160;</td></tr>
-<tr><td valign="top"><a class="el" href="struct_bounding_box.html">BoundingBox</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_tex_coord.html">TexCoord</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="class_view.html">View</a>&#160;&#160;&#160;</td></tr>
+<tr><td valign="top"><a class="el" href="struct_bounding_box.html">BoundingBox</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_edge_vertex.html">EdgeVertex</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_tex_coord.html">TexCoord</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_vertex.html">Vertex</a>&#160;&#160;&#160;</td></tr>
 <tr><td rowspan="2" valign="bottom"><a name="letter_C"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;C&#160;&#160;</div></td></tr></table>
-</td><td valign="top"><a class="el" href="class_gradient.html">Gradient</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_object.html">Object</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="class_texture_edge.html">TextureEdge</a>&#160;&#160;&#160;</td><td></td></tr>
-<tr><td rowspan="2" valign="bottom"><a name="letter_I"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;I&#160;&#160;</div></td></tr></table>
+</td><td valign="top"><a class="el" href="class_extraction_worker.html">ExtractionWorker</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_object.html">Object</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="class_texture_edge.html">TextureEdge</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="class_view.html">View</a>&#160;&#160;&#160;</td></tr>
+<tr><td rowspan="2" valign="bottom"><a name="letter_G"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;G&#160;&#160;</div></td></tr></table>
 </td><td rowspan="2" valign="bottom"><a name="letter_P"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;P&#160;&#160;</div></td></tr></table>
 </td><td valign="top"><a class="el" href="class_texture_extractor.html">TextureExtractor</a>&#160;&#160;&#160;</td><td></td></tr>
 <tr><td valign="top"><a class="el" href="class_camera.html">Camera</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="class_texture_gradient.html">TextureGradient</a>&#160;&#160;&#160;</td><td></td></tr>
-<tr><td rowspan="2" valign="bottom"><a name="letter_D"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;D&#160;&#160;</div></td></tr></table>
-</td><td valign="top"><a class="el" href="class_i_n_i_reader.html">INIReader</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_partition_node.html">PartitionNode</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_texture_patch.html">TexturePatch</a>&#160;&#160;&#160;</td><td></td></tr>
-<tr><td></td><td></td><td></td><td></td></tr>
-<tr><td valign="top"><a class="el" href="class_data_cost_extraction_manager.html">DataCostExtractionManager</a>&#160;&#160;&#160;</td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a class="el" href="class_gradient.html">Gradient</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_partition_node.html">PartitionNode</a>&#160;&#160;&#160;</td><td></td><td></td></tr>
 <tr><td></td><td></td><td></td><td></td><td></td></tr>
 </table>
-<div class="qindex"><a class="qindex" href="#letter_A">A</a>&#160;|&#160;<a class="qindex" href="#letter_B">B</a>&#160;|&#160;<a class="qindex" href="#letter_C">C</a>&#160;|&#160;<a class="qindex" href="#letter_D">D</a>&#160;|&#160;<a class="qindex" href="#letter_E">E</a>&#160;|&#160;<a class="qindex" href="#letter_G">G</a>&#160;|&#160;<a class="qindex" href="#letter_I">I</a>&#160;|&#160;<a class="qindex" href="#letter_M">M</a>&#160;|&#160;<a class="qindex" href="#letter_N">N</a>&#160;|&#160;<a class="qindex" href="#letter_O">O</a>&#160;|&#160;<a class="qindex" href="#letter_P">P</a>&#160;|&#160;<a class="qindex" href="#letter_R">R</a>&#160;|&#160;<a class="qindex" href="#letter_T">T</a>&#160;|&#160;<a class="qindex" href="#letter_V">V</a></div>
+<div class="qindex"><a class="qindex" href="#letter_A">A</a>&#160;|&#160;<a class="qindex" href="#letter_B">B</a>&#160;|&#160;<a class="qindex" href="#letter_C">C</a>&#160;|&#160;<a class="qindex" href="#letter_D">D</a>&#160;|&#160;<a class="qindex" href="#letter_E">E</a>&#160;|&#160;<a class="qindex" href="#letter_G">G</a>&#160;|&#160;<a class="qindex" href="#letter_M">M</a>&#160;|&#160;<a class="qindex" href="#letter_N">N</a>&#160;|&#160;<a class="qindex" href="#letter_O">O</a>&#160;|&#160;<a class="qindex" href="#letter_P">P</a>&#160;|&#160;<a class="qindex" href="#letter_R">R</a>&#160;|&#160;<a class="qindex" href="#letter_T">T</a>&#160;|&#160;<a class="qindex" href="#letter_V">V</a></div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

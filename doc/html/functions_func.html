@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -62,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li class="current"><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -75,9 +83,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow4" class="tabs3">
     <ul class="tablist">
+      <li><a href="#index__"><span>_</span></a></li>
       <li><a href="#index_a"><span>a</span></a></li>
       <li><a href="#index_b"><span>b</span></a></li>
       <li><a href="#index_c"><span>c</span></a></li>
+      <li><a href="#index_d"><span>d</span></a></li>
       <li><a href="#index_e"><span>e</span></a></li>
       <li><a href="#index_f"><span>f</span></a></li>
       <li><a href="#index_g"><span>g</span></a></li>
@@ -88,10 +98,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_p"><span>p</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
-      <li class="current"><a href="#index_v"><span>v</span></a></li>
+      <li><a href="#index_t"><span>t</span></a></li>
+      <li><a href="#index_v"><span>v</span></a></li>
+      <li><a href="#index_w"><span>w</span></a></li>
+      <li><a href="#index_x"><span>x</span></a></li>
+      <li><a href="#index_y"><span>y</span></a></li>
+      <li><a href="#index_z"><span>z</span></a></li>
+      <li class="current"><a href="#index_~"><span>~</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_func.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -108,6 +138,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="contents">
 &#160;
+
+<h3><a class="anchor" id="index__"></a>- _ -</h3><ul>
+<li>_getDepthBitmap()
+: <a class="el" href="class_rasterizer.html#a75040e8d77887db53f23f3fccf9eace7">Rasterizer</a>
+</li>
+</ul>
+
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
 <li>addBoundingBox()
@@ -128,10 +165,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>applyGradient()
 : <a class="el" href="class_extraction_worker.html#ac956797cff498d82f040d3884be2144d">ExtractionWorker</a>
 </li>
+<li>at()
+: <a class="el" href="class_bitmap.html#af5c0948748aa68b2737871d20201c2e5">Bitmap</a>
+</li>
 </ul>
 
 
 <h3><a class="anchor" id="index_b"></a>- b -</h3><ul>
+<li>bindMesh()
+: <a class="el" href="class_rasterizer.html#a4e43391ca21604f52d4baabc44b34933">Rasterizer</a>
+</li>
+<li>Bitmap()
+: <a class="el" href="class_bitmap.html#a40526748415c8bbc58a8510d636c20f4">Bitmap</a>
+</li>
 <li>BoundingBox()
 : <a class="el" href="struct_bounding_box.html#a6e401c4da5839950f1f30c8b8c4d1208">BoundingBox</a>
 </li>
@@ -139,21 +185,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>calcQuality()
+: <a class="el" href="struct_patch_quality.html#a330d17106af0e6f3d484c7777201c6f8">PatchQuality</a>
+</li>
+<li>calculateCosts()
+: <a class="el" href="class_data_costs_extractor.html#a7c072ab9a7ceb6e3c6742c9991923b00">DataCostsExtractor</a>
+</li>
 <li>calculateDataCosts()
 : <a class="el" href="class_texture_extractor.html#af7e364344bda2e0c6784c82b50a6f979">TextureExtractor</a>
 </li>
+<li>Camera()
+: <a class="el" href="class_camera.html#a01f94c3543f56ede7af49dc778f19331">Camera</a>
+</li>
 <li>checkCameraInfo()
 : <a class="el" href="class_texture_extractor.html#a82baa1e8ae7c17bd9f1d44b431f82f86">TextureExtractor</a>
+</li>
+<li>clear()
+: <a class="el" href="class_bitmap.html#a409022ea446f41edcce42c076dff1608">Bitmap</a>
+, <a class="el" href="class_render_context.html#a9c6a34962ba769bacbb054ea435dfce8">RenderContext</a>
+</li>
+<li>clearBuffer()
+: <a class="el" href="class_rasterizer.html#a32023cfe311be2b5118912364a1d2219">Rasterizer</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
+<li>DataCostExtractionManager()
+: <a class="el" href="class_data_cost_extraction_manager.html#a90368fe041fe99c6ee45531ca69ae036">DataCostExtractionManager</a>
+</li>
+<li>DataCostsExtractor()
+: <a class="el" href="class_data_costs_extractor.html#a43e088a660a4c58abe525cae2fb6925b">DataCostsExtractor</a>
+</li>
+<li>doPerspectiveDevide()
+: <a class="el" href="class_transformation.html#a9bb89f79245297795c78f62ca6b29efd">Transformation</a>
+</li>
+<li>doWork()
+: <a class="el" href="class_data_cost_extraction_manager.html#a078e39ed154e6337584a2506a87c35e7">DataCostExtractionManager</a>
+</li>
+<li>drawMesh()
+: <a class="el" href="class_rasterizer.html#ab2d26833e9b47e3e1a1b9e94a77d0a18">Rasterizer</a>
+</li>
+<li>drawTriangle()
+: <a class="el" href="class_rasterizer.html#a3be827df6aeec982f2a1e5106ee6e99b">Rasterizer</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>Edge()
+: <a class="el" href="class_edge.html#a97a820beb3ce7430825616b227189845">Edge</a>
+</li>
 <li>extend()
 : <a class="el" href="class_extraction_worker.html#a24312158a7768088b96dd722414786ae">ExtractionWorker</a>
 </li>
 <li>extract()
 : <a class="el" href="class_extraction_worker.html#ad649a3ebbc506e55d5b003381b07ba06">ExtractionWorker</a>
+</li>
+<li>ExtractionWorker()
+: <a class="el" href="class_extraction_worker.html#a5cb5231da6a9c3568c1cbdeaa90a30e2">ExtractionWorker</a>
 </li>
 </ul>
 
@@ -161,6 +251,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
 <li>fillTextureTriangle()
 : <a class="el" href="class_extraction_worker.html#a25d7438c2adfc4e4e4076954516a4f43">ExtractionWorker</a>
+</li>
+<li>fillTriangle()
+: <a class="el" href="class_rasterizer.html#adcecbd138ae8c58d583037467f77ea35">Rasterizer</a>
 </li>
 </ul>
 
@@ -205,6 +298,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>get()
 : <a class="el" href="struct_vertex.html#a9859cbbdd117fb2b59f56966f8a93e6e">Vertex</a>
 </li>
+<li>getModelMatrix()
+: <a class="el" href="class_transformation.html#a0a6033abab9c32b487c90b95fd1a2df3">Transformation</a>
+</li>
+<li>getScreenTransform()
+: <a class="el" href="class_transformation.html#a4d2b0cd9862c2b0485740a896617c867">Transformation</a>
+</li>
+<li>getViewProjection()
+: <a class="el" href="class_camera.html#a95833a5b98d52d4be7b7267c8c8490fe">Camera</a>
+, <a class="el" href="class_transformation.html#a5f57370067951aecad8b40bec887c2ef">Transformation</a>
+</li>
+<li>getVisibleFaces()
+: <a class="el" href="class_rasterizer.html#a53689efa323cb4c5a9df0d4e5b19008f">Rasterizer</a>
+</li>
 <li>Gradient()
 : <a class="el" href="class_gradient.html#a4fd340dfd44bc432746d239cb809a0ee">Gradient</a>
 </li>
@@ -228,10 +334,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>lerp()
 : <a class="el" href="struct_vertex.html#ae3ede62e3d8f7614bead7becbeed065e">Vertex</a>
 </li>
+<li>loadImage()
+: <a class="el" href="class_view.html#a58942806f815fc1f34034c1464aa3d57">View</a>
+</li>
 </ul>
 
 
 <h3><a class="anchor" id="index_n"></a>- n -</h3><ul>
+<li>Normal()
+: <a class="el" href="struct_normal.html#a19c72c824df84768e56cd6c610bf8edd">Normal</a>
+</li>
 <li>numberOfViews()
 : <a class="el" href="class_texture_extractor.html#a57b2eef07397ceeedf461343aff6afbc">TextureExtractor</a>
 </li>
@@ -241,6 +353,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
 <li>operator*()
 : <a class="el" href="struct_vertex.html#a7b6c5132e8fd35a45481d8ba1e96d981">Vertex</a>
+</li>
+<li>operator=()
+: <a class="el" href="class_bitmap.html#a7a1a9969ca533d4adebe7c44a26ee092">Bitmap</a>
 </li>
 </ul>
 
@@ -252,15 +367,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>prepareViews()
 : <a class="el" href="class_texture_extractor.html#a5d1efa1c5208f8a1e67142dd38fbf5a2">TextureExtractor</a>
 </li>
+<li>putPixel()
+: <a class="el" href="class_bitmap.html#a6f880db00f7d05e6284005a6553aa17c">Bitmap</a>
+, <a class="el" href="class_render_context.html#a722f7e593dc2c480ad5a2a448196c2dc">RenderContext</a>
+</li>
 </ul>
 
 
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
+<li>Rasterizer()
+: <a class="el" href="class_rasterizer.html#a2eec0e17ef479f0e0af5640d6786e077">Rasterizer</a>
+</li>
+<li>rasterizeTriangle()
+: <a class="el" href="class_rasterizer.html#a39a7b6f424f2bc8e7111892cbf387509">Rasterizer</a>
+</li>
 <li>readDataCostsFromFile()
 : <a class="el" href="class_texture_extractor.html#a9f3605a51c466cca05f8ff216c84d574">TextureExtractor</a>
 </li>
 <li>readLabelsFromFile()
 : <a class="el" href="class_texture_extractor.html#ad3855ac7764dc5af24e776e928bed802">TextureExtractor</a>
+</li>
+<li>releaseImage()
+: <a class="el" href="class_view.html#aa280b349b020b2fb14863b66d054a1da">View</a>
+</li>
+<li>RenderContext()
+: <a class="el" href="class_render_context.html#aff0b414b1aa39e7c5ca4ed5cadf20721">RenderContext</a>
 </li>
 <li>renderView()
 : <a class="el" href="class_texture_extractor.html#a77c9ce096ece162dac08599fc7c0ee47">TextureExtractor</a>
@@ -272,8 +403,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
+<li>save()
+: <a class="el" href="class_bitmap.html#a9ca33640e5554ee36b435fa789260903">Bitmap</a>
+</li>
 <li>selectViews()
 : <a class="el" href="class_texture_extractor.html#abeb85c1ced22591fda614af1f351e817">TextureExtractor</a>
+</li>
+<li>setAspectRatio()
+: <a class="el" href="class_transformation.html#aba67dba23c6180e047f8172c461a7554">Transformation</a>
+</li>
+<li>setCamera()
+: <a class="el" href="class_transformation.html#a93295202dbfbb2b450d5bd893ee3237b">Transformation</a>
 </li>
 <li>setMask()
 : <a class="el" href="class_extraction_worker.html#a3ae8fdacd8e2a0b44873c36b6e3756e5">ExtractionWorker</a>
@@ -282,11 +422,52 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_extraction_worker.html#a0bfb06fd0caed6ec032416e8d928fbe8">ExtractionWorker</a>
 , <a class="el" href="class_texture_extractor.html#ae02d3f7a8ebf636fd7fc17ab13570f59">TextureExtractor</a>
 </li>
+<li>setRenderContext()
+: <a class="el" href="class_rasterizer.html#accac2d0878675f9fe01ae2fedd30f84f">Rasterizer</a>
+</li>
+<li>setScreenTransform()
+: <a class="el" href="class_transformation.html#ae2dcb616a0231a331ed97a9ef5704849">Transformation</a>
+</li>
+<li>setTexture()
+: <a class="el" href="class_rasterizer.html#a401966b0d0572d8c944e6b319515ac5e">Rasterizer</a>
+</li>
+<li>setTransformation()
+: <a class="el" href="class_rasterizer.html#ad18b358f6db3c9d0304feb402d37689e">Rasterizer</a>
+</li>
 <li>start()
 : <a class="el" href="class_timer.html#a3a8b5272198d029779dc9302a54305a8">Timer</a>
 </li>
+<li>Step()
+: <a class="el" href="class_edge.html#aee421bbd01b0ac8006e91e76589e84fb">Edge</a>
+, <a class="el" href="class_texture_edge.html#a65e70bfe49405d2bd92b32066fdc0752">TextureEdge</a>
+</li>
 <li>stopGetResults()
 : <a class="el" href="class_timer.html#aa7dd6187a7dec39be17dfb4f6184db16">Timer</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>TexCoord()
+: <a class="el" href="struct_tex_coord.html#a02018ed90402d77cb313b581c0ea0561">TexCoord</a>
+</li>
+<li>TextureEdge()
+: <a class="el" href="class_texture_edge.html#adbdc3b619799de6ef2ca4a60b072a7f7">TextureEdge</a>
+</li>
+<li>TextureGradient()
+: <a class="el" href="class_texture_gradient.html#ac52b7944976524744bcc35ec9918b09c">TextureGradient</a>
+</li>
+<li>toHSV()
+: <a class="el" href="class_bitmap.html#a80c5adbea91bb7311008dab576dc82c6">Bitmap</a>
+</li>
+<li>toSobel()
+: <a class="el" href="class_bitmap.html#a99d5b69de318e80c9af1f660f46c00c4">Bitmap</a>
+</li>
+<li>Transformation()
+: <a class="el" href="class_transformation.html#a9e066efd2a4d28a13d1bdb54de254bec">Transformation</a>
+</li>
+<li>Triangle()
+: <a class="el" href="struct_triangle.html#a88209808e641989a51c9f5e23b8857f5">Triangle</a>
 </li>
 </ul>
 
@@ -295,13 +476,57 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Vertex()
 : <a class="el" href="struct_vertex.html#a314b0e4370b7b33efdaa4bf492b91021">Vertex</a>
 </li>
+<li>View()
+: <a class="el" href="class_view.html#a44ad60a768422d3fa8fbd7576950080a">View</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
+<li>w()
+: <a class="el" href="struct_vertex.html#a3b549b8c60d7530358e941a390196c54">Vertex</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_x"></a>- x -</h3><ul>
+<li>x()
+: <a class="el" href="struct_vertex.html#a5aeac850629b2391834b1ea862cd3165">Vertex</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_y"></a>- y -</h3><ul>
+<li>y()
+: <a class="el" href="struct_vertex.html#ab7cbabc42312a9494a6889a0106889a2">Vertex</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_z"></a>- z -</h3><ul>
+<li>z()
+: <a class="el" href="struct_vertex.html#ad643c72d7d0edb4763fa5de716e17228">Vertex</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_~"></a>- ~ -</h3><ul>
+<li>~DataCostsExtractor()
+: <a class="el" href="class_data_costs_extractor.html#a4fe7362a1fb391a1f4544b1a3c7d02f7">DataCostsExtractor</a>
+</li>
+<li>~TextureExtractor()
+: <a class="el" href="class_texture_extractor.html#a2e801688662a864437a2c78cec83f34e">TextureExtractor</a>
+</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

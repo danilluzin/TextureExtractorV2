@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -61,8 +69,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_mesh_8hpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -77,17 +101,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_3b6e71e20b94598e8e41069cf8fc92e1.html">TextureExtractorV2</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Mesh.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<a href="_mesh_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">//  Mesh.hpp</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//  TextureExtractor</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//</span></div>
@@ -110,7 +129,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        this-&gt;<a class="code" href="struct_vertex.html#aabc10e3b8e0171bcbe77b014944271b3">coord</a> = <a class="code" href="struct_vertex.html#aabc10e3b8e0171bcbe77b014944271b3">coord</a>;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    }</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    </div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="struct_vertex.html#a2c558c054a0a2c970588c063073803a0">   37</a></span>&#160;    <a class="code" href="struct_vertex.html#a2c558c054a0a2c970588c063073803a0">Vertex</a> (<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z){</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="struct_vertex.html#a2c558c054a0a2c970588c063073803a0">   37</a></span>&#160;    <a class="code" href="struct_vertex.html#a2c558c054a0a2c970588c063073803a0">Vertex</a> (<span class="keywordtype">float</span> <a class="code" href="struct_vertex.html#a5aeac850629b2391834b1ea862cd3165">x</a>, <span class="keywordtype">float</span> <a class="code" href="struct_vertex.html#ab7cbabc42312a9494a6889a0106889a2">y</a>, <span class="keywordtype">float</span> <a class="code" href="struct_vertex.html#ad643c72d7d0edb4763fa5de716e17228">z</a>){</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        this-&gt;<a class="code" href="struct_vertex.html#aabc10e3b8e0171bcbe77b014944271b3">coord</a> = glm::vec4(x,y,z,1);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    </div>
@@ -120,10 +139,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    </div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="struct_vertex.html">Vertex</a> <a class="code" href="struct_vertex.html#ae3ede62e3d8f7614bead7becbeed065e">lerp</a>(<span class="keyword">const</span> <a class="code" href="struct_vertex.html">Vertex</a> &amp; other, <span class="keywordtype">float</span> ammount);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">float</span> x()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="struct_vertex.html#aabc10e3b8e0171bcbe77b014944271b3">coord</a>.x;}</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">float</span> y()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="struct_vertex.html#aabc10e3b8e0171bcbe77b014944271b3">coord</a>.y;}</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">float</span> z()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="struct_vertex.html#aabc10e3b8e0171bcbe77b014944271b3">coord</a>.z;}</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">float</span> w()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="struct_vertex.html#aabc10e3b8e0171bcbe77b014944271b3">coord</a>.w;}</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="struct_vertex.html#a5aeac850629b2391834b1ea862cd3165">   57</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="struct_vertex.html#a5aeac850629b2391834b1ea862cd3165">x</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="struct_vertex.html#aabc10e3b8e0171bcbe77b014944271b3">coord</a>.x;}</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="struct_vertex.html#ab7cbabc42312a9494a6889a0106889a2">   58</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="struct_vertex.html#ab7cbabc42312a9494a6889a0106889a2">y</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="struct_vertex.html#aabc10e3b8e0171bcbe77b014944271b3">coord</a>.y;}</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="struct_vertex.html#ad643c72d7d0edb4763fa5de716e17228">   59</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="struct_vertex.html#ad643c72d7d0edb4763fa5de716e17228">z</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="struct_vertex.html#aabc10e3b8e0171bcbe77b014944271b3">coord</a>.z;}</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="struct_vertex.html#a3b549b8c60d7530358e941a390196c54">   60</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="struct_vertex.html#a3b549b8c60d7530358e941a390196c54">w</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="struct_vertex.html#aabc10e3b8e0171bcbe77b014944271b3">coord</a>.w;}</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    </div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">float</span> <span class="keyword">get</span>(<span class="keywordtype">int</span> component);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    </div>
@@ -147,13 +166,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    </div>
 <div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="struct_bounding_box.html#af49243215eee1a4a355262d0b948505d">  103</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_bounding_box.html#af49243215eee1a4a355262d0b948505d">addVertex</a>(<span class="keyword">const</span> <a class="code" href="struct_vertex.html">Vertex</a> &amp; v ){</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        minVec.x = std::min(minVec.x , v.x());</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        minVec.y = std::min(minVec.y , v.y());</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        minVec.z = std::min(minVec.z , v.z());</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        minVec.x = std::min(minVec.x , v.<a class="code" href="struct_vertex.html#a5aeac850629b2391834b1ea862cd3165">x</a>());</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        minVec.y = std::min(minVec.y , v.<a class="code" href="struct_vertex.html#ab7cbabc42312a9494a6889a0106889a2">y</a>());</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        minVec.z = std::min(minVec.z , v.<a class="code" href="struct_vertex.html#ad643c72d7d0edb4763fa5de716e17228">z</a>());</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        maxVec.x = std::max(maxVec.x , v.x());</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        maxVec.y = std::max(maxVec.y , v.y());</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        maxVec.z = std::max(maxVec.z , v.z());</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        maxVec.x = std::max(maxVec.x , v.<a class="code" href="struct_vertex.html#a5aeac850629b2391834b1ea862cd3165">x</a>());</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        maxVec.y = std::max(maxVec.y , v.<a class="code" href="struct_vertex.html#ab7cbabc42312a9494a6889a0106889a2">y</a>());</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        maxVec.z = std::max(maxVec.z , v.<a class="code" href="struct_vertex.html#ad643c72d7d0edb4763fa5de716e17228">z</a>());</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    </div>
 <div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="struct_bounding_box.html#ad0e27df4662e1023c3e015898e126465">  117</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_bounding_box.html#ad0e27df4662e1023c3e015898e126465">addBoundingBox</a>(<span class="keyword">const</span> <a class="code" href="struct_bounding_box.html">BoundingBox</a> &amp; boundingBox){</div>
@@ -164,15 +183,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
 <div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="struct_triangle.html">  126</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_triangle.html">Triangle</a> {</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <a class="code" href="struct_triangle.html">Triangle</a>(<span class="keyword">const</span> uint <a class="code" href="struct_triangle.html#ae6371f947daaa0debff04c10b6fadf74">verticies</a>[3]){</div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="struct_triangle.html#a88209808e641989a51c9f5e23b8857f5">  128</a></span>&#160;    <a class="code" href="struct_triangle.html#a88209808e641989a51c9f5e23b8857f5">Triangle</a>(<span class="keyword">const</span> uint <a class="code" href="struct_triangle.html#ae6371f947daaa0debff04c10b6fadf74">verticies</a>[3]){</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        this-&gt;verticies[0] = verticies[0];</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        this-&gt;verticies[1] = verticies[1];</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        this-&gt;verticies[2] = verticies[2];</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    }</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    </div>
-<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="struct_triangle.html#ae6371f947daaa0debff04c10b6fadf74">  134</a></span>&#160;    <a class="code" href="struct_triangle.html">Triangle</a>(){};</div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="struct_triangle.html#ae6371f947daaa0debff04c10b6fadf74">  134</a></span>&#160;    <a class="code" href="struct_triangle.html#aaefe4ed500c07918d30c6f0e286332c5">Triangle</a>(){};</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    uint verticies [3];</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    uint <a class="code" href="struct_triangle.html#ae6371f947daaa0debff04c10b6fadf74">verticies</a> [3];</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    </div>
 <div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="struct_triangle.html#a2d3dc46484a1d1cc2802caaaa4a5f1cf">  140</a></span>&#160;    std::map&lt;uint,uint&gt; <a class="code" href="struct_triangle.html#a2d3dc46484a1d1cc2802caaaa4a5f1cf">texCoords</a>;</div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    </div>
@@ -186,11 +205,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;};</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
 <div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="struct_tex_coord.html">  158</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_tex_coord.html">TexCoord</a>{</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <a class="code" href="struct_tex_coord.html">TexCoord</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y){</div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="struct_tex_coord.html#a02018ed90402d77cb313b581c0ea0561">  159</a></span>&#160;    <a class="code" href="struct_tex_coord.html#a02018ed90402d77cb313b581c0ea0561">TexCoord</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y){</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <a class="code" href="struct_tex_coord.html#a31698d41a1be7a51cbaed632c4fae1e7">coord</a>.x = x;</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <a class="code" href="struct_tex_coord.html#a31698d41a1be7a51cbaed632c4fae1e7">coord</a>.y = y;</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    }</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <a class="code" href="struct_tex_coord.html">TexCoord</a>(){}</div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="struct_tex_coord.html#ae1167f68dab931cc523e1f74fa5ad206">  163</a></span>&#160;    <a class="code" href="struct_tex_coord.html#ae1167f68dab931cc523e1f74fa5ad206">TexCoord</a>(){}</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    </div>
 <div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="struct_tex_coord.html#a31698d41a1be7a51cbaed632c4fae1e7">  166</a></span>&#160;    glm::vec2 <a class="code" href="struct_tex_coord.html#a31698d41a1be7a51cbaed632c4fae1e7">coord</a>;</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    </div>
@@ -199,10 +218,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;};</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
 <div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="struct_normal.html">  176</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_normal.html">Normal</a>{</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <a class="code" href="struct_normal.html">Normal</a>(glm::vec4 coord){</div>
+<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="struct_normal.html#a19c72c824df84768e56cd6c610bf8edd">  177</a></span>&#160;    <a class="code" href="struct_normal.html#a19c72c824df84768e56cd6c610bf8edd">Normal</a>(glm::vec4 coord){</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <a class="code" href="struct_normal.html#a555de7ec7d67e743968b5f69af17dd1c">normal</a> = coord;</div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    }</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <a class="code" href="struct_normal.html">Normal</a>(){}</div>
+<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="struct_normal.html#af62e51ec40dc2eedc3b9ca49ebdc7197">  180</a></span>&#160;    <a class="code" href="struct_normal.html#af62e51ec40dc2eedc3b9ca49ebdc7197">Normal</a>(){}</div>
 <div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="struct_normal.html#a555de7ec7d67e743968b5f69af17dd1c">  182</a></span>&#160;    glm::vec4 <a class="code" href="struct_normal.html#a555de7ec7d67e743968b5f69af17dd1c">normal</a>;</div>
 <div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="struct_normal.html#a39256c233377305342349bd73991d3e3">  184</a></span>&#160;    uint <a class="code" href="struct_normal.html#a39256c233377305342349bd73991d3e3">id</a>;</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;};</div>
@@ -227,8 +246,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00218"></a><span class="lineno"><a class="line" href="class_adjacency_graph.html#ad3e7a730db698841d4230030898f4291">  218</a></span>&#160;    std::map&lt;uint,Node&gt; <a class="code" href="class_adjacency_graph.html#ad3e7a730db698841d4230030898f4291">nodes</a>;</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;};</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="keyword">enum</span> Direction{</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    X,Y,Z,NONE</div>
+<div class="line"><a name="l00224"></a><span class="lineno"><a class="line" href="_mesh_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aa">  224</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="_mesh_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aa">Direction</a>{</div>
+<div class="line"><a name="l00225"></a><span class="lineno"><a class="line" href="_mesh_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aaaa70478ce277ffc322f8e1e3418e07355">  225</a></span>&#160;    <a class="code" href="_mesh_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aaa58833a3110c570fb05130d40c365d1e4">X</a>,<a class="code" href="_mesh_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aaa5596231eabd6cf29050967d5ac83ad84">Y</a>,<a class="code" href="_mesh_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aaaa70478ce277ffc322f8e1e3418e07355">Z</a>,<a class="code" href="_mesh_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aaac157bdf0b85a40d2619cbc8bc1ae5fe2">NONE</a></div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;};</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
 <div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="struct_partition_node.html">  231</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_partition_node.html">PartitionNode</a>{</div>
@@ -244,7 +263,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    </div>
 <div class="line"><a name="l00248"></a><span class="lineno"><a class="line" href="struct_partition_node.html#aa1c74a380fa906533ad5e7649293e711">  248</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="struct_partition_node.html#aa1c74a380fa906533ad5e7649293e711">separator</a>;</div>
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    </div>
-<div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="struct_partition_node.html#a5e861a43672acf654394a15b012df231">  251</a></span>&#160;    Direction <a class="code" href="struct_partition_node.html#a5e861a43672acf654394a15b012df231">direction</a> = NONE;</div>
+<div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="struct_partition_node.html#a5e861a43672acf654394a15b012df231">  251</a></span>&#160;    <a class="code" href="_mesh_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aa">Direction</a> <a class="code" href="struct_partition_node.html#a5e861a43672acf654394a15b012df231">direction</a> = <a class="code" href="_mesh_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aaac157bdf0b85a40d2619cbc8bc1ae5fe2">NONE</a>;</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    </div>
 <div class="line"><a name="l00254"></a><span class="lineno"><a class="line" href="struct_partition_node.html#aaababc44867907150c7371d071e7ec8d">  254</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_partition_node.html#aaababc44867907150c7371d071e7ec8d">addTriangle</a>(<a class="code" href="struct_triangle.html">Triangle</a> &amp; triangle){</div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        triangles.push_back(triangle.<a class="code" href="struct_triangle.html#a2b02bfd83feba5fe297836b900a62c92">id</a>);</div>
@@ -318,32 +337,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    std::vector&lt;std::string&gt; objectNames;</div>
 <div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;};</div>
 <div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;<a class="code" href="struct_vertex.html">Vertex</a> operator * (<span class="keyword">const</span> glm::mat4 &amp; matrix , <span class="keyword">const</span> <a class="code" href="struct_vertex.html">Vertex</a> &amp; vertex);</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;<a class="code" href="struct_vertex.html">Vertex</a> <a class="code" href="_mesh_8hpp.html#a1a13ce8c7dc46f41214b2294ee6b3d70">operator * </a>(<span class="keyword">const</span> glm::mat4 &amp; matrix , <span class="keyword">const</span> <a class="code" href="struct_vertex.html">Vertex</a> &amp; vertex);</div>
 <div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;<span class="keywordtype">bool</span> isInsideViewFrustrum(<span class="keyword">const</span> <a class="code" href="struct_vertex.html">Vertex</a> &amp; v);</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="_mesh_8hpp.html#ac821843a39dc256ca1a854357112a7cd">isInsideViewFrustrum</a>(<span class="keyword">const</span> <a class="code" href="struct_vertex.html">Vertex</a> &amp; v);</div>
 <div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;</div>
 <div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* Mesh_hpp */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="struct_triangle_html_a2d3dc46484a1d1cc2802caaaa4a5f1cf"><div class="ttname"><a href="struct_triangle.html#a2d3dc46484a1d1cc2802caaaa4a5f1cf">Triangle::texCoords</a></div><div class="ttdeci">std::map&lt; uint, uint &gt; texCoords</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:140</div></div>
 <div class="ttc" id="class_mesh_html"><div class="ttname"><a href="class_mesh.html">Mesh</a></div><div class="ttdef"><b>Definition:</b> Mesh.hpp:281</div></div>
 <div class="ttc" id="class_mesh_html_a615f86622e292b9bfa581cfad823b375"><div class="ttname"><a href="class_mesh.html#a615f86622e292b9bfa581cfad823b375">Mesh::texCoords</a></div><div class="ttdeci">std::map&lt; uint, TexCoord &gt; texCoords</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:293</div></div>
+<div class="ttc" id="struct_tex_coord_html_a02018ed90402d77cb313b581c0ea0561"><div class="ttname"><a href="struct_tex_coord.html#a02018ed90402d77cb313b581c0ea0561">TexCoord::TexCoord</a></div><div class="ttdeci">TexCoord(float x, float y)</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:159</div></div>
 <div class="ttc" id="struct_tex_coord_html_aef29d0ef3a3fdcefdda756a2820e2a23"><div class="ttname"><a href="struct_tex_coord.html#aef29d0ef3a3fdcefdda756a2820e2a23">TexCoord::id</a></div><div class="ttdeci">uint id</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:169</div></div>
 <div class="ttc" id="struct_vertex_html_ae3ede62e3d8f7614bead7becbeed065e"><div class="ttname"><a href="struct_vertex.html#ae3ede62e3d8f7614bead7becbeed065e">Vertex::lerp</a></div><div class="ttdeci">Vertex lerp(const Vertex &amp;other, float ammount)</div><div class="ttdef"><b>Definition:</b> Mesh.cpp:137</div></div>
 <div class="ttc" id="class_mesh_html_afe59cf4410182ce7c42447b635c745e1"><div class="ttname"><a href="class_mesh.html#afe59cf4410182ce7c42447b635c745e1">Mesh::normals</a></div><div class="ttdeci">std::map&lt; uint, Normal &gt; normals</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:296</div></div>
 <div class="ttc" id="struct_bounding_box_html_af49243215eee1a4a355262d0b948505d"><div class="ttname"><a href="struct_bounding_box.html#af49243215eee1a4a355262d0b948505d">BoundingBox::addVertex</a></div><div class="ttdeci">void addVertex(const Vertex &amp;v)</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:103</div></div>
 <div class="ttc" id="class_adjacency_graph_html_ad3e7a730db698841d4230030898f4291"><div class="ttname"><a href="class_adjacency_graph.html#ad3e7a730db698841d4230030898f4291">AdjacencyGraph::nodes</a></div><div class="ttdeci">std::map&lt; uint, Node &gt; nodes</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:218</div></div>
 <div class="ttc" id="struct_partition_node_html_a4d66482e5a4c91717fd0d935557ceb14"><div class="ttname"><a href="struct_partition_node.html#a4d66482e5a4c91717fd0d935557ceb14">PartitionNode::parent</a></div><div class="ttdeci">PartitionNode * parent</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:239</div></div>
+<div class="ttc" id="struct_vertex_html_a3b549b8c60d7530358e941a390196c54"><div class="ttname"><a href="struct_vertex.html#a3b549b8c60d7530358e941a390196c54">Vertex::w</a></div><div class="ttdeci">float w() const </div><div class="ttdef"><b>Definition:</b> Mesh.hpp:60</div></div>
 <div class="ttc" id="struct_vertex_html_aee423a6a530f42da4d6a9b306fc348e7"><div class="ttname"><a href="struct_vertex.html#aee423a6a530f42da4d6a9b306fc348e7">Vertex::id</a></div><div class="ttdeci">uint id</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:76</div></div>
 <div class="ttc" id="struct_object_html_a484e6471a6620c2dd98aa3db6ab7a9f5"><div class="ttname"><a href="struct_object.html#a484e6471a6620c2dd98aa3db6ab7a9f5">Object::partitionRoot</a></div><div class="ttdeci">PartitionNode partitionRoot</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:274</div></div>
+<div class="ttc" id="struct_normal_html_af62e51ec40dc2eedc3b9ca49ebdc7197"><div class="ttname"><a href="struct_normal.html#af62e51ec40dc2eedc3b9ca49ebdc7197">Normal::Normal</a></div><div class="ttdeci">Normal()</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:180</div></div>
 <div class="ttc" id="struct_object_html_a4a7a34b417ea8969e1407e6962c671eb"><div class="ttname"><a href="struct_object.html#a4a7a34b417ea8969e1407e6962c671eb">Object::triangles</a></div><div class="ttdeci">std::vector&lt; uint &gt; triangles</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:271</div></div>
 <div class="ttc" id="struct_triangle_html_a980bbf270a13c5ac9112e6e8c8c2ea89"><div class="ttname"><a href="struct_triangle.html#a980bbf270a13c5ac9112e6e8c8c2ea89">Triangle::boundingBox</a></div><div class="ttdeci">BoundingBox boundingBox</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:152</div></div>
+<div class="ttc" id="_mesh_8hpp_html_a224b9163917ac32fc95a60d8c1eec3aaa5596231eabd6cf29050967d5ac83ad84"><div class="ttname"><a href="_mesh_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aaa5596231eabd6cf29050967d5ac83ad84">Y</a></div><div class="ttdef"><b>Definition:</b> Mesh.hpp:225</div></div>
 <div class="ttc" id="class_mesh_html_a5ad3c61ae2ecabc596a9d9cd01f29252"><div class="ttname"><a href="class_mesh.html#a5ad3c61ae2ecabc596a9d9cd01f29252">Mesh::facesVertexBelongsTo</a></div><div class="ttdeci">std::map&lt; uint, std::set&lt; uint &gt; &gt; facesVertexBelongsTo</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:302</div></div>
 <div class="ttc" id="class_adjacency_graph_html"><div class="ttname"><a href="class_adjacency_graph.html">AdjacencyGraph</a></div><div class="ttdef"><b>Definition:</b> Mesh.hpp:190</div></div>
+<div class="ttc" id="struct_vertex_html_ad643c72d7d0edb4763fa5de716e17228"><div class="ttname"><a href="struct_vertex.html#ad643c72d7d0edb4763fa5de716e17228">Vertex::z</a></div><div class="ttdeci">float z() const </div><div class="ttdef"><b>Definition:</b> Mesh.hpp:59</div></div>
 <div class="ttc" id="struct_object_html_aeeac86f3158968433d8484fb43dc9727"><div class="ttname"><a href="struct_object.html#aeeac86f3158968433d8484fb43dc9727">Object::boundingBox</a></div><div class="ttdeci">BoundingBox boundingBox</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:265</div></div>
 <div class="ttc" id="struct_object_html_a24457e0a387492c80594aec7681a2277"><div class="ttname"><a href="struct_object.html#a24457e0a387492c80594aec7681a2277">Object::name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:268</div></div>
 <div class="ttc" id="struct_normal_html_a555de7ec7d67e743968b5f69af17dd1c"><div class="ttname"><a href="struct_normal.html#a555de7ec7d67e743968b5f69af17dd1c">Normal::normal</a></div><div class="ttdeci">glm::vec4 normal</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:182</div></div>
 <div class="ttc" id="class_mesh_html_a6afb31bd01dac6b21a548341d389b421"><div class="ttname"><a href="class_mesh.html#a6afb31bd01dac6b21a548341d389b421">Mesh::triangles</a></div><div class="ttdeci">std::map&lt; uint, Triangle &gt; triangles</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:299</div></div>
 <div class="ttc" id="struct_vertex_html_a2c558c054a0a2c970588c063073803a0"><div class="ttname"><a href="struct_vertex.html#a2c558c054a0a2c970588c063073803a0">Vertex::Vertex</a></div><div class="ttdeci">Vertex(float x, float y, float z)</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:37</div></div>
+<div class="ttc" id="struct_vertex_html_a5aeac850629b2391834b1ea862cd3165"><div class="ttname"><a href="struct_vertex.html#a5aeac850629b2391834b1ea862cd3165">Vertex::x</a></div><div class="ttdeci">float x() const </div><div class="ttdef"><b>Definition:</b> Mesh.hpp:57</div></div>
 <div class="ttc" id="struct_partition_node_html_aaababc44867907150c7371d071e7ec8d"><div class="ttname"><a href="struct_partition_node.html#aaababc44867907150c7371d071e7ec8d">PartitionNode::addTriangle</a></div><div class="ttdeci">void addTriangle(Triangle &amp;triangle)</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:254</div></div>
+<div class="ttc" id="_mesh_8hpp_html_a1a13ce8c7dc46f41214b2294ee6b3d70"><div class="ttname"><a href="_mesh_8hpp.html#a1a13ce8c7dc46f41214b2294ee6b3d70">operator*</a></div><div class="ttdeci">Vertex operator*(const glm::mat4 &amp;matrix, const Vertex &amp;vertex)</div><div class="ttdef"><b>Definition:</b> Mesh.cpp:79</div></div>
+<div class="ttc" id="_mesh_8hpp_html_a224b9163917ac32fc95a60d8c1eec3aaac157bdf0b85a40d2619cbc8bc1ae5fe2"><div class="ttname"><a href="_mesh_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aaac157bdf0b85a40d2619cbc8bc1ae5fe2">NONE</a></div><div class="ttdef"><b>Definition:</b> Mesh.hpp:225</div></div>
 <div class="ttc" id="struct_partition_node_html_aa1c74a380fa906533ad5e7649293e711"><div class="ttname"><a href="struct_partition_node.html#aa1c74a380fa906533ad5e7649293e711">PartitionNode::separator</a></div><div class="ttdeci">float separator</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:248</div></div>
 <div class="ttc" id="struct_normal_html"><div class="ttname"><a href="struct_normal.html">Normal</a></div><div class="ttdef"><b>Definition:</b> Mesh.hpp:176</div></div>
 <div class="ttc" id="struct_vertex_html_aabc10e3b8e0171bcbe77b014944271b3"><div class="ttname"><a href="struct_vertex.html#aabc10e3b8e0171bcbe77b014944271b3">Vertex::coord</a></div><div class="ttdeci">glm::vec4 coord</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:70</div></div>
@@ -354,9 +381,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="struct_tex_coord_html_a31698d41a1be7a51cbaed632c4fae1e7"><div class="ttname"><a href="struct_tex_coord.html#a31698d41a1be7a51cbaed632c4fae1e7">TexCoord::coord</a></div><div class="ttdeci">glm::vec2 coord</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:166</div></div>
 <div class="ttc" id="struct_bounding_box_html_a6e401c4da5839950f1f30c8b8c4d1208"><div class="ttname"><a href="struct_bounding_box.html#a6e401c4da5839950f1f30c8b8c4d1208">BoundingBox::BoundingBox</a></div><div class="ttdeci">BoundingBox()</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:93</div></div>
 <div class="ttc" id="class_mesh_html_a7867e8a9f5b51b153a13d4e302578a1f"><div class="ttname"><a href="class_mesh.html#a7867e8a9f5b51b153a13d4e302578a1f">Mesh::adjacencyGraph</a></div><div class="ttdeci">AdjacencyGraph adjacencyGraph</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:311</div></div>
+<div class="ttc" id="struct_normal_html_a19c72c824df84768e56cd6c610bf8edd"><div class="ttname"><a href="struct_normal.html#a19c72c824df84768e56cd6c610bf8edd">Normal::Normal</a></div><div class="ttdeci">Normal(glm::vec4 coord)</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:177</div></div>
+<div class="ttc" id="_mesh_8hpp_html_a224b9163917ac32fc95a60d8c1eec3aa"><div class="ttname"><a href="_mesh_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aa">Direction</a></div><div class="ttdeci">Direction</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:224</div></div>
 <div class="ttc" id="struct_bounding_box_html"><div class="ttname"><a href="struct_bounding_box.html">BoundingBox</a></div><div class="ttdef"><b>Definition:</b> Mesh.hpp:82</div></div>
+<div class="ttc" id="struct_triangle_html_aaefe4ed500c07918d30c6f0e286332c5"><div class="ttname"><a href="struct_triangle.html#aaefe4ed500c07918d30c6f0e286332c5">Triangle::Triangle</a></div><div class="ttdeci">Triangle()</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:134</div></div>
 <div class="ttc" id="struct_vertex_html_a8214ff52fee03a5524ce58c3810a1be9"><div class="ttname"><a href="struct_vertex.html#a8214ff52fee03a5524ce58c3810a1be9">Vertex::texCoord</a></div><div class="ttdeci">glm::vec2 texCoord</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:73</div></div>
 <div class="ttc" id="struct_triangle_html"><div class="ttname"><a href="struct_triangle.html">Triangle</a></div><div class="ttdef"><b>Definition:</b> Mesh.hpp:126</div></div>
+<div class="ttc" id="struct_vertex_html_ab7cbabc42312a9494a6889a0106889a2"><div class="ttname"><a href="struct_vertex.html#ab7cbabc42312a9494a6889a0106889a2">Vertex::y</a></div><div class="ttdeci">float y() const </div><div class="ttdef"><b>Definition:</b> Mesh.hpp:58</div></div>
+<div class="ttc" id="struct_triangle_html_a88209808e641989a51c9f5e23b8857f5"><div class="ttname"><a href="struct_triangle.html#a88209808e641989a51c9f5e23b8857f5">Triangle::Triangle</a></div><div class="ttdeci">Triangle(const uint verticies[3])</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:128</div></div>
+<div class="ttc" id="_mesh_8hpp_html_a224b9163917ac32fc95a60d8c1eec3aaa58833a3110c570fb05130d40c365d1e4"><div class="ttname"><a href="_mesh_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aaa58833a3110c570fb05130d40c365d1e4">X</a></div><div class="ttdef"><b>Definition:</b> Mesh.hpp:225</div></div>
 <div class="ttc" id="struct_partition_node_html"><div class="ttname"><a href="struct_partition_node.html">PartitionNode</a></div><div class="ttdef"><b>Definition:</b> Mesh.hpp:231</div></div>
 <div class="ttc" id="struct_bounding_box_html_a45c73eef0083449f657b8e25247123fd"><div class="ttname"><a href="struct_bounding_box.html#a45c73eef0083449f657b8e25247123fd">BoundingBox::maxVec</a></div><div class="ttdeci">glm::vec4 maxVec</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:88</div></div>
 <div class="ttc" id="struct_partition_node_html_a5e861a43672acf654394a15b012df231"><div class="ttname"><a href="struct_partition_node.html#a5e861a43672acf654394a15b012df231">PartitionNode::direction</a></div><div class="ttdeci">Direction direction</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:251</div></div>
@@ -367,22 +400,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_adjacency_graph_html_a24a7cc8e5f62cc94872e04cfa10b70dd"><div class="ttname"><a href="class_adjacency_graph.html#a24a7cc8e5f62cc94872e04cfa10b70dd">AdjacencyGraph::addNode</a></div><div class="ttdeci">void addNode(uint faceId, const std::set&lt; uint &gt; &amp;neighbours)</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:214</div></div>
 <div class="ttc" id="class_mesh_html_ad93d51d3938b1fe01816746f7d6a121f"><div class="ttname"><a href="class_mesh.html#ad93d51d3938b1fe01816746f7d6a121f">Mesh::initialize</a></div><div class="ttdeci">bool initialize(const std::string &amp;filename)</div><div class="ttdef"><b>Definition:</b> Mesh.cpp:13</div></div>
 <div class="ttc" id="struct_vertex_html_a314b0e4370b7b33efdaa4bf492b91021"><div class="ttname"><a href="struct_vertex.html#a314b0e4370b7b33efdaa4bf492b91021">Vertex::Vertex</a></div><div class="ttdeci">Vertex(glm::vec4 coord=glm::vec4(0, 0, 0, 0))</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:27</div></div>
+<div class="ttc" id="_mesh_8hpp_html_a224b9163917ac32fc95a60d8c1eec3aaaa70478ce277ffc322f8e1e3418e07355"><div class="ttname"><a href="_mesh_8hpp.html#a224b9163917ac32fc95a60d8c1eec3aaaa70478ce277ffc322f8e1e3418e07355">Z</a></div><div class="ttdef"><b>Definition:</b> Mesh.hpp:225</div></div>
 <div class="ttc" id="struct_object_html"><div class="ttname"><a href="struct_object.html">Object</a></div><div class="ttdef"><b>Definition:</b> Mesh.hpp:263</div></div>
 <div class="ttc" id="struct_partition_node_html_a45bf7beca48bcb4533d7f7d21e0df440"><div class="ttname"><a href="struct_partition_node.html#a45bf7beca48bcb4533d7f7d21e0df440">PartitionNode::triangles</a></div><div class="ttdeci">std::vector&lt; uint &gt; triangles</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:242</div></div>
 <div class="ttc" id="struct_normal_html_a39256c233377305342349bd73991d3e3"><div class="ttname"><a href="struct_normal.html#a39256c233377305342349bd73991d3e3">Normal::id</a></div><div class="ttdeci">uint id</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:184</div></div>
+<div class="ttc" id="_mesh_8hpp_html_ac821843a39dc256ca1a854357112a7cd"><div class="ttname"><a href="_mesh_8hpp.html#ac821843a39dc256ca1a854357112a7cd">isInsideViewFrustrum</a></div><div class="ttdeci">bool isInsideViewFrustrum(const Vertex &amp;v)</div><div class="ttdef"><b>Definition:</b> Mesh.cpp:346</div></div>
 <div class="ttc" id="struct_triangle_html_ae6371f947daaa0debff04c10b6fadf74"><div class="ttname"><a href="struct_triangle.html#ae6371f947daaa0debff04c10b6fadf74">Triangle::verticies</a></div><div class="ttdeci">uint verticies[3]</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:134</div></div>
 <div class="ttc" id="struct_partition_node_html_a673d8267a9eb0a5c77bdfc48b00f1e16"><div class="ttname"><a href="struct_partition_node.html#a673d8267a9eb0a5c77bdfc48b00f1e16">PartitionNode::rightNode</a></div><div class="ttdeci">PartitionNode * rightNode</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:236</div></div>
 <div class="ttc" id="struct_partition_node_html_a7f1efc38b6bbdf4cc2f8e36574bbf276"><div class="ttname"><a href="struct_partition_node.html#a7f1efc38b6bbdf4cc2f8e36574bbf276">PartitionNode::boundingBox</a></div><div class="ttdeci">BoundingBox boundingBox</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:245</div></div>
 <div class="ttc" id="struct_bounding_box_html_ad0e27df4662e1023c3e015898e126465"><div class="ttname"><a href="struct_bounding_box.html#ad0e27df4662e1023c3e015898e126465">BoundingBox::addBoundingBox</a></div><div class="ttdeci">void addBoundingBox(const BoundingBox &amp;boundingBox)</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:117</div></div>
 <div class="ttc" id="class_mesh_html_ad221985419bdc4e3f30396073e7aa107"><div class="ttname"><a href="class_mesh.html#ad221985419bdc4e3f30396073e7aa107">Mesh::objects</a></div><div class="ttdeci">std::vector&lt; Object &gt; objects</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:305</div></div>
 <div class="ttc" id="class_mesh_html_aaa92d27cfbbb7b2ae11d94ded72de982"><div class="ttname"><a href="class_mesh.html#aaa92d27cfbbb7b2ae11d94ded72de982">Mesh::isValidFaceId</a></div><div class="ttdeci">bool isValidFaceId(int id)</div><div class="ttdef"><b>Definition:</b> Mesh.cpp:133</div></div>
+<div class="ttc" id="struct_tex_coord_html_ae1167f68dab931cc523e1f74fa5ad206"><div class="ttname"><a href="struct_tex_coord.html#ae1167f68dab931cc523e1f74fa5ad206">TexCoord::TexCoord</a></div><div class="ttdeci">TexCoord()</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:163</div></div>
 <div class="ttc" id="struct_bounding_box_html_af0404f650a91d7c3212a2bd9db9ada56"><div class="ttname"><a href="struct_bounding_box.html#af0404f650a91d7c3212a2bd9db9ada56">BoundingBox::minVec</a></div><div class="ttdeci">glm::vec4 minVec</div><div class="ttdef"><b>Definition:</b> Mesh.hpp:85</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_3b6e71e20b94598e8e41069cf8fc92e1.html">TextureExtractorV2</a></li><li class="navelem"><a class="el" href="_mesh_8hpp.html">Mesh.hpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

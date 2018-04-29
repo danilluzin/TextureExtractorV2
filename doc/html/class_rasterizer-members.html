@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -62,10 +70,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_rasterizer.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,7 +103,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Rasterizer Member List</div>  </div>
@@ -89,25 +111,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="class_rasterizer.html">Rasterizer</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>_getDepthBitmap</b>(Bitmap &amp;bitmap) (defined in <a class="el" href="class_rasterizer.html">Rasterizer</a>)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>bindMesh</b>(const Mesh &amp;m) (defined in <a class="el" href="class_rasterizer.html">Rasterizer</a>)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>clearBuffer</b>() (defined in <a class="el" href="class_rasterizer.html">Rasterizer</a>)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>drawMesh</b>() (defined in <a class="el" href="class_rasterizer.html">Rasterizer</a>)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>drawTriangle</b>(const Triangle &amp;triangle) (defined in <a class="el" href="class_rasterizer.html">Rasterizer</a>)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>fillTriangle</b>(Vertex minYVert, Vertex midYVert, Vertex maxYVert, bool handedness, uint id) (defined in <a class="el" href="class_rasterizer.html">Rasterizer</a>)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getVisibleFaces</b>() const  (defined in <a class="el" href="class_rasterizer.html">Rasterizer</a>)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>Rasterizer</b>(int width, int height) (defined in <a class="el" href="class_rasterizer.html">Rasterizer</a>)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>rasterizeTriangle</b>(Vertex minYVert, Vertex midYVert, Vertex maxYVert, const Triangle &amp;triangle) (defined in <a class="el" href="class_rasterizer.html">Rasterizer</a>)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>scoreTable</b> (defined in <a class="el" href="class_rasterizer.html">Rasterizer</a>)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setRenderContext</b>(RenderContext *rc) (defined in <a class="el" href="class_rasterizer.html">Rasterizer</a>)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>setTexture</b>(const Bitmap &amp;txr) (defined in <a class="el" href="class_rasterizer.html">Rasterizer</a>)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setTransformation</b>(Transformation transformation) (defined in <a class="el" href="class_rasterizer.html">Rasterizer</a>)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_rasterizer.html#a75040e8d77887db53f23f3fccf9eace7">_getDepthBitmap</a>(Bitmap &amp;bitmap)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_rasterizer.html#a4e43391ca21604f52d4baabc44b34933">bindMesh</a>(const Mesh &amp;m)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_rasterizer.html#a32023cfe311be2b5118912364a1d2219">clearBuffer</a>()</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_rasterizer.html#ab2d26833e9b47e3e1a1b9e94a77d0a18">drawMesh</a>()</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_rasterizer.html#a3be827df6aeec982f2a1e5106ee6e99b">drawTriangle</a>(const Triangle &amp;triangle)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_rasterizer.html#adcecbd138ae8c58d583037467f77ea35">fillTriangle</a>(Vertex minYVert, Vertex midYVert, Vertex maxYVert, bool handedness, uint id)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_rasterizer.html#a53689efa323cb4c5a9df0d4e5b19008f">getVisibleFaces</a>() const </td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_rasterizer.html#a2eec0e17ef479f0e0af5640d6786e077">Rasterizer</a>(int width, int height)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_rasterizer.html#a39a7b6f424f2bc8e7111892cbf387509">rasterizeTriangle</a>(Vertex minYVert, Vertex midYVert, Vertex maxYVert, const Triangle &amp;triangle)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_rasterizer.html#a8c5ae8edeb03c773a841eef9207bef4d">scoreTable</a></td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_rasterizer.html#accac2d0878675f9fe01ae2fedd30f84f">setRenderContext</a>(RenderContext *rc)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_rasterizer.html#a401966b0d0572d8c944e6b319515ac5e">setTexture</a>(const Bitmap &amp;txr)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_rasterizer.html#ad18b358f6db3c9d0304feb402d37689e">setTransformation</a>(Transformation transformation)</td><td class="entry"><a class="el" href="class_rasterizer.html">Rasterizer</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

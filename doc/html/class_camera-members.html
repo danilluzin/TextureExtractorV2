@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -62,10 +70,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_camera.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,7 +103,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Camera Member List</div>  </div>
@@ -89,24 +111,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="class_camera.html">Camera</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Camera</b>() (defined in <a class="el" href="class_camera.html">Camera</a>)</td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>focalLength</b> (defined in <a class="el" href="class_camera.html">Camera</a>)</td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>forward</b> (defined in <a class="el" href="class_camera.html">Camera</a>)</td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>fov</b> (defined in <a class="el" href="class_camera.html">Camera</a>)</td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getViewProjection</b>() const  (defined in <a class="el" href="class_camera.html">Camera</a>)</td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>perspective</b> (defined in <a class="el" href="class_camera.html">Camera</a>)</td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>position</b> (defined in <a class="el" href="class_camera.html">Camera</a>)</td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>rotationMatrix</b> (defined in <a class="el" href="class_camera.html">Camera</a>)</td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>translation</b> (defined in <a class="el" href="class_camera.html">Camera</a>)</td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>up</b> (defined in <a class="el" href="class_camera.html">Camera</a>)</td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>zFar</b> (defined in <a class="el" href="class_camera.html">Camera</a>)</td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>zNear</b> (defined in <a class="el" href="class_camera.html">Camera</a>)</td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_camera.html#a01f94c3543f56ede7af49dc778f19331">Camera</a>()</td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_camera.html#a0375653f2ef532ac566eba093c2c922d">focalLength</a></td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_camera.html#aff7393c9cfbccd7e369091f00008da93">fov</a></td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_camera.html#a95833a5b98d52d4be7b7267c8c8490fe">getViewProjection</a>() const </td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_camera.html#ac4c1ee3074b5e4b70efec7d3ceb1467f">perspective</a></td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_camera.html#a0986d4d426737e26178056e3635dc3d8">rotationMatrix</a></td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_camera.html#ab7dbba19077d1457c557c31a215c2557">translation</a></td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_camera.html#a6290469f972a5903c805725db563f41f">zFar</a></td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_camera.html#a1db2166635ff27594eda3a23130b66ac">zNear</a></td><td class="entry"><a class="el" href="class_camera.html">Camera</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.10
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,38 +1,87 @@
 \hypertarget{class_data_cost_extraction_manager}{}\section{Data\+Cost\+Extraction\+Manager Class Reference}
 \label{class_data_cost_extraction_manager}\index{Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}}
+
+
+{\ttfamily \#include $<$Data\+Cost\+Extraction\+Manager.\+hpp$>$}
+
+
+
+Collaboration diagram for Data\+Cost\+Extraction\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{class_data_cost_extraction_manager__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_data_cost_extraction_manager_a90368fe041fe99c6ee45531ca69ae036}{}{\bfseries Data\+Cost\+Extraction\+Manager} (const \hyperlink{class_mesh}{Mesh} \&mesh)\label{class_data_cost_extraction_manager_a90368fe041fe99c6ee45531ca69ae036}
-
+\hyperlink{class_data_cost_extraction_manager_a90368fe041fe99c6ee45531ca69ae036}{Data\+Cost\+Extraction\+Manager} (const \hyperlink{class_mesh}{Mesh} \&\hyperlink{class_data_cost_extraction_manager_afa915680af20f1ac535cbc3205f7c35a}{mesh})
 \item 
-\hypertarget{class_data_cost_extraction_manager_a078e39ed154e6337584a2506a87c35e7}{}void {\bfseries do\+Work} ()\label{class_data_cost_extraction_manager_a078e39ed154e6337584a2506a87c35e7}
-
+void \hyperlink{class_data_cost_extraction_manager_a078e39ed154e6337584a2506a87c35e7}{do\+Work} ()
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_data_cost_extraction_manager_a97997e576d25554a8805934a81382d38}{}uint $\ast$ {\bfseries progress\+Counter}\label{class_data_cost_extraction_manager_a97997e576d25554a8805934a81382d38}
-
+uint $\ast$ \hyperlink{class_data_cost_extraction_manager_a97997e576d25554a8805934a81382d38}{progress\+Counter}
 \item 
-\hypertarget{class_data_cost_extraction_manager_ad2cbdefd98fdde78bf62b5602befa9e5}{}uint {\bfseries total\+View\+Count}\label{class_data_cost_extraction_manager_ad2cbdefd98fdde78bf62b5602befa9e5}
-
+uint \hyperlink{class_data_cost_extraction_manager_ad2cbdefd98fdde78bf62b5602befa9e5}{total\+View\+Count}
 \item 
-\hypertarget{class_data_cost_extraction_manager_afa915680af20f1ac535cbc3205f7c35a}{}const \hyperlink{class_mesh}{Mesh} \& {\bfseries mesh}\label{class_data_cost_extraction_manager_afa915680af20f1ac535cbc3205f7c35a}
-
+const \hyperlink{class_mesh}{Mesh} \& \hyperlink{class_data_cost_extraction_manager_afa915680af20f1ac535cbc3205f7c35a}{mesh}
 \item 
-\hypertarget{class_data_cost_extraction_manager_a701cc390cea498e7477cd2e06cf48e01}{}std\+::mutex $\ast$ {\bfseries mtx}\label{class_data_cost_extraction_manager_a701cc390cea498e7477cd2e06cf48e01}
-
+std\+::mutex $\ast$ \hyperlink{class_data_cost_extraction_manager_a701cc390cea498e7477cd2e06cf48e01}{mtx}
 \item 
-\hypertarget{class_data_cost_extraction_manager_aab34038a5dd8e8e24a44fe102e722cca}{}std\+::map$<$ uint, std\+::map$<$ uint, \hyperlink{struct_patch_quality}{Patch\+Quality} $>$ $>$ $\ast$ {\bfseries data\+Costs}\label{class_data_cost_extraction_manager_aab34038a5dd8e8e24a44fe102e722cca}
-
+std\+::map$<$ uint, std\+::map$<$ uint, \hyperlink{struct_patch_quality}{Patch\+Quality} $>$ $>$ $\ast$ \hyperlink{class_data_cost_extraction_manager_aab34038a5dd8e8e24a44fe102e722cca}{data\+Costs}
 \item 
-\hypertarget{class_data_cost_extraction_manager_afec2fa6aa627fb80c2734b4c5f895afa}{}std\+::vector$<$ \hyperlink{class_view}{View} $\ast$ $>$ {\bfseries views\+To\+Do}\label{class_data_cost_extraction_manager_afec2fa6aa627fb80c2734b4c5f895afa}
-
+std\+::vector$<$ \hyperlink{class_view}{View} $\ast$ $>$ \hyperlink{class_data_cost_extraction_manager_afec2fa6aa627fb80c2734b4c5f895afa}{views\+To\+Do}
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+Class that is responsible for keeping track of the workload and performs the main thread loop in the do\+Work method, and a \hyperlink{class_data_costs_extractor}{Data\+Costs\+Extractor} class perform an extraction for one source image itself. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_data_cost_extraction_manager_a90368fe041fe99c6ee45531ca69ae036}{}\index{Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}!Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}}
+\index{Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}!Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}}
+\subsubsection[{Data\+Cost\+Extraction\+Manager(const Mesh \&mesh)}]{\setlength{\rightskip}{0pt plus 5cm}Data\+Cost\+Extraction\+Manager\+::\+Data\+Cost\+Extraction\+Manager (
+\begin{DoxyParamCaption}
+\item[{const {\bf Mesh} \&}]{mesh}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_data_cost_extraction_manager_a90368fe041fe99c6ee45531ca69ae036}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_data_cost_extraction_manager_a078e39ed154e6337584a2506a87c35e7}{}\index{Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}!do\+Work@{do\+Work}}
+\index{do\+Work@{do\+Work}!Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}}
+\subsubsection[{do\+Work()}]{\setlength{\rightskip}{0pt plus 5cm}void Data\+Cost\+Extraction\+Manager\+::do\+Work (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_data_cost_extraction_manager_a078e39ed154e6337584a2506a87c35e7}
+Main function that is called in the begging of the thread 
+
+\subsection{Member Data Documentation}
+\hypertarget{class_data_cost_extraction_manager_aab34038a5dd8e8e24a44fe102e722cca}{}\index{Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}!data\+Costs@{data\+Costs}}
+\index{data\+Costs@{data\+Costs}!Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}}
+\subsubsection[{data\+Costs}]{\setlength{\rightskip}{0pt plus 5cm}std\+::map$<$uint,std\+::map$<$uint,{\bf Patch\+Quality}$>$ $>$$\ast$ Data\+Cost\+Extraction\+Manager\+::data\+Costs}\label{class_data_cost_extraction_manager_aab34038a5dd8e8e24a44fe102e722cca}
+Set of data costs for every triangle visible from one particular source image. Those sets are combined into one data\+Costs set local to a \hyperlink{class_data_cost_extraction_manager}{Data\+Cost\+Extraction\+Manager}. This means, that since we have as many Data\+Cost\+Extraction\+Managers as threads, we have to later merge them. \hypertarget{class_data_cost_extraction_manager_afa915680af20f1ac535cbc3205f7c35a}{}\index{Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}!mesh@{mesh}}
+\index{mesh@{mesh}!Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}}
+\subsubsection[{mesh}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Mesh}\& Data\+Cost\+Extraction\+Manager\+::mesh}\label{class_data_cost_extraction_manager_afa915680af20f1ac535cbc3205f7c35a}
+Work mesh \hypertarget{class_data_cost_extraction_manager_a701cc390cea498e7477cd2e06cf48e01}{}\index{Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}!mtx@{mtx}}
+\index{mtx@{mtx}!Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}}
+\subsubsection[{mtx}]{\setlength{\rightskip}{0pt plus 5cm}std\+::mutex$\ast$ Data\+Cost\+Extraction\+Manager\+::mtx}\label{class_data_cost_extraction_manager_a701cc390cea498e7477cd2e06cf48e01}
+Common mutex between extraction managers. U\+Sed to report the progress \hypertarget{class_data_cost_extraction_manager_a97997e576d25554a8805934a81382d38}{}\index{Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}!progress\+Counter@{progress\+Counter}}
+\index{progress\+Counter@{progress\+Counter}!Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}}
+\subsubsection[{progress\+Counter}]{\setlength{\rightskip}{0pt plus 5cm}uint$\ast$ Data\+Cost\+Extraction\+Manager\+::progress\+Counter}\label{class_data_cost_extraction_manager_a97997e576d25554a8805934a81382d38}
+Counter for keeping track of progress. is shared between parallel mangaers. Gets incremented i nthe mutex protected part. \hypertarget{class_data_cost_extraction_manager_ad2cbdefd98fdde78bf62b5602befa9e5}{}\index{Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}!total\+View\+Count@{total\+View\+Count}}
+\index{total\+View\+Count@{total\+View\+Count}!Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}}
+\subsubsection[{total\+View\+Count}]{\setlength{\rightskip}{0pt plus 5cm}uint Data\+Cost\+Extraction\+Manager\+::total\+View\+Count}\label{class_data_cost_extraction_manager_ad2cbdefd98fdde78bf62b5602befa9e5}
+Tottal number of views a mangager has to analyze. It is its workload \hypertarget{class_data_cost_extraction_manager_afec2fa6aa627fb80c2734b4c5f895afa}{}\index{Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}!views\+To\+Do@{views\+To\+Do}}
+\index{views\+To\+Do@{views\+To\+Do}!Data\+Cost\+Extraction\+Manager@{Data\+Cost\+Extraction\+Manager}}
+\subsubsection[{views\+To\+Do}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<${\bf View} $\ast$$>$ Data\+Cost\+Extraction\+Manager\+::views\+To\+Do}\label{class_data_cost_extraction_manager_afec2fa6aa627fb80c2734b4c5f895afa}
+List of views a managher should do. It is its workload 
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Texture\+Extractor\+V2/Data\+Cost\+Extraction\+Manager.\+hpp\item 
-Texture\+Extractor\+V2/Data\+Cost\+Extraction\+Manager.\+cpp\end{DoxyCompactItemize}
+Texture\+Extractor\+V2/\hyperlink{_data_cost_extraction_manager_8hpp}{Data\+Cost\+Extraction\+Manager.\+hpp}\item 
+Texture\+Extractor\+V2/\hyperlink{_data_cost_extraction_manager_8cpp}{Data\+Cost\+Extraction\+Manager.\+cpp}\end{DoxyCompactItemize}
