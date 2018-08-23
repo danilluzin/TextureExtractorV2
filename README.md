@@ -1,7 +1,7 @@
 # Texture extraction from Photographs
 ## Danil Luzin
 
-Tool generates texture images for 3D models using camera information from reconstruction tools and source images.
+Texture extraction tool generates texture images for 3D models using camera information from reconstruction tools and source images.
 
 Supported reconstruction tools:
 - Visual SFM
@@ -15,9 +15,9 @@ File `manual.pdf` is a user manual and describes all the information neccessary 
 
 ### Prerequisites
 
-A tool can be build using CMake. ( https://cmake.org )
+Tool can be build using CMake. ( https://cmake.org )
 
-Required libraries are
+Required libraries are:
 - OpenCV https://opencv.org
 - GLM https://glm.g-truc.net/0.9.8/index.html
 - TBB https://www.threadingbuildingblocks.org
@@ -26,13 +26,13 @@ Required libraries are
 
 Configuration of the tool is handled using .INI files.
 
-You can generate example .INI file using the following command:
+You can generate an example .INI file using the following command:
 ```
 ./tex_extractor -genIni
 ```
-The complete explanation of .INI file can be found in the user manual.
+The complete explanation of the .INI file can be found in the user manual.
 
-A tool can then be used as following:
+The tool can then be used as follows:
 ```
 ./tex_extractor path/to/config.ini
 ```
