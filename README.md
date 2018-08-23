@@ -1,4 +1,4 @@
-# Texture extraction from Photographs
+# Texture extraction from photographs
 ## Danil Luzin
 
 Texture extraction tool generates texture images for 3D models using camera information from reconstruction tools and source images.
