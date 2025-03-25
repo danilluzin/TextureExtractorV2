@@ -55,3 +55,9 @@ NOTE: You may need to flip final textures vertically (y = -1) depending on what 
 - `CmakeLists.txt`: main Cmake file.
 - `Doxyfile`: Doxygen configuration file.
 - `BP_Luzin_Danil_2018.pdf`: Bachelors thesis text.
+
+![stump example](/renders/stump_.png)
+
+![slany example](/renders/line.png)
+
+(more examples in the "renders" folder)
